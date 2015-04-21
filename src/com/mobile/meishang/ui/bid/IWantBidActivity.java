@@ -16,8 +16,7 @@ public class IWantBidActivity extends MActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_i_want_bid);
 	}
-
-
+//ceshi
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -29,7 +28,6 @@ public class IWantBidActivity extends MActivity implements OnClickListener {
 		super.onPause();
 		MobclickAgent.onPause(this);
 	}
-
 
 	@Override
 	public void handleException(final int identity, final Exception e) {
@@ -64,7 +62,6 @@ public class IWantBidActivity extends MActivity implements OnClickListener {
 	public void resetUI(int identity, Object data) {
 
 	}
-
 
 	@Override
 	public void onClick(View v) {
