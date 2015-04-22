@@ -4,12 +4,8 @@ import android.content.SharedPreferences;
 
 public class Config {
 	public static final boolean DEBUG = true;
-	// public String urlRoot = "www.yudian-life.com";
-	// public String urlRootApi = "http://www.yudian-life.com";
-	// public String urlImage = "http://www.app.com/";
-	public String urlRoot = "http://103.242.168.154:9001/BCLife";
-	public String urlRootApi = "http://103.242.168.154:9001/BCLife";
-	// public String urlRootApi = "http://192.168.0.170:8080/BCLife";
+//	public String urlRoot = "http://121.41.38.198:8888/data";
+	public String urlRootApi = "http://121.41.38.198:8888/data";
 	public String urlImage = "http://103.242.168.154:9001/BCLife";
 	public SharedPreferences mPrefs;
 

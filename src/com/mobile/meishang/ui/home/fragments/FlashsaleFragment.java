@@ -27,10 +27,10 @@ import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.AdvertisingGalleryAdapter;
 import com.mobile.meishang.adapter.LehuigouHomeExpandAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
-import com.mobile.meishang.core.request.AdvertisingGalleryRequest;
+import com.mobile.meishang.core.request.HomeFragmentRequest;
 import com.mobile.meishang.model.RequestDistribute;
+import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
 import com.mobile.meishang.model.bean.AdvertisingGallery;
-import com.mobile.meishang.model.bean.AdvertisingGalleryList;
 import com.mobile.meishang.model.bean.PointStrategyGroup;
 import com.mobile.meishang.ui.ad.AdvertisingListActivity;
 import com.mobile.meishang.utils.view.AdGallery;
@@ -50,7 +50,7 @@ public class FlashsaleFragment extends MFragment implements MOnRefreshListener,
 	private LinearLayout mAdDotLayout;
 	private ImageView[] dotHolder;
 	private AdvertisingGalleryAdapter mAdvertisingAdapter;
-	private List<AdvertisingGallery> mAdvertisings;
+	private List<AdvertisingGalleryItem> mAdvertisings;
 	private final int ADVREFRESH = 1;
 	private int selectedPosition = 0;
 	private int realPosition = 0;
@@ -127,11 +127,11 @@ public class FlashsaleFragment extends MFragment implements MOnRefreshListener,
 				@Override
 				public void onItemClick(AdapterView<?> paramAdapterView,
 						View paramView, int paramInt, long paramLong) {
-					AdvertisingGallery advertising = mAdvertisings
+					AdvertisingGalleryItem advertising = mAdvertisings
 							.get(realPosition);
 					Bundle bundle = new Bundle();
-					bundle.putString("name", advertising.getName());
-					bundle.putString("actid", advertising.getActid());
+//					bundle.putString("name", advertising.getName());
+//					bundle.putString("actid", advertising.getActid());
 					goActivity(AdvertisingListActivity.class, bundle);
 					// goActivity(AdvertisingExpandbleActivity.class, bundle);
 				}
@@ -202,7 +202,7 @@ public class FlashsaleFragment extends MFragment implements MOnRefreshListener,
 		super.onActivityCreated(savedInstanceState);
 		getLoaderManager().initLoader(
 				RequestDistribute.ADVERTISING_GALLERY_FLASH_SALE, mBundle,
-				new AdvertisingGalleryRequest(this));
+				new HomeFragmentRequest(this));
 	}
 
 	@Override
@@ -233,7 +233,7 @@ public class FlashsaleFragment extends MFragment implements MOnRefreshListener,
 		switch (identity) {
 		case RequestDistribute.ADVERTISING_GALLERY_FLASH_SALE:
 			stopRefresh();
-			AdvertisingGalleryList advertisingList = (AdvertisingGalleryList) data;
+			AdvertisingGallery advertisingList = (AdvertisingGallery) data;
 			mAdvertisings = advertisingList.getList();
 			initEightPicture();
 			for (int i = 0; i < 2; i++) {

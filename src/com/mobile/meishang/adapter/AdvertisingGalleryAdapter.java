@@ -11,11 +11,12 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.bean.AdvertisingGallery;
+import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
 import com.mobile.meishang.utils.FunctionUtil;
 
 @SuppressWarnings("deprecation")
-public class AdvertisingGalleryAdapter extends BaseCacheListAdapter<AdvertisingGallery> {
+public class AdvertisingGalleryAdapter extends
+		BaseCacheListAdapter<AdvertisingGalleryItem> {
 	private Context mContext;
 	private int imgWidth;
 	private int imgHeight;
@@ -33,7 +34,7 @@ public class AdvertisingGalleryAdapter extends BaseCacheListAdapter<AdvertisingG
 		// imgWidth = display.getWidth() - FunctionUtil.dip2px(context, 350);
 		// imgHeight = (int) (imgWidth * (40 / 120f));
 		imgWidth = (int) (display.getWidth() - FunctionUtil.dip2px(context, 0));
-		imgHeight = (int) (imgWidth * 0.3828);
+		imgHeight = (int) (imgWidth * 0.562305);
 	}
 
 	@Override
@@ -51,7 +52,7 @@ public class AdvertisingGalleryAdapter extends BaseCacheListAdapter<AdvertisingG
 			imageview.setScaleType(ScaleType.FIT_XY);
 			if (list != null && list.size() > 0) {
 				setCacheImage(imageview, getItem(position % imagelength)
-						.getImgeUrl(), R.drawable.loading_bg_img245);
+						.getPicPath(), R.drawable.loading_bg_img245);
 			} else {
 				setCacheImage(imageview, "", R.drawable.loading_bg_img245);
 			}

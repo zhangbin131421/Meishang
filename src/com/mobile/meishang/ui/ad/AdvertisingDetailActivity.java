@@ -99,7 +99,7 @@ public class AdvertisingDetailActivity extends MActivity implements
 		switch (identity) {
 		case RequestDistribute.GET_RIGHTS_CODE:
 			RightsCode rightCode = (RightsCode) data;
-			if (rightCode.isSuccess()) {
+//			if (rightCode.isSuccess()) {
 				// try {
 				// intent.putExtra("bundle", mBundle);
 				// intent.putExtra("bankSeq", rightCode.getBankSeq());
@@ -109,9 +109,9 @@ public class AdvertisingDetailActivity extends MActivity implements
 				mBundle.putString("bankSeq", rightCode.getBankSeq());
 				mBundle.putString("notifyUrl", rightCode.getcallBackUrl());
 //				goActivity(AlipayActivity.class, mBundle);
-			} else {
-				showToast(rightCode.getCodeMessage());
-			}
+			// } else {
+			// showToast(rightCode.getCodeMessage());
+			// }
 			break;
 
 		default:

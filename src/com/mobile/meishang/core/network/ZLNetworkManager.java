@@ -64,7 +64,6 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.ExecutionContext;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
-import org.json.JSONObject;
 
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
@@ -73,7 +72,6 @@ import com.mobile.meishang.MApplication;
 import com.mobile.meishang.core.util.ZLMiscUtil;
 import com.mobile.meishang.core.util.ZLNetworkUtil;
 import com.mobile.meishang.logger.MyLog;
-import com.mobile.meishang.model.bean.Head;
 import com.mobile.meishang.utils.FunctionUtil;
 
 /**
@@ -839,24 +837,7 @@ public class ZLNetworkManager {
 						outputStream = new String(outStream.toByteArray(),
 								HTTP.UTF_8);
 						MyLog.d("**********40response>>>>" + outputStream);
-						// 替换
-						JSONObject jsonObject = new JSONObject(outputStream);
-						Head head = new Head(jsonObject);
-						if (head != null
-								&& (head.getCode().equals("40") || head
-										.getCode().equals("49"))) {
-							if (head.getCode().equals("40")) {
-								MApplication.getInstance().setSignValue(
-										head.getCodeMessage());
-							}
-							request.PostParameters.remove("sign");
-							MyLog.d("********SIGN_ERROR************");
-							throw new ZLNetworkException(
-									ZLNetworkException.SIGN_ERROR);
-						} else {
-							MyLog.d("********************");
-							return mDataProtocol.handle(outputStream);
-						}
+						return mDataProtocol.handle(outputStream);
 
 					} else {
 						request.handleStream(stream,

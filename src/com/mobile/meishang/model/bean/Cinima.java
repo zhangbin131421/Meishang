@@ -36,7 +36,7 @@ public class Cinima {
 		shopName = FunctionUtil.getJsonStrValue(json, "market_price");
 		shopAddress = FunctionUtil.getJsonStrValue(json, "sales");
 		isBooking = FunctionUtil.getJsonStrValue(json, "is_new");
-		imgageUrl = MApplication.getInstance().getmConfig().urlRoot
+		imgageUrl = MApplication.getInstance().getmConfig().urlRootApi
 				+ FunctionUtil.getJsonStrValue(json, "goods_thumb");
 	}
 

@@ -7,34 +7,33 @@ import android.support.v4.content.Loader;
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.MApplication;
 import com.mobile.meishang.MFragment;
-import com.mobile.meishang.core.content.AdvertisingGalleryLoader;
+import com.mobile.meishang.core.content.HomeFragmentLoader;
 import com.mobile.meishang.core.network.DefaultNetworkRequest;
-import com.mobile.meishang.model.bean.AdvertisingGalleryList;
+import com.mobile.meishang.model.bean.HomeFragmentData;
 
-public class AdvertisingGalleryRequest implements
-		LoaderManager.LoaderCallbacks<AdvertisingGalleryList> {
+public class HomeFragmentRequest implements
+		LoaderManager.LoaderCallbacks<HomeFragmentData> {
 
 	private MFragment mFragment;
 	private MActivity mActivity;
 
-	public AdvertisingGalleryRequest(MActivity activity) {
+	public HomeFragmentRequest(MActivity activity) {
 		this.mActivity = activity;
 	}
 
-	public AdvertisingGalleryRequest(MFragment fragment) {
+	public HomeFragmentRequest(MFragment fragment) {
 		this.mFragment = fragment;
 		mActivity = (MActivity) fragment.getActivity();
 	}
 
 	@Override
-	public Loader<AdvertisingGalleryList> onCreateLoader(int arg0, Bundle arg1) {
+	public Loader<HomeFragmentData> onCreateLoader(int arg0, Bundle arg1) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
-		urlString.append("/limitBuy/actInfoList");
+		urlString.append("/index/index.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
-		mHttpRequest.addPostParameter("label", arg1.getString("label"));
-		AdvertisingGalleryLoader loader = new AdvertisingGalleryLoader(
+		HomeFragmentLoader loader = new HomeFragmentLoader(
 				mActivity, mHttpRequest);
 		if (mFragment == null) {
 
@@ -48,8 +47,8 @@ public class AdvertisingGalleryRequest implements
 	}
 
 	@Override
-	public void onLoadFinished(Loader<AdvertisingGalleryList> arg0,
-			AdvertisingGalleryList arg1) {
+	public void onLoadFinished(Loader<HomeFragmentData> arg0,
+			HomeFragmentData arg1) {
 		if (arg1 != null) {
 			if (mFragment == null) {
 				mActivity.updateUI(arg0.getId(), arg1);
@@ -61,7 +60,7 @@ public class AdvertisingGalleryRequest implements
 	}
 
 	@Override
-	public void onLoaderReset(Loader<AdvertisingGalleryList> arg0) {
+	public void onLoaderReset(Loader<HomeFragmentData> arg0) {
 	}
 
 }

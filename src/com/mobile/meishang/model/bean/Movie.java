@@ -38,7 +38,7 @@ public class Movie {
 		district = FunctionUtil.getJsonStrValue(json, "sales");
 		duration = FunctionUtil.getJsonStrValue(json, "is_new");
 		releaseDate = FunctionUtil.getJsonStrValue(json, "goods_img");
-		imgageUrl = MApplication.getInstance().getmConfig().urlRoot
+		imgageUrl = MApplication.getInstance().getmConfig().urlRootApi
 				+ FunctionUtil.getJsonStrValue(json, "goods_thumb");
 		cinimaQuantity = FunctionUtil.getJsonStrValue(json, "goods_img");
 		screeningQuantity = FunctionUtil.getJsonStrValue(json, "goods_img");

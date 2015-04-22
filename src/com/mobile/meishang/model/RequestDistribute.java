@@ -37,25 +37,7 @@ public class RequestDistribute {
 	public static final int MY_CHOUJIANG_LIST = 29;//
 	public static final int MY_CHOUJIANG_Detail = 30;//
 	public static final int COMBINE_LIST = 31;//
-	// public static final int CERTIFICATE_UNUSE = 28;//
-	// public static final int CERTIFICATE_USED = 29;//
-	// public static final int CERTIFICATE_EXPIRE = 30;//
-	// public static final int MAIN = 0x200;//
-	// public static final int RECOMMEND = 0x200 + 1;//
-	// public static final int RECOMMEND_CONTENT = 0x200 + 2;//
-	// public static final int ALL_POSITION = 0x200 + 3;//
-	// public static final int POSITION_DETAIL = 0x200 + 4;//
-	// public static final int WORK_ENVIRONMENT = 0x200 + 5;//
-	// public static final int SCHOOL_EVALUATION = 0x200 + 6;//
-	// public static final int SHOW_SCHOOLS = 0x200 + 10;//
-	//
-	// public static final int SEARCH_RECOMMEND = 0x200 + 50;//
-	//
 	public static final int GET_CODE = 200;//
-
-	// public static final int NOTES_NEW = 1000;//
-	// public static final int NOTES_DRAFT = 1001;// 草稿
-	// public static final int NOTES_WRITE = 1002;//
 	public static final int MY_NOTES_LIST = 1003;//
 	public static final int NOTES_PUBLISH = 1004;//
 	public static final int NOTES_EDITE = 1005;//
@@ -82,4 +64,6 @@ public class RequestDistribute {
 	public static final int ONELINE_OPTIONS_SEAT = 5040;//
 	public static final int MOVIE_SUBMIT_ORDERS = 5050;//
 	public static final int MY_MOVIE_TICKET = 5060;//
+	// 分开
+	public static final int HOME_FRAGMENT = 6000;//
 }

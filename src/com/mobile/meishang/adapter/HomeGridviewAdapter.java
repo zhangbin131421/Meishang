@@ -1,25 +1,20 @@
 package com.mobile.meishang.adapter;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.bean.Goods;
+import com.mobile.meishang.model.bean.HomeFragmentTemplateDataItem;
 
-public class HomeGridviewAdapter extends BaseListAdapter<Goods> {
-
-	private Context mContext;
+public class HomeGridviewAdapter extends
+		BaseCacheListAdapter<HomeFragmentTemplateDataItem> {
 
 	public HomeGridviewAdapter(Context context) {
-		mContext = context;
-	}
-
-	@Override
-	public int getCount() {
-		return 13;
+		super(context);
 	}
 
 	@Override
@@ -27,32 +22,31 @@ public class HomeGridviewAdapter extends BaseListAdapter<Goods> {
 		Holder holder;
 		if (null == convertView) {
 			holder = new Holder();
-			convertView = LayoutInflater.from(mContext).inflate(
-					R.layout.item_gridview_home, null);
+			convertView = mInflater.inflate(R.layout.item_gridview_home, null);
+			holder.item_image = (ImageView) convertView
+					.findViewById(R.id.item_image);
 			holder.item_name = (TextView) convertView
 					.findViewById(R.id.item_name);
-			// holder.item_name.setOnClickListener(new OnClickListener() {
-			//
-			// @Override
-			// public void onClick(View v) {
-			// Toast.makeText(mContext, "item_tv_title" + position,
-			// Toast.LENGTH_SHORT).show();
-			// }
-			// });
 			convertView.setTag(holder);
 		} else {
 			holder = (Holder) convertView.getTag();
 		}
-		holder.item_name.setText("首页");
-		holder.item_name
-				.setCompoundDrawablesWithIntrinsicBounds(null, mContext
-						.getResources().getDrawable(R.drawable.ic_launcher),
-						null, null);
+		holder.item_name.setText(getItem(position).getTitle());
+		setCacheImage(holder.item_image, getItem(position).getPicPath(),
+				R.drawable.loading_bg_img_item);
 		return convertView;
 	}
 
 	static class Holder {
+		ImageView item_image;
 		TextView item_name;
+
+	}
+
+	@Override
+	public void refreshImageView(AbsListView view) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

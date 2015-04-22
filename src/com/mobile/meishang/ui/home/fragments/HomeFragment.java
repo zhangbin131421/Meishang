@@ -24,10 +24,11 @@ import com.mobile.meishang.MFragment;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.AdvertisingGalleryAdapter;
 import com.mobile.meishang.adapter.HomeGridviewAdapter;
-import com.mobile.meishang.core.request.AdvertisingGalleryRequest;
+import com.mobile.meishang.core.request.HomeFragmentRequest;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.AdvertisingGallery;
-import com.mobile.meishang.model.bean.AdvertisingGalleryList;
+import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
+import com.mobile.meishang.model.bean.HomeFragmentData;
+import com.mobile.meishang.model.bean.HomeFragmentTemplateDataItem;
 import com.mobile.meishang.ui.ad.AdvertisingListActivity;
 import com.mobile.meishang.ui.bid.BidNoticeListActivity;
 import com.mobile.meishang.ui.home.InsideActivity;
@@ -50,7 +51,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 	private int refreshTime = 2000;
 	private RefreshAdvRun mRefreshAdvRun;
 	private GridViewWithHeaderAndFooter mGridView;
-	private HomeGridviewAdapter mAdapter;
+	private HomeGridviewAdapter mGridviewAdapter;
 	private View headView;
 	private ImageView img_temp;
 	private AdGallery mAdGallery;
@@ -71,7 +72,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 			}
 		}
 	};
-	private List<AdvertisingGallery> mAdvertisings;
+	private List<AdvertisingGalleryItem> mAdvertisings;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -129,11 +130,11 @@ public class HomeFragment extends MFragment implements OnClickListener {
 				@Override
 				public void onItemClick(AdapterView<?> paramAdapterView,
 						View paramView, int paramInt, long paramLong) {
-					AdvertisingGallery advertising = mAdvertisings
+					AdvertisingGalleryItem advertising = mAdvertisings
 							.get(realPosition);
 					Bundle bundle = new Bundle();
-					bundle.putString("name", advertising.getName());
-					bundle.putString("actid", advertising.getActid());
+					// bundle.putString("name", advertising.getName());
+					// bundle.putString("actid", advertising.getActid());
 					goActivity(AdvertisingListActivity.class, bundle);
 					// goActivity(AdvertisingExpandbleActivity.class, bundle);
 				}
@@ -161,8 +162,8 @@ public class HomeFragment extends MFragment implements OnClickListener {
 		mGridView.addHeaderView(headView, null, false);
 		mAdvertisingAdapter = new AdvertisingGalleryAdapter(mContext);
 		mAdGallery.setAdapter(mAdvertisingAdapter);
-		mAdapter = new HomeGridviewAdapter(mContext);
-		mGridView.setAdapter(mAdapter);
+		mGridviewAdapter = new HomeGridviewAdapter(mContext);
+		mGridView.setAdapter(mGridviewAdapter);
 		// mGridView.setOnItemLongClickListener(new OnItemLongClickListener() {
 		//
 		// @Override
@@ -203,7 +204,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 					break;
 				case 9:
 					goActivity(InsideActivity.class, null);
-					
+
 					break;
 
 				default:
@@ -218,9 +219,8 @@ public class HomeFragment extends MFragment implements OnClickListener {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		getLoaderManager().initLoader(
-				RequestDistribute.ADVERTISING_GALLERY_ONE_DAY, mBundle,
-				new AdvertisingGalleryRequest(this));
+		getLoaderManager().initLoader(RequestDistribute.HOME_FRAGMENT, mBundle,
+				new HomeFragmentRequest(this));
 	}
 
 	// @Override
@@ -267,7 +267,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 		getActivity().runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				if (identity == RequestDistribute.COUPON_GET) {
+				if (identity == RequestDistribute.HOME_FRAGMENT) {
 					// mLoadingView.showRetryBtn(true);
 					showToast(e.getMessage());
 				}
@@ -279,10 +279,15 @@ public class HomeFragment extends MFragment implements OnClickListener {
 	public void updateUI(int identity, Object data) {
 		if (data != null) {
 			switch (identity) {
-			case RequestDistribute.ADVERTISING_GALLERY_ONE_DAY:
-				AdvertisingGalleryList advertisingList = (AdvertisingGalleryList) data;
-				mAdvertisings = advertisingList.getList();
+			case RequestDistribute.HOME_FRAGMENT:
+				HomeFragmentData homeFragmentData = (HomeFragmentData) data;
+				mAdvertisings = homeFragmentData.getAdvertisingGallery()
+						.getList();
 				initEightPicture();
+				List<HomeFragmentTemplateDataItem> list = homeFragmentData
+						.getTemplateData().getList();
+				mGridviewAdapter.addAll(list);
+				mGridviewAdapter.notifyDataSetChanged();
 				break;
 
 			default:

@@ -169,25 +169,25 @@ public class ShoppingCarListActivity extends MActivity implements
 		}
 		switch (identity) {
 		case RequestDistribute.FAVORITES_LIST:
-			mLoadingView.setVisibility(View.GONE);
-			FavoritesList favoritesList = (FavoritesList) data;
-			list = favoritesList.getmList();
-			String code = favoritesList.getCode();
-			if (TextUtils.isEmpty(code)) {
-				if (list.size() > 0) {
-					mListAdapter.addAll(list);
-					mListAdapter.notifyDataSetChanged();
-				} else {
-					// showToast("你还没有收藏的商品");
-					mNoDataRLayout.setVisibility(View.VISIBLE);
-				}
-			} else {
-				if ("1".equals(code)) {// 未登录
-					goActivity(LoginActivity.class, null);
-				} else {
-					showToast(favoritesList.getCodeMessage());
-				}
-			}
+			// mLoadingView.setVisibility(View.GONE);
+			// FavoritesList favoritesList = (FavoritesList) data;
+			// list = favoritesList.getmList();
+			// String code = favoritesList.getCode();
+			// if (TextUtils.isEmpty(code)) {
+			// if (list.size() > 0) {
+			// mListAdapter.addAll(list);
+			// mListAdapter.notifyDataSetChanged();
+			// } else {
+			// // showToast("你还没有收藏的商品");
+			// mNoDataRLayout.setVisibility(View.VISIBLE);
+			// }
+			// } else {
+			// if ("1".equals(code)) {// 未登录
+			// goActivity(LoginActivity.class, null);
+			// } else {
+			// showToast(favoritesList.getCodeMessage());
+			// }
+			// }
 
 			break;
 		case RequestDistribute.FAVORITES_LIST_DELETE:
