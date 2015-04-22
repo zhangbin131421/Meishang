@@ -13,10 +13,10 @@
         android:src="@drawable/loading_bg_img_item" />
 
     <LinearLayout
-        android:background="@color/transparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
+        android:background="@color/transparent"
         android:orientation="vertical" >
 
         <TextView
@@ -33,12 +33,14 @@
             android:id="@+id/item_tv_describe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_point_item"
+            android:drawablePadding="3dp"
             android:ellipsize="end"
+            android:gravity="center_vertical"
             android:singleLine="true"
             android:text="1000积分"
             android:textColor="@color/red"
             android:textSize="12sp" />
-
     </LinearLayout>
 
 </LinearLayout>

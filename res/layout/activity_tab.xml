@@ -18,8 +18,8 @@
         android:layout_height="wrap_content"
         android:background="@color/tab_bg"
         android:orientation="horizontal"
-        android:paddingBottom="1dp"
-        android:paddingTop="1dp" >
+        android:paddingBottom="5dp"
+        android:paddingTop="8dp" >
 
         <LinearLayout
             android:id="@+id/flayout_tab_a"

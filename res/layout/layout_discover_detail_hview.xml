@@ -27,8 +27,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_favorite"
-                    android:drawablePadding="8dp"
+                    android:drawableLeft="@drawable/ic_voice_introduce"
+                    android:drawablePadding="3dp"
                     android:gravity="center_vertical"
                     android:text="语音介绍"
                     android:textColor="@color/white"
@@ -46,8 +46,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_favorite"
-                    android:drawablePadding="8dp"
+                    android:drawableLeft="@drawable/ic_riches_call"
+                    android:drawablePadding="3dp"
                     android:gravity="center_vertical"
                     android:text="财富热线"
                     android:textColor="@color/white"
@@ -65,8 +65,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_favorite"
-                    android:drawablePadding="8dp"
+                    android:drawableLeft="@drawable/ic_leave_words_her"
+                    android:drawablePadding="3dp"
                     android:gravity="center_vertical"
                     android:text="留言给她"
                     android:textColor="@color/white"
@@ -114,12 +114,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_people_numbers"
+                    android:drawablePadding="3dp"
+                    android:gravity="center_vertical"
                     android:text="1.2万"
                     android:textColor="@color/font_gray" />
             </LinearLayout>
         </LinearLayout>
 
-        <View style="@style/line_vertical_style" />
+        <View
+            style="@style/line_vertical_style"
+            android:layout_marginLeft="10dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -131,14 +136,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:drawableTop="@drawable/ic_share"
+                android:drawablePadding="3dp"
+                android:drawableTop="@drawable/ic_shared"
                 android:text="分享"
                 android:textSize="@dimen/tv_name_size" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_share"
+                android:drawablePadding="3dp"
+                android:drawableTop="@drawable/ic_my_favorite"
                 android:text="收藏"
                 android:textSize="@dimen/tv_name_size" />
         </LinearLayout>
@@ -155,7 +162,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_share"
+            android:drawableLeft="@drawable/ic_product_introduce"
+            android:drawablePadding="3dp"
             android:gravity="center_vertical"
             android:text="项目介绍"
             android:textSize="@dimen/tv_name_size" />
@@ -166,6 +174,7 @@
         android:layout_height="wrap_content"
         android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
         android:textSize="@dimen/tv_name_size" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -177,7 +186,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_share"
+            android:drawableLeft="@drawable/ic_product_superiority"
+            android:drawablePadding="3dp"
             android:gravity="center_vertical"
             android:text="项目优势"
             android:textSize="@dimen/tv_name_size" />
