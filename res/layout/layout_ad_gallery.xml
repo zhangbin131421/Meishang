@@ -8,8 +8,8 @@
         android:id="@+id/img_temp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/loading_bg_img245"
-        android:visibility="gone" />
+        android:adjustViewBounds="true"
+        android:src="@drawable/loading_bg_img245" />
 
     <com.mobile.meishang.utils.view.AdGallery
         android:id="@+id/ad_gallery"
