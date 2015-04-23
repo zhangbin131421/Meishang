@@ -20,11 +20,10 @@ import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.AdvertisingGalleryAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
-import com.mobile.meishang.core.request.HomeFragmentRequest;
 import com.mobile.meishang.core.request.GoodsDetailRequest;
+import com.mobile.meishang.core.request.HomeFragmentRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
-import com.mobile.meishang.model.bean.AdvertisingGallery;
 import com.mobile.meishang.model.bean.Goods;
 import com.mobile.meishang.ui.ad.AdvertisingListActivity;
 import com.mobile.meishang.ui.shopping.ShoppingCarListActivity;
@@ -212,9 +211,9 @@ public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
 		// mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
 		case RequestDistribute.ADVERTISING_GALLERY_FLASH_SALE:
-			AdvertisingGallery advertisingList = (AdvertisingGallery) data;
-			mAdvertisings = advertisingList.getList();
-			initAdvPicture();
+//			AdvertisingGallery advertisingList = (AdvertisingGallery) data;
+//			mAdvertisings = advertisingList.getList();
+//			initAdvPicture();
 			break;
 		case RequestDistribute.GOODS_DETAILS:
 			mGoods = (Goods) data;

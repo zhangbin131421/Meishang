@@ -184,27 +184,19 @@ public class HomeFragment extends MFragment implements OnClickListener {
 					goActivity(LehuigoHomeActvity.class, null);
 					break;
 				case 4:
-					goActivity(GoodsSearchActivity.class, null);
+					goActivity(BidNoticeListActivity.class, null);
 					break;
 				case 5:
-					goActivity(InfoListActivity.class, null);
-
-					break;
 				case 6:
-					goActivity(ShareActivity.class, null);
-
-					break;
 				case 7:
-					goActivity(SharedActivity.class, null);
-
-					break;
 				case 8:
-					goActivity(BidNoticeListActivity.class, null);
-
-					break;
 				case 9:
+				case 10:
 					goActivity(InsideActivity.class, null);
-
+					break;
+				case 11:
+					goActivity(InfoListActivity.class, null);
+					// goActivity(GoodsSearchActivity.class, null);
 					break;
 
 				default:

@@ -190,9 +190,9 @@ public class DiscoverDetailActivity extends MActivity implements
 			mGoodsListing = (List<GoodsItem>) data;
 			break;
 		case RequestDistribute.ADVERTISING_GALLERY_FLASH_SALE:
-			AdvertisingGallery advertisingList = (AdvertisingGallery) data;
-			mAdvertisings = advertisingList.getList();
-			initEightPicture();
+			// AdvertisingGallery advertisingList = (AdvertisingGallery) data;
+			// mAdvertisings = advertisingList.getList();
+			// initEightPicture();
 			// for (int i = 0; i < 2; i++) {
 			// mExpandableListView.expandGroup(i);
 			// }

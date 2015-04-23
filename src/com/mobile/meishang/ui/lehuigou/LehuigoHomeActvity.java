@@ -233,10 +233,10 @@ public class LehuigoHomeActvity extends MActivity implements
 		// mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
 		case RequestDistribute.ADVERTISING_GALLERY_FLASH_SALE:
-			stopRefresh();
-			AdvertisingGallery advertisingList = (AdvertisingGallery) data;
-			mAdvertisings = advertisingList.getList();
-			initEightPicture();
+			// stopRefresh();
+			// AdvertisingGallery advertisingList = (AdvertisingGallery) data;
+			// mAdvertisings = advertisingList.getList();
+			// initEightPicture();
 			// for (int i = 0; i < 2; i++) {
 			// mExpandableListView.expandGroup(i);
 			// }
