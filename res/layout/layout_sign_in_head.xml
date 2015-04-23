@@ -53,6 +53,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="10dp" >
 
@@ -65,7 +66,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_jewel"
+                android:drawableLeft="@drawable/ic_alarm_clock"
+                android:drawablePadding="3dp"
                 android:text="新用户首次签到立送100-1000积分！" />
 
             <TextView
@@ -78,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/ic_close" />
     </LinearLayout>
 
     <LinearLayout
@@ -104,7 +106,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_jewel"
+            android:drawableLeft="@drawable/ic_label_red"
+            android:drawablePadding="3dp"
+            android:gravity="center_vertical"
             android:text="签到得积分" />
 
         <TextView
@@ -123,7 +127,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_jewel"
+            android:drawableLeft="@drawable/ic_more_point"
+            android:drawablePadding="3dp"
             android:text="更多积分" />
 
         <TextView
