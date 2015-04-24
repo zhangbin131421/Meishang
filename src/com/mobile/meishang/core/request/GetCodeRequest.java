@@ -23,20 +23,21 @@ public class GetCodeRequest implements LoaderManager.LoaderCallbacks<Head> {
 	public Loader<Head> onCreateLoader(int arg0, Bundle bundle) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
-		urlString.append("/login/getmessage");
+		urlString.append("/dataUser/sendCode.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
-		mHttpRequest.addPostParameter("account", bundle.getString("account"));
+		mHttpRequest.addPostParameter("telephone",
+				bundle.getString("telephone"));
 		HeadLoader loader = new HeadLoader(mActivity, mHttpRequest);
 		loader.setExceptionHandler(mActivity);
-		loader.setIdentit(RequestDistribute.GET_CODE);
+		loader.setIdentit(arg0);
 		return loader;
 	}
 
 	@Override
 	public void onLoadFinished(Loader<Head> arg0, Head arg1) {
 		if (arg1 != null) {
-			mActivity.updateUI(RequestDistribute.GET_CODE, arg1);
+			mActivity.updateUI(arg0.getId(), arg1);
 		}
 	}
 

@@ -1,6 +1,8 @@
 package com.mobile.meishang.ui.login;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -8,6 +10,7 @@ import android.widget.TextView;
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.core.error.ExceptionHandler;
+import com.mobile.meishang.core.request.GetCodeRequest;
 import com.mobile.meishang.core.request.RegisterRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.utils.FunctionUtil;
@@ -21,13 +24,16 @@ import com.umeng.analytics.MobclickAgent;
  * @author Administrator
  * 
  */
-public class RegisterActivity extends MActivity implements
-		ExceptionHandler, LoadEvent {
+public class RegisterActivity extends MActivity implements ExceptionHandler,
+		LoadEvent {
 	private LoadingView mLoadingView;
 	private EditText etext_phone_number;
 	private EditText etext_verification_code;
 	private EditText etext_password;
-	private Bundle mBundle;
+	private Bundle mBundle=new Bundle();
+	private int recLen = 120;
+	private Handler handler = new Handler();
+	private String mMobile;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,16 +67,29 @@ public class RegisterActivity extends MActivity implements
 		super.onclick(v);
 		switch (v.getId()) {
 		case R.id.tv_get_verification_code:
+			mMobile = etext_phone_number.getText().toString().trim();
+			if (TextUtils.isEmpty(mMobile)) {
+				showToast("请输入手机号");
+				break;
+			}
+			if (!mMobile.startsWith("1") || mMobile.length() != 11
+					|| FunctionUtil.hasSpecialChar(mMobile)) {
+				showToast("请输入正确的手机号码");
+				break;
+			}
+			mBundle.putString("telephone", mMobile);
+			getSupportLoaderManager().restartLoader(RequestDistribute.GET_CODE,
+					mBundle, new GetCodeRequest(this));
 			break;
 		case R.id.btn_finish:
-			String mobile = etext_phone_number.getText().toString().trim();
-			String password = etext_password.getText().toString().trim();
-			mBundle = new Bundle();
-			mBundle.putString("mobile", mobile);
-			mBundle.putString("password", FunctionUtil.MD5(password));
-			mLoadingView.setVisibility(View.VISIBLE);
-			getSupportLoaderManager().restartLoader(RequestDistribute.REGISTER,
-					mBundle, new RegisterRequest(this));
+			// String mobile = etext_phone_number.getText().toString().trim();
+			// String password = etext_password.getText().toString().trim();
+			// mBundle = new Bundle();
+			// mBundle.putString("mobile", mobile);
+			// mBundle.putString("password", FunctionUtil.MD5(password));
+			// mLoadingView.setVisibility(View.VISIBLE);
+			// getSupportLoaderManager().restartLoader(RequestDistribute.REGISTER,
+			// mBundle, new RegisterRequest(this));
 
 			break;
 
@@ -85,17 +104,18 @@ public class RegisterActivity extends MActivity implements
 		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
 		case RequestDistribute.REGISTER:
-//			RequestResponseInfo requestResponseInfo = (RequestResponseInfo) data;
-//			if ("".equals(requestResponseInfo.getErrorCode())) {
-//				LeShiHuiApplication.setSessionId(requestResponseInfo
-//						.getSessionId());
-//				// Intent intent = new Intent();
-//				// intent.putExtra("bundle", mBundle);
-//				// setResult(1, intent);
-//				finish();
-//			} else {
-//				showToast(requestResponseInfo.getErrorMessage());
-//			}
+			// RequestResponseInfo requestResponseInfo = (RequestResponseInfo)
+			// data;
+			// if ("".equals(requestResponseInfo.getErrorCode())) {
+			// LeShiHuiApplication.setSessionId(requestResponseInfo
+			// .getSessionId());
+			// // Intent intent = new Intent();
+			// // intent.putExtra("bundle", mBundle);
+			// // setResult(1, intent);
+			// finish();
+			// } else {
+			// showToast(requestResponseInfo.getErrorMessage());
+			// }
 			break;
 
 		default:

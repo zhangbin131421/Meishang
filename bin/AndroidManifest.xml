@@ -105,6 +105,9 @@
         <activity
             android:name=".ui.shopping.ShoppingCarListActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.shopping.ShippingAddressActivity"
+            android:screenOrientation="portrait" />
         <!-- 广告活动 -->
         <activity
             android:name=".ui.ad.AdvertisingListActivity"

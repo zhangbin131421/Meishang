@@ -37,7 +37,7 @@ public class RequestDistribute {
 	public static final int MY_CHOUJIANG_LIST = 29;//
 	public static final int MY_CHOUJIANG_Detail = 30;//
 	public static final int COMBINE_LIST = 31;//
-	public static final int GET_CODE = 200;//
+	
 	public static final int MY_NOTES_LIST = 1003;//
 	public static final int NOTES_PUBLISH = 1004;//
 	public static final int NOTES_EDITE = 1005;//
@@ -66,4 +66,5 @@ public class RequestDistribute {
 	public static final int MY_MOVIE_TICKET = 5060;//
 	// 分开
 	public static final int HOME_FRAGMENT = 6000;//
+	public static final int GET_CODE = 200;//
 }

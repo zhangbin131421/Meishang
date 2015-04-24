@@ -3,7 +3,6 @@ package com.mobile.meishang.ui.shopping;
 import java.util.List;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -19,9 +18,7 @@ import com.mobile.meishang.adapter.ShoppingCarListAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.GoodsDetailRequest;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.FavoritesList;
 import com.mobile.meishang.model.bean.Goods;
-import com.mobile.meishang.ui.login.LoginActivity;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
@@ -155,6 +152,9 @@ public class ShoppingCarListActivity extends MActivity implements
 			// // entry.getValue() 返回与此项对应的值
 			// System.out.println(entry.getValue());
 			// }
+			break;
+		case R.id.btn_clearing:
+			goActivity(ShippingAddressActivity.class, null);
 			break;
 		default:
 			break;
