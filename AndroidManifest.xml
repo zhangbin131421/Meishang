@@ -147,6 +147,13 @@
         <activity
             android:name=".ui.share.SharedActivity"
             android:screenOrientation="portrait" />
+        <!-- 抽奖 -->
+        <activity
+            android:name=".ui.choujiang.ChoujiangActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.choujiang.RuleActivity"
+            android:screenOrientation="portrait" />
         <!-- 登录注册 -->
         <activity
             android:name=".ui.login.LoginActivity"

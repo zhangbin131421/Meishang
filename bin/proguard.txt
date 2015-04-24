@@ -55,13 +55,13 @@
 # view res/layout/notification_custom_builder.xml #generated:52
 -keep class android.widget.DateTimeView { <init>(...); }
 
-# view AndroidManifest.xml #generated:171
+# view AndroidManifest.xml #generated:178
 -keep class com.alipay.sdk.app.H5PayActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:176
+# view AndroidManifest.xml #generated:183
 -keep class com.alipay.sdk.auth.AuthActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:182
+# view AndroidManifest.xml #generated:189
 -keep class com.baidu.location.f { <init>(...); }
 
 # view res/layout/umeng_socialize_comment_detail.xml #generated:23
@@ -88,7 +88,7 @@
 # view AndroidManifest.xml #generated:122
 -keep class com.mobile.meishang.ui.ad.AlipayActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:163
+# view AndroidManifest.xml #generated:170
 -keep class com.mobile.meishang.ui.baidu.LocationActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:88
@@ -102,6 +102,12 @@
 
 # view AndroidManifest.xml #generated:136
 -keep class com.mobile.meishang.ui.category.CategoryActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:151
+-keep class com.mobile.meishang.ui.choujiang.ChoujiangActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:154
+-keep class com.mobile.meishang.ui.choujiang.RuleActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:126
 -keep class com.mobile.meishang.ui.city.AreaChoiceActivity { <init>(...); }
@@ -139,16 +145,16 @@
 # view AndroidManifest.xml #generated:74
 -keep class com.mobile.meishang.ui.lehuigou.LehuigoHomeActvity { <init>(...); }
 
-# view AndroidManifest.xml #generated:157
+# view AndroidManifest.xml #generated:164
 -keep class com.mobile.meishang.ui.login.ForgotPdActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:151
+# view AndroidManifest.xml #generated:158
 -keep class com.mobile.meishang.ui.login.LoginActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:154
+# view AndroidManifest.xml #generated:161
 -keep class com.mobile.meishang.ui.login.RegisterActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:160
+# view AndroidManifest.xml #generated:167
 -keep class com.mobile.meishang.ui.login.RetrievedResetPasswordActivity { <init>(...); }
 
 # view res/layout/activity_online_options_b.xml #generated:23
@@ -188,9 +194,9 @@
 # view res/layout/layout_sign_in_head.xml #generated:98
 -keep class com.mobile.meishang.ui.widget.SignProgressBar { <init>(...); }
 
-# view res/layout/activity_shipping_address.xml #generated:28
-# view res/layout/activity_shipping_address.xml #generated:34
-# view res/layout/activity_shipping_address.xml #generated:40
+# view res/layout/activity_shipping_address.xml #generated:32
+# view res/layout/activity_shipping_address.xml #generated:38
+# view res/layout/activity_shipping_address.xml #generated:44
 -keep class com.mobile.meishang.ui.widget.wheel.WheelView { <init>(...); }
 
 # view res/layout/layout_ad_gallery.xml #generated:14
@@ -236,13 +242,13 @@
 # view res/layout/activity_refresh_scrollview.xml #generated:1
 -keep class com.mobile.meishang.utils.view.pulltorefresh.XScrollView { <init>(...); }
 
-# view AndroidManifest.xml #generated:215
+# view AndroidManifest.xml #generated:222
 -keep class com.tencent.connect.common.AssistActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:202
+# view AndroidManifest.xml #generated:209
 -keep class com.tencent.tauth.AuthActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:192
+# view AndroidManifest.xml #generated:199
 -keep class com.umeng.socialize.view.ShareActivity { <init>(...); }
 
 # view res/layout/umeng_socialize_ucenter_platform_item.xml #generated:31
@@ -270,6 +276,7 @@
 -keep class kankan.wheel.widget.WheelView { <init>(...); }
 
 # onClick res/layout/activity_category.xml #generated:1
+# onClick res/layout/activity_choujiang.xml #generated:31
 # onClick res/layout/activity_favorites.xml #generated:15
 # onClick res/layout/activity_favorites.xml #generated:28
 # onClick res/layout/activity_favorites.xml #generated:41
@@ -324,6 +331,7 @@
 # onClick res/layout/item_select_cinema_lhb.xml #generated:28
 # onClick res/layout/item_select_cinema_lhb.xml #generated:46
 # onClick res/layout/item_shop_detail_lh.xml #generated:98
+# onClick res/layout/layout_shopping_car_check.xml #generated:77
 # onClick res/layout/layout_tab_top.xml #generated:11
 # onClick res/layout/layout_tab_top.xml #generated:47
 # onClick res/layout/layout_tab_top.xml #generated:58
