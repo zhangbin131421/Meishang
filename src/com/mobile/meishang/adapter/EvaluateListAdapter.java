@@ -8,10 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.bean.TravelNotesEvaluate;
+import com.mobile.meishang.model.bean.ModuleList;
 
 public class EvaluateListAdapter extends
-		BaseCacheListAdapter<TravelNotesEvaluate> {
+		BaseCacheListAdapter<ModuleList> {
 
 	public EvaluateListAdapter(Context context) {
 		super(context);

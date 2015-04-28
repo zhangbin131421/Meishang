@@ -16,7 +16,6 @@ import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.GoodsListRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.Goods;
-import com.mobile.meishang.ui.infomation.InfoDetailActivity;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.mobile.meishang.utils.view.pulltorefresh.XListView;

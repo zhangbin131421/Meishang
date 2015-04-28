@@ -17,12 +17,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 import com.mobile.meishang.MActivity;
@@ -30,10 +30,9 @@ import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.AdvertisingGalleryAdapter;
 import com.mobile.meishang.adapter.LehuigouHomeExpandAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
-import com.mobile.meishang.core.request.HomeFragmentRequest;
+import com.mobile.meishang.core.request.LehuigoHomeRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
-import com.mobile.meishang.model.bean.AdvertisingGallery;
 import com.mobile.meishang.model.bean.PointStrategyGroup;
 import com.mobile.meishang.ui.ad.AdvertisingListActivity;
 import com.mobile.meishang.utils.view.AdGallery;
@@ -209,10 +208,9 @@ public class LehuigoHomeActvity extends MActivity implements
 			}
 		});
 		Bundle mBundle = new Bundle();
-		mBundle.putString("label", "limitBuy");
 		getSupportLoaderManager().restartLoader(
-				RequestDistribute.ADVERTISING_GALLERY_FLASH_SALE, mBundle,
-				new HomeFragmentRequest(this));
+				RequestDistribute.LEHUIGOU_HOME, mBundle,
+				new LehuigoHomeRequest(this));
 		for (int i = 0; i < 2; i++) {
 			mExpandableListView.expandGroup(i);
 		}
@@ -232,7 +230,7 @@ public class LehuigoHomeActvity extends MActivity implements
 	public void updateUI(int identity, Object data) {
 		// mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
-		case RequestDistribute.ADVERTISING_GALLERY_FLASH_SALE:
+		case RequestDistribute.LEHUIGOU_HOME:
 			// stopRefresh();
 			// AdvertisingGallery advertisingList = (AdvertisingGallery) data;
 			// mAdvertisings = advertisingList.getList();

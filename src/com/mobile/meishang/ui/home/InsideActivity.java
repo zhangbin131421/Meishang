@@ -26,7 +26,7 @@ import com.mobile.meishang.adapter.DiscoverListviewAdapter;
 import com.mobile.meishang.adapter.HomeGridviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.GoodsListRequest;
-import com.mobile.meishang.core.request.HomeFragmentRequest;
+import com.mobile.meishang.core.request.InsideActivityRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
 import com.mobile.meishang.model.bean.HomeFragmentData;
@@ -173,8 +173,8 @@ public class InsideActivity extends MActivity implements
 				// goActivity(GoodsDetailActivity.class, bundle);
 			}
 		});
-		getSupportLoaderManager().initLoader(RequestDistribute.HOME_FRAGMENT,
-				mBundle, new HomeFragmentRequest(this));
+		getSupportLoaderManager().initLoader(RequestDistribute.INSIDE_ACTIVITY,
+				mBundle, new InsideActivityRequest(this));
 	}
 
 	@Override
@@ -211,7 +211,7 @@ public class InsideActivity extends MActivity implements
 		mNoDataRLayout.setVisibility(View.GONE);
 		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
-		case RequestDistribute.HOME_FRAGMENT:
+		case RequestDistribute.INSIDE_ACTIVITY:
 			HomeFragmentData homeFragmentData = (HomeFragmentData) data;
 			mAdvertisings = homeFragmentData.getAdvertisingGallery().getList();
 			initEightPicture();
@@ -233,7 +233,7 @@ public class InsideActivity extends MActivity implements
 		this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				if (identity == RequestDistribute.HOME_FRAGMENT) {
+				if (identity == RequestDistribute.INSIDE_ACTIVITY) {
 					mLoadingView.showRetryBtn(true);
 					showToast(e.getMessage());
 				}
@@ -244,7 +244,7 @@ public class InsideActivity extends MActivity implements
 	@Override
 	public void retryAgain(View v) {
 		getSupportLoaderManager().restartLoader(
-				RequestDistribute.HOME_FRAGMENT, null,
+				RequestDistribute.INSIDE_ACTIVITY, null,
 				new GoodsListRequest(this));
 
 	}
