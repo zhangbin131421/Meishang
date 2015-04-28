@@ -68,5 +68,6 @@ public class RequestDistribute {
 	public static final int HOME_FRAGMENT = 6000;//
 	public static final int LEHUIGOU_HOME = 6001;//
 	public static final int INSIDE_ACTIVITY = 6002;//
+	public static final int CHOUJIANG_RULE = 6004;//
 	public static final int GET_CODE = 200;//
 }
