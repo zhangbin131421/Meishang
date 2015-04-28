@@ -35,7 +35,7 @@
                         android:textColor="@color/black2" />
 
                     <EditText
-                        android:id="@+id/etext_phone_number"
+                        android:id="@+id/etext_telephone"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

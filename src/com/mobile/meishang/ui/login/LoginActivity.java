@@ -16,8 +16,8 @@ import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
 
-public class LoginActivity extends MActivity implements
-		ExceptionHandler, LoadEvent {
+public class LoginActivity extends MActivity implements ExceptionHandler,
+		LoadEvent {
 	private LoadingView mLoadingView;
 	private EditText mUserName;
 	private EditText mPassword;
@@ -101,9 +101,9 @@ public class LoginActivity extends MActivity implements
 		case R.id.tv_forget_pd:
 			goActivity(ForgotPdActivity.class, null);
 			break;
-//		case R.id.text_help:
-//
-//			break;
+		// case R.id.text_help:
+		//
+		// break;
 
 		default:
 			break;
@@ -141,7 +141,7 @@ public class LoginActivity extends MActivity implements
 			if (!mLoadingView.isShown()) {
 				mLoadingView.setVisibility(View.VISIBLE);
 			}
-			password = FunctionUtil.MD5(password);
+			// password = FunctionUtil.MD5(password);
 			Bundle bundle = new Bundle();
 			bundle.putString("mobile", mobile);
 			bundle.putString("password", password);

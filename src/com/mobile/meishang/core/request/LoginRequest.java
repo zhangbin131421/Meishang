@@ -30,10 +30,10 @@ public class LoginRequest implements LoaderManager.LoaderCallbacks<Login> {
 	public Loader<Login> onCreateLoader(int arg0, Bundle bundle) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
-		urlString.append("/login/on");
+		urlString.append("/index/user/login.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
-		mHttpRequest.addPostParameter("account", bundle.getString("account"));
+		mHttpRequest.addPostParameter("telephone", bundle.getString("mobile"));
 		mHttpRequest.addPostParameter("password", bundle.getString("password"));
 		LoginLoader loader = new LoginLoader(mActivity, mHttpRequest);
 		if (mFragment == null) {
