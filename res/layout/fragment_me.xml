@@ -178,7 +178,7 @@
                 <View style="@style/line_horizontal_style" />
 
                 <TextView
-                    android:id="@+id/tv_wallet"
+                    android:id="@+id/tv_my_shared"
                     style="@style/setting_text_style"
                     android:drawableLeft="@drawable/ic_my_shared"
                     android:text="我的分享" />

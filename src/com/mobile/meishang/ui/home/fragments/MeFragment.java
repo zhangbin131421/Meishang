@@ -16,6 +16,7 @@ import com.mobile.meishang.ui.favorites.FavoritesActivity;
 import com.mobile.meishang.ui.login.LoginActivity;
 import com.mobile.meishang.ui.login.RegisterActivity;
 import com.mobile.meishang.ui.shopping.ShoppingCarListActivity;
+import com.mobile.meishang.ui.user.MySharedActivity;
 import com.umeng.analytics.MobclickAgent;
 
 public class MeFragment extends MFragment implements OnClickListener {
@@ -51,7 +52,7 @@ public class MeFragment extends MFragment implements OnClickListener {
 				.findViewById(R.id.tv_attention_quantity);
 		view.findViewById(R.id.llayout_msg).setOnClickListener(this);
 		tv_msg_quantity = (TextView) view.findViewById(R.id.tv_msg_quantity);
-		view.findViewById(R.id.tv_wallet).setOnClickListener(this);
+		view.findViewById(R.id.tv_my_shared).setOnClickListener(this);
 		view.findViewById(R.id.tv_orders).setOnClickListener(this);
 		view.findViewById(R.id.tv_wait_comment).setOnClickListener(this);
 		return view;
@@ -122,15 +123,14 @@ public class MeFragment extends MFragment implements OnClickListener {
 			showToast("功能尚在开发中");
 			// goActivity(LoginActivity.class, null);
 			break;
-		case R.id.tv_wallet:
+		case R.id.tv_my_shared:
 			// if (MApplication.getInstance().checkLogin()) {
 			// goActivity(MyVoucherActivity.class, null);
 			// } else {
 			// goActivityForResult(LoginActivity.class, null,
 			// RequestDistribute.LOGIN);
 			// }
-			showToast("功能尚在开发中");
-			// goActivity(MyWalletActivity.class, null);
+			goActivity(MySharedActivity.class, null);
 			break;
 		case R.id.tv_orders:
 			// goActivity(MyWalletActivity.class, null);

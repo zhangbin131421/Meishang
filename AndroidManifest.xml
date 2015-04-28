@@ -154,6 +154,10 @@
         <activity
             android:name=".ui.choujiang.RuleActivity"
             android:screenOrientation="portrait" />
+        <!-- 用户 -->
+        <activity
+            android:name=".ui.user.MySharedActivity"
+            android:screenOrientation="portrait" />
         <!-- 登录注册 -->
         <activity
             android:name=".ui.login.LoginActivity"
