@@ -83,8 +83,6 @@ public class BaiduLocation {
 			}
 			MyLog.d("location", sb.toString());
 			if (location != null) {
-				System.out.println(location.getProvince() + location.getCity()
-						+ location.getAddrStr());
 				mLocationClient.stop();
 				MApplication
 						.getInstance()
