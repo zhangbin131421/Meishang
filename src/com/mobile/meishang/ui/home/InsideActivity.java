@@ -29,7 +29,7 @@ import com.mobile.meishang.core.request.GoodsListRequest;
 import com.mobile.meishang.core.request.InsideActivityRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
-import com.mobile.meishang.model.bean.HomeFragmentData;
+import com.mobile.meishang.model.bean.InsideActivityData;
 import com.mobile.meishang.model.bean.HomeFragmentTemplateDataItem;
 import com.mobile.meishang.ui.ad.AdvertisingListActivity;
 import com.mobile.meishang.utils.view.AdGallery;
@@ -212,13 +212,11 @@ public class InsideActivity extends MActivity implements
 		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
 		case RequestDistribute.INSIDE_ACTIVITY:
-			HomeFragmentData homeFragmentData = (HomeFragmentData) data;
-			mAdvertisings = homeFragmentData.getAdvertisingGallery().getList();
+			InsideActivityData insideActivityData = (InsideActivityData) data;
+			mAdvertisings = insideActivityData.getAdvertisingGallery().getList();
 			initEightPicture();
-			List<HomeFragmentTemplateDataItem> list = homeFragmentData
-					.getTemplateData().getList();
-			mGridviewAdapter.addAll(list);
-			mGridviewAdapter.notifyDataSetChanged();
+//			mGridviewAdapter.addAll(list);
+//			mGridviewAdapter.notifyDataSetChanged();
 			break;
 
 		default:

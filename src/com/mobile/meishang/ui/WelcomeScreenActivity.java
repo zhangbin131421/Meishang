@@ -77,8 +77,7 @@ public class WelcomeScreenActivity extends MActivity implements
 			switch (identity) {
 			case RequestDistribute.VERSION:
 				Version version = (Version) data;
-				if (MApplication.getInstance().getmConfig()
-						.getGuideFlag() != 0) {
+				if (MApplication.getInstance().getmConfig().getGuideFlag() != 0) {
 					MApplication
 							.getInstance()
 							.getmConfig()
@@ -86,20 +85,20 @@ public class WelcomeScreenActivity extends MActivity implements
 									version.getVersionid());
 					goActivity(TabActivity.class, null);
 				} else {
-					MApplication.getInstance().getmConfig()
-							.setGuideFlag(1);
+					MApplication.getInstance().getmConfig().setGuideFlag(1);
 					goActivity(SlidingAroundGuideActivity.class, null);
 
 				}
 				break;
 			case RequestDistribute.LOGIN:
-//				RequestResponseInfo requestResponseInfo = (RequestResponseInfo) data;
-//				if ("".equals(requestResponseInfo.getErrorCode())) {
-//					MApplication.setSessionId(requestResponseInfo
-//							.getSessionId());
-//				}
-//				getSupportLoaderManager().initLoader(RequestDistribute.VERSION,
-//						null, new VersionRequest(this));
+				// RequestResponseInfo requestResponseInfo =
+				// (RequestResponseInfo) data;
+				// if ("".equals(requestResponseInfo.getErrorCode())) {
+				// MApplication.setSessionId(requestResponseInfo
+				// .getSessionId());
+				// }
+				// getSupportLoaderManager().initLoader(RequestDistribute.VERSION,
+				// null, new VersionRequest(this));
 				break;
 			default:
 				break;

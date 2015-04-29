@@ -14,7 +14,6 @@ import com.mobile.meishang.R;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.ui.baidu.BaiduLocation;
 import com.mobile.meishang.ui.home.fragments.DiscoverFragment;
-import com.mobile.meishang.ui.home.fragments.FlashsaleFragment;
 import com.mobile.meishang.ui.home.fragments.HomeFragment;
 import com.mobile.meishang.ui.home.fragments.MeFragment;
 import com.mobile.meishang.ui.home.fragments.SignInFragment;

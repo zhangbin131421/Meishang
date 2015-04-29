@@ -171,24 +171,10 @@
         <activity
             android:name=".ui.login.RetrievedResetPasswordActivity"
             android:screenOrientation="portrait" />
+        <!--百度  -->
         <activity
             android:name=".ui.baidu.LocationActivity"
             android:screenOrientation="portrait" />
-
-        <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="6fdebb2f7296d92f668755661986ee7c" />
-
-        <activity
-            android:name="com.alipay.sdk.app.H5PayActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:screenOrientation="behind" />
-        <activity
-            android:name="com.alipay.sdk.auth.AuthActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:screenOrientation="behind" />
 
         <service
             android:name="com.baidu.location.f"

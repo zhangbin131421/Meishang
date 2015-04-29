@@ -20,10 +20,12 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
+import com.mobile.meishang.MApplication;
 import com.mobile.meishang.MFragment;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.AdvertisingGalleryAdapter;
 import com.mobile.meishang.adapter.HomeGridviewAdapter;
+import com.mobile.meishang.config.Constants;
 import com.mobile.meishang.core.request.HomeFragmentRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
@@ -33,13 +35,10 @@ import com.mobile.meishang.ui.ad.AdvertisingListActivity;
 import com.mobile.meishang.ui.bid.BidNoticeListActivity;
 import com.mobile.meishang.ui.home.InsideActivity;
 import com.mobile.meishang.ui.infomation.InfoListActivity;
-import com.mobile.meishang.ui.lehuigou.GoodsSearchActivity;
 import com.mobile.meishang.ui.lehuigou.LehuigoHomeActvity;
-import com.mobile.meishang.ui.share.SharedActivity;
 import com.mobile.meishang.ui.widget.GridViewWithHeaderAndFooter;
 import com.mobile.meishang.utils.view.AdGallery;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.socialize.view.ShareActivity;
 
 public class HomeFragment extends MFragment implements OnClickListener {
 	private LinearLayout mCityLayout;
@@ -93,7 +92,6 @@ public class HomeFragment extends MFragment implements OnClickListener {
 		View view = inflater.inflate(R.layout.fragment_home, null);
 		mCityLayout = (LinearLayout) view.findViewById(R.id.llayout_city);
 		mCityTextView = (TextView) view.findViewById(R.id.tv_city_name);
-		mCityTextView.setText("南京");
 		mGridView = (GridViewWithHeaderAndFooter) view
 				.findViewById(R.id.gridview);
 		headView = LayoutInflater.from(mContext).inflate(
@@ -272,6 +270,11 @@ public class HomeFragment extends MFragment implements OnClickListener {
 		if (data != null) {
 			switch (identity) {
 			case RequestDistribute.HOME_FRAGMENT:
+				mCityTextView.setText(MApplication
+						.getInstance()
+						.getmConfig()
+						.getPreferencesVal(Constants.CITY_NAME,
+								Constants.CITYNAME_DEFAULT));
 				HomeFragmentData homeFragmentData = (HomeFragmentData) data;
 				mAdvertisings = homeFragmentData.getAdvertisingGallery()
 						.getList();

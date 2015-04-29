@@ -55,13 +55,7 @@
 # view res/layout/notification_custom_builder.xml #generated:52
 -keep class android.widget.DateTimeView { <init>(...); }
 
-# view AndroidManifest.xml #generated:182
--keep class com.alipay.sdk.app.H5PayActivity { <init>(...); }
-
-# view AndroidManifest.xml #generated:187
--keep class com.alipay.sdk.auth.AuthActivity { <init>(...); }
-
-# view AndroidManifest.xml #generated:193
+# view AndroidManifest.xml #generated:179
 -keep class com.baidu.location.f { <init>(...); }
 
 # view res/layout/umeng_socialize_comment_detail.xml #generated:23
@@ -88,7 +82,7 @@
 # view AndroidManifest.xml #generated:122
 -keep class com.mobile.meishang.ui.ad.AlipayActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:174
+# view AndroidManifest.xml #generated:175
 -keep class com.mobile.meishang.ui.baidu.LocationActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:88
@@ -245,13 +239,13 @@
 # view res/layout/activity_refresh_scrollview.xml #generated:1
 -keep class com.mobile.meishang.utils.view.pulltorefresh.XScrollView { <init>(...); }
 
-# view AndroidManifest.xml #generated:226
+# view AndroidManifest.xml #generated:212
 -keep class com.tencent.connect.common.AssistActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:213
+# view AndroidManifest.xml #generated:199
 -keep class com.tencent.tauth.AuthActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:203
+# view AndroidManifest.xml #generated:189
 -keep class com.umeng.socialize.view.ShareActivity { <init>(...); }
 
 # view res/layout/umeng_socialize_ucenter_platform_item.xml #generated:31
@@ -336,9 +330,9 @@
 # onClick res/layout/item_shop_detail_lh.xml #generated:98
 # onClick res/layout/layout_shopping_car_check.xml #generated:77
 # onClick res/layout/layout_tab_top.xml #generated:11
-# onClick res/layout/layout_tab_top.xml #generated:47
-# onClick res/layout/layout_tab_top.xml #generated:58
-# onClick res/layout/layout_tab_top.xml #generated:67
+# onClick res/layout/layout_tab_top.xml #generated:46
+# onClick res/layout/layout_tab_top.xml #generated:57
+# onClick res/layout/layout_tab_top.xml #generated:66
 # onClick res/layout/layout_top_back.xml #generated:14
 # onClick res/layout/layout_top_back.xml #generated:37
 -keepclassmembers class * { *** onclick(...); }

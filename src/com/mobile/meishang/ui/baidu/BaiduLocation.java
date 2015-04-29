@@ -40,7 +40,7 @@ public class BaiduLocation {
 		String tempcoor = "bd09ll";// gcj02,bd09ll,bd09
 		option.setCoorType(tempcoor);// 返回的定位结果是百度经纬度，默认值gcj02
 		option.setScanSpan(5000);// 设置发起定位请求的间隔时间为5000ms
-		// option.setIsNeedAddress(true);// ;是否反地理编码
+		option.setIsNeedAddress(true);// ;是否反地理编码
 		mLocationClient.setLocOption(option);
 		mLocationClient.start();
 		// if (mLocationClient != null && mLocationClient.isStarted()) {
@@ -52,6 +52,7 @@ public class BaiduLocation {
 
 		@Override
 		public void onReceiveLocation(BDLocation location) {
+
 			// Receive Location
 			StringBuffer sb = new StringBuffer(256);
 			sb.append("time : ");
@@ -82,6 +83,8 @@ public class BaiduLocation {
 			}
 			MyLog.d("location", sb.toString());
 			if (location != null) {
+				System.out.println(location.getProvince() + location.getCity()
+						+ location.getAddrStr());
 				mLocationClient.stop();
 				MApplication
 						.getInstance()
@@ -93,6 +96,11 @@ public class BaiduLocation {
 						.getmConfig()
 						.putPreferencesVal(Constants.LATITUDE,
 								location.getLatitude() + "");
+				MApplication
+						.getInstance()
+						.getmConfig()
+						.putPreferencesVal(Constants.CITY_NAME,
+								location.getCity());
 
 			}
 		}
