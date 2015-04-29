@@ -5,12 +5,39 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Head {
+	// {
+	// "message": "更新失败-手机号码或密码为空",
+	// "RESULT": "0"
+	// }
+	private String message;
+	private int result = -1;
+	private boolean success;
 
 	public Head() {
 
 	}
 
 	public Head(JSONObject jsonObject) throws JSONException {
+		message = getJsonStrValue(jsonObject, "message");
+		result = getJsonIntValue(jsonObject, "RESULT");
+		if (result == 1) {
+			success = true;
+		} else {
+			success = false;
+		}
+
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public int getResult() {
+		return result;
+	}
+
+	public boolean isSuccess() {
+		return success;
 	}
 
 	public String getJsonStrValue(JSONObject json, String name)

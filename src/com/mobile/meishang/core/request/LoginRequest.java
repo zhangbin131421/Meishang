@@ -9,10 +9,9 @@ import com.mobile.meishang.MApplication;
 import com.mobile.meishang.MFragment;
 import com.mobile.meishang.core.loader.LoginLoader;
 import com.mobile.meishang.core.network.DefaultNetworkRequest;
-import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.Login;
+import com.mobile.meishang.model.bean.User;
 
-public class LoginRequest implements LoaderManager.LoaderCallbacks<Login> {
+public class LoginRequest implements LoaderManager.LoaderCallbacks<User> {
 
 	private MActivity mActivity;
 	private MFragment mFragment;
@@ -27,7 +26,7 @@ public class LoginRequest implements LoaderManager.LoaderCallbacks<Login> {
 	}
 
 	@Override
-	public Loader<Login> onCreateLoader(int arg0, Bundle bundle) {
+	public Loader<User> onCreateLoader(int arg0, Bundle bundle) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
 		urlString.append("/index/user/login.htm");
@@ -41,23 +40,23 @@ public class LoginRequest implements LoaderManager.LoaderCallbacks<Login> {
 		} else {
 			loader.setExceptionHandler(mFragment);
 		}
-		loader.setIdentit(RequestDistribute.LOGIN);
+		loader.setIdentit(arg0);
 		return loader;
 	}
 
 	@Override
-	public void onLoadFinished(Loader<Login> arg0, Login arg1) {
+	public void onLoadFinished(Loader<User> arg0, User arg1) {
 		if (arg1 != null) {
 			if (mFragment == null) {
-				mActivity.updateUI(RequestDistribute.LOGIN, arg1);
+				mActivity.updateUI(arg0.getId(), arg1);
 			} else {
-				mFragment.updateUI(RequestDistribute.LOGIN, arg1);
+				mFragment.updateUI(arg0.getId(), arg1);
 			}
 		}
 	}
 
 	@Override
-	public void onLoaderReset(Loader<Login> arg0) {
+	public void onLoaderReset(Loader<User> arg0) {
 	}
 
 }

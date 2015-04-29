@@ -7,20 +7,20 @@ import android.content.Context;
 
 import com.mobile.meishang.core.network.ZLNetworkException;
 import com.mobile.meishang.core.network.ZLNetworkRequest;
-import com.mobile.meishang.model.bean.Login;
+import com.mobile.meishang.model.bean.User;
 
-public class LoginLoader extends HttpRequestLoader<Login> {
+public class LoginLoader extends HttpRequestLoader<User> {
 
 	public LoginLoader(Context context, ZLNetworkRequest _HttpRequest) {
 		super(context, _HttpRequest);
 	}
 
 	@Override
-	public Login handle(String content) throws ZLNetworkException {
+	public User handle(String content) throws ZLNetworkException {
 		try {
 			JSONObject jsonObject = new JSONObject(content);
-			Login login = new Login(jsonObject);
-			return login;
+			User object = new User(jsonObject);
+			return object;
 		} catch (JSONException e) {
 			throw new ZLNetworkException(ZLNetworkException.ERROR_JSONPARSER);
 		}

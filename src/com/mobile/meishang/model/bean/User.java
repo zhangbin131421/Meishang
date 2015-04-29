@@ -3,46 +3,67 @@ package com.mobile.meishang.model.bean;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.mobile.meishang.utils.FunctionUtil;
+public class User extends Head {
+	// {
+	// "message": "",
+	// "RESULT": "0",
+	// "user": {
+	// "header": "http://121.43.224.225:8888/data",
+	// "userName": "",
+	// "userId": 0,
+	// "telephone": "13776636043",
+	// "userPass": "",
+	// "createtime": "",
+	// "updatetime": "",
+	// "nickname": "",
+	// "integral": "0"
+	// }
+	// }
 
-public class User {
-
+	private String header;
+	private String userName;
+	private String userId;
+	private String telephone;
 	private String nickname;
-	private String sex;
-	private String address;
-	private String email;
-	private String birthday;
+	private String integral;
 
 	public User() {
 	}
 
 	public User(JSONObject json) throws JSONException {
-		nickname = FunctionUtil.getJsonStrValue(json, "nickname");
-		sex = FunctionUtil.getJsonStrValue(json, "sex");
-		address = FunctionUtil.getJsonStrValue(json, "address");
-		email = FunctionUtil.getJsonStrValue(json, "email");
-		birthday = FunctionUtil.getJsonStrValue(json, "birthday");
+		super(json);
+		JSONObject userJsonObject = getJsonObject(json, "user");
+		header = getJsonStrValue(userJsonObject, "header");
+		userName = getJsonStrValue(userJsonObject, "userName");
+		userId = getJsonStrValue(userJsonObject, "userId");
+		telephone = getJsonStrValue(userJsonObject, "telephone");
+		nickname = getJsonStrValue(userJsonObject, "nickname");
+		integral = getJsonStrValue(userJsonObject, "integral");
 
+	}
+
+	public String getHeader() {
+		return header;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public String getTelephone() {
+		return telephone;
 	}
 
 	public String getNickname() {
 		return nickname;
 	}
 
-	public String getSex() {
-		return sex;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getBirthday() {
-		return birthday;
+	public String getIntegral() {
+		return integral;
 	}
 
 }

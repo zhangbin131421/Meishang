@@ -13,6 +13,7 @@ import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.GetCodeRequest;
 import com.mobile.meishang.core.request.RegisterRequest;
 import com.mobile.meishang.model.RequestDistribute;
+import com.mobile.meishang.model.bean.Head;
 import com.mobile.meishang.utils.FunctionUtil;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
@@ -28,6 +29,7 @@ public class RegisterActivity extends MActivity implements ExceptionHandler,
 		LoadEvent {
 	private LoadingView mLoadingView;
 	private EditText etext_telephone;
+	private TextView tv_get_verification_code;
 	private EditText etext_verification_code;
 	private EditText etext_password;
 	private Bundle mBundle = new Bundle();
@@ -46,6 +48,7 @@ public class RegisterActivity extends MActivity implements ExceptionHandler,
 		mLoadingView = (LoadingView) findViewById(R.id.loading);
 		mLoadingView.setLoadEvent(this);
 		etext_telephone = (EditText) findViewById(R.id.etext_telephone);
+		tv_get_verification_code = (TextView) findViewById(R.id.tv_get_verification_code);
 		etext_verification_code = (EditText) findViewById(R.id.etext_verification_code);
 		etext_password = (EditText) findViewById(R.id.etext_password);
 	}
@@ -84,8 +87,7 @@ public class RegisterActivity extends MActivity implements ExceptionHandler,
 		case R.id.btn_finish:
 			String mobile = etext_telephone.getText().toString().trim();
 			String password = etext_password.getText().toString().trim();
-			mBundle = new Bundle();
-			mBundle.putString("mobile", mobile);
+			mBundle.putString("telephone", mobile);
 			// mBundle.putString("password", FunctionUtil.MD5(password));
 			mBundle.putString("password", password);
 			mLoadingView.setVisibility(View.VISIBLE);
@@ -108,18 +110,13 @@ public class RegisterActivity extends MActivity implements ExceptionHandler,
 			refreshTime();
 			break;
 		case RequestDistribute.REGISTER:
-			// RequestResponseInfo requestResponseInfo = (RequestResponseInfo)
-			// data;
-			// if ("".equals(requestResponseInfo.getErrorCode())) {
-			// LeShiHuiApplication.setSessionId(requestResponseInfo
-			// .getSessionId());
-			// // Intent intent = new Intent();
-			// // intent.putExtra("bundle", mBundle);
-			// // setResult(1, intent);
-			// finish();
-			// } else {
-			// showToast(requestResponseInfo.getErrorMessage());
-			// }
+			Head head = (Head) data;
+			if (head.isSuccess()) {
+//				goActivity(LoginActivity.class, null);
+				finish();
+			} else {
+				showToast(head.getMessage());
+			}
 			break;
 
 		default:
@@ -151,18 +148,18 @@ public class RegisterActivity extends MActivity implements ExceptionHandler,
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				if (etext_verification_code != null) {
-					etext_verification_code.setText("" + recLen);
+				if (tv_get_verification_code != null) {
+					tv_get_verification_code.setText("" + recLen);
 					recLen--;
 					if (recLen > 0) {
-						etext_verification_code.setClickable(false);
+						tv_get_verification_code.setClickable(false);
 						if (handler != null) {
 							handler.postDelayed(this, 1000);
 						}
 					} else {
 						recLen = 120;
-						etext_verification_code.setClickable(true);
-						etext_verification_code.setText("获取验证码");
+						tv_get_verification_code.setClickable(true);
+						tv_get_verification_code.setText("获取验证码");
 					}
 				}
 

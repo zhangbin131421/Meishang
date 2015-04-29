@@ -26,7 +26,7 @@ public class RegisterRequest implements LoaderManager.LoaderCallbacks<Head> {
 		urlString.append("/index/user/reg.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
-		mHttpRequest.addPostParameter("telephone", bundle.getString("account"));
+		mHttpRequest.addPostParameter("telephone", bundle.getString("telephone"));
 		mHttpRequest.addPostParameter("password", bundle.getString("password"));
 		// mHttpRequest.addPostParameter("code", bundle.getString("code"));
 		HeadLoader loader = new HeadLoader(mActivity, mHttpRequest);
