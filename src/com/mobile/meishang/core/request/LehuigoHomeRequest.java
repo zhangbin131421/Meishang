@@ -30,10 +30,10 @@ public class LehuigoHomeRequest implements
 	public Loader<HomeFragmentData> onCreateLoader(int arg0, Bundle arg1) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
-		urlString.append("/index/purch.htm");
+		urlString.append("purchased/list.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
-		mHttpRequest.addPostParameter("page", "1");
+//		mHttpRequest.addPostParameter("page", "1");
 		HomeFragmentLoader loader = new HomeFragmentLoader(mActivity,
 				mHttpRequest);
 		if (mFragment == null) {

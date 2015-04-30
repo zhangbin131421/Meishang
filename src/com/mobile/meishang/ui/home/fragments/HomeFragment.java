@@ -32,7 +32,7 @@ import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
 import com.mobile.meishang.model.bean.HomeFragmentData;
 import com.mobile.meishang.model.bean.HomeFragmentTemplateDataItem;
 import com.mobile.meishang.ui.ad.AdvertisingListActivity;
-import com.mobile.meishang.ui.bid.BidNoticeListActivity;
+import com.mobile.meishang.ui.bid.IWantBidActivity;
 import com.mobile.meishang.ui.home.InsideActivity;
 import com.mobile.meishang.ui.infomation.InfoListActivity;
 import com.mobile.meishang.ui.lehuigou.LehuigoHomeActvity;
@@ -182,7 +182,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 					goActivity(LehuigoHomeActvity.class, null);
 					break;
 				case 4:
-					goActivity(BidNoticeListActivity.class, null);
+					goActivity(IWantBidActivity.class, null);
 					break;
 				case 5:
 				case 6:

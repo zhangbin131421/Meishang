@@ -16,7 +16,7 @@ public class IWantBidActivity extends MActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_i_want_bid);
 	}
-//ceshi
+
 	@Override
 	public void onResume() {
 		super.onResume();

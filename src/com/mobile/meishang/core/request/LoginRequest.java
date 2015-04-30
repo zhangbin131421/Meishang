@@ -29,7 +29,7 @@ public class LoginRequest implements LoaderManager.LoaderCallbacks<User> {
 	public Loader<User> onCreateLoader(int arg0, Bundle bundle) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
-		urlString.append("/index/user/login.htm");
+		urlString.append("index/user/login.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
 		mHttpRequest.addPostParameter("telephone", bundle.getString("mobile"));
