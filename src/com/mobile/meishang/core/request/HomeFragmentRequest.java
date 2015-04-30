@@ -30,7 +30,7 @@ public class HomeFragmentRequest implements
 	public Loader<HomeFragmentData> onCreateLoader(int arg0, Bundle arg1) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
-		urlString.append("/index/index.htm");
+		urlString.append("index/home.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
 		HomeFragmentLoader loader = new HomeFragmentLoader(

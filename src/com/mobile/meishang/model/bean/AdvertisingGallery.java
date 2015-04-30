@@ -11,7 +11,7 @@ public class AdvertisingGallery extends Head {
 	private List<AdvertisingGalleryItem> list;
 
 	public AdvertisingGallery(JSONObject json) throws JSONException {
-		JSONArray jsonArray = getJsonArray(json, "ADVERT");
+		JSONArray jsonArray = getJsonArray(json, "adverList");
 		int length = jsonArray.length();
 		list = new ArrayList<AdvertisingGalleryItem>();
 		for (int i = 0; i < length; i++) {

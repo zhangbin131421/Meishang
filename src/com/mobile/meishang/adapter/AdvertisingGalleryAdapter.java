@@ -52,7 +52,7 @@ public class AdvertisingGalleryAdapter extends
 			imageview.setScaleType(ScaleType.FIT_XY);
 			if (list != null && list.size() > 0) {
 				setCacheImage(imageview, getItem(position % imagelength)
-						.getPicPath(), R.drawable.loading_bg_img245);
+						.getPicpath(), R.drawable.loading_bg_img245);
 			} else {
 				setCacheImage(imageview, "", R.drawable.loading_bg_img245);
 			}

@@ -7,35 +7,36 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class AdvertisingGalleryItem extends Head implements Parcelable {
+
 	// {
-	// "picPath": "http://121.41.38.198:8888/data/ImageFile/advert/adv_0_1.jpg",
-	// "lableId": "1",
-	// "dataLable": {},
-	// "templateId": 0,
-	// "advertId": 1,
-	// "title": "推广",
-	// "text": "推广"
+	// "advertisingid": 1,
+	// "name": "京东商店",
+	// "picpath":
+	// "http://121.43.224.225:8888/data/image/advertising/adv_0_1.jpg",
+	// "updatatime": "2015-04-29 18:05:03",
+	// "createtime": "2015-04-29 18:05:12",
+	// "moduleid": 0,
+	// "lablename": "推广"
 	// }
+	// {
 
-	private String picPath;
-	private String lableId;
-
-	// private String templateId;
-	// private String advertId;
-	// private String title;
-	// private String text;
+	private String advertisingid;
+	private String picpath;
+	private String lablename;
 
 	public AdvertisingGalleryItem() {
 	}
 
 	public AdvertisingGalleryItem(JSONObject json) throws JSONException {
-		picPath = getJsonStrValue(json, "picPath");
-		lableId = getJsonStrValue(json, "lableId");
+		advertisingid = getJsonStrValue(json, "advertisingid");
+		picpath = getJsonStrValue(json, "picpath");
+		lablename = getJsonStrValue(json, "lablename");
 	}
 
 	public AdvertisingGalleryItem(Parcel in) {
-		picPath = in.readString();
-		lableId = in.readString();
+		advertisingid = in.readString();
+		picpath = in.readString();
+		lablename = in.readString();
 	}
 
 	@Override
@@ -45,8 +46,9 @@ public class AdvertisingGalleryItem extends Head implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(picPath);
-		dest.writeString(lableId);
+		dest.writeString(advertisingid);
+		dest.writeString(picpath);
+		dest.writeString(lablename);
 	}
 
 	public static final Parcelable.Creator<AdvertisingGalleryItem> CREATOR = new Creator<AdvertisingGalleryItem>() {
@@ -62,12 +64,16 @@ public class AdvertisingGalleryItem extends Head implements Parcelable {
 		}
 	};
 
-	public String getPicPath() {
-		return picPath;
+	public String getAdvertisingid() {
+		return advertisingid;
 	}
 
-	public String getLableId() {
-		return lableId;
+	public String getPicpath() {
+		return picpath;
+	}
+
+	public String getLablename() {
+		return lablename;
 	}
 
 }

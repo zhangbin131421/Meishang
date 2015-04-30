@@ -3,33 +3,34 @@ package com.mobile.meishang.model.bean;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 public class HomeFragmentTemplateDataItem extends Head {
 	// {
-	// "picPath": "http://121.41.38.198:8888/data/ImageFile/log/l_l_1.jpg",
-	// "templateId": 1,
-	// "title": "乐汇购",
-	// "text": "乐汇购模块"
-	// }
+	// "moduleid": 1,
+	// "modulename": "乐汇购",
+	// "updatetime": "2015-4-29 18:10:56",
+	// "createtime": "2015-4-29 18:10:59",
+	// "state": 1
+	// },
+	// {
+	// "moduleid": 2,
+	// "modulename": "竞标",
+	// "updatetime": "2015-4-29 18:10:51",
+	// "createtime": "2015-4-29 18:10:57",
+	// "state": 1
+	// },
 
 	private String picPath;
-	private String templateId;
-	private String title;
+	private String moduleid;
+	private String modulename;
 
-	// private String templateId;
-	// private String advertId;
-	// private String title;
-	// private String text;
 
 	public HomeFragmentTemplateDataItem() {
 	}
 
 	public HomeFragmentTemplateDataItem(JSONObject json) throws JSONException {
 		picPath = getJsonStrValue(json, "picPath");
-		templateId = getJsonStrValue(json, "templateId");
-		title = getJsonStrValue(json, "title");
+		moduleid = getJsonStrValue(json, "moduleid");
+		modulename = getJsonStrValue(json, "modulename");
 	}
 
 	public String getPicPath() {
@@ -37,11 +38,11 @@ public class HomeFragmentTemplateDataItem extends Head {
 	}
 
 	public String getTemplateId() {
-		return templateId;
+		return moduleid;
 	}
 
 	public String getTitle() {
-		return title;
+		return modulename;
 	}
 
 }

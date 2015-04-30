@@ -11,7 +11,7 @@ public class HomeFragmentTemplateData extends Head {
 	private List<HomeFragmentTemplateDataItem> list;
 
 	public HomeFragmentTemplateData(JSONObject json) throws JSONException {
-		JSONArray jsonArray = getJsonArray(json, "TEMPLATE");
+		JSONArray jsonArray = getJsonArray(json, "moduleList");
 		int length = jsonArray.length();
 		list = new ArrayList<HomeFragmentTemplateDataItem>();
 		for (int i = 0; i < length; i++) {
