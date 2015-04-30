@@ -8,7 +8,6 @@ import com.mobile.meishang.MActivity;
 import com.mobile.meishang.MApplication;
 import com.mobile.meishang.core.loader.HeadLoader;
 import com.mobile.meishang.core.network.DefaultNetworkRequest;
-import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.Head;
 
 public class GetCodeRequest implements LoaderManager.LoaderCallbacks<Head> {
@@ -23,7 +22,7 @@ public class GetCodeRequest implements LoaderManager.LoaderCallbacks<Head> {
 	public Loader<Head> onCreateLoader(int arg0, Bundle bundle) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
-		urlString.append("/dataUser/sendCode.htm");
+		urlString.append("user/sendCode.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
 		mHttpRequest.addPostParameter("telephone",

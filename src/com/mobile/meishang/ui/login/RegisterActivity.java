@@ -87,9 +87,10 @@ public class RegisterActivity extends MActivity implements ExceptionHandler,
 		case R.id.btn_finish:
 			String mobile = etext_telephone.getText().toString().trim();
 			String password = etext_password.getText().toString().trim();
+			String code = etext_verification_code.getText().toString().trim();
 			mBundle.putString("telephone", mobile);
-			// mBundle.putString("password", FunctionUtil.MD5(password));
 			mBundle.putString("password", password);
+			mBundle.putString("code", code);
 			mLoadingView.setVisibility(View.VISIBLE);
 			getSupportLoaderManager().restartLoader(RequestDistribute.REGISTER,
 					mBundle, new RegisterRequest(this));
@@ -112,7 +113,7 @@ public class RegisterActivity extends MActivity implements ExceptionHandler,
 		case RequestDistribute.REGISTER:
 			Head head = (Head) data;
 			if (head.isSuccess()) {
-//				goActivity(LoginActivity.class, null);
+				// goActivity(LoginActivity.class, null);
 				finish();
 			} else {
 				showToast(head.getMessage());

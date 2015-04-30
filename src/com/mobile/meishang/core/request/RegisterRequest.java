@@ -23,12 +23,12 @@ public class RegisterRequest implements LoaderManager.LoaderCallbacks<Head> {
 	public Loader<Head> onCreateLoader(int arg0, Bundle bundle) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
-		urlString.append("/index/user/reg.htm");
+		urlString.append("user/reg.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
 		mHttpRequest.addPostParameter("telephone", bundle.getString("telephone"));
 		mHttpRequest.addPostParameter("password", bundle.getString("password"));
-		// mHttpRequest.addPostParameter("code", bundle.getString("code"));
+		 mHttpRequest.addPostParameter("code", bundle.getString("code"));
 		HeadLoader loader = new HeadLoader(mActivity, mHttpRequest);
 		loader.setExceptionHandler(mActivity);
 		loader.setIdentit(RequestDistribute.REGISTER);
