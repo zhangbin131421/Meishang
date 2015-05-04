@@ -1,24 +1,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical" >
 
     <include layout="@layout/layout_top_back" />
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_height="match_parent" >
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" >
+            android:layout_height="match_parent" >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical" >
 
                 <LinearLayout
@@ -38,7 +36,10 @@
                             android:text="类别　　" />
 
                         <TextView
+                            android:id="@+id/tv_choose_category"
                             android:layout_width="match_parent"
+                            android:onClick="onclick"
+                            android:clickable="true"
                             android:layout_height="wrap_content"
                             android:hint="点击选择类别" />
                     </LinearLayout>
@@ -140,14 +141,49 @@
                             android:hint="项目的具体经营理念，运行状况，规模、起价等等一些基本情况的概述" />
                     </LinearLayout>
                 </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_publish"
+                    android:layout_width="wrap_content"
+                    android:onClick="onclick"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="确认发布" />
             </LinearLayout>
         </ScrollView>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="确认发布" />
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/translucent"
+            android:gravity="bottom"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:weightSum="2" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/gray_1"
+                android:orientation="horizontal" >
+
+                <ListView
+                    android:id="@+id/listview_left"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                </ListView>
+
+                <ListView
+                    android:id="@+id/listview_right"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+                </ListView>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>

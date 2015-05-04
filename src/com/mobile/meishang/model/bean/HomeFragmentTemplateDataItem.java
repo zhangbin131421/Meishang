@@ -19,7 +19,7 @@ public class HomeFragmentTemplateDataItem extends Head {
 	// "state": 1
 	// },
 
-	private String picPath;
+	private String modulepicpath;
 	private String moduleid;
 	private String modulename;
 
@@ -28,13 +28,13 @@ public class HomeFragmentTemplateDataItem extends Head {
 	}
 
 	public HomeFragmentTemplateDataItem(JSONObject json) throws JSONException {
-		picPath = getJsonStrValue(json, "picPath");
+		modulepicpath = getJsonStrValue(json, "modulepicpath");
 		moduleid = getJsonStrValue(json, "moduleid");
 		modulename = getJsonStrValue(json, "modulename");
 	}
 
 	public String getPicPath() {
-		return picPath;
+		return modulepicpath;
 	}
 
 	public String getTemplateId() {
