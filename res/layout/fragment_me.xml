@@ -276,7 +276,7 @@
                 <View style="@style/line_horizontal_style" />
 
                 <TextView
-                    android:id="@+id/tv_orders"
+                    android:id="@+id/tv_my_push"
                     style="@style/setting_text_style"
                     android:drawableLeft="@drawable/ic_my_push"
                     android:text="我的推送" />

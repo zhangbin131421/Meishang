@@ -2140,11 +2140,11 @@ containing a value of this type.
         public static final int tv_money=0x7f0c016d;
         public static final int tv_msg_quantity=0x7f0c00f8;
         public static final int tv_msgs_quantity=0x7f0c00fb;
+        public static final int tv_my_push=0x7f0c00fd;
         public static final int tv_my_shared=0x7f0c00f9;
         public static final int tv_name=0x7f0c008e;
         public static final int tv_name_item=0x7f0c011d;
         public static final int tv_old_price=0x7f0c0064;
-        public static final int tv_orders=0x7f0c00fd;
         public static final int tv_pay=0x7f0c0098;
         public static final int tv_point=0x7f0c016c;
         public static final int tv_province_city=0x7f0c00b6;

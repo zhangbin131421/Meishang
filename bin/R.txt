@@ -1156,11 +1156,11 @@ int id tv_login_status 0x7f0c00f0
 int id tv_money 0x7f0c016d
 int id tv_msg_quantity 0x7f0c00f8
 int id tv_msgs_quantity 0x7f0c00fb
+int id tv_my_push 0x7f0c00fd
 int id tv_my_shared 0x7f0c00f9
 int id tv_name 0x7f0c008e
 int id tv_name_item 0x7f0c011d
 int id tv_old_price 0x7f0c0064
-int id tv_orders 0x7f0c00fd
 int id tv_pay 0x7f0c0098
 int id tv_point 0x7f0c016c
 int id tv_province_city 0x7f0c00b6

@@ -16,7 +16,9 @@ import com.mobile.meishang.ui.favorites.FavoritesActivity;
 import com.mobile.meishang.ui.login.LoginActivity;
 import com.mobile.meishang.ui.login.RegisterActivity;
 import com.mobile.meishang.ui.shopping.ShoppingCarListActivity;
+import com.mobile.meishang.ui.user.MyPushActivity;
 import com.mobile.meishang.ui.user.MySharedActivity;
+import com.mobile.meishang.ui.user.MyWordsActivity;
 import com.umeng.analytics.MobclickAgent;
 
 public class MeFragment extends MFragment implements OnClickListener {
@@ -53,7 +55,7 @@ public class MeFragment extends MFragment implements OnClickListener {
 		view.findViewById(R.id.llayout_msg).setOnClickListener(this);
 		tv_msg_quantity = (TextView) view.findViewById(R.id.tv_msg_quantity);
 		view.findViewById(R.id.tv_my_shared).setOnClickListener(this);
-		view.findViewById(R.id.tv_orders).setOnClickListener(this);
+		view.findViewById(R.id.tv_my_push).setOnClickListener(this);
 		view.findViewById(R.id.tv_wait_comment).setOnClickListener(this);
 		return view;
 	}
@@ -119,10 +121,6 @@ public class MeFragment extends MFragment implements OnClickListener {
 		case R.id.llayout_shopping_car:
 			goActivity(ShoppingCarListActivity.class, null);
 			break;
-		case R.id.llayout_msg:
-			showToast("功能尚在开发中");
-			// goActivity(LoginActivity.class, null);
-			break;
 		case R.id.tv_my_shared:
 			// if (MApplication.getInstance().checkLogin()) {
 			// goActivity(MyVoucherActivity.class, null);
@@ -132,8 +130,17 @@ public class MeFragment extends MFragment implements OnClickListener {
 			// }
 			goActivity(MySharedActivity.class, null);
 			break;
-		case R.id.tv_orders:
-			// goActivity(MyWalletActivity.class, null);
+		case R.id.llayout_msg:
+			// if (MApplication.getInstance().checkLogin()) {
+			// goActivity(MyVoucherActivity.class, null);
+			// } else {
+			// goActivityForResult(LoginActivity.class, null,
+			// RequestDistribute.LOGIN);
+			// }
+			goActivity(MyWordsActivity.class, null);
+			break;
+		case R.id.tv_my_push:
+			 goActivity(MyPushActivity.class, null);
 			break;
 		case R.id.tv_wait_comment:
 			showToast("功能尚在开发中");
