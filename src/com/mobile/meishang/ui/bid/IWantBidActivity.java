@@ -5,9 +5,9 @@ import java.util.List;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
@@ -30,6 +30,11 @@ public class IWantBidActivity extends MActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_i_want_bid);
+		TextView title = (TextView) findViewById(R.id.top_name);
+		title.setText("我要竞标");
+		TextView tv_top_right = (TextView) findViewById(R.id.tv_top_right);
+		tv_top_right.setText("历史竞标");
+		tv_top_right.setVisibility(View.VISIBLE);
 		llayout = (LinearLayout) findViewById(R.id.llayout);
 		listview_left = (ListView) findViewById(R.id.listview_left);
 		listview_right = (ListView) findViewById(R.id.listview_right);
@@ -85,6 +90,9 @@ public class IWantBidActivity extends MActivity {
 	public void onclick(View v) {
 		super.onclick(v);
 		switch (v.getId()) {
+		case R.id.tv_top_right:
+			goActivity(HistoryBidListActivity.class, null);
+			break;
 		case R.id.tv_choose_category:
 			llayout.setVisibility(View.VISIBLE);
 			if (filterLeftAdapter == null) {
@@ -93,6 +101,9 @@ public class IWantBidActivity extends MActivity {
 				filterLeftAdapter.addAll(getFiterDataLeft());
 				filterLeftAdapter.notifyDataSetChanged();
 			}
+			break;
+		case R.id.llayout:
+			llayout.setVisibility(View.GONE);
 			break;
 		case R.id.btn_publish:
 			break;

@@ -19,7 +19,7 @@ public class Head {
 
 	public Head(JSONObject jsonObject) throws JSONException {
 		message = getJsonStrValue(jsonObject, "message");
-		result = getJsonIntValue(jsonObject, "RESULT");
+		result = getJsonIntValue(jsonObject, "result");
 		if (result == 1) {
 			success = true;
 		} else {

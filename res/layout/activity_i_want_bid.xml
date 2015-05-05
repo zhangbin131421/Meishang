@@ -158,6 +158,8 @@
             android:layout_height="match_parent"
             android:background="@color/translucent"
             android:gravity="bottom"
+            android:onClick="onclick"
+            android:clickable="true"
             android:visibility="gone"
             android:orientation="vertical"
             android:weightSum="2" >

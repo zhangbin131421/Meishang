@@ -113,7 +113,7 @@ public class RegisterActivity extends MActivity implements ExceptionHandler,
 		case RequestDistribute.REGISTER:
 			Head head = (Head) data;
 			if (head.isSuccess()) {
-				// goActivity(LoginActivity.class, null);
+				goActivity(LoginActivity.class, null);
 				finish();
 			} else {
 				showToast(head.getMessage());

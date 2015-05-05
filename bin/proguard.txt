@@ -55,7 +55,7 @@
 # view res/layout/notification_custom_builder.xml #generated:52
 -keep class android.widget.DateTimeView { <init>(...); }
 
-# view AndroidManifest.xml #generated:179
+# view AndroidManifest.xml #generated:184
 -keep class com.baidu.location.f { <init>(...); }
 
 # view res/layout/umeng_socialize_comment_detail.xml #generated:23
@@ -70,19 +70,19 @@
 # view AndroidManifest.xml #generated:48
 -keep class com.mobile.meishang.ui.WelcomeScreenActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:118
+# view AndroidManifest.xml #generated:123
 -keep class com.mobile.meishang.ui.ad.AdvertisingDetailActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:115
+# view AndroidManifest.xml #generated:120
 -keep class com.mobile.meishang.ui.ad.AdvertisingExpandbleActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:112
+# view AndroidManifest.xml #generated:117
 -keep class com.mobile.meishang.ui.ad.AdvertisingListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:122
+# view AndroidManifest.xml #generated:127
 -keep class com.mobile.meishang.ui.ad.AlipayActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:175
+# view AndroidManifest.xml #generated:180
 -keep class com.mobile.meishang.ui.baidu.LocationActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:88
@@ -91,28 +91,31 @@
 # view AndroidManifest.xml #generated:85
 -keep class com.mobile.meishang.ui.bid.BidNoticeListActivity { <init>(...); }
 
+# view AndroidManifest.xml #generated:95
+-keep class com.mobile.meishang.ui.bid.HistoryBidListActivity { <init>(...); }
+
 # view AndroidManifest.xml #generated:91
 -keep class com.mobile.meishang.ui.bid.IWantBidActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:136
+# view AndroidManifest.xml #generated:141
 -keep class com.mobile.meishang.ui.category.CategoryActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:151
+# view AndroidManifest.xml #generated:156
 -keep class com.mobile.meishang.ui.choujiang.ChoujiangActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:154
+# view AndroidManifest.xml #generated:159
 -keep class com.mobile.meishang.ui.choujiang.RuleActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:126
+# view AndroidManifest.xml #generated:131
 -keep class com.mobile.meishang.ui.city.AreaChoiceActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:130
+# view AndroidManifest.xml #generated:135
 -keep class com.mobile.meishang.ui.city.CityChoiceActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:133
+# view AndroidManifest.xml #generated:138
 -keep class com.mobile.meishang.ui.city.CityListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:101
+# view AndroidManifest.xml #generated:106
 -keep class com.mobile.meishang.ui.favorites.FavoritesActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:65
@@ -124,10 +127,10 @@
 # view AndroidManifest.xml #generated:56
 -keep class com.mobile.meishang.ui.home.TabActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:98
+# view AndroidManifest.xml #generated:103
 -keep class com.mobile.meishang.ui.infomation.InfoDetailActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:95
+# view AndroidManifest.xml #generated:100
 -keep class com.mobile.meishang.ui.infomation.InfoListActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:81
@@ -139,16 +142,16 @@
 # view AndroidManifest.xml #generated:74
 -keep class com.mobile.meishang.ui.lehuigou.LehuigoHomeActvity { <init>(...); }
 
-# view AndroidManifest.xml #generated:168
+# view AndroidManifest.xml #generated:173
 -keep class com.mobile.meishang.ui.login.ForgotPdActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:162
+# view AndroidManifest.xml #generated:167
 -keep class com.mobile.meishang.ui.login.LoginActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:165
+# view AndroidManifest.xml #generated:170
 -keep class com.mobile.meishang.ui.login.RegisterActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:171
+# view AndroidManifest.xml #generated:176
 -keep class com.mobile.meishang.ui.login.RetrievedResetPasswordActivity { <init>(...); }
 
 # view res/layout/activity_online_options_b.xml #generated:23
@@ -160,22 +163,22 @@
 # view res/layout/activity_online_options_b.xml #generated:13
 -keep class com.mobile.meishang.ui.movie.view.ThumbNailView { <init>(...); }
 
-# view AndroidManifest.xml #generated:141
+# view AndroidManifest.xml #generated:146
 -keep class com.mobile.meishang.ui.search.SearchActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:144
+# view AndroidManifest.xml #generated:149
 -keep class com.mobile.meishang.ui.search.SearchResultListingActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:147
+# view AndroidManifest.xml #generated:152
 -keep class com.mobile.meishang.ui.share.SharedActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:108
+# view AndroidManifest.xml #generated:113
 -keep class com.mobile.meishang.ui.shopping.ShippingAddressActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:105
+# view AndroidManifest.xml #generated:110
 -keep class com.mobile.meishang.ui.shopping.ShoppingCarListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:158
+# view AndroidManifest.xml #generated:163
 -keep class com.mobile.meishang.ui.user.MySharedActivity { <init>(...); }
 
 # view res/layout/activity_bid_detail.xml #generated:9
@@ -239,13 +242,13 @@
 # view res/layout/activity_refresh_scrollview.xml #generated:1
 -keep class com.mobile.meishang.utils.view.pulltorefresh.XScrollView { <init>(...); }
 
-# view AndroidManifest.xml #generated:212
+# view AndroidManifest.xml #generated:217
 -keep class com.tencent.connect.common.AssistActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:199
+# view AndroidManifest.xml #generated:204
 -keep class com.tencent.tauth.AuthActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:189
+# view AndroidManifest.xml #generated:194
 -keep class com.umeng.socialize.view.ShareActivity { <init>(...); }
 
 # view res/layout/umeng_socialize_ucenter_platform_item.xml #generated:31
@@ -286,6 +289,7 @@
 # onClick res/layout/activity_home_listview_refresh.xml #generated:16
 # onClick res/layout/activity_home_listview_refresh.xml #generated:70
 # onClick res/layout/activity_i_want_bid.xml #generated:145
+# onClick res/layout/activity_i_want_bid.xml #generated:155
 # onClick res/layout/activity_i_want_bid.xml #generated:38
 # onClick res/layout/activity_info_list.xml #generated:16
 # onClick res/layout/activity_info_list.xml #generated:41
