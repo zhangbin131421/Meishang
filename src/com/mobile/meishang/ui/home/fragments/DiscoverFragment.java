@@ -1,7 +1,5 @@
 package com.mobile.meishang.ui.home.fragments;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,9 +15,9 @@ import com.mobile.meishang.MFragment;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.DiscoverListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
-import com.mobile.meishang.core.request.NearbyListRequest;
+import com.mobile.meishang.core.request.DiscoverFragmentRequest;
+import com.mobile.meishang.model.DiscoverList;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.Goods;
 import com.mobile.meishang.ui.home.DiscoverDetailActivity;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
@@ -31,12 +29,9 @@ public class DiscoverFragment extends MFragment implements
 		LoadEvent {
 	private LoadingView mLoadingView;
 	private RelativeLayout mNoDataRLayout;
-	// private ImageView mImageViewCryface;
 	private TextView tvNoData;
 	private XListView mListView;
 	private DiscoverListviewAdapter mListviewAdapter;
-	private List<Goods> mGoodsListing;
-	private Bundle mBundle;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -57,7 +52,6 @@ public class DiscoverFragment extends MFragment implements
 		title.setText("发现");
 		mLoadingView = (LoadingView) view.findViewById(R.id.loading);
 		mLoadingView.setLoadEvent(this);
-		mLoadingView.setVisibility(View.GONE);
 		mNoDataRLayout = (RelativeLayout) view.findViewById(R.id.no_data);
 		mNoDataRLayout.setBackgroundColor(getResources()
 				.getColor(R.color.white));
@@ -76,8 +70,8 @@ public class DiscoverFragment extends MFragment implements
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
 				Bundle bundle = new Bundle();
-				// bundle.putString("id",
-				// mGoodsListing.get(--position).getId());
+				bundle.putString("projectid",
+						mListviewAdapter.getItem(--position).getProjectid());
 				goActivity(DiscoverDetailActivity.class, bundle);
 			}
 		});
@@ -87,12 +81,9 @@ public class DiscoverFragment extends MFragment implements
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		mBundle = new Bundle();
-		mBundle.putString("id", "");
-		mBundle.putString("range", "");
 		getActivity().getSupportLoaderManager().restartLoader(
-				RequestDistribute.GOODS_LIST, mBundle,
-				new NearbyListRequest(this));
+				RequestDistribute.DISCOVER_FRAGMENT, null,
+				new DiscoverFragmentRequest(this));
 	}
 
 	@Override
@@ -121,16 +112,11 @@ public class DiscoverFragment extends MFragment implements
 	public void updateUI(int identity, Object data) {
 		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
-		case RequestDistribute.GOODS_LIST:
+		case RequestDistribute.DISCOVER_FRAGMENT:
 			mListviewAdapter.clear();
-			mGoodsListing = (List<Goods>) data;
-			if (mGoodsListing.size() > 0) {
-				mNoDataRLayout.setVisibility(View.GONE);
-				mListviewAdapter.addAll(mGoodsListing);
-				mListviewAdapter.notifyDataSetChanged();
-			} else {
-				mNoDataRLayout.setVisibility(View.VISIBLE);
-			}
+			DiscoverList discoverList = (DiscoverList) data;
+			mListviewAdapter.addAll(discoverList.getList());
+			mListviewAdapter.notifyDataSetChanged();
 			break;
 		case RequestDistribute.CATEGORY:
 			break;

@@ -1,7 +1,5 @@
 package com.mobile.meishang.ui.home.fragments;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,17 +7,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.mobile.meishang.MFragment;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.SignInListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
-import com.mobile.meishang.core.request.NearbyListRequest;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.Goods;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
@@ -29,7 +25,6 @@ public class SignInFragment extends MFragment implements OnClickListener,
 	private LoadingView mLoadingView;
 	private ListView listview;
 	private SignInListviewAdapter adapter;
-	private List<Goods> mGoodsListing;
 	private Bundle mBundle;
 
 	@Override
@@ -75,12 +70,12 @@ public class SignInFragment extends MFragment implements OnClickListener,
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		mBundle = new Bundle();
-		mBundle.putString("id", "");
-		mBundle.putString("range", "");
-		getActivity().getSupportLoaderManager().restartLoader(
-				RequestDistribute.GOODS_LIST, mBundle,
-				new NearbyListRequest(this));
+//		mBundle = new Bundle();
+//		mBundle.putString("id", "");
+//		mBundle.putString("range", "");
+//		getActivity().getSupportLoaderManager().restartLoader(
+//				RequestDistribute.GOODS_LIST, mBundle,
+//				new DiscoverFragmentRequest(this));
 	}
 
 	@Override
@@ -110,13 +105,10 @@ public class SignInFragment extends MFragment implements OnClickListener,
 		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
 		case RequestDistribute.GOODS_LIST:
-			adapter.clear();
-			mGoodsListing = (List<Goods>) data;
-			if (mGoodsListing.size() > 0) {
-				adapter.addAll(mGoodsListing);
-				adapter.notifyDataSetChanged();
-			} else {
-			}
+//			adapter.clear();
+//			DiscoverList discoverList = (DiscoverList) data;
+//			adapter.addAll(mGoodsListing);
+//			adapter.notifyDataSetChanged();
 			break;
 		case RequestDistribute.CATEGORY:
 			break;

@@ -8,17 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.bean.Goods;
+import com.mobile.meishang.model.Discover;
 
-public class DiscoverListviewAdapter extends BaseCacheListAdapter<Goods> {
+public class DiscoverListviewAdapter extends BaseCacheListAdapter<Discover> {
 
 	public DiscoverListviewAdapter(Context context) {
 		super(context);
-	}
-
-	@Override
-	public int getCount() {
-		return 15;
 	}
 
 	@Override
@@ -37,7 +32,7 @@ public class DiscoverListviewAdapter extends BaseCacheListAdapter<Goods> {
 		} else {
 			holder = (Holder) convertView.getTag();
 		}
-		// holder.name.setText(getItem(position).getTitle());
+		holder.name.setText(getItem(position).getTitle());
 		// holder.describe.setText(getItem(position).getContent());
 		// setCacheImage(holder.imageView,
 		// getItem(position).getImgageUrlsmall(),

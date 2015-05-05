@@ -14,19 +14,21 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.AdvertisingGalleryAdapter;
 import com.mobile.meishang.adapter.DiscoverListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
-import com.mobile.meishang.core.request.HomeFragmentRequest;
+import com.mobile.meishang.core.request.DiscoverDetailRequest;
+import com.mobile.meishang.model.Discover;
+import com.mobile.meishang.model.DiscoverDetail;
+import com.mobile.meishang.model.DiscoverList;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
-import com.mobile.meishang.model.bean.AdvertisingGallery;
 import com.mobile.meishang.model.bean.GoodsItem;
 import com.mobile.meishang.ui.ad.AdvertisingListActivity;
 import com.mobile.meishang.utils.view.AdGallery;
@@ -62,6 +64,9 @@ public class DiscoverDetailActivity extends MActivity implements
 		}
 	};
 
+	private TextView tv_project_introduce;
+	private TextView tv_project_goodness;
+
 	// private Context mContext;
 	private LoadingView mLoadingView;
 	private ListView mListView;
@@ -73,15 +78,14 @@ public class DiscoverDetailActivity extends MActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_discover_detail);
-//		mBundle = getIntent().getBundleExtra("bundle");
+		mBundle = getIntent().getBundleExtra("bundle");
 		// mContext = this;
-//		findViewById(R.id.top_layout_back).setVisibility(View.VISIBLE);
-//		TextView title = (TextView) findViewById(R.id.top_name);
-//		title.setText("发现详情页");
-//		title.setVisibility(View.VISIBLE);
+		// findViewById(R.id.top_layout_back).setVisibility(View.VISIBLE);
+		// TextView title = (TextView) findViewById(R.id.top_name);
+		// title.setText("发现详情页");
+		// title.setVisibility(View.VISIBLE);
 		mLoadingView = (LoadingView) findViewById(R.id.loading);
 		mLoadingView.setLoadEvent(this);
-		mLoadingView.setVisibility(View.GONE);
 		View headView = LayoutInflater.from(this).inflate(
 				R.layout.layout_discover_detail_hview, null);
 		if (null != headView) {
@@ -118,8 +122,8 @@ public class DiscoverDetailActivity extends MActivity implements
 					AdvertisingGalleryItem advertising = mAdvertisings
 							.get(realPosition);
 					Bundle bundle = new Bundle();
-//					bundle.putString("name", advertising.getName());
-//					bundle.putString("actid", advertising.getActid());
+					// bundle.putString("name", advertising.getName());
+					// bundle.putString("actid", advertising.getActid());
 					goActivity(AdvertisingListActivity.class, bundle);
 					// goActivity(AdvertisingExpandbleActivity.class, bundle);
 				}
@@ -142,6 +146,11 @@ public class DiscoverDetailActivity extends MActivity implements
 			mAdDotLayout = (LinearLayout) headView
 					.findViewById(R.id.ad_dot_llayout);
 
+			tv_project_introduce = (TextView) headView
+					.findViewById(R.id.tv_project_introduce);
+			tv_project_goodness = (TextView) headView
+					.findViewById(R.id.tv_project_goodness);
+
 		}
 		mAdvertisingAdapter = new AdvertisingGalleryAdapter(this);
 		mAdGallery.setAdapter(mAdvertisingAdapter);
@@ -160,13 +169,14 @@ public class DiscoverDetailActivity extends MActivity implements
 				// goActivity(GoodsDetailActivity.class, bundle);
 			}
 		});
-		// getSupportLoaderManager().restartLoader(RequestDistribute.GOODS_LIST,
-		// mBundle, new GoodsListRequest(this));
-		mBundle = new Bundle();
-		mBundle.putString("label", "limitBuy");
-		getSupportLoaderManager().initLoader(
-				RequestDistribute.ADVERTISING_GALLERY_FLASH_SALE, mBundle,
-				new HomeFragmentRequest(this));
+		getSupportLoaderManager().restartLoader(
+				RequestDistribute.DISCOVER_DETAIL, mBundle,
+				new DiscoverDetailRequest(this));
+		// mBundle = new Bundle();
+		// mBundle.putString("label", "limitBuy");
+		// getSupportLoaderManager().initLoader(
+		// RequestDistribute.ADVERTISING_GALLERY_FLASH_SALE, mBundle,
+		// new HomeFragmentRequest(this));
 	}
 
 	@Override
@@ -186,16 +196,14 @@ public class DiscoverDetailActivity extends MActivity implements
 		// super.updateUI(identity, data);
 		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
-		case RequestDistribute.GOODS_LIST:
-			mGoodsListing = (List<GoodsItem>) data;
-			break;
-		case RequestDistribute.ADVERTISING_GALLERY_FLASH_SALE:
-			// AdvertisingGallery advertisingList = (AdvertisingGallery) data;
-			// mAdvertisings = advertisingList.getList();
-			// initEightPicture();
-			// for (int i = 0; i < 2; i++) {
-			// mExpandableListView.expandGroup(i);
-			// }
+		case RequestDistribute.DISCOVER_DETAIL:
+			DiscoverDetail discoverDetail = (DiscoverDetail) data;
+			Discover discover = discoverDetail.getDiscover();
+			tv_project_introduce.setText(discover.getIntroduction());
+			tv_project_goodness.setText(discover.getGoodness());
+			mListviewAdapter.clear();
+			mListviewAdapter.addAll(discoverDetail.getList());
+			mListviewAdapter.notifyDataSetChanged();
 			break;
 		default:
 			break;
@@ -207,12 +215,14 @@ public class DiscoverDetailActivity extends MActivity implements
 		super.onclick(v);
 		Bundle bundle = new Bundle();
 		switch (v.getId()) {
-		case R.id.category_a_flayout:
+		case R.id.flayout_voice_introduce:
+			showToast("语音介绍");
 			break;
-		// case R.id.category_b_flayout:
-		// goActivity(CategoryActivity.class, null);
-		// break;
-		case R.id.category_c_flayout:
+		case R.id.flayout_call:
+			showToast("财富热线");
+			break;
+		case R.id.flayout_leave_words:
+			showToast("留言给她");
 			break;
 
 		default:
@@ -226,7 +236,7 @@ public class DiscoverDetailActivity extends MActivity implements
 		this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				if (identity == RequestDistribute.GOODS_LIST) {
+				if (identity == RequestDistribute.DISCOVER_DETAIL) {
 					mLoadingView.showRetryBtn(true);
 					showToast(e.getMessage());
 				}
@@ -239,7 +249,7 @@ public class DiscoverDetailActivity extends MActivity implements
 		// getSupportLoaderManager().restartLoader(RequestDistribute.GOODS_LIST,
 		// mBundle, new GoodsListRequest(this));
 	}
-	
+
 	private void initEightPicture() {
 		if (mAdvertisings != null && mAdvertisings.size() > 0) {
 			galleryImgNum = mAdvertisings.size();
@@ -275,6 +285,7 @@ public class DiscoverDetailActivity extends MActivity implements
 
 		}
 	}
+
 	private class RefreshAdvRun implements Runnable {
 
 		@Override

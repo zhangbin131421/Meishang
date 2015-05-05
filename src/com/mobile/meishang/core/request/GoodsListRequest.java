@@ -31,17 +31,13 @@ public class GoodsListRequest implements
 
 	@Override
 	public Loader<List<Goods>> onCreateLoader(int arg0, Bundle bundle) {
-		StringBuffer urlString = new StringBuffer(MApplication
-				.getInstance().getmConfig().urlRootApi);
-		if ("category".equals(bundle.getString("from"))) {
-			urlString.append("?op=goodslist&act=category&id=");
-			urlString.append(bundle.getString("id"));
-		} else if ("shop".equals(bundle.getString("from"))) {
-			urlString.append("?op=brand&act=list&brandid=");
-			urlString.append(bundle.getString("id"));
-		}
+		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
+				.getmConfig().urlRootApi);
+		urlString.append("project/load.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
+		mHttpRequest.addPostParameter("projectid",
+				bundle.getString("projectid"));
 		GoodsListLoader loader = new GoodsListLoader(mLeShiHuiActivity,
 				mHttpRequest);
 		if (mLeShiHuiFragment == null) {
@@ -56,8 +52,7 @@ public class GoodsListRequest implements
 	}
 
 	@Override
-	public void onLoadFinished(Loader<List<Goods>> arg0,
-			List<Goods> arg1) {
+	public void onLoadFinished(Loader<List<Goods>> arg0, List<Goods> arg1) {
 		if (arg1 != null) {
 			if (mLeShiHuiFragment == null) {
 				mLeShiHuiActivity.updateUI(RequestDistribute.GOODS_LIST, arg1);
