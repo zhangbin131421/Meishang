@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 public class Config {
 	public static final boolean DEBUG = true;
 //	public String urlRoot = "http://121.41.38.198:8888/data";
-	public String urlRootApi = "http://121.43.224.225:8888/data/";
-	public String urlImage = "http://103.242.168.154:9001/BCLife";
+	public String urlRootApi = "http://121.40.126.98/data/";
+	public String urlImage = "";
 	public SharedPreferences mPrefs;
 
 	public Config(SharedPreferences mPrefs) {

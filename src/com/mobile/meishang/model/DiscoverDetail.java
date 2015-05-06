@@ -12,19 +12,27 @@ import com.mobile.meishang.model.bean.Head;
 public class DiscoverDetail extends Head {
 
 	private Discover discover;
-	private List<Discover> list;
+	private List<Discover> discovers;
+	private List<Picture> pictures;
 
 	public DiscoverDetail() {
 
 	}
 
 	public DiscoverDetail(JSONObject json) throws JSONException {
-		discover=new Discover(getJsonObject(json, "data"));
+		discover = new Discover(getJsonObject(json, "data"));
 		JSONArray jsonArray = getJsonArray(json, "list");
-		list = new ArrayList<Discover>();
+		discovers = new ArrayList<Discover>();
 		int length = jsonArray.length();
 		for (int i = 0; i < length; i++) {
-			list.add(new Discover(jsonArray.getJSONObject(i)));
+			discovers.add(new Discover(jsonArray.getJSONObject(i)));
+		}
+		
+		JSONArray pictureArray = getJsonArray(json, "picList");
+		pictures = new ArrayList<Picture>();
+		int PictureLength = pictureArray.length();
+		for (int i = 0; i < PictureLength; i++) {
+			pictures.add(new Picture(pictureArray.getJSONObject(i)));
 		}
 	}
 
@@ -32,8 +40,13 @@ public class DiscoverDetail extends Head {
 		return discover;
 	}
 
-	public List<Discover> getList() {
-		return list;
+	public List<Discover> getDiscovers() {
+		return discovers;
 	}
+
+	public List<Picture> getPictures() {
+		return pictures;
+	}
+
 
 }

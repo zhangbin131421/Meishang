@@ -2,6 +2,7 @@ package com.mobile.meishang.ui.home;
 
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,22 +15,21 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
-import com.mobile.meishang.adapter.AdvertisingGalleryAdapter;
+import com.mobile.meishang.adapter.PictureGalleryAdapter;
 import com.mobile.meishang.adapter.DiscoverListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.DiscoverDetailRequest;
 import com.mobile.meishang.model.Discover;
 import com.mobile.meishang.model.DiscoverDetail;
-import com.mobile.meishang.model.DiscoverList;
+import com.mobile.meishang.model.Picture;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
-import com.mobile.meishang.model.bean.GoodsItem;
 import com.mobile.meishang.ui.ad.AdvertisingListActivity;
 import com.mobile.meishang.utils.view.AdGallery;
 import com.mobile.meishang.utils.view.LoadingView;
@@ -42,8 +42,8 @@ public class DiscoverDetailActivity extends MActivity implements
 	private AdGallery mAdGallery;
 	private LinearLayout mAdDotLayout;
 	private ImageView[] dotHolder;
-	private AdvertisingGalleryAdapter mAdvertisingAdapter;
-	private List<AdvertisingGalleryItem> mAdvertisings;
+	private PictureGalleryAdapter mAdvertisingAdapter;
+	private List<Picture>  mAdvertisings;
 	private final int ADVREFRESH = 1;
 	private int selectedPosition = 0;
 	private int realPosition = 0;
@@ -71,7 +71,6 @@ public class DiscoverDetailActivity extends MActivity implements
 	private LoadingView mLoadingView;
 	private ListView mListView;
 	private DiscoverListviewAdapter mListviewAdapter;
-	private List<GoodsItem> mGoodsListing;
 	private Bundle mBundle;
 
 	@Override
@@ -119,12 +118,12 @@ public class DiscoverDetailActivity extends MActivity implements
 				@Override
 				public void onItemClick(AdapterView<?> paramAdapterView,
 						View paramView, int paramInt, long paramLong) {
-					AdvertisingGalleryItem advertising = mAdvertisings
-							.get(realPosition);
-					Bundle bundle = new Bundle();
-					// bundle.putString("name", advertising.getName());
-					// bundle.putString("actid", advertising.getActid());
-					goActivity(AdvertisingListActivity.class, bundle);
+//					AdvertisingGalleryItem advertising = mAdvertisings
+//							.get(realPosition);
+//					Bundle bundle = new Bundle();
+//					// bundle.putString("name", advertising.getName());
+//					// bundle.putString("actid", advertising.getActid());
+//					goActivity(AdvertisingListActivity.class, bundle);
 					// goActivity(AdvertisingExpandbleActivity.class, bundle);
 				}
 			});
@@ -152,7 +151,7 @@ public class DiscoverDetailActivity extends MActivity implements
 					.findViewById(R.id.tv_project_goodness);
 
 		}
-		mAdvertisingAdapter = new AdvertisingGalleryAdapter(this);
+		mAdvertisingAdapter = new PictureGalleryAdapter(this);
 		mAdGallery.setAdapter(mAdvertisingAdapter);
 		mListView = (ListView) findViewById(R.id.listview);
 		mListviewAdapter = new DiscoverListviewAdapter(this);
@@ -163,10 +162,9 @@ public class DiscoverDetailActivity extends MActivity implements
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
-				// Bundle bundle = new Bundle();
-				// bundle.putString("id",
-				// mGoodsListing.get(--position).getId());
-				// goActivity(GoodsDetailActivity.class, bundle);
+				mBundle.putString("projectid",
+						mListviewAdapter.getItem(position - 1).getProjectid());
+				goActivity(DiscoverDetailActivity.class, mBundle);
 			}
 		});
 		getSupportLoaderManager().restartLoader(
@@ -177,6 +175,15 @@ public class DiscoverDetailActivity extends MActivity implements
 		// getSupportLoaderManager().initLoader(
 		// RequestDistribute.ADVERTISING_GALLERY_FLASH_SALE, mBundle,
 		// new HomeFragmentRequest(this));
+	}
+
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		mLoadingView.setVisibility(View.VISIBLE);
+		getSupportLoaderManager().restartLoader(
+				RequestDistribute.DISCOVER_DETAIL, mBundle,
+				new DiscoverDetailRequest(this));
 	}
 
 	@Override
@@ -202,8 +209,10 @@ public class DiscoverDetailActivity extends MActivity implements
 			tv_project_introduce.setText(discover.getIntroduction());
 			tv_project_goodness.setText(discover.getGoodness());
 			mListviewAdapter.clear();
-			mListviewAdapter.addAll(discoverDetail.getList());
+			mListviewAdapter.addAll(discoverDetail.getDiscovers());
 			mListviewAdapter.notifyDataSetChanged();
+			mAdvertisings=discoverDetail.getPictures();
+			initEightPicture();
 			break;
 		default:
 			break;
