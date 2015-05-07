@@ -30,7 +30,7 @@ public class MyWordsRequest implements
 	public Loader<MyWords> onCreateLoader(int arg0, Bundle bundle) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
-		urlString.append("share/list/user.htm");
+		urlString.append("leave/list/user.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
 		// mHttpRequest.addPostParameter("userid",
