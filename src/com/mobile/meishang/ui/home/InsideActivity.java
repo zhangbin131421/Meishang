@@ -22,15 +22,14 @@ import android.widget.TextView;
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.AdvertisingGalleryAdapter;
-import com.mobile.meishang.adapter.InsideListviewAdapter;
 import com.mobile.meishang.adapter.InsideHomeGridviewAdapter;
+import com.mobile.meishang.adapter.InsideListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.GoodsListRequest;
 import com.mobile.meishang.core.request.InsideActivityRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
 import com.mobile.meishang.model.bean.InsideActivityData;
-import com.mobile.meishang.model.bean.HomeFragmentTemplateDataItem;
 import com.mobile.meishang.ui.ad.AdvertisingListActivity;
 import com.mobile.meishang.utils.view.AdGallery;
 import com.mobile.meishang.utils.view.LoadingView;
@@ -167,10 +166,9 @@ public class InsideActivity extends MActivity implements
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
-				// Bundle bundle = new Bundle();
-				// bundle.putString("id", mGoodsListing.get(--position)
-				// .getGoodsid());
-				// goActivity(GoodsDetailActivity.class, bundle);
+				 Bundle bundle = new Bundle();
+				 bundle.putString("projectid", mListviewAdapter.getItem(position).getPurchasedid());
+				 goActivity(DiscoverDetailActivity.class, bundle);
 			}
 		});
 		getSupportLoaderManager().initLoader(RequestDistribute.INSIDE_ACTIVITY,

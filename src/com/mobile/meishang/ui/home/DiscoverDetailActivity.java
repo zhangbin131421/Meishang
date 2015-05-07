@@ -21,16 +21,14 @@ import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
-import com.mobile.meishang.adapter.PictureGalleryAdapter;
 import com.mobile.meishang.adapter.DiscoverListviewAdapter;
+import com.mobile.meishang.adapter.PictureGalleryAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.DiscoverDetailRequest;
 import com.mobile.meishang.model.Discover;
 import com.mobile.meishang.model.DiscoverDetail;
 import com.mobile.meishang.model.Picture;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
-import com.mobile.meishang.ui.ad.AdvertisingListActivity;
 import com.mobile.meishang.utils.view.AdGallery;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
@@ -43,7 +41,7 @@ public class DiscoverDetailActivity extends MActivity implements
 	private LinearLayout mAdDotLayout;
 	private ImageView[] dotHolder;
 	private PictureGalleryAdapter mAdvertisingAdapter;
-	private List<Picture>  mAdvertisings;
+	private List<Picture> mAdvertisings;
 	private final int ADVREFRESH = 1;
 	private int selectedPosition = 0;
 	private int realPosition = 0;
@@ -63,7 +61,9 @@ public class DiscoverDetailActivity extends MActivity implements
 			}
 		}
 	};
-
+	private TextView name;
+	private TextView tv_middlen;
+	private TextView tv_count;
 	private TextView tv_project_introduce;
 	private TextView tv_project_goodness;
 
@@ -118,12 +118,12 @@ public class DiscoverDetailActivity extends MActivity implements
 				@Override
 				public void onItemClick(AdapterView<?> paramAdapterView,
 						View paramView, int paramInt, long paramLong) {
-//					AdvertisingGalleryItem advertising = mAdvertisings
-//							.get(realPosition);
-//					Bundle bundle = new Bundle();
-//					// bundle.putString("name", advertising.getName());
-//					// bundle.putString("actid", advertising.getActid());
-//					goActivity(AdvertisingListActivity.class, bundle);
+					// AdvertisingGalleryItem advertising = mAdvertisings
+					// .get(realPosition);
+					// Bundle bundle = new Bundle();
+					// // bundle.putString("name", advertising.getName());
+					// // bundle.putString("actid", advertising.getActid());
+					// goActivity(AdvertisingListActivity.class, bundle);
 					// goActivity(AdvertisingExpandbleActivity.class, bundle);
 				}
 			});
@@ -144,7 +144,9 @@ public class DiscoverDetailActivity extends MActivity implements
 
 			mAdDotLayout = (LinearLayout) headView
 					.findViewById(R.id.ad_dot_llayout);
-
+			name = (TextView) headView.findViewById(R.id.item_name);
+			tv_middlen = (TextView) headView.findViewById(R.id.tv_middlen);
+			tv_count = (TextView) headView.findViewById(R.id.tv_count);
 			tv_project_introduce = (TextView) headView
 					.findViewById(R.id.tv_project_introduce);
 			tv_project_goodness = (TextView) headView
@@ -206,12 +208,15 @@ public class DiscoverDetailActivity extends MActivity implements
 		case RequestDistribute.DISCOVER_DETAIL:
 			DiscoverDetail discoverDetail = (DiscoverDetail) data;
 			Discover discover = discoverDetail.getDiscover();
+			name.setText(discover.getTitle());
+			tv_middlen.setText(discover.getMiddlen());
+			tv_count.setText(discover.getCount());
 			tv_project_introduce.setText(discover.getIntroduction());
 			tv_project_goodness.setText(discover.getGoodness());
 			mListviewAdapter.clear();
 			mListviewAdapter.addAll(discoverDetail.getDiscovers());
 			mListviewAdapter.notifyDataSetChanged();
-			mAdvertisings=discoverDetail.getPictures();
+			mAdvertisings = discoverDetail.getPictures();
 			initEightPicture();
 			break;
 		default:

@@ -28,15 +28,20 @@ public class DiscoverListviewAdapter extends BaseCacheListAdapter<Discover> {
 			holder.name = (TextView) convertView.findViewById(R.id.item_name);
 			holder.describe = (TextView) convertView
 					.findViewById(R.id.item_describe);
+			holder.tv_middlen = (TextView) convertView
+					.findViewById(R.id.tv_middlen);
+			holder.tv_count = (TextView) convertView
+					.findViewById(R.id.tv_count);
 			convertView.setTag(holder);
 		} else {
 			holder = (Holder) convertView.getTag();
 		}
+		setCacheImage(holder.imageView, getItem(position).getPicpath(),
+				R.drawable.loading_bg_img_item);
 		holder.name.setText(getItem(position).getTitle());
-		// holder.describe.setText(getItem(position).getContent());
-		// setCacheImage(holder.imageView,
-		// getItem(position).getImgageUrlsmall(),
-		// R.drawable.loading_bg_img_item);
+		holder.describe.setText(getItem(position).getIntroduction());
+		holder.tv_middlen.setText(getItem(position).getMiddlen());
+		holder.tv_count.setText(getItem(position).getCount());
 
 		return convertView;
 	}
@@ -50,6 +55,8 @@ public class DiscoverListviewAdapter extends BaseCacheListAdapter<Discover> {
 		ImageView imageView;
 		TextView name;
 		TextView describe;
+		TextView tv_middlen;
+		TextView tv_count;
 	}
 
 }

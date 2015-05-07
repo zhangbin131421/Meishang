@@ -31,7 +31,6 @@ import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
 import com.mobile.meishang.model.bean.HomeFragmentData;
 import com.mobile.meishang.model.bean.HomeFragmentTemplateDataItem;
-import com.mobile.meishang.ui.ad.AdvertisingListActivity;
 import com.mobile.meishang.ui.bid.IWantBidActivity;
 import com.mobile.meishang.ui.home.InsideActivity;
 import com.mobile.meishang.ui.infomation.InfoListActivity;
@@ -82,8 +81,6 @@ public class HomeFragment extends MFragment implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mBundle = new Bundle();
-		mBundle.putString("label", "limitBuy");
 	}
 
 	@Override
@@ -223,7 +220,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		getLoaderManager().initLoader(RequestDistribute.HOME_FRAGMENT, mBundle,
+		getLoaderManager().initLoader(RequestDistribute.HOME_FRAGMENT, null,
 				new HomeFragmentRequest(this));
 	}
 
