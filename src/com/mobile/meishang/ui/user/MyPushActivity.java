@@ -9,7 +9,7 @@ import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.MyPushListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
-import com.mobile.meishang.core.request.MySharedRequest;
+import com.mobile.meishang.core.request.MyPushRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
@@ -41,7 +41,7 @@ public class MyPushActivity extends MActivity implements ExceptionHandler,
 
 	private void net() {
 		getSupportLoaderManager().restartLoader(RequestDistribute.MY_PUSH,
-				null, new MySharedRequest(this));
+				null, new MyPushRequest(this));
 	}
 
 	@Override
