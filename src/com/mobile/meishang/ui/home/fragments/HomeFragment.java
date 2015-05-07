@@ -133,7 +133,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 					Bundle bundle = new Bundle();
 					// bundle.putString("name", advertising.getName());
 					// bundle.putString("actid", advertising.getActid());
-					goActivity(AdvertisingListActivity.class, bundle);
+					// goActivity(AdvertisingListActivity.class, bundle);
 					// goActivity(AdvertisingExpandbleActivity.class, bundle);
 				}
 			});
@@ -176,23 +176,37 @@ public class HomeFragment extends MFragment implements OnClickListener {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
+				position -= 3;
 				showToast("p=" + position);
+				Bundle bundle = new Bundle();
+				bundle.putString("url", mGridviewAdapter.getItem(position)
+						.getModuleurl());
 				switch (position) {
-				case 3:
+				case 0:
 					goActivity(LehuigoHomeActvity.class, null);
 					break;
-				case 4:
+				case 1:
 					goActivity(IWantBidActivity.class, null);
 					break;
-				case 5:
-				case 6:
-				case 7:
-				case 8:
-				case 9:
-				case 10:
-					goActivity(InsideActivity.class, null);
+				case 2:
+					goActivity(InsideActivity.class, bundle);
 					break;
-				case 11:
+				case 3:
+					goActivity(InsideActivity.class, bundle);
+					break;
+				case 4:
+					goActivity(InsideActivity.class, bundle);
+					break;
+				case 5:
+					goActivity(InsideActivity.class, bundle);
+					break;
+				case 6:
+					goActivity(InsideActivity.class, bundle);
+					break;
+				case 7:
+					goActivity(InsideActivity.class, bundle);
+					break;
+				case 8:
 					goActivity(InfoListActivity.class, null);
 					// goActivity(GoodsSearchActivity.class, null);
 					break;

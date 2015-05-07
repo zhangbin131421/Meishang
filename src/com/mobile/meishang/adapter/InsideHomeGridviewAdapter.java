@@ -8,12 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.bean.HomeFragmentTemplateDataItem;
+import com.mobile.meishang.model.Smodule;
 
-public class HomeGridviewAdapter extends
-		BaseCacheListAdapter<HomeFragmentTemplateDataItem> {
+public class InsideHomeGridviewAdapter extends
+		BaseCacheListAdapter<Smodule> {
 
-	public HomeGridviewAdapter(Context context) {
+	public InsideHomeGridviewAdapter(Context context) {
 		super(context);
 	}
 
@@ -31,9 +31,9 @@ public class HomeGridviewAdapter extends
 		} else {
 			holder = (Holder) convertView.getTag();
 		}
-		holder.item_name.setText(getItem(position).getModulename());
-		setCacheImage(holder.item_image, getItem(position).getModulepicpath(),
-				R.drawable.loading_bg_img_item);
+		holder.item_name.setText(getItem(position).getName());
+//		setCacheImage(holder.item_image, getItem(position).getModulepicpath(),
+//				R.drawable.loading_bg_img_item);
 		return convertView;
 	}
 

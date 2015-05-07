@@ -22,8 +22,8 @@ import android.widget.TextView;
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.AdvertisingGalleryAdapter;
-import com.mobile.meishang.adapter.DiscoverListviewAdapter;
-import com.mobile.meishang.adapter.HomeGridviewAdapter;
+import com.mobile.meishang.adapter.InsideListviewAdapter;
+import com.mobile.meishang.adapter.InsideHomeGridviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.GoodsListRequest;
 import com.mobile.meishang.core.request.InsideActivityRequest;
@@ -67,12 +67,12 @@ public class InsideActivity extends MActivity implements
 		}
 	};
 	private GridView mGridView;
-	private HomeGridviewAdapter mGridviewAdapter;
+	private InsideHomeGridviewAdapter mGridviewAdapter;
 	private LoadingView mLoadingView;
 	private RelativeLayout mNoDataRLayout;
 	private TextView tvNoData;
 	private XListView mListView;
-	private DiscoverListviewAdapter mListviewAdapter;
+	private InsideListviewAdapter mListviewAdapter;
 
 	private Bundle mBundle;
 
@@ -142,7 +142,7 @@ public class InsideActivity extends MActivity implements
 		mGridView = (GridView) headView.findViewById(R.id.gridview);
 		mAdvertisingAdapter = new AdvertisingGalleryAdapter(this);
 		mAdGallery.setAdapter(mAdvertisingAdapter);
-		mGridviewAdapter = new HomeGridviewAdapter(this);
+		mGridviewAdapter = new InsideHomeGridviewAdapter(this);
 		mGridView.setAdapter(mGridviewAdapter);
 
 		mBundle = getIntent().getBundleExtra("bundle");
@@ -160,7 +160,7 @@ public class InsideActivity extends MActivity implements
 		mListView.setXListViewListener(this);
 		mListView.setRefreshTime(getTime());
 		mListView.addHeaderView(headView);
-		mListviewAdapter = new DiscoverListviewAdapter(this);
+		mListviewAdapter = new InsideListviewAdapter(this);
 		mListView.setAdapter(mListviewAdapter);
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -213,10 +213,13 @@ public class InsideActivity extends MActivity implements
 		switch (identity) {
 		case RequestDistribute.INSIDE_ACTIVITY:
 			InsideActivityData insideActivityData = (InsideActivityData) data;
-			mAdvertisings = insideActivityData.getAdvertisingGallery().getList();
+			mAdvertisings = insideActivityData.getAdvertisingGallery()
+					.getList();
 			initEightPicture();
-//			mGridviewAdapter.addAll(list);
-//			mGridviewAdapter.notifyDataSetChanged();
+			mGridviewAdapter.addAll(insideActivityData.getSmodules());
+			mGridviewAdapter.notifyDataSetChanged();
+			mListviewAdapter.addAll(insideActivityData.getList());
+			mListviewAdapter.notifyDataSetChanged();
 			break;
 
 		default:

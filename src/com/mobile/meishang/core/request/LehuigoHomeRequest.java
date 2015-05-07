@@ -7,12 +7,12 @@ import android.support.v4.content.Loader;
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.MApplication;
 import com.mobile.meishang.MFragment;
-import com.mobile.meishang.core.content.HomeFragmentLoader;
+import com.mobile.meishang.core.content.LehuigoHomeLoader;
 import com.mobile.meishang.core.network.DefaultNetworkRequest;
-import com.mobile.meishang.model.bean.HomeFragmentData;
+import com.mobile.meishang.model.LehuigoHomeData;
 
 public class LehuigoHomeRequest implements
-		LoaderManager.LoaderCallbacks<HomeFragmentData> {
+		LoaderManager.LoaderCallbacks<LehuigoHomeData> {
 
 	private MFragment mFragment;
 	private MActivity mActivity;
@@ -27,14 +27,14 @@ public class LehuigoHomeRequest implements
 	}
 
 	@Override
-	public Loader<HomeFragmentData> onCreateLoader(int arg0, Bundle arg1) {
+	public Loader<LehuigoHomeData> onCreateLoader(int arg0, Bundle arg1) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
 		urlString.append("purchased/list.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
 //		mHttpRequest.addPostParameter("page", "1");
-		HomeFragmentLoader loader = new HomeFragmentLoader(mActivity,
+		LehuigoHomeLoader loader = new LehuigoHomeLoader(mActivity,
 				mHttpRequest);
 		if (mFragment == null) {
 
@@ -48,8 +48,8 @@ public class LehuigoHomeRequest implements
 	}
 
 	@Override
-	public void onLoadFinished(Loader<HomeFragmentData> arg0,
-			HomeFragmentData arg1) {
+	public void onLoadFinished(Loader<LehuigoHomeData> arg0,
+			LehuigoHomeData arg1) {
 		if (arg1 != null) {
 			if (mFragment == null) {
 				mActivity.updateUI(arg0.getId(), arg1);
@@ -61,7 +61,7 @@ public class LehuigoHomeRequest implements
 	}
 
 	@Override
-	public void onLoaderReset(Loader<HomeFragmentData> arg0) {
+	public void onLoaderReset(Loader<LehuigoHomeData> arg0) {
 	}
 
 }

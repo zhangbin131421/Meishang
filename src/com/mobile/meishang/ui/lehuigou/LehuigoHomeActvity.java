@@ -31,6 +31,7 @@ import com.mobile.meishang.adapter.AdvertisingGalleryAdapter;
 import com.mobile.meishang.adapter.LehuigouHomeExpandAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.LehuigoHomeRequest;
+import com.mobile.meishang.model.LehuigoHomeData;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
 import com.mobile.meishang.model.bean.PointStrategyGroup;
@@ -231,15 +232,9 @@ public class LehuigoHomeActvity extends MActivity implements
 		// mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
 		case RequestDistribute.LEHUIGOU_HOME:
-			// stopRefresh();
-			// AdvertisingGallery advertisingList = (AdvertisingGallery) data;
-			// mAdvertisings = advertisingList.getList();
-			// initEightPicture();
-			// for (int i = 0; i < 2; i++) {
-			// mExpandableListView.expandGroup(i);
-			// }
-			break;
-		case RequestDistribute.CATEGORY:
+			LehuigoHomeData lehuigoHomeData = (LehuigoHomeData) data;
+			// mExpandAdapter.setLehuigoHomeData(lehuigoHomeData);
+			// mExpandAdapter.notifyDataSetChanged();
 			break;
 
 		default:
