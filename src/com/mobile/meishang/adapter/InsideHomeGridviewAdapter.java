@@ -32,8 +32,8 @@ public class InsideHomeGridviewAdapter extends
 			holder = (Holder) convertView.getTag();
 		}
 		holder.item_name.setText(getItem(position).getName());
-//		setCacheImage(holder.item_image, getItem(position).getModulepicpath(),
-//				R.drawable.loading_bg_img_item);
+		setCacheImage(holder.item_image, getItem(position).getPicpath(),
+				R.drawable.loading_bg_img_item);
 		return convertView;
 	}
 
