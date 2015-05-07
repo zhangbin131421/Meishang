@@ -6,6 +6,12 @@
 
     <include layout="@layout/layout_top_back" />
 
+    <include
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/loadingview" />
+
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"

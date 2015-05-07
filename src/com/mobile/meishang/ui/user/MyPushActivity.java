@@ -8,9 +8,16 @@ import android.widget.TextView;
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.MyPushListviewAdapter;
+import com.mobile.meishang.core.error.ExceptionHandler;
+import com.mobile.meishang.core.request.MySharedRequest;
+import com.mobile.meishang.model.RequestDistribute;
+import com.mobile.meishang.utils.view.LoadingView;
+import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 
-public class MyPushActivity extends MActivity {
+public class MyPushActivity extends MActivity implements ExceptionHandler,
+		LoadEvent {
 	private TextView tv_top_right;
+	private LoadingView mLoadingView;
 	private ListView listview;;
 	private MyPushListviewAdapter adapter;
 
@@ -23,10 +30,49 @@ public class MyPushActivity extends MActivity {
 		tv_top_right = (TextView) findViewById(R.id.tv_top_right);
 		tv_top_right.setText("编辑");
 		tv_top_right.setVisibility(View.VISIBLE);
+		mLoadingView = (LoadingView) findViewById(R.id.loading);
+		mLoadingView.setLoadEvent(this);
+		mLoadingView.setVisibility(View.GONE);
 		listview = (ListView) findViewById(R.id.listview);
 		adapter = new MyPushListviewAdapter(this);
 		listview.setAdapter(adapter);
+		net();
+	}
 
+	private void net() {
+		getSupportLoaderManager().restartLoader(RequestDistribute.MY_PUSH,
+				null, new MySharedRequest(this));
+	}
+
+	@Override
+	public void updateUI(int identity, Object data) {
+		// super.updateUI(identity, data);
+		mLoadingView.setVisibility(View.GONE);
+		switch (identity) {
+		case RequestDistribute.MY_PUSH:
+			break;
+		default:
+			break;
+		}
+	}
+
+	@Override
+	public void handleException(final int identity, final Exception e) {
+		super.handleException(identity, e);
+		this.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				if (identity == RequestDistribute.MY_PUSH) {
+					mLoadingView.showRetryBtn(true);
+					showToast(e.getMessage());
+				}
+			}
+		});
+	}
+
+	@Override
+	public void retryAgain(View v) {
+		net();
 	}
 
 	@Override

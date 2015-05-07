@@ -72,4 +72,7 @@ public class RequestDistribute {
 	public static final int CHOUJIANG_RULE = 6004;//
 	public static final int DISCOVER_FRAGMENT = 6005;//
 	public static final int DISCOVER_DETAIL = 6006;//
+	public static final int MY_SHARED = 6007;//
+	public static final int MY_WORDS = 6008;//
+	public static final int MY_PUSH = 6009;//
 }
