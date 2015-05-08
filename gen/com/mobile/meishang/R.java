@@ -992,7 +992,7 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f0a0002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f070053;
+        public static final int abc_search_url_text_holo=0x7f070054;
         public static final int abc_search_url_text_normal=0x7f07000d;
         public static final int abc_search_url_text_pressed=0x7f07000f;
         public static final int abc_search_url_text_selected=0x7f07000e;
@@ -1052,6 +1052,7 @@ containing a value of this type.
         public static final int red=0x7f070010;
         public static final int red1=0x7f07002f;
         public static final int red_price=0x7f07002c;
+        public static final int red_title=0x7f070053;
         /**  二维码 
          */
         public static final int result_view=0x7f070035;

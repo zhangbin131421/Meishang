@@ -65,9 +65,9 @@
     <color name="black3">#ff999999</color>
     <color name="black4">#ffcccccc</color>
     <!-- tab -->
-    <color name="tab_font_true">#58554e</color>
+    <color name="tab_font_true">#E7433A</color>
     <color name="tab_font_false">#857e74</color>
-    <color name="tab_bg">#cbbeae</color>
+    <color name="tab_bg">#F8F8F8</color>
     <color name="bg_title">#f2ede3</color>
     <color name="font_title">#58554f</color>
     <color name="bg_oneday_item">#f8f2ed</color>
@@ -79,5 +79,6 @@
     <color name="font_gray">#6e6e6e</color>
     <color name="font_gray2">#969696</color>
     <color name="bg_login">#E4DAD3</color>
+    <color name="red_title">#E7433A</color>
 
 </resources>
