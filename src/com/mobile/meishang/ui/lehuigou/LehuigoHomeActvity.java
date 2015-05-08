@@ -1,5 +1,6 @@
 package com.mobile.meishang.ui.lehuigou;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import com.mobile.meishang.adapter.LehuigouHomeExpandAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.LehuigoHomeRequest;
 import com.mobile.meishang.model.LehuigoHomeData;
+import com.mobile.meishang.model.LehuigoHomeGroup;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
 import com.mobile.meishang.model.bean.PointStrategyGroup;
@@ -212,9 +214,6 @@ public class LehuigoHomeActvity extends MActivity implements
 		getSupportLoaderManager().restartLoader(
 				RequestDistribute.LEHUIGOU_HOME, mBundle,
 				new LehuigoHomeRequest(this));
-		for (int i = 0; i < 2; i++) {
-			mExpandableListView.expandGroup(i);
-		}
 	}
 
 	@Override
@@ -233,8 +232,17 @@ public class LehuigoHomeActvity extends MActivity implements
 		switch (identity) {
 		case RequestDistribute.LEHUIGOU_HOME:
 			LehuigoHomeData lehuigoHomeData = (LehuigoHomeData) data;
-			// mExpandAdapter.setLehuigoHomeData(lehuigoHomeData);
-			// mExpandAdapter.notifyDataSetChanged();
+			List<LehuigoHomeGroup> listGroups = new ArrayList<LehuigoHomeGroup>();
+			listGroups.add(new LehuigoHomeGroup("最新推荐商品", lehuigoHomeData
+					.getToplist()));
+			listGroups.add(new LehuigoHomeGroup("热门兑换商品", lehuigoHomeData
+					.getEndlist()));
+			mExpandAdapter.clear();
+			mExpandAdapter.addAll(listGroups);
+			mExpandAdapter.notifyDataSetChanged();
+			for (int i = 0; i < 2; i++) {
+				mExpandableListView.expandGroup(i);
+			}
 			break;
 
 		default:

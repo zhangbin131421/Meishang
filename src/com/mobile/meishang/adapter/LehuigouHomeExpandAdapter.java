@@ -15,13 +15,13 @@ import com.mobile.meishang.MApplication;
 import com.mobile.meishang.R;
 import com.mobile.meishang.imagecache.ImageFetcher;
 import com.mobile.meishang.imagecache.ImageWorker;
-import com.mobile.meishang.model.bean.PointStrategyGroup;
+import com.mobile.meishang.model.LehuigoHomeGroup;
 
 public class LehuigouHomeExpandAdapter extends BaseExpandableListAdapter {
 	private Context mContext;//
 	private ImageWorker mImageWorker;
 	private LayoutInflater mInflater;//
-	private List<PointStrategyGroup> mGroups;
+	private List<LehuigoHomeGroup> mGroups;
 
 	public LehuigouHomeExpandAdapter() {
 	}
@@ -35,7 +35,7 @@ public class LehuigouHomeExpandAdapter extends BaseExpandableListAdapter {
 		mContext = context;
 		mImageWorker = new ImageFetcher(context, MApplication.getLongest());
 		mImageWorker.setImageCache(MApplication.getImageLruCache());
-		mGroups = new ArrayList<PointStrategyGroup>();
+		mGroups = new ArrayList<LehuigoHomeGroup>();
 		mInflater = LayoutInflater.from(mContext);
 	}
 
@@ -87,10 +87,13 @@ public class LehuigouHomeExpandAdapter extends BaseExpandableListAdapter {
 		}
 		// viewHoder.name.setText(Html.fromHtml(mGroups.get(groupPosition).getList()
 		// .get(childPosition).getTitle()));
-		// setCacheImage(holder.imageView, getItem(position).getLogo(),
-		// R.drawable.loading_bg_img_item);
-		// holder.title.setText(getItem(position).getName());
-		// holder.describe.setText(getItem(position).getDesp());
+		setCacheImage(holder.imageView, mGroups.get(groupPosition).getList()
+				.get(childPosition).getPicpath(),
+				R.drawable.loading_bg_img_item);
+		holder.title.setText(mGroups.get(groupPosition).getList()
+				.get(childPosition).getTitle());
+		holder.describe.setText(mGroups.get(groupPosition).getList()
+				.get(childPosition).getIntegral());
 		// holder.currentPrice.setText("￥" + getItem(position).getPrice1());
 		// holder.originalPrice.setText("￥" + getItem(position).getPrice());
 		// holder.originalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
@@ -99,8 +102,8 @@ public class LehuigouHomeExpandAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
-		// return mGroups.get(groupPosition).getList().size();
-		return 2;
+		return mGroups.get(groupPosition).getList().size();
+		// return 2;
 	}
 
 	@Override
@@ -110,8 +113,8 @@ public class LehuigouHomeExpandAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public int getGroupCount() {
-		// return mGroups.size();
-		return 2;
+		return mGroups.size();
+		// return 2;
 	}
 
 	@Override
@@ -165,7 +168,7 @@ public class LehuigouHomeExpandAdapter extends BaseExpandableListAdapter {
 		// R.color.black_black));
 		//
 		// }
-		// viewHoder.name.setText(mGroups.get(groupPosition).getTitle());
+		viewHoder.name.setText(mGroups.get(groupPosition).getTitle());
 		return convertView;
 	}
 
@@ -182,7 +185,7 @@ public class LehuigouHomeExpandAdapter extends BaseExpandableListAdapter {
 		return true;
 	}
 
-	public void addAll(List<PointStrategyGroup> groups) {
+	public void addAll(List<LehuigoHomeGroup> groups) {
 		mGroups = groups;
 	}
 
@@ -190,6 +193,12 @@ public class LehuigouHomeExpandAdapter extends BaseExpandableListAdapter {
 			final int resId) {
 		mImageWorker.setLoadingImage(resId);
 		mImageWorker.loadImage(imageUrl, imageView);
+	}
+
+	public void clear() {
+		if (mGroups != null) {
+			this.mGroups.clear();
+		}
 	}
 
 	public void destory() {
@@ -211,7 +220,7 @@ public class LehuigouHomeExpandAdapter extends BaseExpandableListAdapter {
 		ImageView imageView;
 		TextView title;
 		TextView describe;
-//		TextView currentPrice;
-//		TextView originalPrice;
+		// TextView currentPrice;
+		// TextView originalPrice;
 	}
 }
