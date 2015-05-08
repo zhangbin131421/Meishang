@@ -6,6 +6,12 @@
 
     <include layout="@layout/layout_top_back" />
 
+    <include
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/loadingview" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -25,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="原价¥188"
+                android:textColor="@color/font_gray2"
                 android:textSize="@dimen/tv_name_size" />
 
             <LinearLayout
@@ -37,9 +44,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="积分兑换"
+                    android:textColor="@color/font_gray2"
                     android:textSize="@dimen/tv_name_size" />
 
                 <TextView
+                    android:id="@+id/tv_integral"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5000兑换+¥18"
@@ -54,6 +63,7 @@
                 android:orientation="horizontal" >
 
                 <TextView
+                    android:id="@+id/tv_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -106,9 +116,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/ic_product_introduce"
+                    android:drawablePadding="3dp"
                     android:gravity="center_vertical"
                     android:text="产品参数"
-                    android:drawablePadding="3dp"
                     android:textSize="@dimen/tv_name_size" />
 
                 <ImageView
@@ -118,9 +128,11 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_param"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="主要来源：xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                android:textColor="@color/font_gray2"
                 android:textSize="@dimen/tv_name_size" />
         </LinearLayout>
     </ScrollView>

@@ -6,13 +6,11 @@ import android.support.v4.content.Loader;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.MApplication;
-import com.mobile.meishang.config.Constants;
 import com.mobile.meishang.core.content.GoodsDetailLoader;
 import com.mobile.meishang.core.network.DefaultNetworkRequest;
-import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.Goods;
+import com.mobile.meishang.model.LehuigoDetail;
 
-public class GoodsDetailRequest implements LoaderManager.LoaderCallbacks<Goods> {
+public class GoodsDetailRequest implements LoaderManager.LoaderCallbacks<LehuigoDetail> {
 
 	private MActivity mLeShiHuiActivity;
 
@@ -20,37 +18,31 @@ public class GoodsDetailRequest implements LoaderManager.LoaderCallbacks<Goods> 
 		this.mLeShiHuiActivity = leShiHuiActivity;
 	}
 
-
 	@Override
-	public Loader<Goods> onCreateLoader(int arg0, Bundle bundle) {
-		StringBuffer urlString = new StringBuffer(MApplication
-				.getInstance().getmConfig().urlRootApi);
-		urlString.append("?op=brand&act=show");
+	public Loader<LehuigoDetail> onCreateLoader(int arg0, Bundle bundle) {
+		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
+				.getmConfig().urlRootApi);
+		urlString.append("purchased/load.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
-		mHttpRequest.addPostParameter("id", bundle.getString("id"));
-		mHttpRequest.addPostParameter("lng",
-				MApplication.getInstance().getmConfig()
-						.getPreferencesVal(Constants.LONGITUDE, "121.418803"));
-		mHttpRequest.addPostParameter("lat", MApplication.getInstance()
-				.getmConfig()
-				.getPreferencesVal(Constants.LATITUDE, "31.192035"));
+		mHttpRequest.addPostParameter("purchasedid",
+				bundle.getString("purchasedid"));
 		GoodsDetailLoader loader = new GoodsDetailLoader(mLeShiHuiActivity,
 				mHttpRequest);
 		loader.setExceptionHandler(mLeShiHuiActivity);
-		loader.setIdentit(RequestDistribute.GOODS_DETAILS);
+		loader.setIdentit(arg0);
 		return loader;
 	}
 
 	@Override
-	public void onLoadFinished(Loader<Goods> arg0, Goods arg1) {
+	public void onLoadFinished(Loader<LehuigoDetail> arg0, LehuigoDetail arg1) {
 		if (arg1 != null) {
-			mLeShiHuiActivity.updateUI(RequestDistribute.GOODS_DETAILS, arg1);
+			mLeShiHuiActivity.updateUI(arg0.getId(), arg1);
 		}
 	}
 
 	@Override
-	public void onLoaderReset(Loader<Goods> arg0) {
+	public void onLoaderReset(Loader<LehuigoDetail> arg0) {
 	}
 
 }

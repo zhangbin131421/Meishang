@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="标题"
+            android:text=""
             android:textColor="@color/red_title"
             android:textSize="@dimen/text_size_h3" />
 

@@ -39,13 +39,14 @@ import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
 import com.mobile.meishang.model.bean.PointStrategyGroup;
 import com.mobile.meishang.ui.ad.AdvertisingListActivity;
 import com.mobile.meishang.utils.view.AdGallery;
+import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.mobile.meishang.utils.view.pulltorefresh.MExpandableListView;
 import com.mobile.meishang.utils.view.pulltorefresh.MExpandableListView.MOnRefreshListener;
 
 public class LehuigoHomeActvity extends MActivity implements
 		MOnRefreshListener, OnClickListener, ExceptionHandler, LoadEvent {
-	// private LoadingView mLoadingView;
+	private LoadingView mLoadingView;
 	private MExpandableListView mExpandableListView;
 	private LehuigouHomeExpandAdapter mExpandAdapter;
 	private List<PointStrategyGroup> mGroups;
@@ -104,6 +105,8 @@ public class LehuigoHomeActvity extends MActivity implements
 				return false;
 			}
 		});
+		mLoadingView = (LoadingView) findViewById(R.id.loading);
+		mLoadingView.setLoadEvent(this);
 		mExpandableListView = (MExpandableListView) findViewById(R.id.expandabel_listview);
 		mExpandableListView.setPullRefreshEnable(true);
 		mExpandableListView.setPullLoadEnable(false);
@@ -195,7 +198,7 @@ public class LehuigoHomeActvity extends MActivity implements
 			@Override
 			public boolean onGroupClick(ExpandableListView parent, View v,
 					int groupPosition, long id) {
-				showToast("groupPosition=" + groupPosition);
+				// showToast("groupPosition=" + groupPosition);
 				return true;
 			}
 		});
@@ -204,9 +207,13 @@ public class LehuigoHomeActvity extends MActivity implements
 			@Override
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
-				showToast("groupPosition=" + groupPosition + "childPosition="
-						+ childPosition);
-				goActivity(GoodsDetailActivity.class, null);
+				// showToast("groupPosition=" + groupPosition + "childPosition="
+				// + childPosition);
+				Bundle bundle = new Bundle();
+				bundle.putString("purchasedid", mExpandAdapter.getmGroups()
+						.get(groupPosition).getList().get(childPosition)
+						.getPurchasedid());
+				goActivity(GoodsDetailActivity.class, bundle);
 				return true;
 			}
 		});
@@ -228,7 +235,7 @@ public class LehuigoHomeActvity extends MActivity implements
 
 	@Override
 	public void updateUI(int identity, Object data) {
-		// mLoadingView.setVisibility(View.GONE);
+		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
 		case RequestDistribute.LEHUIGOU_HOME:
 			LehuigoHomeData lehuigoHomeData = (LehuigoHomeData) data;

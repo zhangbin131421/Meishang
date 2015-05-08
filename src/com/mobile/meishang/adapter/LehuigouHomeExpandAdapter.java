@@ -189,6 +189,10 @@ public class LehuigouHomeExpandAdapter extends BaseExpandableListAdapter {
 		mGroups = groups;
 	}
 
+	public List<LehuigoHomeGroup> getmGroups() {
+		return mGroups;
+	}
+
 	public void setCacheImage(final ImageView imageView, String imageUrl,
 			final int resId) {
 		mImageWorker.setLoadingImage(resId);

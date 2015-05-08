@@ -2,9 +2,12 @@ package com.mobile.meishang.ui.lehuigou;
 
 import java.util.List;
 
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Html;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -18,13 +21,13 @@ import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
-import com.mobile.meishang.adapter.AdvertisingGalleryAdapter;
+import com.mobile.meishang.adapter.PictureGalleryAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.GoodsDetailRequest;
-import com.mobile.meishang.core.request.HomeFragmentRequest;
+import com.mobile.meishang.model.LehuigoDetail;
+import com.mobile.meishang.model.LehuigoDetailData;
+import com.mobile.meishang.model.Picture;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
-import com.mobile.meishang.model.bean.Goods;
 import com.mobile.meishang.ui.ad.AdvertisingListActivity;
 import com.mobile.meishang.ui.shopping.ShoppingCarListActivity;
 import com.mobile.meishang.utils.view.AdGallery;
@@ -41,8 +44,8 @@ public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
 	private AdGallery mAdGallery;
 	private LinearLayout mAdDotLayout;
 	private ImageView[] dotHolder;
-	private AdvertisingGalleryAdapter mAdvertisingAdapter;
-	private List<AdvertisingGalleryItem> mAdvertisings;
+	private PictureGalleryAdapter mAdvertisingAdapter;
+	private List<Picture> mAdvertisings;
 	private final int ADVREFRESH = 1;
 	private int selectedPosition = 0;
 	private int realPosition = 0;
@@ -65,9 +68,10 @@ public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
 	};
 	//
 	private LoadingView mLoadingView;
-	private ImageView mImageView;
-	private TextView mName;
-	private Goods mGoods;
+	private TextView tv_old_price;
+	private TextView tv_integral;
+	private TextView tv_title;
+	private TextView tv_param;
 	private Bundle mBundle;
 
 	@Override
@@ -104,11 +108,10 @@ public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
 			@Override
 			public void onItemClick(AdapterView<?> paramAdapterView,
 					View paramView, int paramInt, long paramLong) {
-				AdvertisingGalleryItem advertising = mAdvertisings
-						.get(realPosition);
+				Picture advertising = mAdvertisings.get(realPosition);
 				Bundle bundle = new Bundle();
-//				bundle.putString("name", advertising.getName());
-//				bundle.putString("actid", advertising.getActid());
+				// bundle.putString("name", advertising.getName());
+				// bundle.putString("actid", advertising.getActid());
 				goActivity(AdvertisingListActivity.class, bundle);
 				// goActivity(AdvertisingExpandbleActivity.class, bundle);
 			}
@@ -129,7 +132,7 @@ public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
 		});
 
 		mAdDotLayout = (LinearLayout) findViewById(R.id.ad_dot_llayout);
-		mAdvertisingAdapter = new AdvertisingGalleryAdapter(this);
+		mAdvertisingAdapter = new PictureGalleryAdapter(this);
 		mAdGallery.setAdapter(mAdvertisingAdapter);
 		// findViewById(R.id.top_layout_back).setVisibility(View.VISIBLE);
 		// ImageView collectImage = (ImageView) findViewById(R.id.top_collect);
@@ -137,18 +140,15 @@ public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
 		// TextView title = (TextView) findViewById(R.id.top_name);
 		// title.setText(R.string.goods_detail);
 		// title.setVisibility(View.VISIBLE);
-		// mLoadingView = (LoadingView) findViewById(R.id.loading);
-		// mLoadingView.setLoadEvent(this);
-		// mImageView = (ImageView) findViewById(R.id.image);
-		// mName = (TextView) findViewById(R.id.tv_name);
-		// mBundle = getIntent().getBundleExtra("bundle");
-		// getSupportLoaderManager().initLoader(RequestDistribute.GOODS_DETAILS,
-		// mBundle, new GoodsDetailRequest(this));
-		mBundle = new Bundle();
-		mBundle.putString("label", "limitBuy");
-		getSupportLoaderManager().initLoader(
-				RequestDistribute.ADVERTISING_GALLERY_FLASH_SALE, mBundle,
-				new HomeFragmentRequest(this));
+		mLoadingView = (LoadingView) findViewById(R.id.loading);
+		mLoadingView.setLoadEvent(this);
+		tv_old_price = (TextView) findViewById(R.id.tv_old_price);
+		tv_integral = (TextView) findViewById(R.id.tv_integral);
+		tv_title = (TextView) findViewById(R.id.tv_title);
+		tv_param = (TextView) findViewById(R.id.tv_param);
+		mBundle = getIntent().getBundleExtra("bundle");
+		getSupportLoaderManager().initLoader(RequestDistribute.GOODS_DETAILS,
+				mBundle, new GoodsDetailRequest(this));
 	}
 
 	@Override
@@ -208,44 +208,28 @@ public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
 
 	@Override
 	public void updateUI(int identity, Object data) {
-		// mLoadingView.setVisibility(View.GONE);
+		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
 		case RequestDistribute.ADVERTISING_GALLERY_FLASH_SALE:
-//			AdvertisingGallery advertisingList = (AdvertisingGallery) data;
-//			mAdvertisings = advertisingList.getList();
-//			initAdvPicture();
+			// AdvertisingGallery advertisingList = (AdvertisingGallery) data;
+			// mAdvertisings = advertisingList.getList();
+			// initAdvPicture();
 			break;
 		case RequestDistribute.GOODS_DETAILS:
-			mGoods = (Goods) data;
-			// mBundle.putString("endTime", mGoods.getEndTime());
-			// mImageWorker.setLoadingImage(R.drawable.loading_bg_img245);
-			// mImageWorker.loadImage(mGoods.getImageUrl(), mImageView);
-			// mName.setText(mGoods.getName());
-			// mUseRange.setText(mGoods.getUseRange());
-			// mBooking.setText(mGoods.getIsBooking());
-			// mTel.setText(mGoods.getTel());
-			// mAddress.setText(mGoods.getAddress());
-			// mContent.setText(Html.fromHtml(mGoods.getDescribe()));
-			break;
-		case RequestDistribute.FAVORITES_ADD:
-			// RequestResponseInfo requestResponseInfo = (RequestResponseInfo)
-			// data;
-			// if ("".equals(requestResponseInfo.getErrorCode())) {
-			// // LeShiHuiApplication.setSessionId(requestResponseInfo
-			// // .getSessionId());
-			// // Intent intent = new Intent();
-			// // intent.putExtra("bundle", mBundle);
-			// // setResult(1, intent);
-			// // finish();
-			// showToast(requestResponseInfo.getState());
-			// } else {
-			// if ("1".equals(requestResponseInfo.getErrorCode())) {
-			//
-			// goActivity(LoginActivity.class, null);
-			// } else {
-			// showToast(requestResponseInfo.getErrorMessage());
-			// }
-			// }
+			LehuigoDetail mGoods = (LehuigoDetail) data;
+			mAdvertisings = mGoods.getPictures();
+			initAdvPicture();
+			LehuigoDetailData detailData = mGoods.getData();
+			tv_old_price.setText("原价：" + detailData.getPrice());
+			tv_old_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+			tv_integral.setText(detailData.getIntegral());
+			tv_title.setText(detailData.getTitle());
+			tv_param.setText(Html.fromHtml("主要来源：" + detailData.getSource()
+					+ "<br>" + "品牌：" + detailData.getBrand() + "<br>" + "品牌："
+					+ detailData.getBrand() + "<br>" + "货号："
+					+ detailData.getNo() + "<br>" + "服装版型："
+					+ detailData.getVersion() + "<br>" + "风格："
+					+ detailData.getStyle() + "<br>"));
 			break;
 
 		default:
