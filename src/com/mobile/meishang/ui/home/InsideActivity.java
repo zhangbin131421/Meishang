@@ -166,7 +166,9 @@ public class InsideActivity extends MActivity implements
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
+				showToast(position+"--");
 				 Bundle bundle = new Bundle();
+				 position-=2;
 				 bundle.putString("projectid", mListviewAdapter.getItem(position).getPurchasedid());
 				 goActivity(DiscoverDetailActivity.class, bundle);
 			}

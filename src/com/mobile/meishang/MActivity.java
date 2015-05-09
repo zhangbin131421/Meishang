@@ -119,7 +119,7 @@ public class MActivity extends FragmentActivity implements ExceptionHandler {
 		Window window = dialog.getWindow();// *** 主要就是在这里实现这种效果的.//
 		window.setContentView(R.layout.dialog_exit);
 		TextView content = (TextView) window.findViewById(R.id.tv_content);
-		content.setText("确定退出乐时惠?");
+		content.setText("确定退出"+getResources().getString(R.string.app_name));
 		Button cancelBtn = (Button) window.findViewById(R.id.btn_a);
 		cancelBtn.setText("取消");
 		cancelBtn.setOnClickListener(new OnClickListener() {
