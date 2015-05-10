@@ -71,6 +71,10 @@
             android:name=".ui.home.InsideActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".ui.home.SignRuleActivity"
+            android:screenOrientation="portrait" >
+        </activity>
         <!-- 乐惠 -->
         <activity
             android:name=".ui.lehuigou.LehuigoHomeActvity"

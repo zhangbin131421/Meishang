@@ -86,7 +86,7 @@ public class SignProgressBar extends View {
 			for (int i = 0; i < 8; i++) {
 				if (i != 0) {
 					canvas.drawText(i + "", i * (getWidth() / 8),
-							getBitmapHeigh() * 2, mPaint);
+							getBitmapHeigh() * 2+5, mPaint);
 				}
 			}
 		} catch (Exception e) {

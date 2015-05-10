@@ -80,5 +80,6 @@
     <color name="font_gray2">#969696</color>
     <color name="bg_login">#E4DAD3</color>
     <color name="red_title">#E7433A</color>
+    <color name="bg_gray">#808080</color>
 
 </resources>
