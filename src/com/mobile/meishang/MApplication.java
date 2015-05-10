@@ -15,7 +15,7 @@ import android.view.WindowManager;
 import com.mobile.meishang.config.Config;
 import com.mobile.meishang.imagecache.ImageLruCache;
 import com.mobile.meishang.logger.MyLog;
-import com.mobile.meishang.model.bean.Login;
+import com.mobile.meishang.model.bean.User;
 
 public class MApplication extends Application {
 	public static MApplication mApplication;
@@ -28,7 +28,7 @@ public class MApplication extends Application {
 	private int mCurrentHeightPixels;
 	private String signValue;
 	private List<Cookie> listCookies;
-	private Login login;
+	private User login;
 
 	@Override
 	public void onCreate() {
@@ -144,12 +144,12 @@ public class MApplication extends Application {
 		this.signValue = signValue;
 	}
 
-	public Login getLogin() {
+	public User getLogin() {
 		return login;
 	}
 
-	public void setLogin(Login login) {
-		this.login = login;
+	public void setLogin(User user) {
+		this.login = user;
 	}
 
 	public boolean checkLogin() {

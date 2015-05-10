@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
+import com.mobile.meishang.MApplication;
 import com.mobile.meishang.R;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.LoginRequest;
@@ -77,11 +78,17 @@ public class LoginActivity extends MActivity implements ExceptionHandler,
 		switch (identity) {
 		case RequestDistribute.LOGIN:
 			User user = (User) data;
-			if (user.isSuccess()) {
+			if (user.getMessage().equals("登录成功")) {
+				MApplication.getInstance().getLogin();
 				finish();
 			} else {
 				showToast(user.getMessage());
 			}
+			// if (user.isSuccess()) {
+			// finish();
+			// } else {
+			// showToast(user.getMessage());
+			// }
 
 			break;
 
