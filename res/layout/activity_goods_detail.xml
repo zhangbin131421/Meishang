@@ -155,6 +155,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:drawableLeft="@drawable/ic_share"
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
@@ -164,16 +165,19 @@
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/flayout_add_shoppingcar"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@color/red"
+            android:onClick="onclick"
             android:padding="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:drawableLeft="@drawable/ic_my_shopping_car"
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"

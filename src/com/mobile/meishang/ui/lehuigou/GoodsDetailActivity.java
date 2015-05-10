@@ -30,6 +30,7 @@ import com.mobile.meishang.model.Picture;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.ui.ad.AdvertisingListActivity;
 import com.mobile.meishang.ui.shopping.ShoppingCarListActivity;
+import com.mobile.meishang.ui.shopping.ShoppingOrderActivity;
 import com.mobile.meishang.utils.view.AdGallery;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
@@ -198,6 +199,9 @@ public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
 							"http://103.242.168.154:9001/BCLife/staffPhoto/goods/5.png"));
 			break;
 		case R.id.flayout_immediately_change:
+			goActivity(ShoppingOrderActivity.class, null);
+			break;
+		case R.id.flayout_add_shoppingcar:
 			goActivity(ShoppingCarListActivity.class, null);
 			break;
 

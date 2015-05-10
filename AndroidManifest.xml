@@ -116,6 +116,9 @@
             android:name=".ui.shopping.ShoppingCarListActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.shopping.ShoppingOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.shopping.ShippingAddressActivity"
             android:screenOrientation="portrait" />
         <!-- 广告活动 -->

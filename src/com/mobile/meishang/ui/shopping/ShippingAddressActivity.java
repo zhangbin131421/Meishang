@@ -12,7 +12,6 @@ import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
@@ -30,12 +29,16 @@ public class ShippingAddressActivity extends MActivity implements
 	private WheelView mViewProvince;
 	private WheelView mViewCity;
 	private WheelView mViewDistrict;
-	private Button mBtnConfirm;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shipping_address);
+		TextView title = (TextView) findViewById(R.id.top_name);
+		title.setText("收货地址");
+		TextView tv_top_right = (TextView) findViewById(R.id.tv_top_right);
+		tv_top_right.setText("确认");
+		tv_top_right.setVisibility(View.VISIBLE);
 		tv_province_city = (TextView) findViewById(R.id.tv_province_city);
 		setUpViews();
 		setUpListener();
@@ -48,7 +51,6 @@ public class ShippingAddressActivity extends MActivity implements
 		mViewProvince = (WheelView) findViewById(R.id.id_province);
 		mViewCity = (WheelView) findViewById(R.id.id_city);
 		mViewDistrict = (WheelView) findViewById(R.id.id_district);
-		mBtnConfirm = (Button) findViewById(R.id.btn_confirm);
 	}
 
 	private void setUpListener() {
@@ -59,7 +61,6 @@ public class ShippingAddressActivity extends MActivity implements
 		// 添加change事件
 		mViewDistrict.addChangingListener(this);
 		// 添加onclick事件
-		mBtnConfirm.setOnClickListener(this);
 	}
 
 	private void setUpData() {
@@ -87,6 +88,8 @@ public class ShippingAddressActivity extends MActivity implements
 		}
 		tv_province_city.setText(mCurrentProviceName + "," + mCurrentCityName
 				+ "," + mCurrentDistrictName + "," + mCurrentZipCode);
+		showToast("当前选中:" + mCurrentProviceName + "," + mCurrentCityName + ","
+				+ mCurrentDistrictName + "," + mCurrentZipCode);
 	}
 
 	/**
@@ -123,9 +126,8 @@ public class ShippingAddressActivity extends MActivity implements
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btn_confirm:
-			showToast("当前选中:" + mCurrentProviceName + "," + mCurrentCityName
-					+ "," + mCurrentDistrictName + "," + mCurrentZipCode);
+		case R.id.tv_top_right:
+
 			break;
 		default:
 			break;
