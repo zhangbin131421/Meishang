@@ -74,6 +74,7 @@ public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
 	private TextView tv_title;
 	private TextView tv_param;
 	private Bundle mBundle;
+	private LehuigoDetailData detailData;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -223,7 +224,7 @@ public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
 			LehuigoDetail mGoods = (LehuigoDetail) data;
 			mAdvertisings = mGoods.getPictures();
 			initAdvPicture();
-			LehuigoDetailData detailData = mGoods.getData();
+			detailData = mGoods.getData();
 			tv_old_price.setText("原价：" + detailData.getPrice());
 			tv_old_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 			tv_integral.setText(detailData.getIntegral());

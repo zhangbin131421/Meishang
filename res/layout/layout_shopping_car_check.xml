@@ -48,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5000"
-                    android:textColor="@color/black"
+                    android:textColor="@color/red"
                     android:textSize="@dimen/item_name_size" />
             </LinearLayout>
 
@@ -69,17 +69,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="¥18"
-                    android:textColor="@color/black"
+                    android:textColor="@color/red"
                     android:textSize="@dimen/item_name_size" />
             </LinearLayout>
         </LinearLayout>
 
         <Button
             android:id="@+id/btn_clearing"
-            android:onClick="onclick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="结算（1）" />
+            android:background="@color/red"
+            android:onClick="onclick"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:text="结算（1）"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </LinearLayout>
