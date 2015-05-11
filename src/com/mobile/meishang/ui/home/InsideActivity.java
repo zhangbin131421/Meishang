@@ -25,7 +25,6 @@ import com.mobile.meishang.adapter.AdvertisingGalleryAdapter;
 import com.mobile.meishang.adapter.InsideHomeGridviewAdapter;
 import com.mobile.meishang.adapter.InsideListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
-import com.mobile.meishang.core.request.GoodsListRequest;
 import com.mobile.meishang.core.request.InsideActivityRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
@@ -149,8 +148,9 @@ public class InsideActivity extends MActivity implements
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
 				showToast(position + "");
-				Bundle bundle=new Bundle();
-				bundle.putString("title", mGridviewAdapter.getItem(position).getName());
+				Bundle bundle = new Bundle();
+				bundle.putString("title", mGridviewAdapter.getItem(position)
+						.getName());
 				goActivity(TypeActivity.class, bundle);
 
 			}
@@ -258,8 +258,8 @@ public class InsideActivity extends MActivity implements
 	@Override
 	public void retryAgain(View v) {
 		getSupportLoaderManager().restartLoader(
-				RequestDistribute.INSIDE_ACTIVITY, null,
-				new GoodsListRequest(this));
+				RequestDistribute.INSIDE_ACTIVITY, mBundle,
+				new InsideActivityRequest(this));
 
 	}
 

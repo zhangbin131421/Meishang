@@ -13,12 +13,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
+import com.mobile.meishang.MApplication;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.ShoppingCarListAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.GoodsDetailRequest;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.Goods;
+import com.mobile.meishang.model.ShoppingCarGoods;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
@@ -33,7 +34,7 @@ public class ShoppingCarListActivity extends MActivity implements
 	private ListView mListView;
 	private FrameLayout mDeleteBtn;
 	private ShoppingCarListAdapter mListAdapter;
-	private List<Goods> list;
+	private List<ShoppingCarGoods> shoppingCarGoods;
 	private List<Integer> positions;
 	private LinearLayout llayout_clearing;
 	private FrameLayout flayout_delete;
@@ -52,7 +53,7 @@ public class ShoppingCarListActivity extends MActivity implements
 
 		mNoDataRLayout = (RelativeLayout) findViewById(R.id.no_data);
 		tvNoData = (TextView) findViewById(R.id.face_tv);
-		tvNoData.setText("你还没有收藏的商品");
+		tvNoData.setText("你还没有商品");
 		mLoadingView = (LoadingView) findViewById(R.id.loading);
 		mLoadingView.setLoadEvent(this);
 		mLoadingView.setVisibility(View.GONE);
@@ -65,17 +66,19 @@ public class ShoppingCarListActivity extends MActivity implements
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// if (!mListAdapter.getIsEdite()) {
-				Bundle bundle = new Bundle();
-				bundle.putString("id", list.get(position).getGoodsid());
+				// Bundle bundle = new Bundle();
+				// bundle.putString("id", shoppingCarGoods.get(position)
+				// .getGoodsid());
 				// goActivity(GoodsDetailActivity.class, bundle);
 				// }
 
 			}
 		});
-		// getSupportLoaderManager().restartLoader(
-		// RequestDistribute.FAVORITES_LIST, null,
-		// new FavoritesListRequest(this));
 
+		shoppingCarGoods = MApplication.getInstance().getShoppingCarGoods();
+		mListAdapter.clear();
+		mListAdapter.addAll(shoppingCarGoods);
+		mListAdapter.notifyDataSetChanged();
 	}
 
 	@Override

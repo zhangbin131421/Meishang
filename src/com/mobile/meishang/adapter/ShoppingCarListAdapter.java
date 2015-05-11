@@ -13,9 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.bean.Goods;
+import com.mobile.meishang.model.ShoppingCarGoods;
 
-public class ShoppingCarListAdapter extends BaseCacheListAdapter<Goods> {
+public class ShoppingCarListAdapter extends
+		BaseCacheListAdapter<ShoppingCarGoods> {
 
 	private List<Integer> checkPositions;
 
@@ -23,12 +24,6 @@ public class ShoppingCarListAdapter extends BaseCacheListAdapter<Goods> {
 		super(context);
 		checkPositions = new ArrayList<Integer>();
 
-	}
-
-	@Override
-	public int getCount() {
-		// return super.getCount();
-		return 5;
 	}
 
 	@Override

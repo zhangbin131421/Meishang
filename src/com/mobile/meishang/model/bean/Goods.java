@@ -7,25 +7,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Goods extends Head implements Parcelable {
-	// {
-	// "id": 1,
-	// "actid": 1,
-	// "goodsid": 1,
-	// "code": "0000001",
-	// "name": "爱西西里巧克力冰激凌1",
-	// "lable": null,
-	// "logo": "http://103.242.168.154:9001/BCLife/staffPhoto/goods/1.png",
-	// "status": 1,
-	// "detailUrl": "http://103.242.168.154:9001/BCLife/jsp/act/bus_goods1.jsp",
-	// "isDeleted": 1,
-	// "createdBy": null,
-	// "createdTime": null,
-	// "updatedBy": null,
-	// "updatedTime": null,
-	// "reamrk1": null,
-	// "remark2": null,
-	// "remark3": null
-	// },
 
 	private String goodsid;
 	private String actid;
