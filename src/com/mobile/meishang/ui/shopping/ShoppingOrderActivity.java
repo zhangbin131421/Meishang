@@ -2,6 +2,7 @@ package com.mobile.meishang.ui.shopping;
 
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,9 @@ public class ShoppingOrderActivity extends MActivity implements
 	private List<Integer> positions;
 	private LinearLayout llayout_clearing;
 	private FrameLayout flayout_delete;
+	TextView item_tv_name;
+	TextView item_tv_tel;
+	TextView item_tv_address;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,20 +49,23 @@ public class ShoppingOrderActivity extends MActivity implements
 		mLoadingView.setVisibility(View.GONE);
 		View hView = LayoutInflater.from(this).inflate(
 				R.layout.item_shopping_order_lh, null);
+		item_tv_name = (TextView) hView.findViewById(R.id.item_tv_name);
+		item_tv_tel = (TextView) hView.findViewById(R.id.item_tv_tel);
+		item_tv_address = (TextView) hView.findViewById(R.id.item_tv_address);
 		View fView = LayoutInflater.from(this).inflate(
 				R.layout.item_shopping_order_lf, null);
-		
+
 		mListView = (ListView) findViewById(R.id.listview);
 		mListAdapter = new ShoppingOrderListAdapter(this);
-		
+
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// if (!mListAdapter.getIsEdite()) {
-//				Bundle bundle = new Bundle();
-//				bundle.putString("id", list.get(position).getGoodsid());
+				// Bundle bundle = new Bundle();
+				// bundle.putString("id", list.get(position).getGoodsid());
 				// goActivity(GoodsDetailActivity.class, bundle);
 				// }
 
@@ -85,11 +92,29 @@ public class ShoppingOrderActivity extends MActivity implements
 		MobclickAgent.onPause(this);
 	}
 
+	@Override
+	protected void onActivityResult(int arg0, int arg1, Intent arg2) {
+		super.onActivityResult(arg0, arg1, arg2);
+		if (arg1 == RESULT_OK) {
+			switch (arg0) {
+			case 0:
+				Bundle bundle = arg2.getExtras();
+				item_tv_name.setText("收货人：" + bundle.getString("name"));
+				item_tv_tel.setText(bundle.getString("phone"));
+				item_tv_address.setText("收货地址：" + bundle.getString("addresss"));
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+
 	public void onclick(View v) {
 		super.onclick(v);
 		switch (v.getId()) {
 		case R.id.llayout_head:
-			goActivity(ShippingAddressActivity.class, null);
+			goActivityForResult(ShippingAddressActivity.class, null, 0);
 			break;
 		case R.id.btn_clearing:
 			break;

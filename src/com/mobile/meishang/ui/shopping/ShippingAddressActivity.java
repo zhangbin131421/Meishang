@@ -8,27 +8,36 @@ import java.util.Map;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
+import com.mobile.meishang.core.request.ShippingAddressRequest;
 import com.mobile.meishang.model.CityModel;
 import com.mobile.meishang.model.DistrictModel;
 import com.mobile.meishang.model.ProvinceModel;
+import com.mobile.meishang.model.RequestDistribute;
+import com.mobile.meishang.model.bean.Head;
 import com.mobile.meishang.ui.widget.wheel.OnWheelChangedListener;
 import com.mobile.meishang.ui.widget.wheel.WheelView;
 import com.mobile.meishang.ui.widget.wheel.adapters.ArrayWheelAdapter;
 
 public class ShippingAddressActivity extends MActivity implements
-		OnClickListener, OnWheelChangedListener {
+		OnWheelChangedListener {
+	private EditText etv_name;
+	private EditText etv_phone;
+	private EditText etv_post;
 	private TextView tv_province_city;
+	private EditText etv_address;
 	private WheelView mViewProvince;
 	private WheelView mViewCity;
 	private WheelView mViewDistrict;
+	Bundle bundle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +48,11 @@ public class ShippingAddressActivity extends MActivity implements
 		TextView tv_top_right = (TextView) findViewById(R.id.tv_top_right);
 		tv_top_right.setText("确认");
 		tv_top_right.setVisibility(View.VISIBLE);
+		etv_name = (EditText) findViewById(R.id.etv_name);
+		etv_phone = (EditText) findViewById(R.id.etv_phone);
+		etv_post = (EditText) findViewById(R.id.etv_post);
 		tv_province_city = (TextView) findViewById(R.id.tv_province_city);
+		etv_address = (EditText) findViewById(R.id.etv_address);
 		setUpViews();
 		setUpListener();
 		setUpData();
@@ -77,7 +90,6 @@ public class ShippingAddressActivity extends MActivity implements
 
 	@Override
 	public void onChanged(WheelView wheel, int oldValue, int newValue) {
-		// TODO Auto-generated method stub
 		if (wheel == mViewProvince) {
 			updateCities();
 		} else if (wheel == mViewCity) {
@@ -124,11 +136,47 @@ public class ShippingAddressActivity extends MActivity implements
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void onclick(View v) {
+		super.onclick(v);
 		switch (v.getId()) {
 		case R.id.tv_top_right:
-
+			net();
 			break;
+		default:
+			break;
+		}
+	}
+
+	private void net() {
+		// name：收货人姓名phone：收货人手机号码post：邮编address：地址addresss：详细地址userid：用户编号
+		bundle = new Bundle();
+		bundle.putString("name", etv_name.getText().toString());
+		bundle.putString("phone", etv_phone.getText().toString());
+		bundle.putString("post", etv_post.getText().toString());
+		bundle.putString("address", tv_province_city.getText().toString());
+		bundle.putString("addresss", etv_address.getText().toString());
+		getSupportLoaderManager().restartLoader(
+				RequestDistribute.SHIPPING_ADDRESS, bundle,
+				new ShippingAddressRequest(this));
+	}
+
+	@Override
+	public void updateUI(int identity, Object data) {
+		// super.updateUI(identity, data);
+		switch (identity) {
+		case RequestDistribute.SHIPPING_ADDRESS:
+			Head h = (Head) data;
+			if (h.isSuccess()) {
+				Intent intent = new Intent();
+				intent.putExtras(bundle);
+				setResult(RESULT_OK, intent);
+				finish();
+
+			} else {
+				showToast(h.getMessage());
+			}
+			break;
+
 		default:
 			break;
 		}

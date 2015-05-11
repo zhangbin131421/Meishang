@@ -209,9 +209,9 @@
 # view res/layout/layout_sign_in_head.xml #generated:101
 -keep class com.mobile.meishang.ui.widget.SignProgressBar { <init>(...); }
 
-# view res/layout/activity_shipping_address.xml #generated:50
-# view res/layout/activity_shipping_address.xml #generated:56
-# view res/layout/activity_shipping_address.xml #generated:62
+# view res/layout/activity_shipping_address.xml #generated:61
+# view res/layout/activity_shipping_address.xml #generated:67
+# view res/layout/activity_shipping_address.xml #generated:73
 -keep class com.mobile.meishang.ui.widget.wheel.WheelView { <init>(...); }
 
 # view res/layout/layout_ad_gallery.xml #generated:14

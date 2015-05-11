@@ -79,7 +79,7 @@ public class LoginActivity extends MActivity implements ExceptionHandler,
 		case RequestDistribute.LOGIN:
 			User user = (User) data;
 			if (user.getMessage().equals("登录成功")) {
-				MApplication.getInstance().getLogin();
+				MApplication.getInstance().setLogin(user);
 				finish();
 			} else {
 				showToast(user.getMessage());

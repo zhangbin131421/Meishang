@@ -14,6 +14,7 @@
         android:orientation="vertical" >
 
         <EditText
+            android:id="@+id/etv_name"
             style="@style/etext_style"
             android:layout_margin="10dp"
             android:hint="收货人姓名" />
@@ -21,6 +22,7 @@
         <View style="@style/line_horizontal_style" />
 
         <EditText
+            android:id="@+id/etv_phone"
             style="@style/etext_style"
             android:layout_margin="10dp"
             android:hint="手机号码" />
@@ -28,6 +30,7 @@
         <View style="@style/line_horizontal_style" />
 
         <EditText
+            android:id="@+id/etv_post"
             style="@style/etext_style"
             android:layout_margin="10dp"
             android:hint="邮政编码" />
@@ -39,6 +42,14 @@
             style="@style/etext_style"
             android:layout_margin="10dp"
             android:hint="省市区" />
+
+        <View style="@style/line_horizontal_style" />
+
+        <EditText
+            android:id="@+id/etv_address"
+            style="@style/etext_style"
+            android:layout_margin="10dp"
+            android:hint="详细地址" />
     </LinearLayout>
 
     <LinearLayout

@@ -6,12 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.mobile.meishang.MApplication;
 import com.mobile.meishang.MFragment;
 import com.mobile.meishang.R;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.Head;
+import com.mobile.meishang.model.bean.User;
 import com.mobile.meishang.ui.favorites.FavoritesActivity;
 import com.mobile.meishang.ui.login.LoginActivity;
 import com.mobile.meishang.ui.login.RegisterActivity;
@@ -22,6 +25,8 @@ import com.mobile.meishang.ui.user.MyWordsActivity;
 import com.umeng.analytics.MobclickAgent;
 
 public class MeFragment extends MFragment implements OnClickListener {
+	private TextView tv_login_status;
+	private LinearLayout llayout_login;
 	private TextView tv_favorites_quantity;
 	private TextView tv_attention_quantity;
 	private TextView tv_msg_quantity;
@@ -43,11 +48,13 @@ public class MeFragment extends MFragment implements OnClickListener {
 		view.findViewById(R.id.top_layout_back).setVisibility(View.GONE);
 		TextView title = (TextView) view.findViewById(R.id.top_name);
 		title.setText("我的");
-		view.findViewById(R.id.llayout_go_login).setOnClickListener(this);
+		view.findViewById(R.id.tv_login).setOnClickListener(this);
 		view.findViewById(R.id.tv_register).setOnClickListener(this);
 		view.findViewById(R.id.llayout_favorites).setOnClickListener(this);
 		view.findViewById(R.id.llayout_attention).setOnClickListener(this);
 		view.findViewById(R.id.llayout_shopping_car).setOnClickListener(this);
+		tv_login_status = (TextView) view.findViewById(R.id.tv_login_status);
+		llayout_login = (LinearLayout) view.findViewById(R.id.llayout_login);
 		tv_favorites_quantity = (TextView) view
 				.findViewById(R.id.tv_favorites_quantity);
 		tv_attention_quantity = (TextView) view
@@ -63,17 +70,27 @@ public class MeFragment extends MFragment implements OnClickListener {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
+		User login = MApplication.getInstance().getLogin();
+		if (login == null) {
+			tv_login_status.setText("未登录");
+			llayout_login.setVisibility(View.VISIBLE);
+		} else {
+			tv_login_status.setText(login.getNickname());
+			llayout_login.setVisibility(View.GONE);
+		}
 		MobclickAgent.onResume(mContext);
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
+
 		MobclickAgent.onPause(mContext);
 	}
 
@@ -104,7 +121,7 @@ public class MeFragment extends MFragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.llayout_go_login:
+		case R.id.tv_login:
 			goActivity(LoginActivity.class, null);
 			break;
 		case R.id.tv_register:
@@ -131,49 +148,21 @@ public class MeFragment extends MFragment implements OnClickListener {
 			goActivity(MySharedActivity.class, null);
 			break;
 		case R.id.llayout_msg:
-			// if (MApplication.getInstance().checkLogin()) {
-			// goActivity(MyVoucherActivity.class, null);
-			// } else {
-			// goActivityForResult(LoginActivity.class, null,
-			// RequestDistribute.LOGIN);
-			// }
+			if (MApplication.getInstance().checkLogin()) {
+				// goActivity(MyVoucherActivity.class, null);
+			} else {
+				goActivityForResult(LoginActivity.class, null,
+						RequestDistribute.LOGIN);
+			}
 			goActivity(MyWordsActivity.class, null);
 			break;
 		case R.id.tv_my_push:
-			 goActivity(MyPushActivity.class, null);
+			goActivity(MyPushActivity.class, null);
 			break;
 		case R.id.tv_wait_comment:
 			showToast("功能尚在开发中");
 			// goActivity(LoginActivity.class, null);
 			break;
-		// case R.id.tv_seting:
-		// showToast("功能尚在开发中");
-		// // goActivity(LoginActivity.class, null);
-		// break;
-		// case R.id.tv_share:
-		// showToast("功能尚在开发中");
-		// // goActivity(LoginActivity.class, null);
-		// break;
-		// case R.id.clear_cache:
-		// break;
-		// case R.id.version_update:
-		// new VersionUpdate((MActivity) getActivity());
-		// break;
-		// case R.id.newbie_help:
-		// goActivity(NewbieHelpActivity.class, null);
-		// break;
-		// case R.id.about_us:
-		// goActivity(AboutUsActivity.class, null);
-		// break;
-		// case R.id.service_tel:
-		// Intent intent = new Intent(Intent.ACTION_DIAL,
-		// Uri.parse("tel:4000067900"));
-		// startActivity(intent);
-		// break;
-		// case R.id.logout:
-		// getLoaderManager().restartLoader(RequestDistribute.LOGOUT, null,
-		// new LogoutRequest(this));
-		// break;
 		default:
 			break;
 		}

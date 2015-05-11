@@ -76,4 +76,5 @@ public class RequestDistribute {
 	public static final int MY_WORDS = 6008;//
 	public static final int MY_PUSH = 6009;//
 	public static final int SIGN_RULE = 6010;//
+	public static final int SHIPPING_ADDRESS = 6011;//
 }
