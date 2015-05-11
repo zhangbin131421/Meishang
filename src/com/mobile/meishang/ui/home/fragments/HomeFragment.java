@@ -174,7 +174,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
 				position -= 3;
-				showToast("p=" + position);
+//				showToast("p=" + position);
 				Bundle bundle = new Bundle();
 				bundle.putString("url", mGridviewAdapter.getItem(position)
 						.getModuleurl());

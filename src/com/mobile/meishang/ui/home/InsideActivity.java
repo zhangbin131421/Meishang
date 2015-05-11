@@ -143,6 +143,18 @@ public class InsideActivity extends MActivity implements
 		mAdGallery.setAdapter(mAdvertisingAdapter);
 		mGridviewAdapter = new InsideHomeGridviewAdapter(this);
 		mGridView.setAdapter(mGridviewAdapter);
+		mGridView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int position, long arg3) {
+				showToast(position + "");
+				Bundle bundle=new Bundle();
+				bundle.putString("title", mGridviewAdapter.getItem(position).getName());
+				goActivity(TypeActivity.class, bundle);
+
+			}
+		});
 
 		mBundle = getIntent().getBundleExtra("bundle");
 		TextView title = (TextView) findViewById(R.id.top_name);
@@ -166,11 +178,12 @@ public class InsideActivity extends MActivity implements
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
-				showToast(position+"--");
-				 Bundle bundle = new Bundle();
-				 position-=2;
-				 bundle.putString("projectid", mListviewAdapter.getItem(position).getPurchasedid());
-				 goActivity(DiscoverDetailActivity.class, bundle);
+				showToast(position + "--");
+				Bundle bundle = new Bundle();
+				position -= 2;
+				bundle.putString("projectid", mListviewAdapter
+						.getItem(position).getPurchasedid());
+				goActivity(DiscoverDetailActivity.class, bundle);
 			}
 		});
 		getSupportLoaderManager().initLoader(RequestDistribute.INSIDE_ACTIVITY,
