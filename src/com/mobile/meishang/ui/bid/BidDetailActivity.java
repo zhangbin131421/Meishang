@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.mobile.meishang.MActivity;
@@ -28,6 +29,8 @@ public class BidDetailActivity extends MActivity implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bid_detail);
+		TextView title = (TextView) findViewById(R.id.top_name);
+		title.setText("竞标详情");
 		mGridView = (GridViewWithHeaderAndFooter) findViewById(R.id.gridview);
 		headView = LayoutInflater.from(this).inflate(
 				R.layout.layout_bid_detail_hview, null);
@@ -62,11 +65,11 @@ public class BidDetailActivity extends MActivity implements OnClickListener {
 					break;
 				case 6:
 					goActivity(ShareActivity.class, null);
-					
+
 					break;
 				case 7:
 					goActivity(SharedActivity.class, null);
-					
+
 					break;
 
 				default:
@@ -76,7 +79,6 @@ public class BidDetailActivity extends MActivity implements OnClickListener {
 			}
 		});
 	}
-
 
 	@Override
 	public void onResume() {
@@ -89,7 +91,6 @@ public class BidDetailActivity extends MActivity implements OnClickListener {
 		super.onPause();
 		MobclickAgent.onPause(this);
 	}
-
 
 	@Override
 	public void handleException(final int identity, final Exception e) {
@@ -124,7 +125,6 @@ public class BidDetailActivity extends MActivity implements OnClickListener {
 	public void resetUI(int identity, Object data) {
 
 	}
-
 
 	@Override
 	public void onClick(View v) {
