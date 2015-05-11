@@ -19,7 +19,7 @@ import com.mobile.meishang.adapter.ShoppingCarListAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.GoodsDetailRequest;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.ShoppingCarGoods;
+import com.mobile.meishang.model.LehuigoDetailData;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
@@ -34,7 +34,7 @@ public class ShoppingCarListActivity extends MActivity implements
 	private ListView mListView;
 	private FrameLayout mDeleteBtn;
 	private ShoppingCarListAdapter mListAdapter;
-	private List<ShoppingCarGoods> shoppingCarGoods;
+	private List<LehuigoDetailData> shoppingCarGoods;
 	private List<Integer> positions;
 	private LinearLayout llayout_clearing;
 	private FrameLayout flayout_delete;

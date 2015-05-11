@@ -20,6 +20,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
+import com.mobile.meishang.MApplication;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.PictureGalleryAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
@@ -203,6 +204,7 @@ public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
 			goActivity(ShoppingOrderActivity.class, null);
 			break;
 		case R.id.flayout_add_shoppingcar:
+			MApplication.getInstance().getShoppingCarGoods().add(detailData);
 			goActivity(ShoppingCarListActivity.class, null);
 			break;
 

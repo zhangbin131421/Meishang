@@ -13,10 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.ShoppingCarGoods;
+import com.mobile.meishang.model.LehuigoDetailData;
 
 public class ShoppingCarListAdapter extends
-		BaseCacheListAdapter<ShoppingCarGoods> {
+		BaseCacheListAdapter<LehuigoDetailData> {
 
 	private List<Integer> checkPositions;
 

@@ -15,7 +15,7 @@ import android.view.WindowManager;
 import com.mobile.meishang.config.Config;
 import com.mobile.meishang.imagecache.ImageLruCache;
 import com.mobile.meishang.logger.MyLog;
-import com.mobile.meishang.model.ShoppingCarGoods;
+import com.mobile.meishang.model.LehuigoDetailData;
 import com.mobile.meishang.model.bean.User;
 
 public class MApplication extends Application {
@@ -30,7 +30,7 @@ public class MApplication extends Application {
 	private String signValue;
 	private List<Cookie> listCookies;
 	private User login;
-	private List<ShoppingCarGoods> shoppingCarGoods;
+	private List<LehuigoDetailData> shoppingCarGoods;
 
 	@Override
 	public void onCreate() {
@@ -69,7 +69,7 @@ public class MApplication extends Application {
 			}
 		}
 		listCookies = new ArrayList<Cookie>();
-		shoppingCarGoods = new ArrayList<ShoppingCarGoods>();
+		shoppingCarGoods = new ArrayList<LehuigoDetailData>();
 	}
 
 	@Override
@@ -163,11 +163,11 @@ public class MApplication extends Application {
 
 	}
 
-	public List<ShoppingCarGoods> getShoppingCarGoods() {
+	public List<LehuigoDetailData> getShoppingCarGoods() {
 		return shoppingCarGoods;
 	}
 
-	public void setShoppingCarGoods(List<ShoppingCarGoods> shoppingCarGoods) {
+	public void setShoppingCarGoods(List<LehuigoDetailData> shoppingCarGoods) {
 		this.shoppingCarGoods = shoppingCarGoods;
 	}
 
