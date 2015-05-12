@@ -54,7 +54,7 @@
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="10万~200万"
+                android:text="x万~200万"
                 android:textColor="@color/red1"
                 android:textSize="@dimen/item_original_price_size" />
 

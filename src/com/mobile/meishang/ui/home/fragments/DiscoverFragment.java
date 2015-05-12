@@ -81,9 +81,8 @@ public class DiscoverFragment extends MFragment implements
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		getActivity().getSupportLoaderManager().restartLoader(
-				RequestDistribute.DISCOVER_FRAGMENT, null,
-				new DiscoverFragmentRequest(this));
+		getLoaderManager().restartLoader(RequestDistribute.DISCOVER_FRAGMENT,
+				null, new DiscoverFragmentRequest(this));
 	}
 
 	@Override

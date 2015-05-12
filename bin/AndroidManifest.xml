@@ -76,6 +76,10 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name=".ui.home.SignDetailActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name=".ui.home.TypeActivity"
             android:screenOrientation="portrait" >
         </activity>

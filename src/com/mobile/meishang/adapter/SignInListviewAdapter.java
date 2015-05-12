@@ -8,17 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.bean.Goods;
+import com.mobile.meishang.model.LehuigoHomeDataItem;
 
-public class SignInListviewAdapter extends BaseCacheListAdapter<Goods> {
+public class SignInListviewAdapter extends
+		BaseCacheListAdapter<LehuigoHomeDataItem> {
 
 	public SignInListviewAdapter(Context context) {
 		super(context);
-	}
-
-	@Override
-	public int getCount() {
-		return 2;
 	}
 
 	@Override
@@ -41,15 +37,14 @@ public class SignInListviewAdapter extends BaseCacheListAdapter<Goods> {
 		} else {
 			holder = (Holder) convertView.getTag();
 		}
-		// holder.name.setText(getItem(position).getTitle());
+		holder.item_tv_name.setText(getItem(position).getTitle());
 		// holder.describe.setText(getItem(position).getContent());
 		// holder.currentPrice.setText("￥"
 		// +getItem(position).getCurrentPrice());
 		// holder.originalPrice.setText("￥" + getItem(position).getOldPrice());
 		// holder.originalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-		// setCacheImage(holder.imageView,
-		// getItem(position).getImgageUrlsmall(),
-		// R.drawable.loading_bg_img_item);
+		setCacheImage(holder.item_image, getItem(position).getPicpath(),
+				R.drawable.loading_bg_img_item);
 
 		return convertView;
 	}

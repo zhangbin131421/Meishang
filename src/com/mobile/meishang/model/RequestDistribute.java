@@ -37,7 +37,7 @@ public class RequestDistribute {
 	public static final int MY_CHOUJIANG_LIST = 29;//
 	public static final int MY_CHOUJIANG_Detail = 30;//
 	public static final int COMBINE_LIST = 31;//
-	
+
 	public static final int MY_NOTES_LIST = 1003;//
 	public static final int NOTES_PUBLISH = 1004;//
 	public static final int NOTES_EDITE = 1005;//
@@ -78,4 +78,5 @@ public class RequestDistribute {
 	public static final int SIGN_RULE = 6010;//
 	public static final int SHIPPING_ADDRESS = 6011;//
 	public static final int FAVORITE = 6012;//
+	public static final int SIGNIN_FRAGMENT = 6013;//
 }

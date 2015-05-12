@@ -8,15 +8,20 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mobile.meishang.MApplication;
 import com.mobile.meishang.MFragment;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.SignInListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
+import com.mobile.meishang.core.request.SignInFragmentRequest;
 import com.mobile.meishang.model.RequestDistribute;
+import com.mobile.meishang.model.SignInFragmentData;
+import com.mobile.meishang.ui.home.SignDetailActivity;
 import com.mobile.meishang.ui.home.SignRuleActivity;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
@@ -25,6 +30,8 @@ import com.umeng.analytics.MobclickAgent;
 public class SignInFragment extends MFragment implements OnClickListener,
 		ExceptionHandler, LoadEvent {
 	private LoadingView mLoadingView;
+	private TextView tv_integral;
+	private Button btn_sign;
 	private ListView listview;
 	private SignInListviewAdapter adapter;
 	private Bundle mBundle;
@@ -53,6 +60,10 @@ public class SignInFragment extends MFragment implements OnClickListener,
 		listview = (ListView) view.findViewById(R.id.listview);
 		View headView = LayoutInflater.from(mContext).inflate(
 				R.layout.layout_sign_in_head, null);
+		tv_integral = (TextView) headView.findViewById(R.id.tv_integral);
+		headView.findViewById(R.id.tv_go_shopping).setOnClickListener(this);
+		btn_sign = (Button) headView.findViewById(R.id.btn_sign);
+		btn_sign.setOnClickListener(this);
 		headView.findViewById(R.id.tv_rule).setOnClickListener(this);
 		headView.findViewById(R.id.img_delete).setOnClickListener(this);
 		llayout = (LinearLayout) headView.findViewById(R.id.llayout);
@@ -64,10 +75,12 @@ public class SignInFragment extends MFragment implements OnClickListener,
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
+				showToast("缺少projectid");
+				position -= 1;
 				Bundle bundle = new Bundle();
-				// bundle.putString("id",
-				// mGoodsListing.get(--position).getId());
-				// goActivity(ComboDetailActivity.class, bundle);
+				bundle.putString("projectid", adapter.getItem(position)
+						.getPurchasedid());
+				goActivity(SignDetailActivity.class, bundle);
 			}
 		});
 		return view;
@@ -79,9 +92,10 @@ public class SignInFragment extends MFragment implements OnClickListener,
 		// mBundle = new Bundle();
 		// mBundle.putString("id", "");
 		// mBundle.putString("range", "");
-		// getActivity().getSupportLoaderManager().restartLoader(
-		// RequestDistribute.GOODS_LIST, mBundle,
-		// new DiscoverFragmentRequest(this));
+		getLoaderManager().restartLoader(RequestDistribute.SIGNIN_FRAGMENT,
+				mBundle, new SignInFragmentRequest(this));
+		tv_integral.setText(MApplication.getInstance().getLogin().getIntegral()
+				+ "积分");
 	}
 
 	@Override
@@ -110,13 +124,11 @@ public class SignInFragment extends MFragment implements OnClickListener,
 	public void updateUI(int identity, Object data) {
 		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
-		case RequestDistribute.GOODS_LIST:
-			// adapter.clear();
-			// DiscoverList discoverList = (DiscoverList) data;
-			// adapter.addAll(mGoodsListing);
-			// adapter.notifyDataSetChanged();
-			break;
-		case RequestDistribute.CATEGORY:
+		case RequestDistribute.SIGNIN_FRAGMENT:
+			SignInFragmentData signInFragmentData = (SignInFragmentData) data;
+			adapter.clear();
+			adapter.addAll(signInFragmentData.getmList());
+			adapter.notifyDataSetChanged();
 			break;
 
 		default:
@@ -132,8 +144,11 @@ public class SignInFragment extends MFragment implements OnClickListener,
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.category_flayout:
-			// mCategoryFLayout.setVisibility(View.GONE);
+		case R.id.tv_go_shopping:
+			showToast("积分商城");
+			break;
+		case R.id.btn_sign:
+			showToast("签到");
 			break;
 		case R.id.tv_rule:
 			goActivity(SignRuleActivity.class, null);

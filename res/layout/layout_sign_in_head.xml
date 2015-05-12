@@ -35,14 +35,16 @@
             android:orientation="vertical" >
 
             <TextView
+                android:id="@+id/tv_integral"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_jewel"
                 android:drawablePadding="10dp"
-                android:text="450积分"
+                android:text="0积分"
                 android:textColor="@color/red1" />
 
             <TextView
+                android:id="@+id/tv_go_shopping"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="进入积分商城>"
@@ -94,6 +96,7 @@
         android:orientation="vertical" >
 
         <Button
+            android:id="@+id/btn_sign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="签到" />

@@ -80,6 +80,7 @@ public class LoginActivity extends MActivity implements ExceptionHandler,
 			User user = (User) data;
 			if (user.getMessage().equals("登录成功")) {
 				MApplication.getInstance().setLogin(user);
+				setResult(RESULT_OK);
 				finish();
 			} else {
 				showToast(user.getMessage());

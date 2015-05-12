@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.mobile.meishang.MActivity;
+import com.mobile.meishang.MApplication;
 import com.mobile.meishang.R;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.ui.baidu.BaiduLocation;
@@ -17,6 +18,7 @@ import com.mobile.meishang.ui.home.fragments.DiscoverFragment;
 import com.mobile.meishang.ui.home.fragments.HomeFragment;
 import com.mobile.meishang.ui.home.fragments.MeFragment;
 import com.mobile.meishang.ui.home.fragments.SignInFragment;
+import com.mobile.meishang.ui.login.LoginActivity;
 
 public class TabActivity extends MActivity {
 	// private LinearLayout mCityLayout;
@@ -64,9 +66,21 @@ public class TabActivity extends MActivity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		System.out.println(requestCode+"==="+resultCode);
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == Activity.RESULT_OK) {
 			switch (requestCode) {
+			case RequestDistribute.SIGNIN_FRAGMENT:
+				mTabLayoutA.setSelected(false);
+				mTabLayoutB.setSelected(false);
+				mTabLayoutC.setSelected(true);
+				mTabLayoutD.setSelected(false);
+				if (signInFragment == null) {
+					signInFragment = new SignInFragment();
+					addFragment(signInFragment);
+				}
+				showFragment(signInFragment);
+				break;
 			case RequestDistribute.LOGIN:
 				// mHomeLayout.setSelected(false);
 				// mNearbyLayout.setSelected(false);
@@ -153,17 +167,20 @@ public class TabActivity extends MActivity {
 			showFragment(discoverFragment);
 			break;
 		case R.id.flayout_tab_c:
-			// mTitleTextView.setText("生活");
-			mTabLayoutA.setSelected(false);
-			mTabLayoutB.setSelected(false);
-			mTabLayoutC.setSelected(true);
-			mTabLayoutD.setSelected(false);
-			if (signInFragment == null) {
-				signInFragment = new SignInFragment();
-				addFragment(signInFragment);
+			if (MApplication.getInstance().checkLogin()) {
+				mTabLayoutA.setSelected(false);
+				mTabLayoutB.setSelected(false);
+				mTabLayoutC.setSelected(true);
+				mTabLayoutD.setSelected(false);
+				if (signInFragment == null) {
+					signInFragment = new SignInFragment();
+					addFragment(signInFragment);
+				}
+				showFragment(signInFragment);
+			} else {
+				goActivityForResult(LoginActivity.class, null,
+						RequestDistribute.SIGNIN_FRAGMENT);
 			}
-			showFragment(signInFragment);
-
 			break;
 		case R.id.flayout_tab_d:
 			// if (MApplication.getInstance().checkLogin()) {
