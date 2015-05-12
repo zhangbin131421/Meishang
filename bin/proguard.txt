@@ -234,7 +234,7 @@
 # view res/layout/activity_city_list.xml #generated:22
 -keep class com.mobile.meishang.utils.view.MyLetterListView { <init>(...); }
 
-# view res/layout/activity_lehuigou_home.xml #generated:41
+# view res/layout/activity_lehuigou_home.xml #generated:14
 # view res/layout/activity_refresh_expandable_listview.xml #generated:1
 -keep class com.mobile.meishang.utils.view.pulltorefresh.MExpandableListView { <init>(...); }
 
@@ -313,7 +313,6 @@
 # onClick res/layout/activity_i_want_bid.xml #generated:38
 # onClick res/layout/activity_info_list.xml #generated:16
 # onClick res/layout/activity_info_list.xml #generated:41
-# onClick res/layout/activity_lehuigou_home.xml #generated:16
 # onClick res/layout/activity_login.xml #generated:105
 # onClick res/layout/activity_login.xml #generated:115
 # onClick res/layout/activity_login.xml #generated:89
@@ -355,6 +354,8 @@
 # onClick res/layout/item_select_cinema_lhb.xml #generated:46
 # onClick res/layout/item_shop_detail_lh.xml #generated:98
 # onClick res/layout/item_shopping_order_lh.xml #generated:7
+# onClick res/layout/layout_discover_detail_hview.xml #generated:145
+# onClick res/layout/layout_discover_detail_hview.xml #generated:158
 # onClick res/layout/layout_discover_detail_hview.xml #generated:21
 # onClick res/layout/layout_discover_detail_hview.xml #generated:43
 # onClick res/layout/layout_discover_detail_hview.xml #generated:65
@@ -365,5 +366,6 @@
 # onClick res/layout/layout_tab_top.xml #generated:66
 # onClick res/layout/layout_top_back.xml #generated:13
 # onClick res/layout/layout_top_back.xml #generated:37
+# onClick res/layout/layout_top_search_back.xml #generated:13
 -keepclassmembers class * { *** onclick(...); }
 

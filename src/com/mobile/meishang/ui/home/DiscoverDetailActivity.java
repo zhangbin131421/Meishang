@@ -238,6 +238,12 @@ public class DiscoverDetailActivity extends MActivity implements
 		case R.id.flayout_leave_words:
 			showToast("留言给她");
 			break;
+		case R.id.tv_share:
+			showToast("分享");
+			break;
+		case R.id.tv_favorites:
+			showToast("收藏");
+			break;
 
 		default:
 			break;
