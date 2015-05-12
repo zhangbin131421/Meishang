@@ -2116,6 +2116,7 @@ containing a value of this type.
         public static final int tv_category_left=0x7f0c0072;
         public static final int tv_category_right=0x7f0c0074;
         public static final int tv_choose_category=0x7f0c007f;
+        public static final int tv_chou_jiang=0x7f0c0108;
         public static final int tv_cinema_screen=0x7f0c00a0;
         public static final int tv_city_name=0x7f0c017d;
         public static final int tv_content=0x7f0c00ca;
@@ -2173,7 +2174,6 @@ containing a value of this type.
         public static final int tv_time=0x7f0c015b;
         public static final int tv_title=0x7f0c006a;
         public static final int tv_top_right=0x7f0c005c;
-        public static final int tv_wait_comment=0x7f0c0108;
         public static final int tv_words=0x7f0c005e;
         public static final int tv_zone=0x7f0c009f;
         public static final int umeng_socialize_action_comment_im=0x7f0c01a9;

@@ -15,6 +15,7 @@ import com.mobile.meishang.R;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.Head;
 import com.mobile.meishang.model.bean.User;
+import com.mobile.meishang.ui.choujiang.ChoujiangActivity;
 import com.mobile.meishang.ui.favorites.FavoritesActivity;
 import com.mobile.meishang.ui.login.LoginActivity;
 import com.mobile.meishang.ui.login.RegisterActivity;
@@ -63,7 +64,7 @@ public class MeFragment extends MFragment implements OnClickListener {
 		tv_msg_quantity = (TextView) view.findViewById(R.id.tv_msg_quantity);
 		view.findViewById(R.id.tv_my_shared).setOnClickListener(this);
 		view.findViewById(R.id.tv_my_push).setOnClickListener(this);
-		view.findViewById(R.id.tv_wait_comment).setOnClickListener(this);
+		view.findViewById(R.id.tv_chou_jiang).setOnClickListener(this);
 		return view;
 	}
 
@@ -163,9 +164,9 @@ public class MeFragment extends MFragment implements OnClickListener {
 		case R.id.tv_my_push:
 			goActivity(MyPushActivity.class, null);
 			break;
-		case R.id.tv_wait_comment:
+		case R.id.tv_chou_jiang:
 			showToast("功能尚在开发中");
-			// goActivity(LoginActivity.class, null);
+			 goActivity(ChoujiangActivity.class, null);
 			break;
 		default:
 			break;

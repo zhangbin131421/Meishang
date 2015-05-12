@@ -1132,6 +1132,7 @@ int id tv_category 0x7f0c00b0
 int id tv_category_left 0x7f0c0072
 int id tv_category_right 0x7f0c0074
 int id tv_choose_category 0x7f0c007f
+int id tv_chou_jiang 0x7f0c0108
 int id tv_cinema_screen 0x7f0c00a0
 int id tv_city_name 0x7f0c017d
 int id tv_content 0x7f0c00ca
@@ -1189,7 +1190,6 @@ int id tv_tab_c 0x7f0c0061
 int id tv_time 0x7f0c015b
 int id tv_title 0x7f0c006a
 int id tv_top_right 0x7f0c005c
-int id tv_wait_comment 0x7f0c0108
 int id tv_words 0x7f0c005e
 int id tv_zone 0x7f0c009f
 int id umeng_socialize_action_comment_im 0x7f0c01a9
