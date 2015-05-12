@@ -9,6 +9,8 @@ package com.mobile.meishang.config;
 public class Constants {
 
 	public static final String VERSION_CODE = "versionCode";
+	public static final String PROVINCE_NAME = "provinceName";
+	public static final String PROVINCE_CODE = "provinceCode";
 	public static final String CITY_NAME = "cityName";
 	public static final String CITY_CODE = "cityCode";
 	public static final int SCALE_DIALOG_14 = 14;
@@ -25,6 +27,7 @@ public class Constants {
 	public static String CITYCODE = "cityCode";// 城市编码
 	public static String CITY_DEFAULT = "9173";// 南京编号
 	public static String CITYNAME_DEFAULT = "南京市";// 南京
+	public static String PROVINCENAME_DEFAULT = "江苏省";// 南京
 	public static String ACTION_SWITCH_REQUEST = "android.intent.action.SWITCH";
 	public static String LONGITUDE = "Longitude";// 经度
 	public static String LATITUDE = "latitude";// 纬度

@@ -99,6 +99,11 @@ public class BaiduLocation {
 						.getmConfig()
 						.putPreferencesVal(Constants.CITY_NAME,
 								location.getCity());
+				MApplication
+						.getInstance()
+						.getmConfig()
+						.putPreferencesVal(Constants.PROVINCE_NAME,
+								location.getProvince());
 
 			}
 		}

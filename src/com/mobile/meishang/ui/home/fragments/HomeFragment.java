@@ -88,6 +88,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_home, null);
 		mCityLayout = (LinearLayout) view.findViewById(R.id.llayout_city);
+		mCityLayout.setOnClickListener(this);
 		mCityTextView = (TextView) view.findViewById(R.id.tv_city_name);
 		mGridView = (GridViewWithHeaderAndFooter) view
 				.findViewById(R.id.gridview);
@@ -174,7 +175,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
 				position -= 3;
-//				showToast("p=" + position);
+				// showToast("p=" + position);
 				Bundle bundle = new Bundle();
 				bundle.putString("url", mGridviewAdapter.getItem(position)
 						.getModuleurl());
@@ -284,7 +285,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 				mCityTextView.setText(MApplication
 						.getInstance()
 						.getmConfig()
-						.getPreferencesVal(Constants.CITY_NAME,
+						.getPreferencesVal(Constants.PROVINCE_NAME,
 								Constants.CITYNAME_DEFAULT));
 				HomeFragmentData homeFragmentData = (HomeFragmentData) data;
 				mAdvertisings = homeFragmentData.getAdvertisingGallery()
@@ -359,18 +360,9 @@ public class HomeFragment extends MFragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		// case R.id.llayout_gowhere:
-		// // goActivity(GoWhereActivity.class, null);
-		// break;
-		// case R.id.llayout_write_notes:
-		// goActivity(MyTravelNotesListActivity.class, null);
-		// break;
-		// case R.id.llayout_active:
-		// // goActivity(InitiateActivityActivity.class, null);
-		// goActivity(TravelNotesDetailActivity.class, null);
-		// break;
-		// case R.id.llayout_near:
-		// break;
+		case R.id.llayout_city:
+			// goActivity(GoWhereActivity.class, null);
+			break;
 
 		default:
 			break;
