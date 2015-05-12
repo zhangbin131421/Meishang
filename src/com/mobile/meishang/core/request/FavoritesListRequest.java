@@ -6,45 +6,55 @@ import android.support.v4.content.Loader;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.MApplication;
+import com.mobile.meishang.MFragment;
 import com.mobile.meishang.core.content.FavoritesListLoader;
 import com.mobile.meishang.core.network.DefaultNetworkRequest;
-import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.FavoritesList;
+import com.mobile.meishang.model.FavoritesList;
 
 public class FavoritesListRequest implements
 		LoaderManager.LoaderCallbacks<FavoritesList> {
 
-	private MActivity mLeShiHuiActivity;
-	private String mPage = "1";
+	private MActivity mActivity;
+	private MFragment mFragment;
 
-	public FavoritesListRequest(MActivity leShiHuiActivity) {
-		this.mLeShiHuiActivity = leShiHuiActivity;
+	public FavoritesListRequest(MActivity activity) {
+		this.mActivity = activity;
 	}
 
-	public FavoritesListRequest(MActivity leShiHuiActivity, String page) {
-		this.mLeShiHuiActivity = leShiHuiActivity;
-		mPage = page;
+	public FavoritesListRequest(MFragment fragment) {
+		this.mFragment = fragment;
+		mActivity = (MActivity) fragment.getActivity();
 	}
 
 	@Override
 	public Loader<FavoritesList> onCreateLoader(int arg0, Bundle bundle) {
-		StringBuffer urlString = new StringBuffer(MApplication
-				.getInstance().getmConfig().urlRootApi);
-		urlString.append("?op=collect&act=list&page=");
-		urlString.append(mPage);
+		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
+				.getmConfig().urlRootApi);
+		urlString.append("collection/user/list.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
-		FavoritesListLoader loader = new FavoritesListLoader(mLeShiHuiActivity,
+		mHttpRequest.addPostParameter("userid", MApplication.getInstance()
+				.getLogin().getUserId());
+		FavoritesListLoader loader = new FavoritesListLoader(mActivity,
 				mHttpRequest);
-		loader.setExceptionHandler(mLeShiHuiActivity);
-		loader.setIdentit(RequestDistribute.FAVORITES_LIST);
+		if (mFragment == null) {
+			loader.setExceptionHandler(mActivity);
+		} else {
+
+			loader.setExceptionHandler(mFragment);
+		}
+		loader.setIdentit(arg0);
 		return loader;
 	}
 
 	@Override
 	public void onLoadFinished(Loader<FavoritesList> arg0, FavoritesList arg1) {
 		if (arg1 != null) {
-			mLeShiHuiActivity.updateUI(RequestDistribute.FAVORITES_LIST, arg1);
+			if (mFragment == null) {
+				mActivity.updateUI(arg0.getId(), arg1);
+			} else {
+				mFragment.updateUI(arg0.getId(), arg1);
+			}
 		}
 	}
 

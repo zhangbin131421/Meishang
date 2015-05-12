@@ -9,9 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.bean.Goods;
+import com.mobile.meishang.model.LehuigoDetailData;
 
-public class FavoritesInfoListviewAdapter extends BaseCacheListAdapter<Goods> {
+public class FavoritesInfoListviewAdapter extends
+		BaseCacheListAdapter<LehuigoDetailData> {
 
 	public FavoritesInfoListviewAdapter(Context context) {
 		super(context);

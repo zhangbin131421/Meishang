@@ -128,8 +128,12 @@ public class MeFragment extends MFragment implements OnClickListener {
 			goActivity(RegisterActivity.class, null);
 			break;
 		case R.id.llayout_favorites:
-			showToast("功能尚在开发中");
-			goActivity(FavoritesActivity.class, null);
+			if (MApplication.getInstance().checkLogin()) {
+				goActivity(FavoritesActivity.class, null);
+
+			} else {
+				goActivity(LoginActivity.class, null);
+			}
 			break;
 		case R.id.llayout_attention:
 			showToast("功能尚在开发中");

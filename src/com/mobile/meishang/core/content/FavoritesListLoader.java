@@ -8,7 +8,7 @@ import android.content.Context;
 import com.mobile.meishang.core.loader.HttpRequestLoader;
 import com.mobile.meishang.core.network.ZLNetworkException;
 import com.mobile.meishang.core.network.ZLNetworkRequest;
-import com.mobile.meishang.model.bean.FavoritesList;
+import com.mobile.meishang.model.FavoritesList;
 
 public class FavoritesListLoader extends HttpRequestLoader<FavoritesList> {
 

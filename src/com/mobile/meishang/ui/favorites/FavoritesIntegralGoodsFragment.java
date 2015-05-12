@@ -14,12 +14,16 @@ import android.widget.GridView;
 import com.mobile.meishang.MFragment;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.FavoritesIntegralGoodsGviewAdapter;
+import com.mobile.meishang.core.error.ExceptionHandler;
+import com.mobile.meishang.core.request.FavoritesDeleteRequest;
+import com.mobile.meishang.core.request.FavoritesListRequest;
+import com.mobile.meishang.model.FavoritesList;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.Head;
+import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
 
 public class FavoritesIntegralGoodsFragment extends MFragment implements
-		OnClickListener {
+		OnClickListener, ExceptionHandler, LoadEvent {
 	private GridView gridview;
 	private FrameLayout flayout_delete;
 	private FavoritesIntegralGoodsGviewAdapter mAdapter;
@@ -50,6 +54,14 @@ public class FavoritesIntegralGoodsFragment extends MFragment implements
 		super.onActivityCreated(savedInstanceState);
 		mAdapter = new FavoritesIntegralGoodsGviewAdapter(getActivity());
 		gridview.setAdapter(mAdapter);
+		net();
+
+	}
+
+	private void net() {
+		getActivity().getSupportLoaderManager().restartLoader(
+				RequestDistribute.FAVORITES_LIST, null,
+				new FavoritesListRequest(this));
 	}
 
 	@Override
@@ -73,9 +85,13 @@ public class FavoritesIntegralGoodsFragment extends MFragment implements
 	public void updateUI(int identity, Object data) {
 
 		switch (identity) {
-		case RequestDistribute.LOGOUT:
-			Head requestResponseInfo = (Head) data;
-
+		case RequestDistribute.FAVORITES_LIST:
+			FavoritesList favoritesList = (FavoritesList) data;
+			mAdapter.clear();
+			mAdapter.addAll(favoritesList.getmList());
+			mAdapter.notifyDataSetChanged();
+			break;
+		case RequestDistribute.FAVORITES_LIST_DELETE:
 			break;
 
 		default:
@@ -92,11 +108,14 @@ public class FavoritesIntegralGoodsFragment extends MFragment implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.flayout_delete:
-			List<Integer> checkPositions=mAdapter.getCheckPositions();
+			List<Integer> checkPositions = mAdapter.getCheckPositions();
 			for (int i = 0; i < checkPositions.size(); i++) {
-				System.out.println("-----"+checkPositions.get(i));
+				System.out.println("-----" + checkPositions.get(i));
 			}
 			showToast("删除");
+			getActivity().getSupportLoaderManager().restartLoader(
+					RequestDistribute.FAVORITES_LIST_DELETE, null,
+					new FavoritesDeleteRequest(this));
 			break;
 		default:
 			break;
@@ -113,6 +132,11 @@ public class FavoritesIntegralGoodsFragment extends MFragment implements
 	public void hideDelete() {
 		mAdapter.setEdit(false);
 		flayout_delete.setVisibility(View.GONE);
+	}
+
+	@Override
+	public void retryAgain(View v) {
+
 	}
 
 }

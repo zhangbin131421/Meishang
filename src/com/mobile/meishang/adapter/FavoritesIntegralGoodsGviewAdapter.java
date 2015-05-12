@@ -5,8 +5,8 @@ import java.util.List;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -15,21 +15,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.bean.CombineListItem;
+import com.mobile.meishang.model.LehuigoDetailData;
 
 public class FavoritesIntegralGoodsGviewAdapter extends
-		BaseCacheListAdapter<CombineListItem> {
+		BaseCacheListAdapter<LehuigoDetailData> {
 	private boolean isEdit;
 	private List<Integer> checkPositions;
 
 	public FavoritesIntegralGoodsGviewAdapter(Context context) {
 		super(context);
 		checkPositions = new ArrayList<Integer>();
-	}
-
-	@Override
-	public int getCount() {
-		return 15;
 	}
 
 	@Override
@@ -61,7 +56,7 @@ public class FavoritesIntegralGoodsGviewAdapter extends
 		if (isEdit) {
 			if (checkPositions.contains(position)) {
 				holder.flayout_item.setVisibility(View.VISIBLE);
-			}else {
+			} else {
 				holder.flayout_item.setVisibility(View.GONE);
 			}
 			holder.llayout_item.setOnClickListener(new OnClickListener() {
