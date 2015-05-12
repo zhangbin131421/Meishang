@@ -292,6 +292,8 @@
 
 # onClick res/layout/activity_category.xml #generated:1
 # onClick res/layout/activity_choujiang.xml #generated:31
+# onClick res/layout/activity_discover_detail.xml #generated:34
+# onClick res/layout/activity_discover_detail.xml #generated:58
 # onClick res/layout/activity_favorites.xml #generated:15
 # onClick res/layout/activity_favorites.xml #generated:28
 # onClick res/layout/activity_favorites.xml #generated:41
