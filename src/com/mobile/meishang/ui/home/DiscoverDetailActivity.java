@@ -3,6 +3,7 @@ package com.mobile.meishang.ui.home;
 import java.util.List;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,15 +21,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
+import com.mobile.meishang.MApplication;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.DiscoverListviewAdapter;
 import com.mobile.meishang.adapter.PictureGalleryAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.DiscoverDetailRequest;
+import com.mobile.meishang.core.request.FavoritesAddRequest;
 import com.mobile.meishang.model.Discover;
 import com.mobile.meishang.model.DiscoverDetail;
 import com.mobile.meishang.model.Picture;
 import com.mobile.meishang.model.RequestDistribute;
+import com.mobile.meishang.model.bean.Head;
+import com.mobile.meishang.ui.login.LoginActivity;
 import com.mobile.meishang.utils.view.AdGallery;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
@@ -72,6 +77,7 @@ public class DiscoverDetailActivity extends MActivity implements
 	private ListView mListView;
 	private DiscoverListviewAdapter mListviewAdapter;
 	private Bundle mBundle;
+	Discover discover;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -172,11 +178,6 @@ public class DiscoverDetailActivity extends MActivity implements
 		getSupportLoaderManager().restartLoader(
 				RequestDistribute.DISCOVER_DETAIL, mBundle,
 				new DiscoverDetailRequest(this));
-		// mBundle = new Bundle();
-		// mBundle.putString("label", "limitBuy");
-		// getSupportLoaderManager().initLoader(
-		// RequestDistribute.ADVERTISING_GALLERY_FLASH_SALE, mBundle,
-		// new HomeFragmentRequest(this));
 	}
 
 	@Override
@@ -207,7 +208,7 @@ public class DiscoverDetailActivity extends MActivity implements
 		switch (identity) {
 		case RequestDistribute.DISCOVER_DETAIL:
 			DiscoverDetail discoverDetail = (DiscoverDetail) data;
-			Discover discover = discoverDetail.getDiscover();
+			discover = discoverDetail.getDiscover();
 			name.setText(discover.getTitle());
 			tv_middlen.setText(discover.getMiddlen());
 			tv_count.setText(discover.getCount());
@@ -218,6 +219,12 @@ public class DiscoverDetailActivity extends MActivity implements
 			mListviewAdapter.notifyDataSetChanged();
 			mAdvertisings = discoverDetail.getPictures();
 			initEightPicture();
+			break;
+		case RequestDistribute.FAVORITES_ADD:
+			Head head = (Head) data;
+			// if (head.isSuccess()) {
+			// }
+			showToast(head.getMessage());
 			break;
 		default:
 			break;
@@ -233,7 +240,10 @@ public class DiscoverDetailActivity extends MActivity implements
 			showToast("语音介绍");
 			break;
 		case R.id.flayout_call:
-			showToast("财富热线");
+			Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"
+					+ discover.getPhonenum()));
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
 			break;
 		case R.id.flayout_leave_words:
 			showToast("留言给她");
@@ -242,7 +252,16 @@ public class DiscoverDetailActivity extends MActivity implements
 			showToast("分享");
 			break;
 		case R.id.tv_favorites:
-			showToast("收藏");
+
+			if (MApplication.getInstance().checkLogin()) {
+				bundle.putString("objectid", "1");
+				bundle.putString("type", "1");
+				getSupportLoaderManager().restartLoader(
+						RequestDistribute.FAVORITES_ADD, bundle,
+						new FavoritesAddRequest(this));
+			} else {
+				goActivity(LoginActivity.class, null);
+			}
 			break;
 
 		default:
