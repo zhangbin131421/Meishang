@@ -23,12 +23,15 @@ import com.mobile.meishang.MApplication;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.PictureGalleryAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
+import com.mobile.meishang.core.request.FavoritesAddRequest;
 import com.mobile.meishang.core.request.GoodsDetailRequest;
 import com.mobile.meishang.model.LehuigoDetail;
 import com.mobile.meishang.model.LehuigoDetailData;
 import com.mobile.meishang.model.Picture;
 import com.mobile.meishang.model.RequestDistribute;
+import com.mobile.meishang.model.bean.Head;
 import com.mobile.meishang.ui.ad.AdvertisingListActivity;
+import com.mobile.meishang.ui.login.LoginActivity;
 import com.mobile.meishang.ui.shopping.ShoppingCarListActivity;
 import com.mobile.meishang.ui.shopping.ShoppingOrderActivity;
 import com.mobile.meishang.utils.view.AdGallery;
@@ -105,19 +108,19 @@ public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
 			}
 		});
 
-		mAdGallery.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> paramAdapterView,
-					View paramView, int paramInt, long paramLong) {
-				Picture advertising = mAdvertisings.get(realPosition);
-				Bundle bundle = new Bundle();
-				// bundle.putString("name", advertising.getName());
-				// bundle.putString("actid", advertising.getActid());
-				goActivity(AdvertisingListActivity.class, bundle);
-				// goActivity(AdvertisingExpandbleActivity.class, bundle);
-			}
-		});
+		// mAdGallery.setOnItemClickListener(new OnItemClickListener() {
+		//
+		// @Override
+		// public void onItemClick(AdapterView<?> paramAdapterView,
+		// View paramView, int paramInt, long paramLong) {
+		// Picture advertising = mAdvertisings.get(realPosition);
+		// Bundle bundle = new Bundle();
+		// // bundle.putString("name", advertising.getName());
+		// // bundle.putString("actid", advertising.getActid());
+		// goActivity(AdvertisingListActivity.class, bundle);
+		// // goActivity(AdvertisingExpandbleActivity.class, bundle);
+		// }
+		// });
 		mAdGallery.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
@@ -199,6 +202,18 @@ public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
 					.setShareMedia(new UMImage(this,
 							"http://103.242.168.154:9001/BCLife/staffPhoto/goods/5.png"));
 			break;
+		case R.id.tv_favorites:
+			if (MApplication.getInstance().checkLogin()) {
+				Bundle bundle = new Bundle();
+				bundle.putString("objectid", "1");
+				bundle.putString("type", "1");
+				getSupportLoaderManager().restartLoader(
+						RequestDistribute.FAVORITES_ADD, bundle,
+						new FavoritesAddRequest(this));
+			} else {
+				goActivity(LoginActivity.class, null);
+			}
+			break;
 		case R.id.flayout_immediately_change:
 			goActivity(ShoppingOrderActivity.class, null);
 			break;
@@ -216,11 +231,6 @@ public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
 	public void updateUI(int identity, Object data) {
 		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
-		case RequestDistribute.ADVERTISING_GALLERY_FLASH_SALE:
-			// AdvertisingGallery advertisingList = (AdvertisingGallery) data;
-			// mAdvertisings = advertisingList.getList();
-			// initAdvPicture();
-			break;
 		case RequestDistribute.GOODS_DETAILS:
 			LehuigoDetail mGoods = (LehuigoDetail) data;
 			mAdvertisings = mGoods.getPictures();
@@ -237,7 +247,12 @@ public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
 					+ detailData.getVersion() + "<br>" + "风格："
 					+ detailData.getStyle() + "<br>"));
 			break;
-
+		case RequestDistribute.FAVORITES_ADD:
+			Head head = (Head) data;
+			// if (head.isSuccess()) {
+			// }
+			showToast(head.getMessage());
+			break;
 		default:
 			break;
 		}

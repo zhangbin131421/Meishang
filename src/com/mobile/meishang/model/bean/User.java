@@ -35,7 +35,7 @@ public class User extends Head {
 		JSONObject userJsonObject = getJsonObject(json, "user");
 		header = getJsonStrValue(userJsonObject, "header");
 		userName = getJsonStrValue(userJsonObject, "userName");
-		userId = getJsonStrValue(userJsonObject, "userId");
+		userId = getJsonStrValue(userJsonObject, "userid");
 		telephone = getJsonStrValue(userJsonObject, "telephone");
 		nickname = getJsonStrValue(userJsonObject, "nickname");
 		integral = getJsonStrValue(userJsonObject, "integral");
