@@ -1,8 +1,11 @@
 package com.mobile.meishang.ui.home.fragments;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,12 +29,15 @@ import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.AdvertisingGalleryAdapter;
 import com.mobile.meishang.adapter.HomeGridviewAdapter;
 import com.mobile.meishang.config.Constants;
+import com.mobile.meishang.core.local.LocalDataManager;
 import com.mobile.meishang.core.request.HomeFragmentRequest;
+import com.mobile.meishang.database.DBConstants;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
 import com.mobile.meishang.model.bean.HomeFragmentData;
 import com.mobile.meishang.model.bean.HomeFragmentTemplateDataItem;
 import com.mobile.meishang.ui.bid.IWantBidActivity;
+import com.mobile.meishang.ui.home.HomeMoreActivity;
 import com.mobile.meishang.ui.home.InsideActivity;
 import com.mobile.meishang.ui.infomation.InfoListActivity;
 import com.mobile.meishang.ui.lehuigou.LehuigoHomeActvity;
@@ -71,6 +77,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 		}
 	};
 	private List<AdvertisingGalleryItem> mAdvertisings;
+	private List<HomeFragmentTemplateDataItem> mDataItems;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -81,6 +88,28 @@ public class HomeFragment extends MFragment implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		String sql = "select _id from " + DBConstants.DB_TABLE.TABLE_HOME_MODEl;
+		// 判断省表是否为空；
+		if (LocalDataManager.getInstance().doQuery(sql).getCount() > 0) {
+			requestLocal();
+		} else {
+			// String[] names = { "乐汇购", "竞标", "美容", "内衣", "车饰", "灯饰", "日化",
+			// "会议",
+			// "资讯", "更多" };
+			String[] names = { "乐汇购", "竞标", "美容", "内衣", "车饰", "灯饰", "日化", "资讯",
+					"更多" };
+			int[] image = { R.drawable.ic_add, R.drawable.ic_add,
+					R.drawable.ic_add, R.drawable.ic_add, R.drawable.ic_add,
+					R.drawable.ic_add, R.drawable.ic_add, R.drawable.ic_add,
+					R.drawable.ic_add };
+			mDataItems = new ArrayList<HomeFragmentTemplateDataItem>();
+			for (int i = 0; i < names.length; i++) {
+				mDataItems.add(new HomeFragmentTemplateDataItem(names[i],
+						image[i], 0));
+			}
+			addDataBase();
+		}
+
 	}
 
 	@Override
@@ -89,6 +118,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 		View view = inflater.inflate(R.layout.fragment_home, null);
 		mCityLayout = (LinearLayout) view.findViewById(R.id.llayout_city);
 		mCityLayout.setOnClickListener(this);
+		mCityLayout.setVisibility(View.GONE);
 		mCityTextView = (TextView) view.findViewById(R.id.tv_city_name);
 		mGridView = (GridViewWithHeaderAndFooter) view
 				.findViewById(R.id.gridview);
@@ -160,6 +190,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 		mAdGallery.setAdapter(mAdvertisingAdapter);
 		mGridviewAdapter = new HomeGridviewAdapter(mContext);
 		mGridView.setAdapter(mGridviewAdapter);
+
 		// mGridView.setOnItemLongClickListener(new OnItemLongClickListener() {
 		//
 		// @Override
@@ -202,12 +233,20 @@ public class HomeFragment extends MFragment implements OnClickListener {
 					goActivity(InsideActivity.class, bundle);
 					break;
 				case 7:
-					goActivity(InsideActivity.class, bundle);
+					goActivity(InfoListActivity.class, null);
 					break;
 				case 8:
-					goActivity(InfoListActivity.class, null);
-					// goActivity(GoodsSearchActivity.class, null);
+					goActivity(HomeMoreActivity.class, bundle);
 					break;
+				// case 7:
+				// // goActivity(InsideActivity.class, bundle);
+				// break;
+				// case 8:
+				// goActivity(InfoListActivity.class, null);
+				// break;
+				// case 9:
+				// goActivity(HomeMoreActivity.class, bundle);
+				// break;
 
 				default:
 					break;
@@ -223,6 +262,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 		super.onActivityCreated(savedInstanceState);
 		getLoaderManager().initLoader(RequestDistribute.HOME_FRAGMENT, null,
 				new HomeFragmentRequest(this));
+
 	}
 
 	// @Override
@@ -279,29 +319,27 @@ public class HomeFragment extends MFragment implements OnClickListener {
 
 	@Override
 	public void updateUI(int identity, Object data) {
-		if (data != null) {
-			switch (identity) {
-			case RequestDistribute.HOME_FRAGMENT:
-				mCityTextView.setText(MApplication
-						.getInstance()
-						.getmConfig()
-						.getPreferencesVal(Constants.PROVINCE_NAME,
-								Constants.CITYNAME_DEFAULT));
-				HomeFragmentData homeFragmentData = (HomeFragmentData) data;
-				mAdvertisings = homeFragmentData.getAdvertisingGallery()
-						.getList();
-				initEightPicture();
-				List<HomeFragmentTemplateDataItem> list = homeFragmentData
-						.getTemplateData().getList();
-				mGridviewAdapter.addAll(list);
-				mGridviewAdapter.notifyDataSetChanged();
-				break;
+		switch (identity) {
+		case RequestDistribute.HOME_FRAGMENT:
+			mCityTextView.setText(MApplication
+					.getInstance()
+					.getmConfig()
+					.getPreferencesVal(Constants.PROVINCE_NAME,
+							Constants.CITYNAME_DEFAULT));
+			HomeFragmentData homeFragmentData = (HomeFragmentData) data;
+			mAdvertisings = homeFragmentData.getAdvertisingGallery().getList();
+			initEightPicture();
+			mGridviewAdapter.clear();
+			mGridviewAdapter.addAll(mDataItems);
+			mGridviewAdapter.notifyDataSetChanged();
+			// List<HomeFragmentTemplateDataItem> list = homeFragmentData
+			// .getTemplateData().getList();
+			// mGridviewAdapter.addAll(list);
+			// mGridviewAdapter.notifyDataSetChanged();
+			break;
 
-			default:
-				break;
-			}
-		} else {
-			// showToast("数据对象空");
+		default:
+			break;
 		}
 	}
 
@@ -369,4 +407,55 @@ public class HomeFragment extends MFragment implements OnClickListener {
 		}
 	}
 
+	private void addDataBase() {
+		List<ContentValues> contentValuesList = new ArrayList<ContentValues>();
+		int length = mDataItems.size();
+		for (int i = 0; i < length; i++) {
+			ContentValues contentValuesA = new ContentValues();
+
+			contentValuesA.put(DBConstants.Home_model.HOME_MODEL_NAME,
+					mDataItems.get(i).getModulename());
+			contentValuesA.put(DBConstants.Home_model.HOME_MODEL_IMAGE,
+					mDataItems.get(i).getImage());
+			contentValuesA.put(DBConstants.Home_model.HOME_MODEL_FLAG,
+					mDataItems.get(i).getFlag());
+
+			contentValuesList.add(contentValuesA);
+
+		}
+		LocalDataManager.getInstance().doInsert(
+				DBConstants.DB_TABLE.TABLE_HOME_MODEl, contentValuesList);// 插入分类一表
+
+	}
+
+	private void requestLocal() {
+		mDataItems = new ArrayList<HomeFragmentTemplateDataItem>();
+		Cursor cursor = null;
+		String sql = "select * from " + DBConstants.DB_TABLE.TABLE_HOME_MODEl
+				+ " where " + DBConstants.Home_model.HOME_MODEL_FLAG + " =0";
+		HomeFragmentTemplateDataItem dataItem;
+		cursor = LocalDataManager.getInstance().doQuery(sql);
+		if (cursor != null && cursor.moveToFirst()) {
+			dataItem = new HomeFragmentTemplateDataItem();
+			dataItem.setModulename(cursor.getString(cursor
+					.getColumnIndex(DBConstants.Home_model.HOME_MODEL_NAME)));
+			dataItem.setImage(cursor.getInt(cursor
+					.getColumnIndex(DBConstants.Home_model.HOME_MODEL_IMAGE)));
+			dataItem.setFlag(0);
+			mDataItems.add(dataItem);
+			while (cursor.moveToNext()) {
+				dataItem = new HomeFragmentTemplateDataItem();
+				dataItem.setModulename(cursor.getString(cursor
+						.getColumnIndex(DBConstants.Home_model.HOME_MODEL_NAME)));
+				dataItem.setImage(cursor.getInt(cursor
+						.getColumnIndex(DBConstants.Home_model.HOME_MODEL_IMAGE)));
+				dataItem.setFlag(0);
+				mDataItems.add(dataItem);
+			}
+
+		}
+		if (null != cursor) {
+			cursor.close();
+		}
+	}
 }

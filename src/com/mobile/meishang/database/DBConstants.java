@@ -1,17 +1,27 @@
 package com.mobile.meishang.database;
 
 public interface DBConstants {
-	String DB_NAME = "LESHIHUI.DB";
+	String DB_NAME = "MEISHANG.DB";
 	int DB_VERSION = 1;
+
 	// String CATEGORY_LAST_UPDATE_TIMES = "category_last_update_times";
 	// String CATEGORY_ISFIRST_REQUEST = "isFirstRequest";
 
-	// interface DB_TABLE {
-	// String TABLE_GUEST_INFO = "table_guest_info";
-	// String TABLE_PROGRAM_LIST = "table_program_list";
-	// String TABLE_AGENDA_LIST = "table_agenda_list";
-	// String TABLE_LUCK_NUMBER = "table_luck_number";
-	// }
+	interface DB_TABLE {
+		// String TABLE_GUEST_INFO = "table_guest_info";
+		// String TABLE_PROGRAM_LIST = "table_program_list";
+		// String TABLE_AGENDA_LIST = "table_agenda_list";
+		// String TABLE_LUCK_NUMBER = "table_luck_number";
+	public	String TABLE_HOME_MODEl = "table_home_model";
+	}
+
+	interface Home_model {
+
+		String HOME_MODEL_NAME = "name";
+		String HOME_MODEL_IMAGE = "image";
+		String HOME_MODEL_FLAG = "flag";
+
+	}
 	//
 	// interface GuestInfo {
 	//

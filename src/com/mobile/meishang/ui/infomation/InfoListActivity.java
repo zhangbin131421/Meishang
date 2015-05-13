@@ -12,11 +12,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
-import com.mobile.meishang.MApplication;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.InfoFilterLvAdapter;
 import com.mobile.meishang.adapter.InfoListviewAdapter;
-import com.mobile.meishang.config.Constants;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.GoodsListRequest;
 import com.mobile.meishang.model.RequestDistribute;

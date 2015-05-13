@@ -32,8 +32,10 @@ public class HomeGridviewAdapter extends
 			holder = (Holder) convertView.getTag();
 		}
 		holder.item_name.setText(getItem(position).getModulename());
-		setCacheImage(holder.item_image, getItem(position).getModulepicpath(),
-				R.drawable.loading_bg_img_item);
+		// setCacheImage(holder.item_image,
+		// getItem(position).getModulepicpath(),
+		// R.drawable.loading_bg_img_item);
+		holder.item_image.setImageResource(getItem(position).getImage());
 		return convertView;
 	}
 
