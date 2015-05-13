@@ -183,7 +183,7 @@ public class InsideActivity extends MActivity implements
 				position -= 2;
 				bundle.putString("projectid", mListviewAdapter
 						.getItem(position).getPurchasedid());
-				goActivity(DiscoverDetailActivity.class, bundle);
+				goActivity(ProjectDiscoverDetailActivity.class, bundle);
 			}
 		});
 		getSupportLoaderManager().initLoader(RequestDistribute.INSIDE_ACTIVITY,

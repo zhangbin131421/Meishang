@@ -39,7 +39,13 @@ import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
 
-public class DiscoverDetailActivity extends MActivity implements
+/**
+ * xiangmu
+ * 
+ * @author Administrator
+ * 
+ */
+public class ProjectDiscoverDetailActivity extends MActivity implements
 		ExceptionHandler, LoadEvent {
 	private RefreshAdvRun mRefreshAdvRun;
 	private AdGallery mAdGallery;
@@ -172,7 +178,7 @@ public class DiscoverDetailActivity extends MActivity implements
 					int position, long id) {
 				mBundle.putString("projectid",
 						mListviewAdapter.getItem(position - 1).getProjectid());
-				goActivity(DiscoverDetailActivity.class, mBundle);
+				goActivity(ProjectDiscoverDetailActivity.class, mBundle);
 			}
 		});
 		getSupportLoaderManager().restartLoader(

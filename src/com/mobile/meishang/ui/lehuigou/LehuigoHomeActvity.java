@@ -114,7 +114,7 @@ public class LehuigoHomeActvity extends MActivity implements
 				bundle.putString("purchasedid", mExpandAdapter.getmGroups()
 						.get(groupPosition).getList().get(childPosition)
 						.getPurchasedid());
-				goActivity(GoodsDetailActivity.class, bundle);
+				goActivity(IntegralGoodsDetailActivity.class, bundle);
 				return true;
 			}
 		});

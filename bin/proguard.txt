@@ -118,14 +118,14 @@
 # view AndroidManifest.xml #generated:123
 -keep class com.mobile.meishang.ui.favorites.FavoritesActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:65
--keep class com.mobile.meishang.ui.home.DiscoverDetailActivity { <init>(...); }
-
 # view AndroidManifest.xml #generated:86
 -keep class com.mobile.meishang.ui.home.HomeMoreActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:70
 -keep class com.mobile.meishang.ui.home.InsideActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:65
+-keep class com.mobile.meishang.ui.home.ProjectDiscoverDetailActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:78
 -keep class com.mobile.meishang.ui.home.SignDetailActivity { <init>(...); }
@@ -145,11 +145,11 @@
 # view AndroidManifest.xml #generated:117
 -keep class com.mobile.meishang.ui.infomation.InfoListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:98
--keep class com.mobile.meishang.ui.lehuigou.GoodsDetailActivity { <init>(...); }
-
 # view AndroidManifest.xml #generated:95
 -keep class com.mobile.meishang.ui.lehuigou.GoodsSearchActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:98
+-keep class com.mobile.meishang.ui.lehuigou.IntegralGoodsDetailActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:91
 -keep class com.mobile.meishang.ui.lehuigou.LehuigoHomeActvity { <init>(...); }

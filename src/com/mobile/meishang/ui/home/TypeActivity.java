@@ -58,7 +58,7 @@ public class TypeActivity extends MActivity implements
 				Bundle bundle = new Bundle();
 				bundle.putString("projectid",
 						mListviewAdapter.getItem(--position).getProjectid());
-				goActivity(DiscoverDetailActivity.class, bundle);
+				goActivity(ProjectDiscoverDetailActivity.class, bundle);
 			}
 		});
 		getSupportLoaderManager().restartLoader(

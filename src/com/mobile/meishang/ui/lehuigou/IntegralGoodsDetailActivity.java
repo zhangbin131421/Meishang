@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,7 +29,6 @@ import com.mobile.meishang.model.LehuigoDetailData;
 import com.mobile.meishang.model.Picture;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.Head;
-import com.mobile.meishang.ui.ad.AdvertisingListActivity;
 import com.mobile.meishang.ui.login.LoginActivity;
 import com.mobile.meishang.ui.shopping.ShoppingCarListActivity;
 import com.mobile.meishang.ui.shopping.ShoppingOrderActivity;
@@ -43,8 +41,14 @@ import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
 import com.umeng.socialize.media.UMImage;
 
-public class GoodsDetailActivity extends MActivity implements ExceptionHandler,
-		LoadEvent {
+/**
+ * jifen
+ * 
+ * @author Administrator
+ * 
+ */
+public class IntegralGoodsDetailActivity extends MActivity implements
+		ExceptionHandler, LoadEvent {
 	private AdGallery mAdGallery;
 	private LinearLayout mAdDotLayout;
 	private ImageView[] dotHolder;

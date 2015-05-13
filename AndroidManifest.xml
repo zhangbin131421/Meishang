@@ -63,7 +63,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.home.DiscoverDetailActivity"
+            android:name=".ui.home.ProjectDiscoverDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" >
         </activity>
@@ -96,7 +96,7 @@
             android:name=".ui.lehuigou.GoodsSearchActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.lehuigou.GoodsDetailActivity"
+            android:name=".ui.lehuigou.IntegralGoodsDetailActivity"
             android:screenOrientation="portrait" />
         <!-- 竞标 -->
         <activity

@@ -103,7 +103,7 @@ public class GoodsSearchActivity extends MActivity implements ExceptionHandler,
 				// bundle.putString("id",
 				// mGoodsListing.get(--position).getId());
 				// goActivity(GoodsDetailActivity.class, bundle);
-				goActivity(GoodsDetailActivity.class, null);
+				goActivity(IntegralGoodsDetailActivity.class, null);
 			}
 		});
 		// getSupportLoaderManager().restartLoader(RequestDistribute.GOODS_LIST,

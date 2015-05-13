@@ -18,7 +18,7 @@ import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.DiscoverFragmentRequest;
 import com.mobile.meishang.model.DiscoverList;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.ui.home.DiscoverDetailActivity;
+import com.mobile.meishang.ui.home.ProjectDiscoverDetailActivity;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.mobile.meishang.utils.view.pulltorefresh.XListView;
@@ -72,7 +72,7 @@ public class DiscoverFragment extends MFragment implements
 				Bundle bundle = new Bundle();
 				bundle.putString("projectid",
 						mListviewAdapter.getItem(--position).getProjectid());
-				goActivity(DiscoverDetailActivity.class, bundle);
+				goActivity(ProjectDiscoverDetailActivity.class, bundle);
 			}
 		});
 		return view;
