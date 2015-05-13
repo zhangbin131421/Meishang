@@ -12,11 +12,12 @@ public interface DBConstants {
 		// String TABLE_PROGRAM_LIST = "table_program_list";
 		// String TABLE_AGENDA_LIST = "table_agenda_list";
 		// String TABLE_LUCK_NUMBER = "table_luck_number";
-	public	String TABLE_HOME_MODEl = "table_home_model";
+		public String TABLE_HOME_MODEl = "table_home_model";
 	}
 
 	interface Home_model {
 
+		String HOME_MODEL_POSITION = "position";
 		String HOME_MODEL_NAME = "name";
 		String HOME_MODEL_IMAGE = "image";
 		String HOME_MODEL_FLAG = "flag";

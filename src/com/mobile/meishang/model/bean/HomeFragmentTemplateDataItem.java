@@ -20,12 +20,14 @@ public class HomeFragmentTemplateDataItem extends Head {
 	private String moduleurl;
 	private int image;
 	private int flag;
+	private int position;
 
 	public HomeFragmentTemplateDataItem() {
 	}
 
-	public HomeFragmentTemplateDataItem(String modulename, int image, int flag) {
+	public HomeFragmentTemplateDataItem(int position,String modulename, int image, int flag) {
 		// this.moduleid = moduleid;
+		this.position = position;
 		this.modulename = modulename;
 		this.image = image;
 		this.flag = flag;
@@ -73,6 +75,14 @@ public class HomeFragmentTemplateDataItem extends Head {
 
 	public void setFlag(int flag) {
 		this.flag = flag;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
 	}
 
 }

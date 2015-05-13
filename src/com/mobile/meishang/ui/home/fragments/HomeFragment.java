@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
@@ -104,7 +105,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 					R.drawable.ic_add };
 			mDataItems = new ArrayList<HomeFragmentTemplateDataItem>();
 			for (int i = 0; i < names.length; i++) {
-				mDataItems.add(new HomeFragmentTemplateDataItem(names[i],
+				mDataItems.add(new HomeFragmentTemplateDataItem(i, names[i],
 						image[i], 0));
 			}
 			addDataBase();
@@ -210,7 +211,9 @@ public class HomeFragment extends MFragment implements OnClickListener {
 				Bundle bundle = new Bundle();
 				bundle.putString("url", mGridviewAdapter.getItem(position)
 						.getModuleurl());
-				switch (position) {
+				int tempPosition = mGridviewAdapter.getItem(position)
+						.getPosition();
+				switch (tempPosition) {
 				case 0:
 					goActivity(LehuigoHomeActvity.class, null);
 					break;
@@ -236,7 +239,7 @@ public class HomeFragment extends MFragment implements OnClickListener {
 					goActivity(InfoListActivity.class, null);
 					break;
 				case 8:
-					goActivity(HomeMoreActivity.class, bundle);
+					goActivityForResult(HomeMoreActivity.class, null, 100);
 					break;
 				// case 7:
 				// // goActivity(InsideActivity.class, bundle);
@@ -413,6 +416,8 @@ public class HomeFragment extends MFragment implements OnClickListener {
 		for (int i = 0; i < length; i++) {
 			ContentValues contentValuesA = new ContentValues();
 
+			contentValuesA.put(DBConstants.Home_model.HOME_MODEL_POSITION,
+					mDataItems.get(i).getPosition());
 			contentValuesA.put(DBConstants.Home_model.HOME_MODEL_NAME,
 					mDataItems.get(i).getModulename());
 			contentValuesA.put(DBConstants.Home_model.HOME_MODEL_IMAGE,
@@ -437,6 +442,8 @@ public class HomeFragment extends MFragment implements OnClickListener {
 		cursor = LocalDataManager.getInstance().doQuery(sql);
 		if (cursor != null && cursor.moveToFirst()) {
 			dataItem = new HomeFragmentTemplateDataItem();
+			dataItem.setPosition(cursor.getInt(cursor
+					.getColumnIndex(DBConstants.Home_model.HOME_MODEL_POSITION)));
 			dataItem.setModulename(cursor.getString(cursor
 					.getColumnIndex(DBConstants.Home_model.HOME_MODEL_NAME)));
 			dataItem.setImage(cursor.getInt(cursor
@@ -445,6 +452,8 @@ public class HomeFragment extends MFragment implements OnClickListener {
 			mDataItems.add(dataItem);
 			while (cursor.moveToNext()) {
 				dataItem = new HomeFragmentTemplateDataItem();
+				dataItem.setPosition(cursor.getInt(cursor
+						.getColumnIndex(DBConstants.Home_model.HOME_MODEL_POSITION)));
 				dataItem.setModulename(cursor.getString(cursor
 						.getColumnIndex(DBConstants.Home_model.HOME_MODEL_NAME)));
 				dataItem.setImage(cursor.getInt(cursor
@@ -456,6 +465,24 @@ public class HomeFragment extends MFragment implements OnClickListener {
 		}
 		if (null != cursor) {
 			cursor.close();
+		}
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == getActivity().RESULT_OK) {
+			switch (requestCode) {
+			case 100:
+				requestLocal();
+				mGridviewAdapter.clear();
+				mGridviewAdapter.addAll(mDataItems);
+				mGridviewAdapter.notifyDataSetChanged();
+				break;
+
+			default:
+				break;
+			}
 		}
 	}
 }

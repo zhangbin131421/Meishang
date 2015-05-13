@@ -21,6 +21,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 			db.execSQL("create table if not exists "
 					+ DBConstants.DB_TABLE.TABLE_HOME_MODEl + "("
 					+ "_id integer primary key autoincrement,"
+					+ DBConstants.Home_model.HOME_MODEL_POSITION + " integer,"
 					+ DBConstants.Home_model.HOME_MODEL_NAME + " text,"
 					+ DBConstants.Home_model.HOME_MODEL_IMAGE + " integer,"
 					+ DBConstants.Home_model.HOME_MODEL_FLAG + " integer)");
