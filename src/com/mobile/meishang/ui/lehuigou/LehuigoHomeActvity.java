@@ -1,6 +1,5 @@
 package com.mobile.meishang.ui.lehuigou;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
@@ -23,9 +22,7 @@ import com.mobile.meishang.adapter.LehuigouHomeExpandAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.LehuigoHomeRequest;
 import com.mobile.meishang.model.LehuigoHomeData;
-import com.mobile.meishang.model.LehuigoHomeGroup;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.PointStrategyGroup;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.mobile.meishang.utils.view.pulltorefresh.MExpandableListView;
@@ -36,7 +33,6 @@ public class LehuigoHomeActvity extends MActivity implements
 	private LoadingView mLoadingView;
 	private MExpandableListView mExpandableListView;
 	private LehuigouHomeExpandAdapter mExpandAdapter;
-	private List<PointStrategyGroup> mGroups;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -112,7 +108,7 @@ public class LehuigoHomeActvity extends MActivity implements
 				// + childPosition);
 				Bundle bundle = new Bundle();
 				bundle.putString("purchasedid", mExpandAdapter.getmGroups()
-						.get(groupPosition).getList().get(childPosition)
+						.get(groupPosition).getmList().get(childPosition)
 						.getPurchasedid());
 				goActivity(IntegralGoodsDetailActivity.class, bundle);
 				return true;
@@ -139,12 +135,7 @@ public class LehuigoHomeActvity extends MActivity implements
 		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
 		case RequestDistribute.LEHUIGOU_HOME:
-			LehuigoHomeData lehuigoHomeData = (LehuigoHomeData) data;
-			List<LehuigoHomeGroup> listGroups = new ArrayList<LehuigoHomeGroup>();
-			listGroups.add(new LehuigoHomeGroup("最新推荐商品", lehuigoHomeData
-					.getToplist()));
-			listGroups.add(new LehuigoHomeGroup("热门兑换商品", lehuigoHomeData
-					.getEndlist()));
+			List<LehuigoHomeData> listGroups = (List<LehuigoHomeData>) data;
 			mExpandAdapter.clear();
 			mExpandAdapter.addAll(listGroups);
 			mExpandAdapter.notifyDataSetChanged();
@@ -198,6 +189,5 @@ public class LehuigoHomeActvity extends MActivity implements
 			break;
 		}
 	}
-
 
 }

@@ -39,7 +39,7 @@ public class TabActivity extends MActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tab);
 		if (savedInstanceState == null) {
-			new BaiduLocation(this);
+//			new BaiduLocation(this);
 			// new VersionUpdate(this);
 			// new LocationNetwork(this);
 		}

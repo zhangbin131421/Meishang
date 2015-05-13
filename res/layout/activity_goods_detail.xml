@@ -173,6 +173,7 @@
                 android:clickable="true"
                 android:onClick="onclick"
                 android:text="购物车"
+                android:visibility="gone"
                 android:textColor="@color/font_orange"
                 android:textSize="@dimen/text_size_h4" />
         </RelativeLayout>
@@ -211,6 +212,7 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
+            android:visibility="gone"
             android:background="@color/red"
             android:onClick="onclick"
             android:padding="10dp" >

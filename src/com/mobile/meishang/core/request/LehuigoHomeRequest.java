@@ -1,5 +1,7 @@
 package com.mobile.meishang.core.request;
 
+import java.util.List;
+
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -12,7 +14,7 @@ import com.mobile.meishang.core.network.DefaultNetworkRequest;
 import com.mobile.meishang.model.LehuigoHomeData;
 
 public class LehuigoHomeRequest implements
-		LoaderManager.LoaderCallbacks<LehuigoHomeData> {
+		LoaderManager.LoaderCallbacks<List<LehuigoHomeData>> {
 
 	private MFragment mFragment;
 	private MActivity mActivity;
@@ -27,7 +29,7 @@ public class LehuigoHomeRequest implements
 	}
 
 	@Override
-	public Loader<LehuigoHomeData> onCreateLoader(int arg0, Bundle arg1) {
+	public Loader<List<LehuigoHomeData>> onCreateLoader(int arg0, Bundle arg1) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
 		urlString.append("purchased/list.htm");
@@ -48,8 +50,8 @@ public class LehuigoHomeRequest implements
 	}
 
 	@Override
-	public void onLoadFinished(Loader<LehuigoHomeData> arg0,
-			LehuigoHomeData arg1) {
+	public void onLoadFinished(Loader<List<LehuigoHomeData>> arg0,
+			List<LehuigoHomeData> arg1) {
 		if (arg1 != null) {
 			if (mFragment == null) {
 				mActivity.updateUI(arg0.getId(), arg1);
@@ -61,7 +63,7 @@ public class LehuigoHomeRequest implements
 	}
 
 	@Override
-	public void onLoaderReset(Loader<LehuigoHomeData> arg0) {
+	public void onLoaderReset(Loader<List<LehuigoHomeData>> arg0) {
 	}
 
 }

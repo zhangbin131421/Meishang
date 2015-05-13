@@ -10,41 +10,40 @@ import org.json.JSONObject;
 import com.mobile.meishang.model.bean.Head;
 
 public class LehuigoHomeData extends Head {
-
-	private List<LehuigoHomeDataItem> toplist;
-	private List<LehuigoHomeDataItem> endlist;
+	// "text": "最新推荐商品",
+	// "text2": "限时优惠",
+	// "list":[]
+	private String text;
+	private String text2;
+	private List<LehuigoHomeDataItem> mList;
 
 	public LehuigoHomeData() {
 	}
 
 	public LehuigoHomeData(JSONObject json) throws JSONException {
-
-		JSONArray topArray = getJsonArray(json, "toplist");
-		toplist = new ArrayList<LehuigoHomeDataItem>();
+		text = getJsonStrValue(json, "text");
+		text2 = getJsonStrValue(json, "text2");
+		JSONArray topArray = getJsonArray(json, "list");
+		mList = new ArrayList<LehuigoHomeDataItem>();
 		if (topArray != null) {
 			int topLength = topArray.length();
 			for (int i = 0; i < topLength; i++) {
-				toplist.add(new LehuigoHomeDataItem(topArray.getJSONObject(i)));
-			}
-
-		}
-		JSONArray endArray = getJsonArray(json, "endlist");
-		endlist = new ArrayList<LehuigoHomeDataItem>();
-		if (endArray != null) {
-			int length = endArray.length();
-			for (int i = 0; i < length; i++) {
-				endlist.add(new LehuigoHomeDataItem(topArray.getJSONObject(i)));
+				mList.add(new LehuigoHomeDataItem(topArray.getJSONObject(i)));
 			}
 
 		}
 	}
 
-	public List<LehuigoHomeDataItem> getToplist() {
-		return toplist;
+	public String getText() {
+		return text;
 	}
 
-	public List<LehuigoHomeDataItem> getEndlist() {
-		return endlist;
+	public String getText2() {
+		return text2;
+	}
+
+	public List<LehuigoHomeDataItem> getmList() {
+		return mList;
 	}
 
 }
