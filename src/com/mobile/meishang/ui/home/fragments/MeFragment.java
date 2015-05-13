@@ -62,7 +62,7 @@ public class MeFragment extends MFragment implements OnClickListener {
 				.findViewById(R.id.tv_attention_quantity);
 		view.findViewById(R.id.llayout_msg).setOnClickListener(this);
 		tv_msg_quantity = (TextView) view.findViewById(R.id.tv_msg_quantity);
-		view.findViewById(R.id.tv_my_shared).setOnClickListener(this);
+		view.findViewById(R.id.tv_my_favorite).setOnClickListener(this);
 		view.findViewById(R.id.tv_my_push).setOnClickListener(this);
 		view.findViewById(R.id.tv_chou_jiang).setOnClickListener(this);
 		return view;
@@ -143,14 +143,20 @@ public class MeFragment extends MFragment implements OnClickListener {
 		case R.id.llayout_shopping_car:
 			goActivity(ShoppingCarListActivity.class, null);
 			break;
-		case R.id.tv_my_shared:
+		case R.id.tv_my_favorite:
 			// if (MApplication.getInstance().checkLogin()) {
 			// goActivity(MyVoucherActivity.class, null);
 			// } else {
 			// goActivityForResult(LoginActivity.class, null,
 			// RequestDistribute.LOGIN);
 			// }
-			goActivity(MySharedActivity.class, null);
+//			goActivity(MySharedActivity.class, null);
+			if (MApplication.getInstance().checkLogin()) {
+				goActivity(FavoritesActivity.class, null);
+
+			} else {
+				goActivity(LoginActivity.class, null);
+			}
 			break;
 		case R.id.llayout_msg:
 			if (MApplication.getInstance().checkLogin()) {

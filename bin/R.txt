@@ -1169,8 +1169,8 @@ int id tv_middlen 0x7f0c00c5
 int id tv_money 0x7f0c00bd
 int id tv_msg_quantity 0x7f0c0102
 int id tv_msgs_quantity 0x7f0c0105
+int id tv_my_favorite 0x7f0c0103
 int id tv_my_push 0x7f0c0107
-int id tv_my_shared 0x7f0c0103
 int id tv_name 0x7f0c016a
 int id tv_name_item 0x7f0c0127
 int id tv_old_price 0x7f0c0068

@@ -71,7 +71,9 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <View style="@style/line_horizontal_style" />
+            <View
+                style="@style/line_horizontal_style"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -79,7 +81,8 @@
                 android:background="@color/transparent_white"
                 android:orientation="horizontal"
                 android:paddingBottom="15dp"
-                android:paddingTop="10dp" >
+                android:paddingTop="10dp"
+                android:visibility="gone" >
 
                 <LinearLayout
                     android:id="@+id/llayout_attention"
@@ -179,10 +182,10 @@
                 <View style="@style/line_horizontal_style" />
 
                 <TextView
-                    android:id="@+id/tv_my_shared"
+                    android:id="@+id/tv_my_favorite"
                     style="@style/setting_text_style"
                     android:drawableLeft="@drawable/ic_my_shared"
-                    android:text="我的分享" />
+                    android:text="我的收藏" />
 
                 <View style="@style/line_horizontal_style" />
 
@@ -288,7 +291,8 @@
                     android:id="@+id/tv_chou_jiang"
                     style="@style/setting_text_style"
                     android:drawableLeft="@drawable/ic_my_choujiang"
-                    android:text="欢乐抽奖" />
+                    android:text="欢乐抽奖"
+                    android:visibility="gone" />
 
                 <View style="@style/line_horizontal_style" />
             </LinearLayout>

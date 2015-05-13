@@ -2153,8 +2153,8 @@ containing a value of this type.
         public static final int tv_money=0x7f0c00bd;
         public static final int tv_msg_quantity=0x7f0c0102;
         public static final int tv_msgs_quantity=0x7f0c0105;
+        public static final int tv_my_favorite=0x7f0c0103;
         public static final int tv_my_push=0x7f0c0107;
-        public static final int tv_my_shared=0x7f0c0103;
         public static final int tv_name=0x7f0c016a;
         public static final int tv_name_item=0x7f0c0127;
         public static final int tv_old_price=0x7f0c0068;
