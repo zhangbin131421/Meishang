@@ -99,13 +99,11 @@ public class FavoritesInfoListFragment extends MFragment implements
 
 	@Override
 	public void retryAgain(View v) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 
 	}
 

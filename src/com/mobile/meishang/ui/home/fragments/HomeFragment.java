@@ -99,9 +99,10 @@ public class HomeFragment extends MFragment implements OnClickListener {
 			// "资讯", "更多" };
 			String[] names = { "乐汇购", "竞标", "美容", "内衣", "车饰", "灯饰", "日化", "资讯",
 					"更多" };
-			int[] image = { R.drawable.ic_add, R.drawable.ic_add,
-					R.drawable.ic_add, R.drawable.ic_add, R.drawable.ic_add,
-					R.drawable.ic_add, R.drawable.ic_add, R.drawable.ic_add,
+			int[] image = { R.drawable.ic_home_a, R.drawable.ic_home_b,
+					R.drawable.ic_home_c, R.drawable.ic_home_d,
+					R.drawable.ic_home_e, R.drawable.ic_home_f,
+					R.drawable.ic_home_g, R.drawable.ic_home_h,
 					R.drawable.ic_add };
 			mDataItems = new ArrayList<HomeFragmentTemplateDataItem>();
 			for (int i = 0; i < names.length; i++) {

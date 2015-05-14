@@ -11,8 +11,7 @@ import com.mobile.meishang.core.loader.HeadLoader;
 import com.mobile.meishang.core.network.DefaultNetworkRequest;
 import com.mobile.meishang.model.bean.Head;
 
-public class AddressAddRequest implements
-		LoaderManager.LoaderCallbacks<Head> {
+public class AddressAddRequest implements LoaderManager.LoaderCallbacks<Head> {
 
 	private MActivity mActivity;
 	private MFragment mFragment;
@@ -38,7 +37,9 @@ public class AddressAddRequest implements
 		mHttpRequest.addPostParameter("phone", bundle.getString("phone"));
 		mHttpRequest.addPostParameter("post", bundle.getString("post"));
 		mHttpRequest.addPostParameter("address", bundle.getString("address"));
-		mHttpRequest.addPostParameter("userid", bundle.getString("userid"));
+		mHttpRequest.addPostParameter("addresss", bundle.getString("addresss"));
+		mHttpRequest.addPostParameter("userid", MApplication.getInstance()
+				.getLogin().getUserId());
 		HeadLoader loader = new HeadLoader(mActivity, mHttpRequest);
 		if (mFragment == null) {
 
