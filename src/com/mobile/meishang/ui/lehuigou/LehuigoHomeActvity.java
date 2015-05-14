@@ -17,12 +17,14 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 import com.mobile.meishang.MActivity;
+import com.mobile.meishang.MApplication;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.LehuigouHomeExpandAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.LehuigoHomeRequest;
 import com.mobile.meishang.model.LehuigoHomeData;
 import com.mobile.meishang.model.RequestDistribute;
+import com.mobile.meishang.model.bean.User;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.mobile.meishang.utils.view.pulltorefresh.MExpandableListView;
@@ -31,6 +33,8 @@ import com.mobile.meishang.utils.view.pulltorefresh.MExpandableListView.MOnRefre
 public class LehuigoHomeActvity extends MActivity implements
 		MOnRefreshListener, OnClickListener, ExceptionHandler, LoadEvent {
 	private LoadingView mLoadingView;
+	private TextView tv_name;
+	private TextView tv_integral;
 	private MExpandableListView mExpandableListView;
 	private LehuigouHomeExpandAdapter mExpandAdapter;
 
@@ -72,6 +76,8 @@ public class LehuigoHomeActvity extends MActivity implements
 		mExpandableListView.setRefreshTime(getTime());
 		View headView = LayoutInflater.from(this).inflate(
 				R.layout.layout_lehuigou_exh, mExpandableListView, false);
+		tv_name = (TextView) headView.findViewById(R.id.tv_name);
+		tv_integral = (TextView) headView.findViewById(R.id.tv_integral);
 		mExpandAdapter = new LehuigouHomeExpandAdapter(this);
 		mExpandableListView.setGroupIndicator(null);
 		mExpandableListView.setAdapter(mExpandAdapter);
@@ -118,6 +124,19 @@ public class LehuigoHomeActvity extends MActivity implements
 		getSupportLoaderManager().restartLoader(
 				RequestDistribute.LEHUIGOU_HOME, mBundle,
 				new LehuigoHomeRequest(this));
+	}
+
+	@Override
+	protected void onResume() {
+		User login = MApplication.getInstance().getLogin();
+		if (login == null) {
+			tv_name.setText("hi");
+			tv_integral.setText("0积分");
+		} else {
+			tv_name.setText("hi" + login.getNickname());
+			tv_integral.setText(login.getIntegral() + "积分");
+		}
+		super.onResume();
 	}
 
 	@Override

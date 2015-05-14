@@ -3,9 +3,12 @@ package com.mobile.meishang.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.mobile.meishang.model.bean.Head;
 
-public class LehuigoDetailData extends Head {
+public class LehuigoDetailData extends Head implements Parcelable {
 	// {
 	// "purchasedid": 1,
 	// "title": "复古女性套装",
@@ -57,6 +60,30 @@ public class LehuigoDetailData extends Head {
 	private String size;
 
 	public LehuigoDetailData() {
+
+	}
+
+	public LehuigoDetailData(Parcel in) {
+		purchasedid = in.readString();
+		title = in.readString();
+		integral = in.readString();
+		price = in.readString();
+		brand = in.readString();
+		source = in.readString();
+		no = in.readString();
+		version = in.readString();
+		style = in.readString();
+		clotheslength = in.readString();
+		sleevelengt = in.readString();
+		collar = in.readString();
+		sleevetype = in.readString();
+		coatfront = in.readString();
+		pattern = in.readString();
+		fabricmaterial = in.readString();
+		content = in.readString();
+		season = in.readString();
+		color = in.readString();
+		size = in.readString();
 
 	}
 
@@ -163,5 +190,48 @@ public class LehuigoDetailData extends Head {
 	public String getSize() {
 		return size;
 	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(purchasedid);
+		dest.writeString(title);
+		dest.writeString(integral);
+		dest.writeString(price);
+		dest.writeString(brand);
+		dest.writeString(source);
+		dest.writeString(no);
+		dest.writeString(version);
+		dest.writeString(style);
+		dest.writeString(clotheslength);
+		dest.writeString(sleevelengt);
+		dest.writeString(collar);
+		dest.writeString(sleevetype);
+		dest.writeString(coatfront);
+		dest.writeString(pattern);
+		dest.writeString(fabricmaterial);
+		dest.writeString(content);
+		dest.writeString(season);
+		dest.writeString(color);
+		dest.writeString(size);
+
+	}
+
+	public static final Parcelable.Creator<LehuigoDetailData> CREATOR = new Creator<LehuigoDetailData>() {
+
+		@Override
+		public LehuigoDetailData[] newArray(int size) {
+			return new LehuigoDetailData[size];
+		}
+
+		@Override
+		public LehuigoDetailData createFromParcel(Parcel source) {
+			return new LehuigoDetailData(source);
+		}
+	};
 
 }

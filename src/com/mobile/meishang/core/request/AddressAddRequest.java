@@ -11,17 +11,17 @@ import com.mobile.meishang.core.loader.HeadLoader;
 import com.mobile.meishang.core.network.DefaultNetworkRequest;
 import com.mobile.meishang.model.bean.Head;
 
-public class ShippingAddressRequest implements
+public class AddressAddRequest implements
 		LoaderManager.LoaderCallbacks<Head> {
 
 	private MActivity mActivity;
 	private MFragment mFragment;
 
-	public ShippingAddressRequest(MActivity activity) {
+	public AddressAddRequest(MActivity activity) {
 		this.mActivity = activity;
 	}
 
-	public ShippingAddressRequest(MFragment fragment) {
+	public AddressAddRequest(MFragment fragment) {
 		this.mFragment = fragment;
 		mActivity = (MActivity) fragment.getActivity();
 	}

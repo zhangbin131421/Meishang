@@ -1,5 +1,6 @@
 package com.mobile.meishang.ui.shopping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
@@ -8,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.FrameLayout;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,9 +18,12 @@ import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.ShoppingOrderListAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
+import com.mobile.meishang.core.request.AddressGetRequest;
 import com.mobile.meishang.core.request.GoodsDetailRequest;
+import com.mobile.meishang.model.Address;
+import com.mobile.meishang.model.AddressList;
+import com.mobile.meishang.model.LehuigoDetailData;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.Goods;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
@@ -27,16 +31,14 @@ import com.umeng.analytics.MobclickAgent;
 public class ShoppingOrderActivity extends MActivity implements
 		ExceptionHandler, LoadEvent {
 	private LoadingView mLoadingView;
-	private LinearLayout mLinearLayout;
 	private ListView mListView;
 	private ShoppingOrderListAdapter mListAdapter;
-	private List<Goods> list;
-	private List<Integer> positions;
-	private LinearLayout llayout_clearing;
-	private FrameLayout flayout_delete;
-	TextView item_tv_name;
-	TextView item_tv_tel;
-	TextView item_tv_address;
+	private LinearLayout llayout_head;
+	private Button btn_add_address;
+	private TextView item_tv_name;
+	private TextView item_tv_tel;
+	private TextView item_tv_address;
+	private List<LehuigoDetailData> shoppingCarGoods;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +48,10 @@ public class ShoppingOrderActivity extends MActivity implements
 		title.setText("确认订单");
 		mLoadingView = (LoadingView) findViewById(R.id.loading);
 		mLoadingView.setLoadEvent(this);
-		mLoadingView.setVisibility(View.GONE);
 		View hView = LayoutInflater.from(this).inflate(
 				R.layout.item_shopping_order_lh, null);
+		llayout_head = (LinearLayout) hView.findViewById(R.id.llayout_head);
+		btn_add_address = (Button) hView.findViewById(R.id.btn_add_address);
 		item_tv_name = (TextView) hView.findViewById(R.id.item_tv_name);
 		item_tv_tel = (TextView) hView.findViewById(R.id.item_tv_tel);
 		item_tv_address = (TextView) hView.findViewById(R.id.item_tv_address);
@@ -74,9 +77,17 @@ public class ShoppingOrderActivity extends MActivity implements
 		mListView.addHeaderView(hView);
 		mListView.addFooterView(fView);
 		mListView.setAdapter(mListAdapter);
-		// getSupportLoaderManager().restartLoader(
-		// RequestDistribute.FAVORITES_LIST, null,
-		// new FavoritesListRequest(this));
+		getSupportLoaderManager().restartLoader(
+				RequestDistribute.SHIPPING_ADDRESS_GET, null,
+				new AddressGetRequest(this));
+		Bundle bundle = getIntent().getBundleExtra("bundle");
+		LehuigoDetailData detailData = bundle
+				.getParcelable("LehuigoDetailData");
+		shoppingCarGoods = new ArrayList<LehuigoDetailData>();
+		shoppingCarGoods.add(detailData);
+		mListAdapter.clear();
+		mListAdapter.addAll(shoppingCarGoods);
+		mListAdapter.notifyDataSetChanged();
 
 	}
 
@@ -98,6 +109,8 @@ public class ShoppingOrderActivity extends MActivity implements
 		if (arg1 == RESULT_OK) {
 			switch (arg0) {
 			case 0:
+				llayout_head.setVisibility(View.VISIBLE);
+				btn_add_address.setVisibility(View.GONE);
 				Bundle bundle = arg2.getExtras();
 				item_tv_name.setText("收货人：" + bundle.getString("name"));
 				item_tv_tel.setText(bundle.getString("phone"));
@@ -107,6 +120,17 @@ public class ShoppingOrderActivity extends MActivity implements
 			default:
 				break;
 			}
+		} else {
+			switch (arg0) {
+			case 0:
+				llayout_head.setVisibility(View.GONE);
+				btn_add_address.setVisibility(View.VISIBLE);
+				break;
+
+			default:
+				break;
+			}
+
 		}
 	}
 
@@ -116,7 +140,8 @@ public class ShoppingOrderActivity extends MActivity implements
 		case R.id.llayout_head:
 			goActivityForResult(ShippingAddressActivity.class, null, 0);
 			break;
-		case R.id.btn_clearing:
+		case R.id.btn_add_address:
+			goActivityForResult(ShippingAddressActivity.class, null, 0);
 			break;
 		default:
 			break;
@@ -125,68 +150,22 @@ public class ShoppingOrderActivity extends MActivity implements
 
 	@Override
 	public void updateUI(int identity, Object data) {
-		if (!mLinearLayout.isShown()) {
-			mLinearLayout.setVisibility(View.VISIBLE);
-		}
+		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
-		case RequestDistribute.FAVORITES_LIST:
-			// mLoadingView.setVisibility(View.GONE);
-			// FavoritesList favoritesList = (FavoritesList) data;
-			// list = favoritesList.getmList();
-			// String code = favoritesList.getCode();
-			// if (TextUtils.isEmpty(code)) {
-			// if (list.size() > 0) {
-			// mListAdapter.addAll(list);
-			// mListAdapter.notifyDataSetChanged();
-			// } else {
-			// // showToast("你还没有收藏的商品");
-			// mNoDataRLayout.setVisibility(View.VISIBLE);
-			// }
-			// } else {
-			// if ("1".equals(code)) {// 未登录
-			// goActivity(LoginActivity.class, null);
-			// } else {
-			// showToast(favoritesList.getCodeMessage());
-			// }
-			// }
-
-			break;
-		case RequestDistribute.FAVORITES_LIST_DELETE:
-			// RequestResponseInfo requestResponseInfo = (RequestResponseInfo)
-			// data;
-			// if ("".equals(requestResponseInfo.getErrorCode())) {
-			// if (positions != null) {
-			// int size = positions.size();
-			// int positionArray[] = new int[size];
-			// for (int i = 0; i < size; i++) {
-			// positionArray[i] = positions.get(i);
-			// }
-			// Arrays.sort(positionArray);
-			// int length = positionArray.length;
-			// for (int i = length - 1; i >= 0; i--) {
-			// int temp = positionArray[i];
-			// mListAdapter.remove(temp);
-			// list.remove(temp);
-			// }
-			// mListAdapter.getCheckPositions().clear();
-			// mListAdapter.setIsEdite(false);
-			// mDeleteBtn.setVisibility(View.GONE);
-			// mListAdapter.notifyDataSetChanged();
-			// if (list.size() == 0) {
-			// mNoDataRLayout.setVisibility(View.VISIBLE);
-			// }
-			// }
-			// // mLoadingView.setVisibility(View.VISIBLE);
-			// // mDeleteBtn.setVisibility(View.GONE);
-			// // mListAdapter.clear();
-			// // showToast(requestResponseInfo.getState());
-			// // getSupportLoaderManager().restartLoader(
-			// // RequestDistribute.FAVORITES_LIST, null,
-			// // new FavoritesListRequest(this));
-			// } else {
-			// showToast(requestResponseInfo.getErrorMessage());
-			// }
-
+		case RequestDistribute.SHIPPING_ADDRESS_GET:
+			AddressList addresses = (AddressList) data;
+			List<Address> list = addresses.getList();
+			if (list.size() > 0) {
+				llayout_head.setVisibility(View.VISIBLE);
+				btn_add_address.setVisibility(View.GONE);
+				Address address = list.get(0);
+				item_tv_name.setText("收货人：" + address.getName());
+				item_tv_tel.setText(address.getPhone());
+				item_tv_address.setText("收货地址：" + address.getAddresss());
+			} else {
+				llayout_head.setVisibility(View.GONE);
+				btn_add_address.setVisibility(View.VISIBLE);
+			}
 			break;
 
 		default:

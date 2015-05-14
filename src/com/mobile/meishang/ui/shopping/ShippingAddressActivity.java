@@ -11,13 +11,14 @@ import javax.xml.parsers.SAXParserFactory;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
-import com.mobile.meishang.core.request.ShippingAddressRequest;
+import com.mobile.meishang.core.request.AddressAddRequest;
 import com.mobile.meishang.model.CityModel;
 import com.mobile.meishang.model.DistrictModel;
 import com.mobile.meishang.model.ProvinceModel;
@@ -56,8 +57,11 @@ public class ShippingAddressActivity extends MActivity implements
 		setUpViews();
 		setUpListener();
 		setUpData();
+		etv_post.setText(mCurrentZipCode);
+		// tv_province_city.setText(mCurrentProviceName + "," + mCurrentCityName
+		// + "," + mCurrentDistrictName + "," + mCurrentZipCode);
 		tv_province_city.setText(mCurrentProviceName + "," + mCurrentCityName
-				+ "," + mCurrentDistrictName + "," + mCurrentZipCode);
+				+ "," + mCurrentDistrictName);
 	}
 
 	private void setUpViews() {
@@ -98,10 +102,12 @@ public class ShippingAddressActivity extends MActivity implements
 			mCurrentDistrictName = mDistrictDatasMap.get(mCurrentCityName)[newValue];
 			mCurrentZipCode = mZipcodeDatasMap.get(mCurrentDistrictName);
 		}
+		etv_post.setText(mCurrentZipCode);
 		tv_province_city.setText(mCurrentProviceName + "," + mCurrentCityName
-				+ "," + mCurrentDistrictName + "," + mCurrentZipCode);
-		showToast("当前选中:" + mCurrentProviceName + "," + mCurrentCityName + ","
-				+ mCurrentDistrictName + "," + mCurrentZipCode);
+				+ "," + mCurrentDistrictName);
+		// showToast("当前选中:" + mCurrentProviceName + "," + mCurrentCityName +
+		// ","
+		// + mCurrentDistrictName + "," + mCurrentZipCode);
 	}
 
 	/**
@@ -118,6 +124,9 @@ public class ShippingAddressActivity extends MActivity implements
 		mViewDistrict
 				.setViewAdapter(new ArrayWheelAdapter<String>(this, areas));
 		mViewDistrict.setCurrentItem(0);
+		
+		mCurrentZipCode = mZipcodeDatasMap.get(areas[0]);
+		
 	}
 
 	/**
@@ -149,15 +158,41 @@ public class ShippingAddressActivity extends MActivity implements
 
 	private void net() {
 		// name：收货人姓名phone：收货人手机号码post：邮编address：地址addresss：详细地址userid：用户编号
+		String name = etv_name.getText().toString();
+		String phone = etv_phone.getText().toString();
+		String post = etv_post.getText().toString();
+		String address = tv_province_city.getText().toString();
+		String addresss = etv_address.getText().toString();
+		if (TextUtils.isEmpty(name)) {
+			showToast("请输入收货人姓名");
+			return;
+		}
+		if (TextUtils.isEmpty(phone)) {
+			showToast("请输入收货人手机号码");
+			return;
+		}
+		if (TextUtils.isEmpty(post)) {
+			showToast("请输入邮编");
+			return;
+		}
+		// if (TextUtils.isEmpty(address)) {
+		// showToast("请输入收货人姓名");
+		// return;
+		// }
+		if (TextUtils.isEmpty(addresss)) {
+			showToast("详细地址");
+			return;
+		}
+
 		bundle = new Bundle();
-		bundle.putString("name", etv_name.getText().toString());
-		bundle.putString("phone", etv_phone.getText().toString());
-		bundle.putString("post", etv_post.getText().toString());
-		bundle.putString("address", tv_province_city.getText().toString());
-		bundle.putString("addresss", etv_address.getText().toString());
+		bundle.putString("name", name);
+		bundle.putString("phone", phone);
+		bundle.putString("post", post);
+		bundle.putString("address", address);
+		bundle.putString("addresss", addresss);
 		getSupportLoaderManager().restartLoader(
 				RequestDistribute.SHIPPING_ADDRESS, bundle,
-				new ShippingAddressRequest(this));
+				new AddressAddRequest(this));
 	}
 
 	@Override

@@ -219,7 +219,14 @@ public class IntegralGoodsDetailActivity extends MActivity implements
 			}
 			break;
 		case R.id.flayout_immediately_change:
-			goActivity(ShoppingOrderActivity.class, null);
+			if (MApplication.getInstance().checkLogin()) {
+				Bundle bundle = new Bundle();
+				bundle.putParcelable("LehuigoDetailData", detailData);
+				goActivity(ShoppingOrderActivity.class, bundle);
+			} else {
+				goActivity(LoginActivity.class, null);
+			}
+
 			break;
 		case R.id.flayout_add_shoppingcar:
 			MApplication.getInstance().getShoppingCarGoods().add(detailData);

@@ -1,8 +1,5 @@
 package com.mobile.meishang.adapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,22 +10,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.bean.Goods;
+import com.mobile.meishang.model.LehuigoDetailData;
 
-public class ShoppingOrderListAdapter extends BaseCacheListAdapter<Goods> {
-
-	private List<Integer> checkPositions;
+public class ShoppingOrderListAdapter extends
+		BaseCacheListAdapter<LehuigoDetailData> {
 
 	public ShoppingOrderListAdapter(Context context) {
 		super(context);
-		checkPositions = new ArrayList<Integer>();
 
-	}
-
-	@Override
-	public int getCount() {
-		// return super.getCount();
-		return 5;
 	}
 
 	@Override
@@ -108,10 +97,6 @@ public class ShoppingOrderListAdapter extends BaseCacheListAdapter<Goods> {
 		TextView tv_item_add;
 		TextView tv_item_quantity;
 		TextView tv_item_sub;
-	}
-
-	public List<Integer> getCheckPositions() {
-		return checkPositions;
 	}
 
 }

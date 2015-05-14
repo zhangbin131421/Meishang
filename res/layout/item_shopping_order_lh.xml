@@ -4,61 +4,75 @@
     android:background="@color/white"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/llayout_head"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onclick"
-        android:orientation="horizontal"
-        android:padding="10dp" >
+        android:layout_height="wrap_content" >
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:id="@+id/llayout_head"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical" >
+            android:onClick="onclick"
+            android:orientation="horizontal"
+            android:padding="10dp" >
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:layout_weight="1"
+                android:orientation="vertical" >
 
-                <TextView
-                    android:id="@+id/item_tv_name"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:singleLine="true"
-                    android:text="收货人：小YY"
-                    android:textColor="@color/black1"
-                    android:textSize="16sp" />
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/item_tv_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        android:text="收货人：小YY"
+                        android:textColor="@color/black1"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/item_tv_tel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="18912335768"
+                        android:textColor="@color/black1"
+                        android:textSize="16sp" />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/item_tv_tel"
+                    android:id="@+id/item_tv_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:text="18912335768"
+                    android:text="收货地址：江苏省南京市玄武区龙蟠路火锅山小区153幢花果山水帘洞405号B1"
                     android:textColor="@color/black1"
                     android:textSize="16sp" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/item_tv_address"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="收货地址：江苏省南京市玄武区龙蟠路火锅山小区153幢花果山水帘洞405号B1"
-                android:textColor="@color/black1"
-                android:textSize="16sp" />
+                android:layout_gravity="center_vertical"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_arrow_right_gray" />
         </LinearLayout>
 
-        <ImageView
+        <Button
+            android:id="@+id/btn_add_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_arrow_right_gray" />
-    </LinearLayout>
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:onClick="onclick"
+            android:text="添加收货地址" />
+    </FrameLayout>
 
     <View style="@style/line_horizontal_style" />
 

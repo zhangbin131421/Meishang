@@ -3,8 +3,6 @@ package com.mobile.meishang.model.bean;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.mobile.meishang.utils.FunctionUtil;
-
 public class GoodsItem extends Head {
 	// "goods_id": "33",
 	// "goods_name": "西树泡芙某特价商品",
