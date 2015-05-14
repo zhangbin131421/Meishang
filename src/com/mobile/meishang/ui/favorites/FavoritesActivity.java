@@ -10,9 +10,16 @@ import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
+import com.mobile.meishang.core.error.ExceptionHandler;
+import com.mobile.meishang.core.request.FavoritesListRequest;
+import com.mobile.meishang.model.FavoritesList;
 import com.mobile.meishang.model.RequestDistribute;
+import com.mobile.meishang.utils.view.LoadingView;
+import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 
-public class FavoritesActivity extends MActivity {
+public class FavoritesActivity extends MActivity implements ExceptionHandler,
+		LoadEvent {
+	private LoadingView mLoadingView;
 	private TextView tv_top_right;
 	private TextView tv_tab_a;
 	private TextView tv_tab_b;
@@ -31,6 +38,8 @@ public class FavoritesActivity extends MActivity {
 		tv_top_right = (TextView) findViewById(R.id.tv_top_right);
 		tv_top_right.setText("编辑");
 		tv_top_right.setVisibility(View.VISIBLE);
+		mLoadingView = (LoadingView) findViewById(R.id.loading);
+		mLoadingView.setLoadEvent(this);
 		tv_tab_a = (TextView) findViewById(R.id.tv_tab_a);
 		tv_tab_b = (TextView) findViewById(R.id.tv_tab_b);
 		tv_tab_c = (TextView) findViewById(R.id.tv_tab_c);
@@ -39,6 +48,7 @@ public class FavoritesActivity extends MActivity {
 		integralGoodsFragment = new FavoritesIntegralGoodsFragment();
 		addFragment(integralGoodsFragment);
 		showFragment(integralGoodsFragment);
+		net();
 	}
 
 	@Override
@@ -132,7 +142,7 @@ public class FavoritesActivity extends MActivity {
 				if (infoListFragment != null && infoListFragment.isVisible()) {
 					showToast("3333333");
 				}
-				
+
 			}
 
 			break;
@@ -166,6 +176,45 @@ public class FavoritesActivity extends MActivity {
 		default:
 			break;
 		}
+	}
+
+	private void net() {
+		getSupportLoaderManager().restartLoader(
+				RequestDistribute.FAVORITES_LIST, null,
+				new FavoritesListRequest(this));
+	}
+
+	@Override
+	public void updateUI(int identity, Object data) {
+		// super.updateUI(identity, data);
+		mLoadingView.setVisibility(View.GONE);
+		switch (identity) {
+		case RequestDistribute.FAVORITES_LIST:
+			FavoritesList favoritesList = (FavoritesList) data;
+			break;
+		default:
+			break;
+		}
+
+	}
+
+	@Override
+	public void handleException(final int identity, final Exception e) {
+		super.handleException(identity, e);
+		this.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				if (identity == RequestDistribute.FAVORITES_LIST) {
+					mLoadingView.showRetryBtn(true);
+					showToast(e.getMessage());
+				}
+			}
+		});
+	}
+
+	@Override
+	public void retryAgain(View v) {
+		net();
 	}
 
 }

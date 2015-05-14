@@ -47,13 +47,15 @@ public class FavoritesInfoListFragment extends MFragment implements
 		super.onActivityCreated(savedInstanceState);
 		mAdapter = new FavoritesInfoListviewAdapter(getActivity());
 		listview.setAdapter(mAdapter);
-		net();
+//		net();
 
 	}
 
 	private void net() {
+		Bundle bundle = new Bundle();
+		bundle.putString("", "");
 		getActivity().getSupportLoaderManager().restartLoader(
-				RequestDistribute.FAVORITES_LIST, null,
+				RequestDistribute.FAVORITES_LIST, bundle,
 				new FavoritesListRequest(this));
 	}
 
