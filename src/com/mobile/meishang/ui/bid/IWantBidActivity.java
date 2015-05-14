@@ -1,6 +1,5 @@
 package com.mobile.meishang.ui.bid;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
@@ -15,12 +14,10 @@ import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.CategoryLeftListAdapter;
 import com.mobile.meishang.adapter.CategoryRightListAdapter;
-import com.mobile.meishang.adapter.FilterListAdapter;
 import com.mobile.meishang.core.request.CategoryRequest;
 import com.mobile.meishang.model.Module;
 import com.mobile.meishang.model.ModuleList;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.CategoryFilter;
 import com.umeng.analytics.MobclickAgent;
 
 public class IWantBidActivity extends MActivity {

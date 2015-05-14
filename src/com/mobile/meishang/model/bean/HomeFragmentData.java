@@ -10,11 +10,11 @@ public class HomeFragmentData extends Head {
 	// "TITLE": "美商云讯"
 	// }
 	private AdvertisingGallery advertisingGallery;
-	private HomeFragmentTemplateData templateData;
+//	private HomeFragmentTemplateData templateData;
 
 	public HomeFragmentData(JSONObject json) throws JSONException {
 		advertisingGallery = new AdvertisingGallery(json);
-		templateData = new HomeFragmentTemplateData(json);
+//		templateData = new HomeFragmentTemplateData(json);
 
 	}
 
@@ -22,8 +22,8 @@ public class HomeFragmentData extends Head {
 		return advertisingGallery;
 	}
 
-	public HomeFragmentTemplateData getTemplateData() {
-		return templateData;
-	}
+//	public HomeFragmentTemplateData getTemplateData() {
+//		return templateData;
+//	}
 
 }

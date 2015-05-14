@@ -14,6 +14,7 @@ import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.BidHistoryListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.GoodsListRequest;
+import com.mobile.meishang.core.request.HistoryBidRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.Goods;
 import com.mobile.meishang.utils.view.LoadingView;
@@ -63,12 +64,12 @@ public class HistoryBidListActivity extends MActivity implements
 				Bundle bundle = new Bundle();
 				// bundle.putString("id", mGoodsListing.get(--position)
 				// .getGoodsid());
-				 goActivity(BidDetailActivity.class, bundle);
+				goActivity(BidDetailActivity.class, bundle);
 			}
 		});
 
-//		getSupportLoaderManager().restartLoader(RequestDistribute.GOODS_LIST,
-//				mBundle, new GoodsListRequest(this));
+		getSupportLoaderManager().restartLoader(RequestDistribute.HISTORY_BID,
+				mBundle, new HistoryBidRequest(this));
 	}
 
 	@Override
@@ -105,16 +106,7 @@ public class HistoryBidListActivity extends MActivity implements
 		mNoDataRLayout.setVisibility(View.GONE);
 		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
-		case RequestDistribute.GOODS_LIST:
-			mGoodsListing = (List<Goods>) data;
-			if (mGoodsListing.size() > 0) {
-
-				mListviewAdapter.clear();
-				mListviewAdapter.addAll(mGoodsListing);
-				mListviewAdapter.notifyDataSetChanged();
-			} else {
-				mNoDataRLayout.setVisibility(View.VISIBLE);
-			}
+		case RequestDistribute.HISTORY_BID:
 			break;
 
 		default:

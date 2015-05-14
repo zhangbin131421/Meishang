@@ -81,4 +81,5 @@ public class RequestDistribute {
 	public static final int SIGNIN_FRAGMENT = 6013;//
 	public static final int SHIPPING_ADDRESS_GET = 6014;//
 	public static final int CATEGORY = 6015;//
+	public static final int HISTORY_BID = 6016;//
 }

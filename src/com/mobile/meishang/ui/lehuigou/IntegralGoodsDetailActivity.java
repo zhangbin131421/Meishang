@@ -251,12 +251,7 @@ public class IntegralGoodsDetailActivity extends MActivity implements
 			tv_old_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 			tv_integral.setText(detailData.getIntegral());
 			tv_title.setText(detailData.getTitle());
-			tv_param.setText(Html.fromHtml("主要来源：" + detailData.getSource()
-					+ "<br>" + "品牌：" + detailData.getBrand() + "<br>" + "品牌："
-					+ detailData.getBrand() + "<br>" + "货号："
-					+ detailData.getNo() + "<br>" + "服装版型："
-					+ detailData.getVersion() + "<br>" + "风格："
-					+ detailData.getStyle() + "<br>"));
+			tv_param.setText(Html.fromHtml("主要来源：" + detailData.getContext()));
 			break;
 		case RequestDistribute.FAVORITES_ADD:
 			Head head = (Head) data;
