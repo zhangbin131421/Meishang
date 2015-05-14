@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import com.mobile.meishang.model.bean.Head;
 
-public class Smodule extends Head {
+public class ModuleChild extends Head {
 //	{
 //	    "smoduleid": 1,
 //	    "moduleid": 3,
@@ -20,10 +20,10 @@ public class Smodule extends Head {
 	private String name;
 	private String picpath;
 
-	public Smodule() {
+	public ModuleChild() {
 	}
 
-	public Smodule(JSONObject json) throws JSONException {
+	public ModuleChild(JSONObject json) throws JSONException {
 		smoduleid = getJsonStrValue(json, "smoduleid");
 		moduleid = getJsonStrValue(json, "moduleid");
 		name = getJsonStrValue(json, "name");

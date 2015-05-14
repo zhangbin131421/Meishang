@@ -18,7 +18,7 @@ public class RequestDistribute {
 	public static final int POINT_ACTIVITY_DETAIL = 10;//
 	public static final int POINT_STRATEGY = 11;//
 	public static final int CHOUJIANG = 12;//
-	public static final int CATEGORY = 13;//
+
 	public static final int SETTING_PASSWORD = 14;//
 	public static final int LOGOUT = 15;//
 	public static final int CHOUJIANG_JOIN = 16;//
@@ -80,4 +80,5 @@ public class RequestDistribute {
 	public static final int FAVORITE = 6012;//
 	public static final int SIGNIN_FRAGMENT = 6013;//
 	public static final int SHIPPING_ADDRESS_GET = 6014;//
+	public static final int CATEGORY = 6015;//
 }

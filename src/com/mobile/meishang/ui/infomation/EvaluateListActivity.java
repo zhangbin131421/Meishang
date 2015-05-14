@@ -12,7 +12,7 @@ import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.EvaluateListAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
-import com.mobile.meishang.model.bean.ModuleList;
+import com.mobile.meishang.model.ModuleChildList;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 
@@ -21,7 +21,7 @@ public class EvaluateListActivity extends MActivity implements
 	private LoadingView mLoadingView;
 	private ListView mListView;
 	private EvaluateListAdapter listAdapter;
-	private List<ModuleList> list;
+	private List<ModuleChildList> list;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -8,10 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.Smodule;
+import com.mobile.meishang.model.ModuleChild;
 
 public class InsideHomeGridviewAdapter extends
-		BaseCacheListAdapter<Smodule> {
+		BaseCacheListAdapter<ModuleChild> {
 
 	public InsideHomeGridviewAdapter(Context context) {
 		super(context);

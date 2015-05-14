@@ -8,21 +8,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.mobile.meishang.model.LehuigoHomeDataItem;
-import com.mobile.meishang.model.Smodule;
+import com.mobile.meishang.model.ModuleChild;
 
 public class InsideActivityData extends Head {
 	private AdvertisingGallery advertisingGallery;
-	private List<Smodule> smodules;
+	private List<ModuleChild> smodules;
 	private List<LehuigoHomeDataItem> list;
 
 	public InsideActivityData(JSONObject json) throws JSONException {
 		advertisingGallery = new AdvertisingGallery(json);
-		smodules = new ArrayList<Smodule>();
+		smodules = new ArrayList<ModuleChild>();
 		JSONArray smoduleArray = getJsonArray(json, "smoduleList");
 		if (smoduleArray != null) {
 			int length = smoduleArray.length();
 			for (int i = 0; i < length; i++) {
-				smodules.add(new Smodule(smoduleArray.getJSONObject(i)));
+				smodules.add(new ModuleChild(smoduleArray.getJSONObject(i)));
 			}
 		}
 		JSONArray topArray = getJsonArray(json, "list");
@@ -41,7 +41,7 @@ public class InsideActivityData extends Head {
 		return advertisingGallery;
 	}
 
-	public List<Smodule> getSmodules() {
+	public List<ModuleChild> getSmodules() {
 		return smodules;
 	}
 

@@ -5,13 +5,20 @@ import java.util.List;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
+import com.mobile.meishang.adapter.CategoryLeftListAdapter;
+import com.mobile.meishang.adapter.CategoryRightListAdapter;
 import com.mobile.meishang.adapter.FilterListAdapter;
+import com.mobile.meishang.core.request.CategoryRequest;
+import com.mobile.meishang.model.Module;
+import com.mobile.meishang.model.ModuleList;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.CategoryFilter;
 import com.umeng.analytics.MobclickAgent;
@@ -21,10 +28,11 @@ public class IWantBidActivity extends MActivity {
 	private LinearLayout llayout;
 	private ListView listview_left;
 	private ListView listview_right;
-	private FilterListAdapter filterLeftAdapter;
-	private FilterListAdapter filterRightAdapter;
-	private List<CategoryFilter> filterLeft;
-	private List<CategoryFilter> filterRight;
+	private CategoryLeftListAdapter filterLeftAdapter;
+	private CategoryRightListAdapter filterRightAdapter;
+	// private List<CategoryFilter> filterLeft;
+	// private List<CategoryFilter> filterRight;
+	private List<Module> moduleList;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +45,19 @@ public class IWantBidActivity extends MActivity {
 		tv_top_right.setVisibility(View.VISIBLE);
 		llayout = (LinearLayout) findViewById(R.id.llayout);
 		listview_left = (ListView) findViewById(R.id.listview_left);
+		listview_left.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				filterRightAdapter.clear();
+				filterRightAdapter.addAll(moduleList.get(arg2).getList());
+				filterRightAdapter.notifyDataSetChanged();
+			}
+		});
 		listview_right = (ListView) findViewById(R.id.listview_right);
+		getSupportLoaderManager().initLoader(RequestDistribute.CATEGORY, null,
+				new CategoryRequest(this));
 	}
 
 	@Override
@@ -58,7 +78,7 @@ public class IWantBidActivity extends MActivity {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				if (identity == RequestDistribute.COUPON_GET) {
+				if (identity == RequestDistribute.CATEGORY) {
 					// mLoadingView.showRetryBtn(true);
 					showToast(e.getMessage());
 				}
@@ -70,7 +90,9 @@ public class IWantBidActivity extends MActivity {
 	public void updateUI(int identity, Object data) {
 		if (data != null) {
 			switch (identity) {
-			case RequestDistribute.ADVERTISING_GALLERY_ONE_DAY:
+			case RequestDistribute.CATEGORY:
+				ModuleList modules = (ModuleList) data;
+				moduleList = modules.getModuleList();
 				break;
 
 			default:
@@ -96,10 +118,16 @@ public class IWantBidActivity extends MActivity {
 		case R.id.tv_choose_category:
 			llayout.setVisibility(View.VISIBLE);
 			if (filterLeftAdapter == null) {
-				filterLeftAdapter = new FilterListAdapter(this);
+				filterLeftAdapter = new CategoryLeftListAdapter(this);
 				listview_left.setAdapter(filterLeftAdapter);
-				filterLeftAdapter.addAll(getFiterDataLeft());
+				filterLeftAdapter.addAll(moduleList);
 				filterLeftAdapter.notifyDataSetChanged();
+			}
+			if (filterRightAdapter == null) {
+				filterRightAdapter = new CategoryRightListAdapter(this);
+				listview_right.setAdapter(filterRightAdapter);
+				filterRightAdapter.addAll(moduleList.get(0).getList());
+				filterRightAdapter.notifyDataSetChanged();
 			}
 			break;
 		case R.id.llayout:
@@ -117,20 +145,6 @@ public class IWantBidActivity extends MActivity {
 		default:
 			break;
 		}
-	}
-
-	private List<CategoryFilter> getFiterDataLeft() {
-		if (filterLeft == null) {
-			filterLeft = new ArrayList<CategoryFilter>();
-			filterLeft.add(new CategoryFilter("美容", ""));
-			filterLeft.add(new CategoryFilter("日化", ""));
-			filterLeft.add(new CategoryFilter("内衣", ""));
-			filterLeft.add(new CategoryFilter("车世界", ""));
-			filterLeft.add(new CategoryFilter("灯饰", ""));
-			filterLeft.add(new CategoryFilter("会讯", ""));
-		}
-		return filterLeft;
-
 	}
 
 }
