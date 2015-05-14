@@ -209,7 +209,7 @@ public class IntegralGoodsDetailActivity extends MActivity implements
 		case R.id.tv_favorites:
 			if (MApplication.getInstance().checkLogin()) {
 				Bundle bundle = new Bundle();
-				bundle.putString("objectid", "1");
+				bundle.putString("objectid", detailData.getPurchasedid());
 				bundle.putString("type", "1");
 				getSupportLoaderManager().restartLoader(
 						RequestDistribute.FAVORITES_ADD, bundle,
