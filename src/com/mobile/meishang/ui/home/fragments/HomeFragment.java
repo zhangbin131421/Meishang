@@ -209,8 +209,6 @@ public class HomeFragment extends MFragment implements OnClickListener {
 				position -= 3;
 				// showToast("p=" + position);
 				Bundle bundle = new Bundle();
-				bundle.putString("url", mGridviewAdapter.getItem(position)
-						.getModuleurl());
 				int tempPosition = mGridviewAdapter.getItem(position)
 						.getPosition();
 				switch (tempPosition) {
@@ -221,18 +219,28 @@ public class HomeFragment extends MFragment implements OnClickListener {
 					goActivity(IWantBidActivity.class, null);
 					break;
 				case 2:
+					bundle.putString("url",
+							"http://121.40.126.98:80/data/purchased/list/looks/list.htm");
 					goActivity(InsideActivity.class, bundle);
 					break;
 				case 3:
+					bundle.putString("url",
+							"http://121.40.126.98:80/data/purchased/list/wear/list.htm");
 					goActivity(InsideActivity.class, bundle);
 					break;
 				case 4:
+					bundle.putString("url",
+							"http://121.40.126.98:80/data/purchased/list/car/list.htm");
 					goActivity(InsideActivity.class, bundle);
 					break;
 				case 5:
+					bundle.putString("url",
+							"http://121.40.126.98:80/data/purchased/list/lamp/list.htm");
 					goActivity(InsideActivity.class, bundle);
 					break;
 				case 6:
+					bundle.putString("url",
+							"http://121.40.126.98:80/data/purchased/list/day/list.htm");
 					goActivity(InsideActivity.class, bundle);
 					break;
 				case 7:

@@ -1,8 +1,11 @@
 package com.mobile.meishang.ui.home;
 
+import java.io.IOException;
 import java.util.List;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,6 +37,7 @@ import com.mobile.meishang.model.Picture;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.Head;
 import com.mobile.meishang.ui.login.LoginActivity;
+import com.mobile.meishang.ui.widget.Player;
 import com.mobile.meishang.utils.view.AdGallery;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
@@ -84,6 +88,7 @@ public class ProjectDiscoverDetailActivity extends MActivity implements
 	private DiscoverListviewAdapter mListviewAdapter;
 	private Bundle mBundle;
 	Discover discover;
+	public Player player;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -184,6 +189,7 @@ public class ProjectDiscoverDetailActivity extends MActivity implements
 		getSupportLoaderManager().restartLoader(
 				RequestDistribute.DISCOVER_DETAIL, mBundle,
 				new DiscoverDetailRequest(this));
+		player = new Player();
 	}
 
 	@Override
@@ -205,6 +211,15 @@ public class ProjectDiscoverDetailActivity extends MActivity implements
 	public void onPause() {
 		super.onPause();
 		MobclickAgent.onPause(this);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (player != null) {
+			player.stop();
+			player = null;
+		}
 	}
 
 	@Override
@@ -244,6 +259,17 @@ public class ProjectDiscoverDetailActivity extends MActivity implements
 		switch (v.getId()) {
 		case R.id.flayout_voice_introduce:
 			showToast("语音介绍");
+			// if (player.isPlaying()) {
+			// player.pause();
+			// } else {
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					player.playUrl("http://abv.cn/music/光辉岁月.mp3");
+				}
+			}).start();
+			// }
 			break;
 		case R.id.flayout_call:
 			Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"
