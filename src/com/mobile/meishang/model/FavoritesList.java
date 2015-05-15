@@ -10,20 +10,23 @@ import org.json.JSONObject;
 import com.mobile.meishang.model.bean.Head;
 
 public class FavoritesList extends Head {
-	private List<LehuigoDetailData> mList;
+	private List<LehuigoDetailData> lehuigoDetailDatas;
 	private List<Discover> discovers;
+	private List<Infomation> infomations;
 
 	public FavoritesList() {
 	}
 
 	public FavoritesList(JSONObject json) throws JSONException {
-		mList = new ArrayList<LehuigoDetailData>();
+		lehuigoDetailDatas = new ArrayList<LehuigoDetailData>();
 		discovers = new ArrayList<Discover>();
+		infomations = new ArrayList<Infomation>();
 		JSONArray jsonArray = getJsonArray(json, "inList");
 		if (jsonArray != null) {
 			int length = jsonArray.length();
 			for (int i = 0; i < length; i++) {
-				mList.add(new LehuigoDetailData(jsonArray.getJSONObject(i)));
+				lehuigoDetailDatas.add(new LehuigoDetailData(jsonArray
+						.getJSONObject(i)));
 			}
 		}
 		JSONArray jsonArray2 = getJsonArray(json, "proList");
@@ -33,14 +36,25 @@ public class FavoritesList extends Head {
 				discovers.add(new Discover(jsonArray2.getJSONObject(i)));
 			}
 		}
+		JSONArray jsonArray3 = getJsonArray(json, "infoList");
+		if (jsonArray3 != null) {
+			int length = jsonArray3.length();
+			for (int i = 0; i < length; i++) {
+				infomations.add(new Infomation(jsonArray3.getJSONObject(i)));
+			}
+		}
 	}
 
-	public List<LehuigoDetailData> getmList() {
-		return mList;
+	public List<LehuigoDetailData> getLehuigoDetailDatas() {
+		return lehuigoDetailDatas;
 	}
 
 	public List<Discover> getDiscovers() {
 		return discovers;
+	}
+
+	public List<Infomation> getInfomations() {
+		return infomations;
 	}
 
 }

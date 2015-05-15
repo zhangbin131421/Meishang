@@ -28,6 +28,7 @@ public class FavoritesActivity extends MActivity implements ExceptionHandler,
 	private FavoritesProjectListFragment projectListFragment;
 	private FavoritesInfoListFragment infoListFragment;
 	private FragmentManager mFragmentManager;
+	private FavoritesList favoritesList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +45,6 @@ public class FavoritesActivity extends MActivity implements ExceptionHandler,
 		tv_tab_b = (TextView) findViewById(R.id.tv_tab_b);
 		tv_tab_c = (TextView) findViewById(R.id.tv_tab_c);
 		mFragmentManager = getSupportFragmentManager();
-		tv_tab_a.setSelected(true);
-		integralGoodsFragment = new FavoritesIntegralGoodsFragment();
-		addFragment(integralGoodsFragment);
-		showFragment(integralGoodsFragment);
 		net();
 	}
 
@@ -147,27 +144,38 @@ public class FavoritesActivity extends MActivity implements ExceptionHandler,
 
 			break;
 		case R.id.tv_tab_a:
+			if ("编辑".equals(tv_top_right.getText().toString())) {
+				tv_top_right.setText("关闭");
+			}
 			tv_tab_a.setSelected(true);
 			tv_tab_b.setSelected(false);
 			tv_tab_c.setSelected(false);
 			showFragment(integralGoodsFragment);
 			break;
 		case R.id.tv_tab_b:
+			if ("编辑".equals(tv_top_right.getText().toString())) {
+				tv_top_right.setText("关闭");
+			}
 			tv_tab_a.setSelected(false);
 			tv_tab_b.setSelected(true);
 			tv_tab_c.setSelected(false);
 			if (projectListFragment == null) {
 				projectListFragment = new FavoritesProjectListFragment();
+				projectListFragment.setDiscovers(favoritesList.getDiscovers());
 				addFragment(projectListFragment);
 			}
 			showFragment(projectListFragment);
 			break;
 		case R.id.tv_tab_c:
+			if ("编辑".equals(tv_top_right.getText().toString())) {
+				tv_top_right.setText("关闭");
+			}
 			tv_tab_a.setSelected(false);
 			tv_tab_b.setSelected(false);
 			tv_tab_c.setSelected(true);
 			if (infoListFragment == null) {
 				infoListFragment = new FavoritesInfoListFragment();
+				infoListFragment.setInfomations(favoritesList.getInfomations());
 				addFragment(infoListFragment);
 			}
 			showFragment(infoListFragment);
@@ -190,7 +198,13 @@ public class FavoritesActivity extends MActivity implements ExceptionHandler,
 		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
 		case RequestDistribute.FAVORITES_LIST:
-			FavoritesList favoritesList = (FavoritesList) data;
+			favoritesList = (FavoritesList) data;
+			tv_tab_a.setSelected(true);
+			integralGoodsFragment = new FavoritesIntegralGoodsFragment();
+			integralGoodsFragment.setLehuigoDetailDatas(favoritesList
+					.getLehuigoDetailDatas());
+			addFragment(integralGoodsFragment);
+			showFragment(integralGoodsFragment);
 			break;
 		default:
 			break;

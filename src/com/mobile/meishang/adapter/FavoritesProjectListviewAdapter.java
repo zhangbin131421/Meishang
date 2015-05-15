@@ -9,12 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.Infomation;
+import com.mobile.meishang.model.Discover;
 
-public class FavoritesInfoListviewAdapter extends
-		BaseCacheListAdapter<Infomation> {
+public class FavoritesProjectListviewAdapter extends
+		BaseCacheListAdapter<Discover> {
 
-	public FavoritesInfoListviewAdapter(Context context) {
+	public FavoritesProjectListviewAdapter(Context context) {
 		super(context);
 	}
 

@@ -35,6 +35,7 @@ public class FavoritesDeleteRequest implements
 		urlString.append("collection/user/delete.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
+		mHttpRequest.addPostParameter("type", bundle.getString("type"));
 		mHttpRequest.addPostParameter("collectionids",
 				bundle.getString("collectionids"));
 		HeadLoader loader = new HeadLoader(mActivity, mHttpRequest);

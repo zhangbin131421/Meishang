@@ -1,5 +1,8 @@
 package com.mobile.meishang.ui.favorites;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,10 +12,10 @@ import android.widget.ListView;
 
 import com.mobile.meishang.MFragment;
 import com.mobile.meishang.R;
-import com.mobile.meishang.adapter.FavoritesInfoListviewAdapter;
+import com.mobile.meishang.adapter.FavoritesProjectListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.FavoritesListRequest;
-import com.mobile.meishang.model.FavoritesList;
+import com.mobile.meishang.model.Discover;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
@@ -20,7 +23,8 @@ import com.umeng.analytics.MobclickAgent;
 public class FavoritesProjectListFragment extends MFragment implements
 		ExceptionHandler, LoadEvent {
 	private ListView listview;
-	private FavoritesInfoListviewAdapter mAdapter;
+	private FavoritesProjectListviewAdapter mAdapter;
+	private List<Discover> discovers;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -30,6 +34,7 @@ public class FavoritesProjectListFragment extends MFragment implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		discovers = new ArrayList<Discover>();
 	}
 
 	@Override
@@ -44,8 +49,11 @@ public class FavoritesProjectListFragment extends MFragment implements
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		mAdapter = new FavoritesInfoListviewAdapter(getActivity());
+		mAdapter = new FavoritesProjectListviewAdapter(getActivity());
 		listview.setAdapter(mAdapter);
+		mAdapter.clear();
+		mAdapter.addAll(discovers);
+		mAdapter.notifyDataSetChanged();
 		// net();
 
 	}
@@ -78,17 +86,17 @@ public class FavoritesProjectListFragment extends MFragment implements
 	@Override
 	public void updateUI(int identity, Object data) {
 
-		switch (identity) {
-		case RequestDistribute.FAVORITES_LIST:
-			FavoritesList favoritesList = (FavoritesList) data;
-			mAdapter.clear();
-			mAdapter.addAll(favoritesList.getmList());
-			mAdapter.notifyDataSetChanged();
-			break;
-
-		default:
-			break;
-		}
+		// switch (identity) {
+		// case RequestDistribute.FAVORITES_LIST:
+		// FavoritesList favoritesList = (FavoritesList) data;
+		// mAdapter.clear();
+		// mAdapter.addAll(favoritesList.getmList());
+		// mAdapter.notifyDataSetChanged();
+		// break;
+		//
+		// default:
+		// break;
+		// }
 	}
 
 	@Override
@@ -99,6 +107,10 @@ public class FavoritesProjectListFragment extends MFragment implements
 	@Override
 	public void retryAgain(View v) {
 
+	}
+
+	public void setDiscovers(List<Discover> discovers) {
+		this.discovers = discovers;
 	}
 
 }
