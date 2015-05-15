@@ -12,7 +12,7 @@ import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.DiscoverListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
-import com.mobile.meishang.core.request.DiscoverFragmentRequest;
+import com.mobile.meishang.core.request.TypeActivityRequest;
 import com.mobile.meishang.model.DiscoverList;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.utils.view.LoadingView;
@@ -61,9 +61,10 @@ public class TypeActivity extends MActivity implements
 				goActivity(ProjectDiscoverDetailActivity.class, bundle);
 			}
 		});
+		
 		getSupportLoaderManager().restartLoader(
-				RequestDistribute.DISCOVER_FRAGMENT, null,
-				new DiscoverFragmentRequest(this));
+				RequestDistribute.Type_ACTITY, mBundle,
+				new TypeActivityRequest(this));
 	}
 
 	@Override
@@ -80,7 +81,7 @@ public class TypeActivity extends MActivity implements
 	public void updateUI(int identity, Object data) {
 		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
-		case RequestDistribute.DISCOVER_FRAGMENT:
+		case RequestDistribute.Type_ACTITY:
 			mListviewAdapter.clear();
 			DiscoverList discoverList = (DiscoverList) data;
 			mListviewAdapter.addAll(discoverList.getList());

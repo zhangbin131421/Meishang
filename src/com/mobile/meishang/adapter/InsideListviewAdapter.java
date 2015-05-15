@@ -8,9 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
+import com.mobile.meishang.model.Discover;
 import com.mobile.meishang.model.LehuigoHomeDataItem;
 
-public class InsideListviewAdapter extends BaseCacheListAdapter<LehuigoHomeDataItem> {
+public class InsideListviewAdapter extends BaseCacheListAdapter<Discover> {
 
 	public InsideListviewAdapter(Context context) {
 		super(context);
@@ -26,17 +27,22 @@ public class InsideListviewAdapter extends BaseCacheListAdapter<LehuigoHomeDataI
 			holder.imageView = (ImageView) convertView
 					.findViewById(R.id.item_image);
 			holder.name = (TextView) convertView.findViewById(R.id.item_name);
-			holder.describe = (TextView) convertView
+			holder.item_describe = (TextView) convertView
 					.findViewById(R.id.item_describe);
+			holder.tv_middlen = (TextView) convertView
+					.findViewById(R.id.tv_middlen);
+			holder.tv_count = (TextView) convertView
+					.findViewById(R.id.tv_count);
 			convertView.setTag(holder);
 		} else {
 			holder = (Holder) convertView.getTag();
 		}
 		holder.name.setText(getItem(position).getTitle());
-		// holder.describe.setText(getItem(position).getContent());
-		// setCacheImage(holder.imageView,
-		// getItem(position).getImgageUrlsmall(),
-		// R.drawable.loading_bg_img_item);
+		holder.item_describe.setText(getItem(position).getIntroduction());
+		holder.tv_middlen.setText(getItem(position).getMiddlen());
+		holder.tv_count.setText(getItem(position).getCount());
+		setCacheImage(holder.imageView, getItem(position).getPicpath(),
+				R.drawable.loading_bg_img_item);
 
 		return convertView;
 	}
@@ -49,7 +55,9 @@ public class InsideListviewAdapter extends BaseCacheListAdapter<LehuigoHomeDataI
 	static class Holder {
 		ImageView imageView;
 		TextView name;
-		TextView describe;
+		TextView item_describe;
+		TextView tv_middlen;
+		TextView tv_count;
 	}
 
 }

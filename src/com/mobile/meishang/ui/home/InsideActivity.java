@@ -151,6 +151,10 @@ public class InsideActivity extends MActivity implements
 				Bundle bundle = new Bundle();
 				bundle.putString("title", mGridviewAdapter.getItem(position)
 						.getName());
+				bundle.putString("smoduleid", mGridviewAdapter
+						.getItem(position).getSmoduleid());
+				bundle.putString("moduleid", mGridviewAdapter.getItem(position)
+						.getModuleid());
 				goActivity(TypeActivity.class, bundle);
 
 			}
@@ -182,7 +186,7 @@ public class InsideActivity extends MActivity implements
 				Bundle bundle = new Bundle();
 				position -= 2;
 				bundle.putString("projectid", mListviewAdapter
-						.getItem(position).getPurchasedid());
+						.getItem(position).getProjectid());
 				goActivity(ProjectDiscoverDetailActivity.class, bundle);
 			}
 		});
