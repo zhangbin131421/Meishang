@@ -258,7 +258,7 @@ public class ProjectDiscoverDetailActivity extends MActivity implements
 		Bundle bundle = new Bundle();
 		switch (v.getId()) {
 		case R.id.flayout_voice_introduce:
-			showToast("语音介绍");
+			showToast("语音介绍加载中，请稍等！");
 			// if (player.isPlaying()) {
 			// player.pause();
 			// } else {
@@ -266,7 +266,8 @@ public class ProjectDiscoverDetailActivity extends MActivity implements
 
 				@Override
 				public void run() {
-					player.playUrl("http://abv.cn/music/光辉岁月.mp3");
+					// player.playUrl("http://abv.cn/music/光辉岁月.mp3");
+					player.playUrl(discover.getPresent());
 				}
 			}).start();
 			// }
