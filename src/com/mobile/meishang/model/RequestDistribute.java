@@ -82,4 +82,6 @@ public class RequestDistribute {
 	public static final int SHIPPING_ADDRESS_GET = 6014;//
 	public static final int CATEGORY = 6015;//
 	public static final int HISTORY_BID = 6016;//
+	public static final int INFOLIST = 6017;//
+	public static final int INFO_DETAIL = 6018;//
 }

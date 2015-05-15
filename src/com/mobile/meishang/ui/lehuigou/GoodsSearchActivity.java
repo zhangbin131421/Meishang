@@ -16,7 +16,6 @@ import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.FilterListAdapter;
 import com.mobile.meishang.adapter.GoodsListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
-import com.mobile.meishang.core.request.GoodsListRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.CategoryFilter;
 import com.mobile.meishang.model.bean.Goods;
@@ -189,8 +188,6 @@ public class GoodsSearchActivity extends MActivity implements ExceptionHandler,
 	@Override
 	public void retryAgain(View v) {
 		// mNoDataRLayout.setVisibility(View.GONE);
-		getSupportLoaderManager().restartLoader(RequestDistribute.GOODS_LIST,
-				mBundle, new GoodsListRequest(this));
 	}
 
 	private List<CategoryFilter> getFiterDataLeft() {

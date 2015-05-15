@@ -8,17 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.bean.Goods;
+import com.mobile.meishang.model.Infomation;
 
-public class InfoListviewAdapter extends BaseCacheListAdapter<Goods> {
+public class InfoListviewAdapter extends BaseCacheListAdapter<Infomation> {
 
 	public InfoListviewAdapter(Context context) {
 		super(context);
-	}
-
-	@Override
-	public int getCount() {
-		return 10;
 	}
 
 	@Override
@@ -41,15 +36,11 @@ public class InfoListviewAdapter extends BaseCacheListAdapter<Goods> {
 		} else {
 			holder = (Holder) convertView.getTag();
 		}
-		// holder.name.setText(getItem(position).getTitle());
-		// holder.describe.setText(getItem(position).getContent());
-		// holder.currentPrice.setText("￥"
-		// +getItem(position).getCurrentPrice());
-		// holder.originalPrice.setText("￥" + getItem(position).getOldPrice());
-		// holder.originalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-		// setCacheImage(holder.imageView,
-		// getItem(position).getImgageUrlsmall(),
-		// R.drawable.loading_bg_img_item);
+		holder.tv_item_name.setText(getItem(position).getTitle());
+		holder.tv_item_describe.setText(getItem(position).getContext());
+		holder.tv_item_time.setText(getItem(position).getCreatetime());
+		setCacheImage(holder.image_item, getItem(position).getPicpath(),
+				R.drawable.loading_bg_img_item);
 
 		return convertView;
 	}

@@ -16,10 +16,11 @@ import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.InfoFilterLvAdapter;
 import com.mobile.meishang.adapter.InfoListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
-import com.mobile.meishang.core.request.GoodsListRequest;
+import com.mobile.meishang.core.request.InfoListRequest;
+import com.mobile.meishang.model.Infomation;
+import com.mobile.meishang.model.InfomationList;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.Category;
-import com.mobile.meishang.model.bean.Goods;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.mobile.meishang.utils.view.pulltorefresh.XListView;
@@ -33,7 +34,6 @@ public class InfoListActivity extends MActivity implements
 	private TextView tvNoData;
 	private XListView mListView;
 	private InfoListviewAdapter mListviewAdapter;
-	private List<Goods> mGoodsListing;
 	private Bundle mBundle;
 	private LinearLayout llayout_listview;
 	private InfoFilterLvAdapter mInfoFilterLvAdapter;
@@ -71,17 +71,20 @@ public class InfoListActivity extends MActivity implements
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
 				Bundle bundle = new Bundle();
-				// bundle.putString("id", mGoodsListing.get(--position)
-				// .getGoodsid());
-				 goActivity(InfoDetailActivity.class, bundle);
+				bundle.putString("infoid", mListviewAdapter.getItem(--position)
+						.getInfoid());
+				goActivity(InfoDetailActivity.class, bundle);
 			}
 		});
 		llayout_listview = (LinearLayout) findViewById(R.id.llayout_listview);
 		lv_a = (ListView) findViewById(R.id.lv_a);
 		lv_b = (ListView) findViewById(R.id.lv_b);
+		net();
+	}
 
-//		getSupportLoaderManager().restartLoader(RequestDistribute.GOODS_LIST,
-//				mBundle, new GoodsListRequest(this));
+	private void net() {
+		getSupportLoaderManager().restartLoader(RequestDistribute.INFOLIST,
+				mBundle, new InfoListRequest(this));
 	}
 
 	@Override
@@ -118,16 +121,12 @@ public class InfoListActivity extends MActivity implements
 		mNoDataRLayout.setVisibility(View.GONE);
 		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
-		case RequestDistribute.GOODS_LIST:
-			mGoodsListing = (List<Goods>) data;
-			if (mGoodsListing.size() > 0) {
-
-				mListviewAdapter.clear();
-				mListviewAdapter.addAll(mGoodsListing);
-				mListviewAdapter.notifyDataSetChanged();
-			} else {
-				mNoDataRLayout.setVisibility(View.VISIBLE);
-			}
+		case RequestDistribute.INFOLIST:
+			InfomationList infoList = (InfomationList) data;
+			List<Infomation> list = infoList.getList();
+			mListviewAdapter.clear();
+			mListviewAdapter.addAll(list);
+			mListviewAdapter.notifyDataSetChanged();
 			break;
 
 		default:
@@ -142,7 +141,7 @@ public class InfoListActivity extends MActivity implements
 		this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				if (identity == RequestDistribute.GOODS_LIST) {
+				if (identity == RequestDistribute.INFOLIST) {
 					mLoadingView.showRetryBtn(true);
 					showToast(e.getMessage());
 				}
@@ -152,9 +151,7 @@ public class InfoListActivity extends MActivity implements
 
 	@Override
 	public void retryAgain(View v) {
-		getSupportLoaderManager().restartLoader(RequestDistribute.GOODS_LIST,
-				null, new GoodsListRequest(this));
+		net();
 
 	}
-
 }

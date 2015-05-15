@@ -81,7 +81,7 @@ public abstract class BaseCacheListAdapter<T> extends BaseListAdapter<T>
 		// The ImageWorker takes care of loading images into our ImageView
 		// children asynchronously
 		mImageWorker = new ImageFetcher(context,
-				MApplication.getLongest());
+				MApplication.getInstance().getLongest());
 		mImageWorker.setImageCache(MApplication.getImageLruCache());
 	}
 
@@ -98,7 +98,7 @@ public abstract class BaseCacheListAdapter<T> extends BaseListAdapter<T>
 		// The ImageWorker takes care of loading images into our ImageView
 		// children asynchronously
 		mImageWorker = new ImageFetcher(context,
-				MApplication.getLongest());
+				MApplication.getInstance().getLongest());
 		mImageWorker.setImageCache(MApplication.getImageLruCache());
 		this.mAdapterView = view;
 		initAdapterView(context);

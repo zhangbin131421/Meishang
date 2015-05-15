@@ -33,7 +33,8 @@ public class LehuigouHomeExpandAdapter extends BaseExpandableListAdapter {
 	 */
 	public LehuigouHomeExpandAdapter(Context context) {
 		mContext = context;
-		mImageWorker = new ImageFetcher(context, MApplication.getLongest());
+		mImageWorker = new ImageFetcher(context, MApplication.getInstance()
+				.getLongest());
 		mImageWorker.setImageCache(MApplication.getImageLruCache());
 		mGroups = new ArrayList<LehuigoHomeData>();
 		mInflater = LayoutInflater.from(mContext);

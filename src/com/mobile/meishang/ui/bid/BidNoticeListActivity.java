@@ -13,7 +13,6 @@ import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.BidNoticeListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
-import com.mobile.meishang.core.request.GoodsListRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.Goods;
 import com.mobile.meishang.utils.view.LoadingView;
@@ -63,12 +62,12 @@ public class BidNoticeListActivity extends MActivity implements
 				Bundle bundle = new Bundle();
 				// bundle.putString("id", mGoodsListing.get(--position)
 				// .getGoodsid());
-				 goActivity(BidDetailActivity.class, bundle);
+				goActivity(BidDetailActivity.class, bundle);
 			}
 		});
 
-//		getSupportLoaderManager().restartLoader(RequestDistribute.GOODS_LIST,
-//				mBundle, new GoodsListRequest(this));
+		// getSupportLoaderManager().restartLoader(RequestDistribute.GOODS_LIST,
+		// mBundle, new GoodsListRequest(this));
 	}
 
 	@Override
@@ -139,8 +138,6 @@ public class BidNoticeListActivity extends MActivity implements
 
 	@Override
 	public void retryAgain(View v) {
-		getSupportLoaderManager().restartLoader(RequestDistribute.GOODS_LIST,
-				null, new GoodsListRequest(this));
 
 	}
 

@@ -50,6 +50,8 @@ public class MApplication extends Application {
 				+ displayMetrics.heightPixels + " density "
 				+ displayMetrics.density + " " + displayMetrics.densityDpi);
 
+		mLongest = mCurrentHeightPixels > mCurrentWidthPixels ? mCurrentHeightPixels
+				: mCurrentWidthPixels;
 		// 每个星期清空一下磁盘
 		if (mConfig.getLastUpdateTime() == 0) {
 			mImageLruCache = ImageLruCache.findOrCreateCache(this, "images",
@@ -88,11 +90,11 @@ public class MApplication extends Application {
 		mImageLruCache = imageLruCache;
 	}
 
-	public static void setLongest(int l) {
-		mLongest = l;
-	}
+	// public static void setLongest(int l) {
+	// mLongest = l;
+	// }
 
-	public static int getLongest() {
+	public int getLongest() {
 		return mLongest;
 	}
 
