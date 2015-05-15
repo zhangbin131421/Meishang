@@ -120,18 +120,19 @@ public class ShoppingOrderActivity extends MActivity implements
 			default:
 				break;
 			}
-		} else {
-			switch (arg0) {
-			case 0:
-				llayout_head.setVisibility(View.GONE);
-				btn_add_address.setVisibility(View.VISIBLE);
-				break;
-
-			default:
-				break;
-			}
-
-		}
+		} 
+//		else {
+//			switch (arg0) {
+//			case 0:
+//				llayout_head.setVisibility(View.GONE);
+//				btn_add_address.setVisibility(View.VISIBLE);
+//				break;
+//
+//			default:
+//				break;
+//			}
+//
+//		}
 	}
 
 	public void onclick(View v) {
