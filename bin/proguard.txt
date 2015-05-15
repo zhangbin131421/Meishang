@@ -55,9 +55,6 @@
 # view res/layout/notification_custom_builder.xml #generated:52
 -keep class android.widget.DateTimeView { <init>(...); }
 
-# view AndroidManifest.xml #generated:210
--keep class com.baidu.location.f { <init>(...); }
-
 # view res/layout/umeng_socialize_comment_detail.xml #generated:23
 -keep class com.google.android.maps.MapView { <init>(...); }
 
@@ -81,9 +78,6 @@
 
 # view AndroidManifest.xml #generated:147
 -keep class com.mobile.meishang.ui.ad.AlipayActivity { <init>(...); }
-
-# view AndroidManifest.xml #generated:206
--keep class com.mobile.meishang.ui.baidu.LocationActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:105
 -keep class com.mobile.meishang.ui.bid.BidDetailActivity { <init>(...); }

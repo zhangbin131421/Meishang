@@ -203,7 +203,7 @@
             android:name=".ui.login.RetrievedResetPasswordActivity"
             android:screenOrientation="portrait" />
         <!-- 百度 -->
-        <activity
+      <!--   <activity
             android:name=".ui.baidu.LocationActivity"
             android:screenOrientation="portrait" />
 
@@ -214,7 +214,7 @@
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="zZBgtKujgjRCLUeFh2yqzCey" />
+            android:value="zZBgtKujgjRCLUeFh2yqzCey" /> -->
         <!-- ###################注册SDK使用的Activity###################### -->
         <!-- 分享编辑页 -->
         <activity
