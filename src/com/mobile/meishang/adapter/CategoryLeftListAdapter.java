@@ -12,6 +12,7 @@ import com.mobile.meishang.model.Module;
 public class CategoryLeftListAdapter extends BaseListAdapter<Module> {
 
 	private Context mContext;
+	private int mPosition = 0;
 
 	public CategoryLeftListAdapter(Context context) {
 		super();
@@ -32,12 +33,25 @@ public class CategoryLeftListAdapter extends BaseListAdapter<Module> {
 			holder = (Holder) convertView.getTag();
 		}
 		holder.name.setText(getItem(position).getModulename());
+		if (mPosition == position) {
+			holder.name.setSelected(true);
+		} else {
+			holder.name.setSelected(false);
+		}
 		return convertView;
 	}
 
 	static class Holder {
 		// ImageView imageView;
 		TextView name;
+	}
+
+	public int getmPosition() {
+		return mPosition;
+	}
+
+	public void setmPosition(int mPosition) {
+		this.mPosition = mPosition;
 	}
 
 }

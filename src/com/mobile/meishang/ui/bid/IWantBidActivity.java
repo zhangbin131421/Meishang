@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,7 +22,12 @@ import com.mobile.meishang.model.RequestDistribute;
 import com.umeng.analytics.MobclickAgent;
 
 public class IWantBidActivity extends MActivity {
-
+	private TextView tv_choose_category;
+	private EditText etv_title;
+	private EditText etv_phone;
+	private EditText etv_address;
+	private EditText etv_feature;
+	private EditText etv_introduce;
 	private LinearLayout llayout;
 	private ListView listview_left;
 	private ListView listview_right;
@@ -30,6 +36,8 @@ public class IWantBidActivity extends MActivity {
 	// private List<CategoryFilter> filterLeft;
 	// private List<CategoryFilter> filterRight;
 	private List<Module> moduleList;
+	private String moduleid;
+	private String smoduleid;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +48,12 @@ public class IWantBidActivity extends MActivity {
 		TextView tv_top_right = (TextView) findViewById(R.id.tv_top_right);
 		tv_top_right.setText("历史竞标");
 		tv_top_right.setVisibility(View.VISIBLE);
+		tv_choose_category = (TextView) findViewById(R.id.tv_choose_category);
+		etv_title = (EditText) findViewById(R.id.etv_title);
+		etv_phone = (EditText) findViewById(R.id.etv_phone);
+		etv_address = (EditText) findViewById(R.id.etv_address);
+		etv_feature = (EditText) findViewById(R.id.etv_feature);
+		etv_introduce = (EditText) findViewById(R.id.etv_introduce);
 		llayout = (LinearLayout) findViewById(R.id.llayout);
 		listview_left = (ListView) findViewById(R.id.listview_left);
 		listview_left.setOnItemClickListener(new OnItemClickListener() {
@@ -47,12 +61,27 @@ public class IWantBidActivity extends MActivity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
+				moduleid = filterLeftAdapter.getItem(arg2).getModuleid();
+				filterLeftAdapter.setmPosition(arg2);
+				filterLeftAdapter.notifyDataSetChanged();
 				filterRightAdapter.clear();
 				filterRightAdapter.addAll(moduleList.get(arg2).getList());
 				filterRightAdapter.notifyDataSetChanged();
 			}
 		});
 		listview_right = (ListView) findViewById(R.id.listview_right);
+		listview_right.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				smoduleid = filterRightAdapter.getItem(position).getSmoduleid();
+				tv_choose_category.setText(filterRightAdapter.getItem(position)
+						.getName());
+				filterRightAdapter.setmPosition(position);
+
+			}
+		});
 		getSupportLoaderManager().initLoader(RequestDistribute.CATEGORY, null,
 				new CategoryRequest(this));
 	}
@@ -142,6 +171,28 @@ public class IWantBidActivity extends MActivity {
 		default:
 			break;
 		}
+	}
+
+	private void netPublished() {
+		// title 标题item：项目特色
+		// prodesc项目介绍 proaddress项目地址,userid 用户编号
+		// smoduleid小类型编号 phone:联系手机号码 moduleid 大类型编号
+		String title = etv_title.getEditableText().toString();
+		String phone = etv_phone.getEditableText().toString();
+		String proaddress = etv_address.getEditableText().toString();
+		String item = etv_feature.getEditableText().toString();
+		String prodesc = etv_introduce.getEditableText().toString();
+
+		Bundle bundle = new Bundle();
+		bundle.putString("moduleid", moduleid);
+		bundle.putString("smoduleid", smoduleid);
+		bundle.putString("title", title);
+		bundle.putString("phone", phone);
+		bundle.putString("proaddress", proaddress);
+		bundle.putString("item", item);
+		bundle.putString("prodesc", prodesc);
+		getSupportLoaderManager().restartLoader(RequestDistribute.PUBLISHED,
+				bundle, new CategoryRequest(this));
 	}
 
 }

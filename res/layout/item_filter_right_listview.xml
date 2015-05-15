@@ -8,10 +8,9 @@
         android:id="@+id/tv_name_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_white_gray_selected"
         android:padding="12dp"
         android:singleLine="true"
         android:text=""
-        android:textColor="@color/font_black" />
+        android:textColor="@drawable/font_gray_red_selector" />
 
 </LinearLayout>

@@ -85,4 +85,5 @@ public class RequestDistribute {
 	public static final int INFOLIST = 6017;//
 	public static final int INFO_DETAIL = 6018;//
 	public static final int Type_ACTITY = 6019;//
+	public static final int PUBLISHED = 6020;//
 }
