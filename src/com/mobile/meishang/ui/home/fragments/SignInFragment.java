@@ -30,6 +30,7 @@ import com.umeng.analytics.MobclickAgent;
 public class SignInFragment extends MFragment implements OnClickListener,
 		ExceptionHandler, LoadEvent {
 	private LoadingView mLoadingView;
+	private TextView tv_count;
 	private TextView tv_integral;
 	private Button btn_sign;
 	private ListView listview;
@@ -60,6 +61,7 @@ public class SignInFragment extends MFragment implements OnClickListener,
 		listview = (ListView) view.findViewById(R.id.listview);
 		View headView = LayoutInflater.from(mContext).inflate(
 				R.layout.layout_sign_in_head, null);
+		tv_count = (TextView) headView.findViewById(R.id.tv_count);
 		tv_integral = (TextView) headView.findViewById(R.id.tv_integral);
 		headView.findViewById(R.id.tv_go_shopping).setOnClickListener(this);
 		btn_sign = (Button) headView.findViewById(R.id.btn_sign);
@@ -129,6 +131,10 @@ public class SignInFragment extends MFragment implements OnClickListener,
 			adapter.clear();
 			adapter.addAll(signInFragmentData.getmList());
 			adapter.notifyDataSetChanged();
+			tv_count.setText("已有" + signInFragmentData.getCount() + "签到");
+			tv_integral.setText(MApplication.getInstance().getLogin()
+					.getIntegral()
+					+ "积分");
 			break;
 
 		default:

@@ -205,7 +205,7 @@
 # view res/layout/layout_inside_hview.xml #generated:9
 -keep class com.mobile.meishang.ui.widget.NoScrollGridView { <init>(...); }
 
-# view res/layout/layout_sign_in_head.xml #generated:104
+# view res/layout/layout_sign_in_head.xml #generated:105
 -keep class com.mobile.meishang.ui.widget.SignProgressBar { <init>(...); }
 
 # view res/layout/activity_shipping_address.xml #generated:61

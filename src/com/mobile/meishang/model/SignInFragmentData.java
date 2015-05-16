@@ -11,13 +11,14 @@ import com.mobile.meishang.model.bean.Head;
 
 public class SignInFragmentData extends Head {
 
+	private int count;
 	private List<LehuigoHomeDataItem> mList;
 
 	public SignInFragmentData() {
 	}
 
 	public SignInFragmentData(JSONObject json) throws JSONException {
-
+		count = getJsonIntValue(json, "count");
 		JSONArray jsonArray = getJsonArray(json, "list");
 		mList = new ArrayList<LehuigoHomeDataItem>();
 		if (jsonArray != null) {
@@ -27,6 +28,10 @@ public class SignInFragmentData extends Head {
 			}
 
 		}
+	}
+
+	public int getCount() {
+		return count;
 	}
 
 	public List<LehuigoHomeDataItem> getmList() {
