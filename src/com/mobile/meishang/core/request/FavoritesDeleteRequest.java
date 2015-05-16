@@ -38,6 +38,8 @@ public class FavoritesDeleteRequest implements
 		mHttpRequest.addPostParameter("type", bundle.getString("type"));
 		mHttpRequest.addPostParameter("collectionids",
 				bundle.getString("collectionids"));
+		mHttpRequest.addPostParameter("userid", MApplication.getInstance()
+				.getLogin().getUserId());
 		HeadLoader loader = new HeadLoader(mActivity, mHttpRequest);
 		if (mFragment == null) {
 			loader.setExceptionHandler(mActivity);

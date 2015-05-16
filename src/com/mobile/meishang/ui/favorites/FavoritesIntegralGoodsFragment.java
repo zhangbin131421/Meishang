@@ -16,10 +16,12 @@ import com.mobile.meishang.MFragment;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.FavoritesIntegralGoodsGviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
+import com.mobile.meishang.core.request.FavoritesDeleteRequest;
 import com.mobile.meishang.core.request.FavoritesListRequest;
 import com.mobile.meishang.model.FavoritesList;
 import com.mobile.meishang.model.LehuigoDetailData;
 import com.mobile.meishang.model.RequestDistribute;
+import com.mobile.meishang.model.bean.Head;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
@@ -101,6 +103,11 @@ public class FavoritesIntegralGoodsFragment extends MFragment implements
 			mAdapter.notifyDataSetChanged();
 			break;
 		case RequestDistribute.FAVORITES_LIST_DELETE:
+			Head head = (Head) data;
+			if (head.isSuccess()) {
+				net();
+			}
+			showToast(head.getMessage());
 			break;
 
 		default:
@@ -121,20 +128,18 @@ public class FavoritesIntegralGoodsFragment extends MFragment implements
 			List<Integer> checkPositions = mAdapter.getCheckPositions();
 			Collections.sort(checkPositions);
 			for (int i = 0; i < checkPositions.size(); i++) {
-				System.out.println("-----" + checkPositions.get(i));
 				int position = checkPositions.get(i);
 				collectionids.append(lehuigoDetailDatas.get(position)
 						.getPurchasedid());
 				collectionids.append(",");
 			}
-			showToast("删除");
-			// Bundle bundle = new Bundle();
-			// bundle.putString("type", "1");
-			// bundle.putString("collectionids",
-			// collectionids.substring(0, collectionids.length() - 1));
-			// getActivity().getSupportLoaderManager().restartLoader(
-			// RequestDistribute.FAVORITES_LIST_DELETE, bundle,
-			// new FavoritesDeleteRequest(this));
+			Bundle bundle = new Bundle();
+			bundle.putString("type", "1");
+			bundle.putString("collectionids",
+					collectionids.substring(0, collectionids.length() - 1));
+			getActivity().getSupportLoaderManager().restartLoader(
+					RequestDistribute.FAVORITES_LIST_DELETE, bundle,
+					new FavoritesDeleteRequest(this));
 			break;
 		default:
 			break;
