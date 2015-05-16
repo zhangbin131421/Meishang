@@ -1,6 +1,5 @@
 package com.mobile.meishang.ui.favorites;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -16,12 +15,15 @@ import com.mobile.meishang.adapter.FavoritesProjectListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.FavoritesListRequest;
 import com.mobile.meishang.model.Discover;
+import com.mobile.meishang.model.FavoritesList;
 import com.mobile.meishang.model.RequestDistribute;
+import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
 
 public class FavoritesProjectListFragment extends MFragment implements
 		ExceptionHandler, LoadEvent {
+	private LoadingView mLoadingView;
 	private ListView listview;
 	private FavoritesProjectListviewAdapter mAdapter;
 	private List<Discover> discovers;
@@ -34,7 +36,6 @@ public class FavoritesProjectListFragment extends MFragment implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		discovers = new ArrayList<Discover>();
 	}
 
 	@Override
@@ -42,6 +43,8 @@ public class FavoritesProjectListFragment extends MFragment implements
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_favorites_info_listview,
 				null);
+		mLoadingView = (LoadingView) view.findViewById(R.id.loading);
+		mLoadingView.setLoadEvent(this);
 		listview = (ListView) view.findViewById(R.id.listview);
 		return view;
 	}
@@ -51,18 +54,18 @@ public class FavoritesProjectListFragment extends MFragment implements
 		super.onActivityCreated(savedInstanceState);
 		mAdapter = new FavoritesProjectListviewAdapter(getActivity());
 		listview.setAdapter(mAdapter);
-		mAdapter.clear();
-		mAdapter.addAll(discovers);
-		mAdapter.notifyDataSetChanged();
-		// net();
+		// mAdapter.clear();
+		// mAdapter.addAll(discovers);
+		// mAdapter.notifyDataSetChanged();
+		net();
 
 	}
 
 	private void net() {
-		Bundle bundle = new Bundle();
-		bundle.putString("", "");
+		// Bundle bundle = new Bundle();
+		// bundle.putString("", "");
 		getActivity().getSupportLoaderManager().restartLoader(
-				RequestDistribute.FAVORITES_LIST, bundle,
+				RequestDistribute.FAVORITES_LIST, null,
 				new FavoritesListRequest(this));
 	}
 
@@ -85,18 +88,19 @@ public class FavoritesProjectListFragment extends MFragment implements
 
 	@Override
 	public void updateUI(int identity, Object data) {
+		mLoadingView.setVisibility(View.GONE);
+		switch (identity) {
+		case RequestDistribute.FAVORITES_LIST:
+			FavoritesList favoritesList = (FavoritesList) data;
+			discovers = favoritesList.getDiscovers();
+			mAdapter.clear();
+			mAdapter.addAll(discovers);
+			mAdapter.notifyDataSetChanged();
+			break;
 
-		// switch (identity) {
-		// case RequestDistribute.FAVORITES_LIST:
-		// FavoritesList favoritesList = (FavoritesList) data;
-		// mAdapter.clear();
-		// mAdapter.addAll(favoritesList.getmList());
-		// mAdapter.notifyDataSetChanged();
-		// break;
-		//
-		// default:
-		// break;
-		// }
+		default:
+			break;
+		}
 	}
 
 	@Override
@@ -107,10 +111,6 @@ public class FavoritesProjectListFragment extends MFragment implements
 	@Override
 	public void retryAgain(View v) {
 
-	}
-
-	public void setDiscovers(List<Discover> discovers) {
-		this.discovers = discovers;
 	}
 
 }

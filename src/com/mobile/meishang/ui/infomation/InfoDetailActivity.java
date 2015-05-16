@@ -9,12 +9,14 @@ import com.mobile.meishang.MActivity;
 import com.mobile.meishang.MApplication;
 import com.mobile.meishang.R;
 import com.mobile.meishang.core.error.ExceptionHandler;
+import com.mobile.meishang.core.request.FavoritesAddRequest;
 import com.mobile.meishang.core.request.InfoDetailRequest;
 import com.mobile.meishang.imagecache.ImageFetcher;
 import com.mobile.meishang.imagecache.ImageWorker;
 import com.mobile.meishang.model.Infomation;
 import com.mobile.meishang.model.InfomationDetail;
 import com.mobile.meishang.model.RequestDistribute;
+import com.mobile.meishang.ui.login.LoginActivity;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
@@ -106,6 +108,28 @@ public class InfoDetailActivity extends MActivity implements ExceptionHandler,
 	@Override
 	public void retryAgain(View v) {
 		net();
+	}
+
+	@Override
+	public void onclick(View v) {
+		super.onclick(v);
+		Bundle bundle = new Bundle();
+		switch (v.getId()) {
+		case R.id.img_favorites:
+			if (MApplication.getInstance().checkLogin()) {
+				// bundle.putString("objectid", discover.getProjectid());
+				bundle.putString("type", "3");
+				getSupportLoaderManager().restartLoader(
+						RequestDistribute.FAVORITES_ADD, bundle,
+						new FavoritesAddRequest(this));
+			} else {
+				goActivity(LoginActivity.class, null);
+			}
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package com.mobile.meishang.ui.favorites;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,13 +17,16 @@ import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.FavoritesIntegralGoodsGviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.FavoritesListRequest;
+import com.mobile.meishang.model.FavoritesList;
 import com.mobile.meishang.model.LehuigoDetailData;
 import com.mobile.meishang.model.RequestDistribute;
+import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
 
 public class FavoritesIntegralGoodsFragment extends MFragment implements
 		OnClickListener, ExceptionHandler, LoadEvent {
+	private LoadingView mLoadingView;
 	private GridView gridview;
 	private FrameLayout flayout_delete;
 	private FavoritesIntegralGoodsGviewAdapter mAdapter;
@@ -38,7 +40,6 @@ public class FavoritesIntegralGoodsFragment extends MFragment implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		lehuigoDetailDatas = new ArrayList<LehuigoDetailData>();
 	}
 
 	@Override
@@ -46,6 +47,8 @@ public class FavoritesIntegralGoodsFragment extends MFragment implements
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(
 				R.layout.fragment_favorites_integral_goods, null);
+		mLoadingView = (LoadingView) view.findViewById(R.id.loading);
+		mLoadingView.setLoadEvent(this);
 		gridview = (GridView) view.findViewById(R.id.gridview);
 		flayout_delete = (FrameLayout) view.findViewById(R.id.flayout_delete);
 		flayout_delete.setOnClickListener(this);
@@ -57,18 +60,15 @@ public class FavoritesIntegralGoodsFragment extends MFragment implements
 		super.onActivityCreated(savedInstanceState);
 		mAdapter = new FavoritesIntegralGoodsGviewAdapter(getActivity());
 		gridview.setAdapter(mAdapter);
-		mAdapter.clear();
-		mAdapter.addAll(lehuigoDetailDatas);
-		mAdapter.notifyDataSetChanged();
-		// net();
+		net();
 
 	}
 
 	private void net() {
-		Bundle bundle = new Bundle();
-		bundle.putString("", "");
+		// Bundle bundle = new Bundle();
+		// bundle.putString("", "");
 		getActivity().getSupportLoaderManager().restartLoader(
-				RequestDistribute.FAVORITES_LIST, bundle,
+				RequestDistribute.FAVORITES_LIST_INTEGRAL_GOODS, null,
 				new FavoritesListRequest(this));
 	}
 
@@ -91,14 +91,15 @@ public class FavoritesIntegralGoodsFragment extends MFragment implements
 
 	@Override
 	public void updateUI(int identity, Object data) {
-
+		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
-		// case RequestDistribute.FAVORITES_LIST:
-		// FavoritesList favoritesList = (FavoritesList) data;
-		// mAdapter.clear();
-		// mAdapter.addAll(favoritesList.getmList());
-		// mAdapter.notifyDataSetChanged();
-		// break;
+		case RequestDistribute.FAVORITES_LIST_INTEGRAL_GOODS:
+			FavoritesList favoritesList = (FavoritesList) data;
+			lehuigoDetailDatas = favoritesList.getLehuigoDetailDatas();
+			mAdapter.clear();
+			mAdapter.addAll(lehuigoDetailDatas);
+			mAdapter.notifyDataSetChanged();
+			break;
 		case RequestDistribute.FAVORITES_LIST_DELETE:
 			break;
 
@@ -155,10 +156,6 @@ public class FavoritesIntegralGoodsFragment extends MFragment implements
 	@Override
 	public void retryAgain(View v) {
 
-	}
-
-	public void setLehuigoDetailDatas(List<LehuigoDetailData> lehuigoDetailDatas) {
-		this.lehuigoDetailDatas = lehuigoDetailDatas;
 	}
 
 }

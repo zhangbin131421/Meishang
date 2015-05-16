@@ -287,8 +287,8 @@ public class ProjectDiscoverDetailActivity extends MActivity implements
 		case R.id.tv_favorites:
 
 			if (MApplication.getInstance().checkLogin()) {
-				bundle.putString("objectid", "1");
-				bundle.putString("type", "1");
+				bundle.putString("objectid", discover.getProjectid());
+				bundle.putString("type", "2");
 				getSupportLoaderManager().restartLoader(
 						RequestDistribute.FAVORITES_ADD, bundle,
 						new FavoritesAddRequest(this));

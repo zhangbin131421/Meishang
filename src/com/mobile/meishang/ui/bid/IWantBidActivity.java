@@ -15,6 +15,7 @@ import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.CategoryLeftListAdapter;
 import com.mobile.meishang.adapter.CategoryRightListAdapter;
+import com.mobile.meishang.core.request.BidPublishRequest;
 import com.mobile.meishang.core.request.CategoryRequest;
 import com.mobile.meishang.model.Module;
 import com.mobile.meishang.model.ModuleList;
@@ -192,7 +193,7 @@ public class IWantBidActivity extends MActivity {
 		bundle.putString("item", item);
 		bundle.putString("prodesc", prodesc);
 		getSupportLoaderManager().restartLoader(RequestDistribute.PUBLISHED,
-				bundle, new CategoryRequest(this));
+				bundle, new BidPublishRequest(this));
 	}
 
 }

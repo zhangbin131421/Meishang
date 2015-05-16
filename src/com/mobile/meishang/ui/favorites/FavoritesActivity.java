@@ -12,14 +12,13 @@ import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.FavoritesListRequest;
-import com.mobile.meishang.model.FavoritesList;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 
 public class FavoritesActivity extends MActivity implements ExceptionHandler,
 		LoadEvent {
-	private LoadingView mLoadingView;
+
 	private TextView tv_top_right;
 	private TextView tv_tab_a;
 	private TextView tv_tab_b;
@@ -28,7 +27,8 @@ public class FavoritesActivity extends MActivity implements ExceptionHandler,
 	private FavoritesProjectListFragment projectListFragment;
 	private FavoritesInfoListFragment infoListFragment;
 	private FragmentManager mFragmentManager;
-	private FavoritesList favoritesList;
+
+	// private FavoritesList favoritesList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +39,14 @@ public class FavoritesActivity extends MActivity implements ExceptionHandler,
 		tv_top_right = (TextView) findViewById(R.id.tv_top_right);
 		tv_top_right.setText("编辑");
 		tv_top_right.setVisibility(View.VISIBLE);
-		mLoadingView = (LoadingView) findViewById(R.id.loading);
-		mLoadingView.setLoadEvent(this);
 		tv_tab_a = (TextView) findViewById(R.id.tv_tab_a);
 		tv_tab_b = (TextView) findViewById(R.id.tv_tab_b);
 		tv_tab_c = (TextView) findViewById(R.id.tv_tab_c);
 		mFragmentManager = getSupportFragmentManager();
-		net();
+		tv_tab_a.setSelected(true);
+		integralGoodsFragment = new FavoritesIntegralGoodsFragment();
+		addFragment(integralGoodsFragment);
+		showFragment(integralGoodsFragment);
 	}
 
 	@Override
@@ -161,7 +162,6 @@ public class FavoritesActivity extends MActivity implements ExceptionHandler,
 			tv_tab_c.setSelected(false);
 			if (projectListFragment == null) {
 				projectListFragment = new FavoritesProjectListFragment();
-				projectListFragment.setDiscovers(favoritesList.getDiscovers());
 				addFragment(projectListFragment);
 			}
 			showFragment(projectListFragment);
@@ -175,7 +175,6 @@ public class FavoritesActivity extends MActivity implements ExceptionHandler,
 			tv_tab_c.setSelected(true);
 			if (infoListFragment == null) {
 				infoListFragment = new FavoritesInfoListFragment();
-				infoListFragment.setInfomations(favoritesList.getInfomations());
 				addFragment(infoListFragment);
 			}
 			showFragment(infoListFragment);
@@ -195,16 +194,10 @@ public class FavoritesActivity extends MActivity implements ExceptionHandler,
 	@Override
 	public void updateUI(int identity, Object data) {
 		// super.updateUI(identity, data);
-		mLoadingView.setVisibility(View.GONE);
+
 		switch (identity) {
 		case RequestDistribute.FAVORITES_LIST:
-			favoritesList = (FavoritesList) data;
-			tv_tab_a.setSelected(true);
-			integralGoodsFragment = new FavoritesIntegralGoodsFragment();
-			integralGoodsFragment.setLehuigoDetailDatas(favoritesList
-					.getLehuigoDetailDatas());
-			addFragment(integralGoodsFragment);
-			showFragment(integralGoodsFragment);
+
 			break;
 		default:
 			break;
@@ -215,15 +208,15 @@ public class FavoritesActivity extends MActivity implements ExceptionHandler,
 	@Override
 	public void handleException(final int identity, final Exception e) {
 		super.handleException(identity, e);
-		this.runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				if (identity == RequestDistribute.FAVORITES_LIST) {
-					mLoadingView.showRetryBtn(true);
-					showToast(e.getMessage());
-				}
-			}
-		});
+		// this.runOnUiThread(new Runnable() {
+		// @Override
+		// public void run() {
+		// if (identity == RequestDistribute.FAVORITES_LIST) {
+		// mLoadingView.showRetryBtn(true);
+		// showToast(e.getMessage());
+		// }
+		// }
+		// });
 	}
 
 	@Override
