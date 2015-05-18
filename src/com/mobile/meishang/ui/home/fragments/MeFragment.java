@@ -15,6 +15,7 @@ import com.mobile.meishang.R;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.Head;
 import com.mobile.meishang.model.bean.User;
+import com.mobile.meishang.ui.bid.MyBidPublishListActivity;
 import com.mobile.meishang.ui.choujiang.ChoujiangActivity;
 import com.mobile.meishang.ui.favorites.FavoritesActivity;
 import com.mobile.meishang.ui.login.LoginActivity;
@@ -54,6 +55,7 @@ public class MeFragment extends MFragment implements OnClickListener {
 		view.findViewById(R.id.llayout_favorites).setOnClickListener(this);
 		view.findViewById(R.id.llayout_attention).setOnClickListener(this);
 		view.findViewById(R.id.llayout_shopping_car).setOnClickListener(this);
+		view.findViewById(R.id.llayout_publish).setOnClickListener(this);
 		tv_login_status = (TextView) view.findViewById(R.id.tv_login_status);
 		llayout_login = (LinearLayout) view.findViewById(R.id.llayout_login);
 		tv_favorites_quantity = (TextView) view
@@ -150,7 +152,7 @@ public class MeFragment extends MFragment implements OnClickListener {
 			// goActivityForResult(LoginActivity.class, null,
 			// RequestDistribute.LOGIN);
 			// }
-//			goActivity(MySharedActivity.class, null);
+			// goActivity(MySharedActivity.class, null);
 			if (MApplication.getInstance().checkLogin()) {
 				goActivity(FavoritesActivity.class, null);
 
@@ -167,12 +169,21 @@ public class MeFragment extends MFragment implements OnClickListener {
 			}
 			goActivity(MyWordsActivity.class, null);
 			break;
+		case R.id.llayout_publish:
+			if (MApplication.getInstance().checkLogin()) {
+				// goActivity(MyVoucherActivity.class, null);
+				goActivity(MyBidPublishListActivity.class, null);
+			} else {
+				goActivityForResult(LoginActivity.class, null,
+						RequestDistribute.LOGIN);
+			}
+			break;
 		case R.id.tv_my_push:
 			goActivity(MyPushActivity.class, null);
 			break;
 		case R.id.tv_chou_jiang:
 			showToast("功能尚在开发中");
-			 goActivity(ChoujiangActivity.class, null);
+			goActivity(ChoujiangActivity.class, null);
 			break;
 		default:
 			break;
