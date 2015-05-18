@@ -89,4 +89,5 @@ public class RequestDistribute {
 	public static final int FAVORITES_LIST_INTEGRAL_GOODS = 6021;//
 	public static final int FAVORITES_LIST_PROJECT_GOODS = 6022;//
 	public static final int FAVORITES_LIST_INFO_GOODS = 6023;//
+	public static final int SIGN_GET_INTEGRAL = 6024;//
 }

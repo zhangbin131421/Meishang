@@ -23,6 +23,7 @@ import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.SignInFragmentData;
 import com.mobile.meishang.ui.home.SignDetailActivity;
 import com.mobile.meishang.ui.home.SignRuleActivity;
+import com.mobile.meishang.ui.lehuigou.LehuigoHomeActvity;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
@@ -151,7 +152,7 @@ public class SignInFragment extends MFragment implements OnClickListener,
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.tv_go_shopping:
-			showToast("积分商城");
+			goActivity(LehuigoHomeActvity.class, null);
 			break;
 		case R.id.btn_sign:
 			showToast("签到");

@@ -25,6 +25,7 @@ import com.mobile.meishang.adapter.PictureGalleryAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.DiscoverDetailRequest;
 import com.mobile.meishang.core.request.FavoritesAddRequest;
+import com.mobile.meishang.core.request.SignGetIntegralRequest;
 import com.mobile.meishang.model.Discover;
 import com.mobile.meishang.model.DiscoverDetail;
 import com.mobile.meishang.model.Picture;
@@ -192,6 +193,12 @@ public class SignDetailActivity extends MActivity implements ExceptionHandler,
 			// }
 			showToast(head.getMessage());
 			break;
+		case RequestDistribute.SIGN_GET_INTEGRAL:
+			Head head2 = (Head) data;
+			// if (head2.isSuccess()) {
+			// }
+			showToast(head2.getMessage());
+			break;
 		default:
 			break;
 		}
@@ -230,7 +237,9 @@ public class SignDetailActivity extends MActivity implements ExceptionHandler,
 			}
 			break;
 		case R.id.tv_get_integral:
-
+			getSupportLoaderManager().restartLoader(
+					RequestDistribute.SIGN_GET_INTEGRAL, bundle,
+					new SignGetIntegralRequest(this));
 			break;
 
 		default:
