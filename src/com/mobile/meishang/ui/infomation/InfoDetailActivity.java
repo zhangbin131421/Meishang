@@ -132,6 +132,10 @@ public class InfoDetailActivity extends MActivity implements ExceptionHandler,
 				goActivity(LoginActivity.class, null);
 			}
 			break;
+		case R.id.flayout_evaluate:
+			bundle.putString("infoid", infomation.getInfoid());
+			goActivity(EvaluateListActivity.class, bundle);
+			break;
 
 		default:
 			break;

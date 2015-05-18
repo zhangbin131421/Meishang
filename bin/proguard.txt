@@ -67,16 +67,16 @@
 # view AndroidManifest.xml #generated:48
 -keep class com.mobile.meishang.ui.WelcomeScreenActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:147
+# view AndroidManifest.xml #generated:151
 -keep class com.mobile.meishang.ui.ad.AdvertisingDetailActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:144
+# view AndroidManifest.xml #generated:148
 -keep class com.mobile.meishang.ui.ad.AdvertisingExpandbleActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:141
+# view AndroidManifest.xml #generated:145
 -keep class com.mobile.meishang.ui.ad.AdvertisingListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:151
+# view AndroidManifest.xml #generated:155
 -keep class com.mobile.meishang.ui.ad.AlipayActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:105
@@ -94,25 +94,25 @@
 # view AndroidManifest.xml #generated:116
 -keep class com.mobile.meishang.ui.bid.MyBidPublishListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:165
+# view AndroidManifest.xml #generated:169
 -keep class com.mobile.meishang.ui.category.CategoryActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:180
+# view AndroidManifest.xml #generated:184
 -keep class com.mobile.meishang.ui.choujiang.ChoujiangActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:183
+# view AndroidManifest.xml #generated:187
 -keep class com.mobile.meishang.ui.choujiang.RuleActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:155
+# view AndroidManifest.xml #generated:159
 -keep class com.mobile.meishang.ui.city.AreaChoiceActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:159
+# view AndroidManifest.xml #generated:163
 -keep class com.mobile.meishang.ui.city.CityChoiceActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:162
+# view AndroidManifest.xml #generated:166
 -keep class com.mobile.meishang.ui.city.CityListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:127
+# view AndroidManifest.xml #generated:131
 -keep class com.mobile.meishang.ui.favorites.FavoritesActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:86
@@ -136,6 +136,9 @@
 # view AndroidManifest.xml #generated:82
 -keep class com.mobile.meishang.ui.home.TypeActivity { <init>(...); }
 
+# view AndroidManifest.xml #generated:127
+-keep class com.mobile.meishang.ui.infomation.EvaluateListActivity { <init>(...); }
+
 # view AndroidManifest.xml #generated:124
 -keep class com.mobile.meishang.ui.infomation.InfoDetailActivity { <init>(...); }
 
@@ -151,16 +154,16 @@
 # view AndroidManifest.xml #generated:91
 -keep class com.mobile.meishang.ui.lehuigou.LehuigoHomeActvity { <init>(...); }
 
-# view AndroidManifest.xml #generated:203
+# view AndroidManifest.xml #generated:207
 -keep class com.mobile.meishang.ui.login.ForgotPdActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:197
+# view AndroidManifest.xml #generated:201
 -keep class com.mobile.meishang.ui.login.LoginActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:200
+# view AndroidManifest.xml #generated:204
 -keep class com.mobile.meishang.ui.login.RegisterActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:206
+# view AndroidManifest.xml #generated:210
 -keep class com.mobile.meishang.ui.login.RetrievedResetPasswordActivity { <init>(...); }
 
 # view res/layout/activity_online_options_b.xml #generated:23
@@ -172,31 +175,31 @@
 # view res/layout/activity_online_options_b.xml #generated:13
 -keep class com.mobile.meishang.ui.movie.view.ThumbNailView { <init>(...); }
 
-# view AndroidManifest.xml #generated:170
+# view AndroidManifest.xml #generated:174
 -keep class com.mobile.meishang.ui.search.SearchActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:173
+# view AndroidManifest.xml #generated:177
 -keep class com.mobile.meishang.ui.search.SearchResultListingActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:176
+# view AndroidManifest.xml #generated:180
 -keep class com.mobile.meishang.ui.share.SharedActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:137
+# view AndroidManifest.xml #generated:141
 -keep class com.mobile.meishang.ui.shopping.ShippingAddressActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:131
+# view AndroidManifest.xml #generated:135
 -keep class com.mobile.meishang.ui.shopping.ShoppingCarListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:134
+# view AndroidManifest.xml #generated:138
 -keep class com.mobile.meishang.ui.shopping.ShoppingOrderActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:193
+# view AndroidManifest.xml #generated:197
 -keep class com.mobile.meishang.ui.user.MyPushActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:187
+# view AndroidManifest.xml #generated:191
 -keep class com.mobile.meishang.ui.user.MySharedActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:190
+# view AndroidManifest.xml #generated:194
 -keep class com.mobile.meishang.ui.user.MyWordsActivity { <init>(...); }
 
 # view res/layout/activity_bid_detail.xml #generated:9
@@ -261,13 +264,13 @@
 # view res/layout/activity_refresh_scrollview.xml #generated:1
 -keep class com.mobile.meishang.utils.view.pulltorefresh.XScrollView { <init>(...); }
 
-# view AndroidManifest.xml #generated:247
+# view AndroidManifest.xml #generated:251
 -keep class com.tencent.connect.common.AssistActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:234
+# view AndroidManifest.xml #generated:238
 -keep class com.tencent.tauth.AuthActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:224
+# view AndroidManifest.xml #generated:228
 -keep class com.umeng.socialize.view.ShareActivity { <init>(...); }
 
 # view res/layout/umeng_socialize_ucenter_platform_item.xml #generated:31
@@ -316,7 +319,8 @@
 # onClick res/layout/activity_i_want_bid.xml #generated:172
 # onClick res/layout/activity_i_want_bid.xml #generated:182
 # onClick res/layout/activity_i_want_bid.xml #generated:39
-# onClick res/layout/activity_info_detail.xml #generated:74
+# onClick res/layout/activity_info_detail.xml #generated:75
+# onClick res/layout/activity_info_detail.xml #generated:92
 # onClick res/layout/activity_info_list.xml #generated:16
 # onClick res/layout/activity_info_list.xml #generated:41
 # onClick res/layout/activity_login.xml #generated:105

@@ -125,6 +125,10 @@
             android:name=".ui.infomation.InfoDetailActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.infomation.EvaluateListActivity"
+            android:screenOrientation="portrait" />
+        <!--收藏  -->
+        <activity
             android:name=".ui.favorites.FavoritesActivity"
             android:screenOrientation="portrait" />
         <!-- 购物车 -->

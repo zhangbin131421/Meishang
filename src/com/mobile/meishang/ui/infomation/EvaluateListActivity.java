@@ -1,7 +1,5 @@
 package com.mobile.meishang.ui.infomation;
 
-import java.util.List;
-
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,7 +10,8 @@ import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.EvaluateListAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
-import com.mobile.meishang.model.ModuleChildList;
+import com.mobile.meishang.core.request.EvaluateListRequest;
+import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 
@@ -21,7 +20,7 @@ public class EvaluateListActivity extends MActivity implements
 	private LoadingView mLoadingView;
 	private ListView mListView;
 	private EvaluateListAdapter listAdapter;
-	private List<ModuleChildList> list;
+	private Bundle mBundle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +32,13 @@ public class EvaluateListActivity extends MActivity implements
 		title.setVisibility(View.VISIBLE);
 		TextView publish = (TextView) findViewById(R.id.tv_top_right);
 		publish.setText("发表评论");
-		publish.setVisibility(View.VISIBLE);
+		// publish.setVisibility(View.VISIBLE);
 		publish.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				Bundle bundle = new Bundle();
-//				goActivity(EvaluatePublishActivity.class, bundle);
+				// goActivity(EvaluatePublishActivity.class, bundle);
 			}
 		});
 		mLoadingView = (LoadingView) findViewById(R.id.loading);
@@ -63,6 +62,10 @@ public class EvaluateListActivity extends MActivity implements
 		// }
 		// });
 		// listAdapter.notifyDataSetChanged();
+		mBundle = getIntent().getBundleExtra("bundle");
+		getSupportLoaderManager().restartLoader(
+				RequestDistribute.EVALUATE_LIST, mBundle,
+				new EvaluateListRequest(this));
 
 	}
 

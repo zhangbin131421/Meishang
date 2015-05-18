@@ -91,4 +91,5 @@ public class RequestDistribute {
 	public static final int FAVORITES_LIST_INFO_GOODS = 6023;//
 	public static final int SIGN_GET_INTEGRAL = 6024;//
 	public static final int MY_BID_PUBLISH_LIST = 6025;//
+	public static final int EVALUATE_LIST = 6026;//
 }
