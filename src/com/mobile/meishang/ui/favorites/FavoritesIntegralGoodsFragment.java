@@ -155,6 +155,7 @@ public class FavoritesIntegralGoodsFragment extends MFragment implements
 
 	public void hideDelete() {
 		mAdapter.setEdit(false);
+		mAdapter.notifyDataSetChanged();
 		flayout_delete.setVisibility(View.GONE);
 	}
 

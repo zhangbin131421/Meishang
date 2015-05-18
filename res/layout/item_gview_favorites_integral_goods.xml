@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="原价：2500"
+            android:text="原价：0"
             android:textColor="@color/font_gray"
             android:textSize="@dimen/item_name_size" />
 
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="积分兑换：2500"
+            android:text="积分兑换：0"
             android:textColor="@color/red"
             android:textSize="@dimen/item_name_size" />
     </LinearLayout>

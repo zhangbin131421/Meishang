@@ -13,7 +13,6 @@ import com.mobile.meishang.R;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.FavoritesListRequest;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 
 public class FavoritesActivity extends MActivity implements ExceptionHandler,
@@ -113,50 +112,34 @@ public class FavoritesActivity extends MActivity implements ExceptionHandler,
 
 		switch (v.getId()) {
 		case R.id.tv_top_right:
-			if ("关闭".equals(tv_top_right.getText().toString())) {
-				tv_top_right.setText("编辑");
-				if (integralGoodsFragment != null
-						&& integralGoodsFragment.isVisible()) {
-					integralGoodsFragment.hideDelete();
-				}
-				if (projectListFragment != null
-						&& projectListFragment.isVisible()) {
-					showToast("222222222");
-				}
-				if (infoListFragment != null && infoListFragment.isVisible()) {
-					showToast("3333333");
-				}
+			if ("关闭".equals(tv_top_right.getText().toString())) {// 编辑状态
+				mclose();
 			} else {
 				tv_top_right.setText("关闭");
 				if (integralGoodsFragment != null
 						&& integralGoodsFragment.isVisible()) {
 					integralGoodsFragment.showDelete();
-					showToast("delete");
 				}
 				if (projectListFragment != null
 						&& projectListFragment.isVisible()) {
-					showToast("222222222");
+					projectListFragment.showDelete();
 				}
 				if (infoListFragment != null && infoListFragment.isVisible()) {
-					showToast("3333333");
+					infoListFragment.showDelete();
 				}
 
 			}
 
 			break;
 		case R.id.tv_tab_a:
-			if ("编辑".equals(tv_top_right.getText().toString())) {
-				tv_top_right.setText("关闭");
-			}
+			mclose();
 			tv_tab_a.setSelected(true);
 			tv_tab_b.setSelected(false);
 			tv_tab_c.setSelected(false);
 			showFragment(integralGoodsFragment);
 			break;
 		case R.id.tv_tab_b:
-			if ("编辑".equals(tv_top_right.getText().toString())) {
-				tv_top_right.setText("关闭");
-			}
+			mclose();
 			tv_tab_a.setSelected(false);
 			tv_tab_b.setSelected(true);
 			tv_tab_c.setSelected(false);
@@ -167,9 +150,7 @@ public class FavoritesActivity extends MActivity implements ExceptionHandler,
 			showFragment(projectListFragment);
 			break;
 		case R.id.tv_tab_c:
-			if ("编辑".equals(tv_top_right.getText().toString())) {
-				tv_top_right.setText("关闭");
-			}
+			mclose();
 			tv_tab_a.setSelected(false);
 			tv_tab_b.setSelected(false);
 			tv_tab_c.setSelected(true);
@@ -182,6 +163,22 @@ public class FavoritesActivity extends MActivity implements ExceptionHandler,
 			break;
 		default:
 			break;
+		}
+	}
+
+	private void mclose() {
+		if ("关闭".equals(tv_top_right.getText().toString())) {
+			tv_top_right.setText("编辑");
+			if (integralGoodsFragment != null
+					&& integralGoodsFragment.isVisible()) {
+				integralGoodsFragment.hideDelete();
+			}
+			if (projectListFragment != null && projectListFragment.isVisible()) {
+				projectListFragment.hideDelete();
+			}
+			if (infoListFragment != null && infoListFragment.isVisible()) {
+				infoListFragment.hideDelete();
+			}
 		}
 	}
 

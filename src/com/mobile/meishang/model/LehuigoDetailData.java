@@ -28,6 +28,7 @@ public class LehuigoDetailData extends Head implements Parcelable {
 	private String integral;
 	private String price;
 	private String context;
+	private String picpath;
 //	private String brand;
 //	private String source;
 //	private String no;
@@ -55,6 +56,7 @@ public class LehuigoDetailData extends Head implements Parcelable {
 		integral = in.readString();
 		price = in.readString();
 		context = in.readString();
+		picpath = in.readString();
 //		brand = in.readString();
 //		source = in.readString();
 //		no = in.readString();
@@ -80,6 +82,7 @@ public class LehuigoDetailData extends Head implements Parcelable {
 		integral = getJsonStrValue(json, "integral");
 		price = getJsonStrValue(json, "price");
 		context = getJsonStrValue(json, "context");
+		picpath = getJsonStrValue(json, "picpath");
 //		brand = getJsonStrValue(json, "brand");
 //		source = getJsonStrValue(json, "source");
 //		no = getJsonStrValue(json, "no");
@@ -178,6 +181,10 @@ public class LehuigoDetailData extends Head implements Parcelable {
 //	public String getSize() {
 //		return size;
 //	}
+
+	public String getPicpath() {
+		return picpath;
+	}
 
 	public String getContext() {
 		return context;
