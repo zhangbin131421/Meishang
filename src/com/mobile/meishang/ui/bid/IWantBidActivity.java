@@ -3,6 +3,7 @@ package com.mobile.meishang.ui.bid;
 import java.util.List;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
+import com.mobile.meishang.MApplication;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.CategoryLeftListAdapter;
 import com.mobile.meishang.adapter.CategoryRightListAdapter;
@@ -20,6 +22,8 @@ import com.mobile.meishang.core.request.CategoryRequest;
 import com.mobile.meishang.model.Module;
 import com.mobile.meishang.model.ModuleList;
 import com.mobile.meishang.model.RequestDistribute;
+import com.mobile.meishang.model.bean.Head;
+import com.mobile.meishang.ui.login.LoginActivity;
 import com.umeng.analytics.MobclickAgent;
 
 public class IWantBidActivity extends MActivity {
@@ -80,6 +84,7 @@ public class IWantBidActivity extends MActivity {
 				tv_choose_category.setText(filterRightAdapter.getItem(position)
 						.getName());
 				filterRightAdapter.setmPosition(position);
+				llayout.setVisibility(View.GONE);
 
 			}
 		});
@@ -121,6 +126,14 @@ public class IWantBidActivity extends MActivity {
 				ModuleList modules = (ModuleList) data;
 				moduleList = modules.getModuleList();
 				break;
+			case RequestDistribute.PUBLISHED:
+				Head head=(Head) data;
+				if (head.isSuccess()) {
+					showToast("恭喜您，发布成功");
+				}else {
+					showToast(head.getMessage());
+				}
+				break;
 
 			default:
 				break;
@@ -161,6 +174,11 @@ public class IWantBidActivity extends MActivity {
 			llayout.setVisibility(View.GONE);
 			break;
 		case R.id.btn_publish:
+			if (MApplication.getInstance().checkLogin()) {
+				netPublished();
+			} else {
+				goActivity(LoginActivity.class, null);
+			}
 			break;
 		// case R.id.llayout_active:
 		// // goActivity(InitiateActivityActivity.class, null);
@@ -183,6 +201,30 @@ public class IWantBidActivity extends MActivity {
 		String proaddress = etv_address.getEditableText().toString();
 		String item = etv_feature.getEditableText().toString();
 		String prodesc = etv_introduce.getEditableText().toString();
+		if (TextUtils.isEmpty(moduleid) || TextUtils.isEmpty(smoduleid)) {
+			showToast("请选择类别");
+			return;
+		}
+		if (TextUtils.isEmpty(title)) {
+			showToast("标题不能为空");
+			return;
+		}
+		if (TextUtils.isEmpty(phone)) {
+			showToast("电话不能为空");
+			return;
+		}
+		if (TextUtils.isEmpty(proaddress)) {
+			showToast("地址不能为空");
+			return;
+		}
+		if (TextUtils.isEmpty(item)) {
+			showToast("特色不能为空");
+			return;
+		}
+		if (TextUtils.isEmpty(prodesc)) {
+			showToast("介绍不能为空");
+			return;
+		}
 
 		Bundle bundle = new Bundle();
 		bundle.putString("moduleid", moduleid);
