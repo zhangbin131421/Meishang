@@ -5,12 +5,12 @@
     android:orientation="vertical" >
 
     <include layout="@layout/layout_top_back" />
-<!-- 
+
     <include
         android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        layout="@layout/loadingview" /> -->
+        layout="@layout/loadingview" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -76,8 +76,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:onClick="onclick"
             android:clickable="true"
+            android:onClick="onclick"
             android:src="@drawable/ic_my_favorite" />
 
         <EditText

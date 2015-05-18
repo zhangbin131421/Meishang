@@ -46,38 +46,38 @@ public class BidDetailActivity extends MActivity implements OnClickListener {
 		// return false;
 		// }
 		// });
-		mGridView.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1,
-					int position, long arg3) {
-				showToast("p=" + position);
-				switch (position) {
-				case 3:
-					goActivity(LehuigoHomeActvity.class, null);
-					break;
-				case 4:
-					goActivity(GoodsSearchActivity.class, null);
-					break;
-				case 5:
-					goActivity(InfoListActivity.class, null);
-
-					break;
-				case 6:
-					goActivity(ShareActivity.class, null);
-
-					break;
-				case 7:
-					goActivity(SharedActivity.class, null);
-
-					break;
-
-				default:
-					break;
-				}
-
-			}
-		});
+		// mGridView.setOnItemClickListener(new OnItemClickListener() {
+		//
+		// @Override
+		// public void onItemClick(AdapterView<?> arg0, View arg1,
+		// int position, long arg3) {
+		// showToast("p=" + position);
+		// switch (position) {
+		// case 3:
+		// goActivity(LehuigoHomeActvity.class, null);
+		// break;
+		// case 4:
+		// goActivity(GoodsSearchActivity.class, null);
+		// break;
+		// case 5:
+		// goActivity(InfoListActivity.class, null);
+		//
+		// break;
+		// case 6:
+		// goActivity(ShareActivity.class, null);
+		//
+		// break;
+		// case 7:
+		// goActivity(SharedActivity.class, null);
+		//
+		// break;
+		//
+		// default:
+		// break;
+		// }
+		//
+		// }
+		// });
 	}
 
 	@Override

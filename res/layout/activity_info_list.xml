@@ -81,8 +81,9 @@
             android:id="@+id/mlistview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white"
             android:cacheColorHint="@color/transparent"
-            android:divider="@null"
+            android:divider="@color/line"
             android:dividerHeight="1dp" />
 
         <LinearLayout
