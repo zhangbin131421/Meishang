@@ -1,6 +1,7 @@
 package com.mobile.meishang.adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mobile.meishang.R;
 import com.mobile.meishang.model.LehuigoDetailData;
@@ -65,21 +67,38 @@ public class ShoppingOrderListAdapter extends
 			holder = (Holder) convertView.getTag();
 		}
 
-		// holder.name.setText(getItem(position).getTitle());
-		// holder.describe.setText(getItem(position).getContent());
-		// holder.currentPrice.setText(getItem(position).getCurrentPrice());
-		// holder.originalPrice.setText("原价:" +
-		// getItem(position).getOldPrice());
-		// holder.originalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-		// if ("1".equals(getItem(position).getIsNew())) {
-		// holder.isNewImg.setVisibility(View.VISIBLE);
-		// } else {
-		// holder.isNewImg.setVisibility(View.GONE);
-		//
-		// }
-		// setCacheImage(holder.imageView,
-		// getItem(position).getImgageUrlsmall(),
-		// R.drawable.loading_bg_img_item);
+		holder.tv_item_name.setText(getItem(position).getTitle());
+		holder.tv_item_price.setText("原价:¥" + getItem(position).getPrice());
+		holder.tv_item_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+		holder.tv_item_price_b.setText(getItem(position).getIntegral() + "积分");
+		setCacheImage(holder.image_item, getItem(position).getPicpath(),
+				R.drawable.loading_bg_img_item);
+		holder.tv_item_add.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				int quantity = Integer
+						.parseInt( holder.tv_item_quantity.getText().toString()) + 1;
+				holder.tv_item_quantity.setText(quantity + "");
+
+			}
+		});
+		holder.tv_item_sub.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				int quantity = Integer
+						.parseInt(holder.tv_item_quantity.getText().toString()) - 1;
+				if (quantity > 0) {
+					holder.tv_item_quantity.setText(quantity + "");
+				} else {
+					Toast.makeText(mContext, "不能小于0", Toast.LENGTH_SHORT)
+							.show();
+				}
+
+			}
+		});
+
 		return convertView;
 	}
 

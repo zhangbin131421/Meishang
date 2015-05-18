@@ -212,7 +212,7 @@
 # view res/layout/layout_inside_hview.xml #generated:9
 -keep class com.mobile.meishang.ui.widget.NoScrollGridView { <init>(...); }
 
-# view res/layout/layout_sign_in_head.xml #generated:105
+# view res/layout/layout_sign_in_head.xml #generated:106
 -keep class com.mobile.meishang.ui.widget.SignProgressBar { <init>(...); }
 
 # view res/layout/activity_shipping_address.xml #generated:61
@@ -316,8 +316,8 @@
 # onClick res/layout/activity_goods_list.xml #generated:39
 # onClick res/layout/activity_home_listview_refresh.xml #generated:16
 # onClick res/layout/activity_home_listview_refresh.xml #generated:70
-# onClick res/layout/activity_i_want_bid.xml #generated:195
-# onClick res/layout/activity_i_want_bid.xml #generated:205
+# onClick res/layout/activity_i_want_bid.xml #generated:200
+# onClick res/layout/activity_i_want_bid.xml #generated:210
 # onClick res/layout/activity_i_want_bid.xml #generated:40
 # onClick res/layout/activity_info_detail.xml #generated:75
 # onClick res/layout/activity_info_detail.xml #generated:92
