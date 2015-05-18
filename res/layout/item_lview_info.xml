@@ -33,7 +33,6 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="2"
-            android:text="@dimen/item_describe_size"
             android:textColor="@color/font_gray" />
 
         <RelativeLayout

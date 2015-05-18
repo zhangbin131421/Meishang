@@ -7,8 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.mobile.meishang.R;
 import com.mobile.meishang.model.Infomation;
-import com.mobile.meishang.ui.home.ProjectDiscoverDetailActivity;
 import com.mobile.meishang.ui.infomation.InfoDetailActivity;
 
 public class FavoritesInfoListviewAdapter extends
@@ -57,6 +56,10 @@ public class FavoritesInfoListviewAdapter extends
 			holder = (Holder) convertView.getTag();
 		}
 		holder.tv_item_name.setText(getItem(position).getTitle());
+		holder.tv_item_describe.setText(getItem(position).getContext());
+		holder.tv_item_time.setText(getItem(position).getCreatetime());
+		setCacheImage(holder.image_item, getItem(position).getPicpath(),
+				R.drawable.loading_bg_img_item);
 		if (isEdit) {
 			if (checkPositions.contains(position)) {
 				holder.flayout_item.setVisibility(View.VISIBLE);

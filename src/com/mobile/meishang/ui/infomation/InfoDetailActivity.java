@@ -16,6 +16,7 @@ import com.mobile.meishang.imagecache.ImageWorker;
 import com.mobile.meishang.model.Infomation;
 import com.mobile.meishang.model.InfomationDetail;
 import com.mobile.meishang.model.RequestDistribute;
+import com.mobile.meishang.model.bean.Head;
 import com.mobile.meishang.ui.login.LoginActivity;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
@@ -31,6 +32,7 @@ public class InfoDetailActivity extends MActivity implements ExceptionHandler,
 	private TextView tv_content;
 	private Bundle mBundle;
 	private ImageWorker mImageWorker;
+	Infomation infomation;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +78,7 @@ public class InfoDetailActivity extends MActivity implements ExceptionHandler,
 		switch (identity) {
 		case RequestDistribute.INFO_DETAIL:
 			InfomationDetail infomationDetail = (InfomationDetail) data;
-			Infomation infomation = infomationDetail.getInfomation();
+			infomation = infomationDetail.getInfomation();
 			tv_title.setText(infomation.getTitle());
 			tv_time.setText(infomation.getCreatetime());
 			tv_count.setText(infomation.getCount());
@@ -84,7 +86,11 @@ public class InfoDetailActivity extends MActivity implements ExceptionHandler,
 			mImageWorker.setLoadingImage(R.drawable.loading_bg_img245);
 			mImageWorker.loadImage(infomation.getPicpath(), image);
 			break;
-
+		case RequestDistribute.FAVORITES_ADD:
+			Head head = (Head) data;
+			// if (head.isSuccess()) {
+			// }
+			showToast(head.getMessage());
 		default:
 			break;
 		}
@@ -117,7 +123,7 @@ public class InfoDetailActivity extends MActivity implements ExceptionHandler,
 		switch (v.getId()) {
 		case R.id.img_favorites:
 			if (MApplication.getInstance().checkLogin()) {
-				// bundle.putString("objectid", discover.getProjectid());
+				bundle.putString("objectid", infomation.getInfoid());
 				bundle.putString("type", "3");
 				getSupportLoaderManager().restartLoader(
 						RequestDistribute.FAVORITES_ADD, bundle,
