@@ -7,32 +7,35 @@ import android.support.v4.content.Loader;
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.MApplication;
 import com.mobile.meishang.MFragment;
-import com.mobile.meishang.core.loader.HistoryBidLoader;
+import com.mobile.meishang.core.loader.BidDetailLoader;
 import com.mobile.meishang.core.network.DefaultNetworkRequest;
-import com.mobile.meishang.model.BidMyPublishList;
+import com.mobile.meishang.model.BidMyPublish;
 
-public class HistoryBidRequest implements LoaderManager.LoaderCallbacks<BidMyPublishList> {
+public class BidDetailRequest implements
+		LoaderManager.LoaderCallbacks<BidMyPublish> {
 
 	private MActivity mActivity;
 	private MFragment mFragment;
 
-	public HistoryBidRequest(MActivity activity) {
+	public BidDetailRequest(MActivity activity) {
 		this.mActivity = activity;
 	}
 
-	public HistoryBidRequest(MFragment fragment) {
+	public BidDetailRequest(MFragment fragment) {
 		this.mFragment = fragment;
 		mActivity = (MActivity) fragment.getActivity();
 	}
 
 	@Override
-	public Loader<BidMyPublishList> onCreateLoader(int arg0, Bundle bundle) {
+	public Loader<BidMyPublish> onCreateLoader(int arg0, Bundle bundle) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
-		urlString.append("bidding/h/bidding.htm");
+		urlString.append("bidding/load.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
-		HistoryBidLoader loader = new HistoryBidLoader(mActivity, mHttpRequest);
+		mHttpRequest.addPostParameter("biddingid",
+				bundle.getString("biddingid"));
+		BidDetailLoader loader = new BidDetailLoader(mActivity, mHttpRequest);
 		if (mFragment == null) {
 			loader.setExceptionHandler(mActivity);
 		} else {
@@ -43,7 +46,8 @@ public class HistoryBidRequest implements LoaderManager.LoaderCallbacks<BidMyPub
 	}
 
 	@Override
-	public void onLoadFinished(Loader<BidMyPublishList> arg0, BidMyPublishList arg1) {
+	public void onLoadFinished(Loader<BidMyPublish> arg0,
+			BidMyPublish arg1) {
 		if (arg1 != null) {
 			if (mFragment == null) {
 				mActivity.updateUI(arg0.getId(), arg1);
@@ -54,7 +58,7 @@ public class HistoryBidRequest implements LoaderManager.LoaderCallbacks<BidMyPub
 	}
 
 	@Override
-	public void onLoaderReset(Loader<BidMyPublishList> arg0) {
+	public void onLoaderReset(Loader<BidMyPublish> arg0) {
 	}
 
 }

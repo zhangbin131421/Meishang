@@ -4,80 +4,51 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.BidDetailGridviewAdapter;
+import com.mobile.meishang.core.request.BidDetailRequest;
+import com.mobile.meishang.model.Bid;
+import com.mobile.meishang.model.BidMyPublish;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.ui.infomation.InfoListActivity;
-import com.mobile.meishang.ui.lehuigou.GoodsSearchActivity;
-import com.mobile.meishang.ui.lehuigou.LehuigoHomeActvity;
-import com.mobile.meishang.ui.share.SharedActivity;
 import com.mobile.meishang.ui.widget.GridViewWithHeaderAndFooter;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.socialize.view.ShareActivity;
 
 public class BidDetailActivity extends MActivity implements OnClickListener {
 	private GridViewWithHeaderAndFooter mGridView;
 	private BidDetailGridviewAdapter mAdapter;
 	private View headView;
+	private Bundle mBundle;
+	TextView tv_title;
+	TextView tv_item;
+	TextView tv_tel;
+	TextView tv_proaddress;
+	TextView tv_prodesc;
+	TextView tv_count;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		mBundle = getIntent().getBundleExtra("bundle");
 		setContentView(R.layout.activity_bid_detail);
 		TextView title = (TextView) findViewById(R.id.top_name);
 		title.setText("竞标详情");
 		mGridView = (GridViewWithHeaderAndFooter) findViewById(R.id.gridview);
 		headView = LayoutInflater.from(this).inflate(
 				R.layout.layout_bid_detail_hview, null);
+		tv_title = (TextView) headView.findViewById(R.id.tv_title);
+		tv_item = (TextView) headView.findViewById(R.id.tv_item);
+		tv_tel = (TextView) headView.findViewById(R.id.tv_tel);
+		tv_proaddress = (TextView) headView.findViewById(R.id.tv_proaddress);
+		tv_prodesc = (TextView) headView.findViewById(R.id.tv_prodesc);
+		tv_count = (TextView) headView.findViewById(R.id.tv_count);
 		mGridView.addHeaderView(headView, null, false);
 		mAdapter = new BidDetailGridviewAdapter(this);
 		mGridView.setAdapter(mAdapter);
-		// mGridView.setOnItemLongClickListener(new OnItemLongClickListener() {
-		//
-		// @Override
-		// public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
-		// int arg2, long arg3) {
-		// showToast("changan");
-		// return false;
-		// }
-		// });
-		// mGridView.setOnItemClickListener(new OnItemClickListener() {
-		//
-		// @Override
-		// public void onItemClick(AdapterView<?> arg0, View arg1,
-		// int position, long arg3) {
-		// showToast("p=" + position);
-		// switch (position) {
-		// case 3:
-		// goActivity(LehuigoHomeActvity.class, null);
-		// break;
-		// case 4:
-		// goActivity(GoodsSearchActivity.class, null);
-		// break;
-		// case 5:
-		// goActivity(InfoListActivity.class, null);
-		//
-		// break;
-		// case 6:
-		// goActivity(ShareActivity.class, null);
-		//
-		// break;
-		// case 7:
-		// goActivity(SharedActivity.class, null);
-		//
-		// break;
-		//
-		// default:
-		// break;
-		// }
-		//
-		// }
-		// });
+		getSupportLoaderManager().restartLoader(RequestDistribute.BID_DETAIL,
+				mBundle, new BidDetailRequest(this));
 	}
 
 	@Override
@@ -98,7 +69,7 @@ public class BidDetailActivity extends MActivity implements OnClickListener {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				if (identity == RequestDistribute.COUPON_GET) {
+				if (identity == RequestDistribute.BID_DETAIL) {
 					// mLoadingView.showRetryBtn(true);
 					showToast(e.getMessage());
 				}
@@ -110,7 +81,15 @@ public class BidDetailActivity extends MActivity implements OnClickListener {
 	public void updateUI(int identity, Object data) {
 		if (data != null) {
 			switch (identity) {
-			case RequestDistribute.ADVERTISING_GALLERY_ONE_DAY:
+			case RequestDistribute.BID_DETAIL:
+				BidMyPublish bidMyPublish = (BidMyPublish) data;
+				Bid bidding = bidMyPublish.getBidding();
+				tv_title.setText(bidding.getTitle());
+				tv_item.setText(bidding.getItem());
+//				tv_tel.setText(bidding.getp);
+				tv_proaddress.setText(bidding.getProaddress());
+				tv_prodesc.setText(bidding.getProdesc());
+				tv_count.setText("参与竞标用户" + bidMyPublish.getCount() + "人");
 				break;
 
 			default:

@@ -237,6 +237,9 @@ public class SignDetailActivity extends MActivity implements ExceptionHandler,
 			}
 			break;
 		case R.id.tv_get_integral:
+			bundle.putString("type", "1");
+			bundle.putString("projectid", discover.getProjectid());
+			bundle.putString("integral", discover.getIntegral());
 			getSupportLoaderManager().restartLoader(
 					RequestDistribute.SIGN_GET_INTEGRAL, bundle,
 					new SignGetIntegralRequest(this));

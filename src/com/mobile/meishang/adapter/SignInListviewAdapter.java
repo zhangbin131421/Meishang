@@ -8,10 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
+import com.mobile.meishang.model.Discover;
 import com.mobile.meishang.model.LehuigoHomeDataItem;
 
-public class SignInListviewAdapter extends
-		BaseCacheListAdapter<LehuigoHomeDataItem> {
+public class SignInListviewAdapter extends BaseCacheListAdapter<Discover> {
 
 	public SignInListviewAdapter(Context context) {
 		super(context);
@@ -38,11 +38,9 @@ public class SignInListviewAdapter extends
 			holder = (Holder) convertView.getTag();
 		}
 		holder.item_tv_name.setText(getItem(position).getTitle());
-		// holder.describe.setText(getItem(position).getContent());
-		// holder.currentPrice.setText("￥"
-		// +getItem(position).getCurrentPrice());
-		// holder.originalPrice.setText("￥" + getItem(position).getOldPrice());
-		// holder.originalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+		holder.item_tv_describe.setText(getItem(position).getIntroduction());
+		holder.item_tv_price.setText(getItem(position).getMiddlen());
+		holder.item_tv_award.setText("奖励"+getItem(position).getIntegral()+"积分");
 		setCacheImage(holder.item_image, getItem(position).getPicpath(),
 				R.drawable.loading_bg_img_item);
 

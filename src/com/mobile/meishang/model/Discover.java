@@ -19,7 +19,7 @@ public class Discover extends Head {
 	// "state": 1,
 	// "createtime": "2015-4-30 16:44:39",
 	// "updatetime": "2015-4-30 16:44:39",
-//	picpath
+	// picpath
 	// "introduction":
 	// "项目介绍:创业者在寻找资金，同时资金也在寻找项目。\r\n\r\n　　其实，项目对资金的需要是有时机有条件的，只有万事俱备，只欠东风，具备 “优势”的时候，外部资金的注入才有意义，才能发挥作用。\r\n\r\n　　资金对项目的需要更是有时机有条件的。只有到了项目的成熟能够显现的时候，资金才需要项目，才需要这个能够使自己得以保存和增加的载体。才需要这个能够循环往复转动的机构或器物。这好比是血液需要已经存在的健康的机体，才能够保持自己并借助机体的造血功能使自己增量。资金对项目的需要,是在这个时候这样的条件下。\r\n",
 	// "integral": 0
@@ -37,6 +37,7 @@ public class Discover extends Head {
 	private String updatetime;
 	private String picpath;
 	private String introduction;
+	private String integral;
 
 	public Discover() {
 
@@ -57,6 +58,7 @@ public class Discover extends Head {
 		updatetime = getJsonStrValue(json, "updatetime");
 		picpath = getJsonStrValue(json, "picpath");
 		introduction = getJsonStrValue(json, "introduction");
+		integral = getJsonStrValue(json, "integral");
 
 	}
 
@@ -116,4 +118,7 @@ public class Discover extends Head {
 		return introduction;
 	}
 
+	public String getIntegral() {
+		return integral;
+	}
 }

@@ -18,9 +18,11 @@ import com.mobile.meishang.MFragment;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.SignInListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
+import com.mobile.meishang.core.request.SignGetIntegralRequest;
 import com.mobile.meishang.core.request.SignInFragmentRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.SignInFragmentData;
+import com.mobile.meishang.model.bean.Head;
 import com.mobile.meishang.ui.home.SignDetailActivity;
 import com.mobile.meishang.ui.home.SignRuleActivity;
 import com.mobile.meishang.ui.lehuigou.LehuigoHomeActvity;
@@ -78,11 +80,10 @@ public class SignInFragment extends MFragment implements OnClickListener,
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
-				showToast("缺少projectid");
 				position -= 1;
 				Bundle bundle = new Bundle();
 				bundle.putString("projectid", adapter.getItem(position)
-						.getPurchasedid());
+						.getProjectid());
 				goActivity(SignDetailActivity.class, bundle);
 			}
 		});
@@ -137,6 +138,10 @@ public class SignInFragment extends MFragment implements OnClickListener,
 					.getIntegral()
 					+ "积分");
 			break;
+		case RequestDistribute.SIGN_GET_INTEGRAL:
+			Head head = (Head) data;
+			showToast(head.getMessage());
+			break;
 
 		default:
 			break;
@@ -155,7 +160,9 @@ public class SignInFragment extends MFragment implements OnClickListener,
 			goActivity(LehuigoHomeActvity.class, null);
 			break;
 		case R.id.btn_sign:
-			showToast("签到");
+			getLoaderManager().restartLoader(
+					RequestDistribute.SIGN_GET_INTEGRAL, null,
+					new SignGetIntegralRequest(this));
 			break;
 		case R.id.tv_rule:
 			goActivity(SignRuleActivity.class, null);

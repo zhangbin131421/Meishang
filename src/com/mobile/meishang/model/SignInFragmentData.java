@@ -12,7 +12,7 @@ import com.mobile.meishang.model.bean.Head;
 public class SignInFragmentData extends Head {
 
 	private int count;
-	private List<LehuigoHomeDataItem> mList;
+	private List<Discover> mList;
 
 	public SignInFragmentData() {
 	}
@@ -20,11 +20,11 @@ public class SignInFragmentData extends Head {
 	public SignInFragmentData(JSONObject json) throws JSONException {
 		count = getJsonIntValue(json, "count");
 		JSONArray jsonArray = getJsonArray(json, "list");
-		mList = new ArrayList<LehuigoHomeDataItem>();
+		mList = new ArrayList<Discover>();
 		if (jsonArray != null) {
 			int length = jsonArray.length();
 			for (int i = 0; i < length; i++) {
-				mList.add(new LehuigoHomeDataItem(jsonArray.getJSONObject(i)));
+				mList.add(new Discover(jsonArray.getJSONObject(i)));
 			}
 
 		}
@@ -34,7 +34,7 @@ public class SignInFragmentData extends Head {
 		return count;
 	}
 
-	public List<LehuigoHomeDataItem> getmList() {
+	public List<Discover> getmList() {
 		return mList;
 	}
 
