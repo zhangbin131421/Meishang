@@ -22,7 +22,6 @@ import com.mobile.meishang.ui.login.LoginActivity;
 import com.mobile.meishang.ui.login.RegisterActivity;
 import com.mobile.meishang.ui.shopping.ShoppingCarListActivity;
 import com.mobile.meishang.ui.user.MyPushActivity;
-import com.mobile.meishang.ui.user.MySharedActivity;
 import com.mobile.meishang.ui.user.MyWordsActivity;
 import com.umeng.analytics.MobclickAgent;
 

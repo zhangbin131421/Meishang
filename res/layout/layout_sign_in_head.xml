@@ -100,7 +100,8 @@
             android:id="@+id/btn_sign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="签到" />
+            android:background="@drawable/ic_sign"
+            android:text="" />
 
         <com.mobile.meishang.ui.widget.SignProgressBar
             android:layout_width="match_parent"

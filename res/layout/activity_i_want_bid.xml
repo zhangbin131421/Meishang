@@ -34,16 +34,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="类别　　"
-                            android:textColor="@color/font_black" />
+                            android:textColor="@color/font_black"
+                            android:textSize="@dimen/text_size_h2" />
 
                         <TextView
                             android:id="@+id/tv_choose_category"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
                             android:clickable="true"
                             android:hint="点击选择类别"
                             android:onClick="onclick"
-                            android:padding="10dp" />
+                            android:padding="10dp"
+                            android:textSize="@dimen/text_size_h2" />
                     </LinearLayout>
 
                     <View
@@ -60,13 +63,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="项目标题"
-                            android:textColor="@color/font_black" />
+                            android:textColor="@color/font_black"
+                            android:textSize="@dimen/text_size_h2" />
 
                         <EditText
                             android:id="@+id/etv_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="请输入4~20字标题" />
+                            android:layout_marginLeft="10dp"
+                            android:background="@color/white"
+                            android:hint="请输入4~20字标题"
+                            android:textSize="@dimen/text_size_h2" />
                     </LinearLayout>
 
                     <View
@@ -83,13 +90,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="联系电话"
-                            android:textColor="@color/font_black" />
+                            android:textColor="@color/font_black"
+                            android:textSize="@dimen/text_size_h2" />
 
                         <EditText
                             android:id="@+id/etv_phone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="固定或手机号码" />
+                            android:layout_marginLeft="10dp"
+                            android:background="@color/white"
+                            android:hint="固定或手机号码"
+                            android:textSize="@dimen/text_size_h2" />
                     </LinearLayout>
 
                     <View
@@ -106,13 +117,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="详细地址"
-                            android:textColor="@color/font_black" />
+                            android:textColor="@color/font_black"
+                            android:textSize="@dimen/text_size_h2" />
 
                         <EditText
                             android:id="@+id/etv_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="请输入项目地址" />
+                            android:layout_marginLeft="10dp"
+                            android:background="@color/white"
+                            android:hint="请输入项目地址"
+                            android:textSize="@dimen/text_size_h2" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -136,13 +151,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="项目特色"
-                            android:textColor="@color/font_black" />
+                            android:textColor="@color/font_black"
+                            android:textSize="@dimen/text_size_h2" />
 
                         <EditText
                             android:id="@+id/etv_feature"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="服务起价、理念等" />
+                            android:layout_marginLeft="10dp"
+                            android:background="@color/white"
+                            android:hint="服务起价、理念等"
+                            android:textSize="@dimen/text_size_h2" />
                     </LinearLayout>
 
                     <View
@@ -159,15 +178,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="项目介绍"
-                            android:textColor="@color/font_black" />
+                            android:textColor="@color/font_black"
+                            android:textSize="@dimen/text_size_h2" />
 
                         <EditText
                             android:id="@+id/etv_introduce"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="项目的具体经营理念，运行状况，规模、起价等等一些基本情况的概述" />
+                            android:layout_marginLeft="10dp"
+                            android:background="@color/white"
+                            android:hint="项目的具体经营理念，运行状况，规模、起价等等一些基本情况的概述"
+                            android:textSize="@dimen/text_size_h2" />
                     </LinearLayout>
                 </LinearLayout>
+
+                <View
+                    style="@style/line_horizontal_style"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp" />
 
                 <Button
                     android:id="@+id/btn_publish"

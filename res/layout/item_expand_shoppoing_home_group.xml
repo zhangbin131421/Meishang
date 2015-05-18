@@ -24,6 +24,7 @@
             android:layout_weight="1"
             android:drawableLeft="@drawable/ic_label_red"
             android:singleLine="true"
+            android:drawablePadding="5dp"
             android:text="最新推荐"
             android:textColor="@color/black"
             android:textSize="@dimen/top_name_size"
