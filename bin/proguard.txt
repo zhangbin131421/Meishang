@@ -202,9 +202,11 @@
 # view AndroidManifest.xml #generated:194
 -keep class com.mobile.meishang.ui.user.MyWordsActivity { <init>(...); }
 
-# view res/layout/activity_bid_detail.xml #generated:9
 # view res/layout/fragment_home.xml #generated:9
 -keep class com.mobile.meishang.ui.widget.GridViewWithHeaderAndFooter { <init>(...); }
+
+# view res/layout/activity_bid_detail.xml #generated:15
+-keep class com.mobile.meishang.ui.widget.HeaderGridView { <init>(...); }
 
 # view res/layout/item_cinema_detail_lh.xml #generated:79
 -keep class com.mobile.meishang.ui.widget.MyRecyclerView { <init>(...); }
@@ -371,6 +373,7 @@
 # onClick res/layout/item_shop_detail_lh.xml #generated:98
 # onClick res/layout/item_shopping_order_lh.xml #generated:11
 # onClick res/layout/item_shopping_order_lh.xml #generated:67
+# onClick res/layout/layout_bid_detail_hview.xml #generated:80
 # onClick res/layout/layout_discover_detail_hview.xml #generated:145
 # onClick res/layout/layout_discover_detail_hview.xml #generated:158
 # onClick res/layout/layout_discover_detail_hview.xml #generated:21

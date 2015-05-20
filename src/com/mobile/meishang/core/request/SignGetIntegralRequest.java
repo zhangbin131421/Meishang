@@ -9,10 +9,10 @@ import com.mobile.meishang.MApplication;
 import com.mobile.meishang.MFragment;
 import com.mobile.meishang.core.loader.LoginLoader;
 import com.mobile.meishang.core.network.DefaultNetworkRequest;
-import com.mobile.meishang.model.bean.User;
+import com.mobile.meishang.model.bean.Login;
 
 public class SignGetIntegralRequest implements
-		LoaderManager.LoaderCallbacks<User> {
+		LoaderManager.LoaderCallbacks<Login> {
 
 	private MActivity mActivity;
 	private MFragment mFragment;
@@ -29,7 +29,7 @@ public class SignGetIntegralRequest implements
 	// userid：用户编号 objectid:收藏对应编号 type：1是积分收藏 2项目收藏 3是资讯收藏
 
 	@Override
-	public Loader<User> onCreateLoader(int arg0, Bundle bundle) {
+	public Loader<Login> onCreateLoader(int arg0, Bundle bundle) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
 		urlString.append("sign/sign.htm");
@@ -61,7 +61,7 @@ public class SignGetIntegralRequest implements
 	}
 
 	@Override
-	public void onLoadFinished(Loader<User> arg0, User arg1) {
+	public void onLoadFinished(Loader<Login> arg0, Login arg1) {
 		if (arg1 != null) {
 			if (mFragment == null) {
 				mActivity.updateUI(arg0.getId(), arg1);
@@ -72,7 +72,7 @@ public class SignGetIntegralRequest implements
 	}
 
 	@Override
-	public void onLoaderReset(Loader<User> arg0) {
+	public void onLoaderReset(Loader<Login> arg0) {
 	}
 
 }

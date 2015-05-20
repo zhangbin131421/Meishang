@@ -6,11 +6,17 @@
 
     <include layout="@layout/layout_top_back" />
 
-    <com.mobile.meishang.ui.widget.GridViewWithHeaderAndFooter
+    <include
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/loadingview" />
+
+    <com.mobile.meishang.ui.widget.HeaderGridView
         android:id="@+id/gridview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="5"
-        android:padding="0dp" />
+        android:scrollbars="none" />
 
 </LinearLayout>

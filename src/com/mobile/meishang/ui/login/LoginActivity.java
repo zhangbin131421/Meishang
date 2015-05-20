@@ -12,7 +12,7 @@ import com.mobile.meishang.R;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.LoginRequest;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.User;
+import com.mobile.meishang.model.bean.Login;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
@@ -77,9 +77,9 @@ public class LoginActivity extends MActivity implements ExceptionHandler,
 		mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
 		case RequestDistribute.LOGIN:
-			User user = (User) data;
+			Login user = (Login) data;
 			if (user.getMessage().equals("登录成功")) {
-				MApplication.getInstance().setLogin(user);
+				MApplication.getInstance().setLogin(user.getUser());
 				setResult(RESULT_OK);
 				finish();
 			} else {

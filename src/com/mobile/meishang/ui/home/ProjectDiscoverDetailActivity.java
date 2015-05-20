@@ -1,11 +1,8 @@
 package com.mobile.meishang.ui.home;
 
-import java.io.IOException;
 import java.util.List;
 
 import android.content.Intent;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;

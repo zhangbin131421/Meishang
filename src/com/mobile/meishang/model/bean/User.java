@@ -28,14 +28,12 @@ public class User extends Head {
 	}
 
 	public User(JSONObject json) throws JSONException {
-		super(json);
-		JSONObject userJsonObject = getJsonObject(json, "user");
-		headerpath = getJsonStrValue(userJsonObject, "headerpath");
-		userName = getJsonStrValue(userJsonObject, "userName");
-		userId = getJsonStrValue(userJsonObject, "userid");
-		telephone = getJsonStrValue(userJsonObject, "telephone");
-		nickname = getJsonStrValue(userJsonObject, "nickname");
-		integral = getJsonStrValue(userJsonObject, "integral");
+		headerpath = getJsonStrValue(json, "headerpath");
+		userName = getJsonStrValue(json, "userName");
+		userId = getJsonStrValue(json, "userid");
+		telephone = getJsonStrValue(json, "telephone");
+		nickname = getJsonStrValue(json, "nickname");
+		integral = getJsonStrValue(json, "integral");
 
 	}
 

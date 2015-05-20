@@ -9,6 +9,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:singleLine="true"
         android:text="金秀xxxxxxxxxxxxxxxxxxx" />
 
@@ -35,7 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/gray_1"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:padding="10dp" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,28 +48,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text="服务特色" />
+                android:text="服务特色"
+                android:textColor="@color/font_gray" />
+
             <TextView
                 android:id="@+id/tv_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text="服务特色" />
+                android:text="XXXXXXXXXXXXXXXX"
+                android:textColor="@color/font_gray2" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical" >
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_product_introduce"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
                 android:singleLine="true"
-                android:text="留言给她" />
+                android:text="留言给她"
+                android:textColor="@color/font_gray" />
 
             <FrameLayout
+                android:id="@+id/flayout_call"
                 android:layout_width="0dp"
+                android:onClick="onclick"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" >
 
@@ -76,10 +89,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
                     android:singleLine="true"
-                    android:text="189xxxxxxxxx" />
+                    android:text="189xxxxxxxxx"
+                    android:textColor="@color/font_gray" />
             </FrameLayout>
         </LinearLayout>
+
+        <View
+            style="@style/line_horizontal_style"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -89,7 +111,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text="项目地址" />
+                android:text="项目地址"
+                android:textColor="@color/font_gray" />
 
             <TextView
                 android:id="@+id/tv_proaddress"
@@ -97,31 +120,54 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:singleLine="true"
-                android:text="鼓楼区紫峰大厦19楼" />
+                android:text="鼓楼区紫峰大厦19楼"
+                android:textColor="@color/font_gray2" />
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:drawableLeft="@drawable/ic_share"
-        android:text="详情描述"
-        android:textSize="@dimen/tv_name_size" />
+        android:layout_marginTop="20dp"
+        android:background="@color/gray_1" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_product_introduce"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:text="详情描述"
+            android:textColor="@color/font_gray"
+            android:textSize="@dimen/tv_name_size" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tv_prodesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
         android:textSize="@dimen/tv_name_size" />
 
-    <TextView
-        android:id="@+id/tv_count"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="参与竞标人数8人"
-        android:textColor="@color/red1"
-        android:textSize="@dimen/tv_name_size" />
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/gray_1" >
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="参与竞标人数x人"
+            android:textColor="@color/red1"
+            android:textSize="@dimen/tv_name_size" />
+    </FrameLayout>
 
 </LinearLayout>

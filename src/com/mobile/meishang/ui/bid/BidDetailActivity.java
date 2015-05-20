@@ -1,23 +1,29 @@
 package com.mobile.meishang.ui.bid;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.BidDetailGridviewAdapter;
+import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.BidDetailRequest;
 import com.mobile.meishang.model.Bid;
 import com.mobile.meishang.model.BidMyPublish;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.ui.widget.GridViewWithHeaderAndFooter;
+import com.mobile.meishang.ui.widget.HeaderGridView;
+import com.mobile.meishang.utils.view.LoadingView;
+import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
 
-public class BidDetailActivity extends MActivity implements OnClickListener {
-	private GridViewWithHeaderAndFooter mGridView;
+public class BidDetailActivity extends MActivity implements ExceptionHandler,
+		LoadEvent {
+	private LoadingView mLoadingView;
+	private HeaderGridView mGridView;
 	private BidDetailGridviewAdapter mAdapter;
 	private View headView;
 	private Bundle mBundle;
@@ -35,7 +41,9 @@ public class BidDetailActivity extends MActivity implements OnClickListener {
 		setContentView(R.layout.activity_bid_detail);
 		TextView title = (TextView) findViewById(R.id.top_name);
 		title.setText("竞标详情");
-		mGridView = (GridViewWithHeaderAndFooter) findViewById(R.id.gridview);
+		mLoadingView = (LoadingView) findViewById(R.id.loading);
+		mLoadingView.setLoadEvent(this);
+		mGridView = (HeaderGridView) findViewById(R.id.gridview);
 		headView = LayoutInflater.from(this).inflate(
 				R.layout.layout_bid_detail_hview, null);
 		tv_title = (TextView) headView.findViewById(R.id.tv_title);
@@ -79,24 +87,24 @@ public class BidDetailActivity extends MActivity implements OnClickListener {
 
 	@Override
 	public void updateUI(int identity, Object data) {
-		if (data != null) {
-			switch (identity) {
-			case RequestDistribute.BID_DETAIL:
-				BidMyPublish bidMyPublish = (BidMyPublish) data;
-				Bid bidding = bidMyPublish.getBidding();
-				tv_title.setText(bidding.getTitle());
-				tv_item.setText(bidding.getItem());
-//				tv_tel.setText(bidding.getp);
-				tv_proaddress.setText(bidding.getProaddress());
-				tv_prodesc.setText(bidding.getProdesc());
-				tv_count.setText("参与竞标用户" + bidMyPublish.getCount() + "人");
-				break;
+		mLoadingView.setVisibility(View.GONE);
+		switch (identity) {
+		case RequestDistribute.BID_DETAIL:
+			BidMyPublish bidMyPublish = (BidMyPublish) data;
+			Bid bidding = bidMyPublish.getBidding();
+			tv_title.setText(bidding.getTitle());
+			tv_item.setText(bidding.getItem());
+			tv_tel.setText(bidding.getPhone());
+			tv_proaddress.setText(bidding.getProaddress());
+			tv_prodesc.setText(bidding.getProdesc());
+			tv_count.setText("参与竞标用户" + bidMyPublish.getCount() + "人");
+			mAdapter.clear();
+			mAdapter.addAll(bidMyPublish.getUsers());
+			mAdapter.notifyDataSetChanged();
+			break;
 
-			default:
-				break;
-			}
-		} else {
-			// showToast("数据对象空");
+		default:
+			break;
 		}
 	}
 
@@ -106,20 +114,21 @@ public class BidDetailActivity extends MActivity implements OnClickListener {
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void retryAgain(View v) {
+		getSupportLoaderManager().restartLoader(RequestDistribute.BID_DETAIL,
+				mBundle, new BidDetailRequest(this));
+	}
+
+	@Override
+	public void onclick(View v) {
+		super.onclick(v);
 		switch (v.getId()) {
-		// case R.id.llayout_gowhere:
-		// // goActivity(GoWhereActivity.class, null);
-		// break;
-		// case R.id.llayout_write_notes:
-		// goActivity(MyTravelNotesListActivity.class, null);
-		// break;
-		// case R.id.llayout_active:
-		// // goActivity(InitiateActivityActivity.class, null);
-		// goActivity(TravelNotesDetailActivity.class, null);
-		// break;
-		// case R.id.llayout_near:
-		// break;
+		case R.id.flayout_call:
+			Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"
+					+ tv_tel.getText().toString()));
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			break;
 
 		default:
 			break;

@@ -3,27 +3,20 @@ package com.mobile.meishang.model.bean;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.mobile.meishang.utils.FunctionUtil;
-
 public class Login extends Head {
-	// {"head":{"status":"00","msg":"操作成功"},
-	// "body":{[
-	// account: //用户名
-	// headIcon: //头像
-	// userAttention : //用户关注
-	// userFans： //用户粉丝
-	// nickName: //昵称
-	// desp : //简介
-	// sex : //性别
-	// ] }
+	// {
+	// "message": "登录成功",
+	// "result": 1,
+	// "user": {
+	// "userid": 11,
+	// "password": "e10adc3949ba59abbe56e057f20f883e",
+	// "telephone": "13776636043",
+	// "status": 0,
+	// "integral": 60,
+	// "headerpath": "image/header.jpg"
 	// }
-	private String account;
-	private String headIcon;
-	private String userAttention;
-	private String userFans;
-	private String nickName;
-	private String desp;
-	private String sex;
+	// }
+	private User user;
 
 	public Login() {
 
@@ -31,46 +24,12 @@ public class Login extends Head {
 
 	public Login(JSONObject jsonObject) throws JSONException {
 		super(jsonObject);
-		JSONObject jsonBody = FunctionUtil.getJsonObject(jsonObject, "body");
-		JSONObject json = FunctionUtil.getJsonObject(jsonBody, "info");
-		if (json != null) {
-			account = FunctionUtil.getJsonStrValue(json, "account");
-			headIcon = FunctionUtil.getJsonStrValue(json, "headIcon");
-			userAttention = FunctionUtil.getJsonStrValue(json, "userAttention");
-			userFans = FunctionUtil.getJsonStrValue(json, "userFans");
-			nickName = FunctionUtil.getJsonStrValue(json, "nickName");
-			desp = FunctionUtil.getJsonStrValue(json, "desp");
-			sex = FunctionUtil.getJsonStrValue(json, "sex");
+		user = new User(getJsonObject(jsonObject, "user"));
 
-		}
 	}
 
-	public String getAccount() {
-		return account;
-	}
-
-	public String getHeadIcon() {
-		return headIcon;
-	}
-
-	public String getUserAttention() {
-		return userAttention;
-	}
-
-	public String getUserFans() {
-		return userFans;
-	}
-
-	public String getNickName() {
-		return nickName;
-	}
-
-	public String getDesp() {
-		return desp;
-	}
-
-	public String getSex() {
-		return sex;
+	public User getUser() {
+		return user;
 	}
 
 }

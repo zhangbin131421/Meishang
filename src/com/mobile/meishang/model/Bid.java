@@ -32,6 +32,7 @@ public class Bid extends Head {
 	private String item;
 	private String prodesc;
 	private String proaddress;
+	private String phone;
 
 	public Bid() {
 
@@ -43,6 +44,7 @@ public class Bid extends Head {
 		item = getJsonStrValue(json, "item");
 		prodesc = getJsonStrValue(json, "prodesc");
 		proaddress = getJsonStrValue(json, "proaddress");
+		phone = getJsonStrValue(json, "phone");
 
 	}
 
@@ -64,6 +66,10 @@ public class Bid extends Head {
 
 	public String getProaddress() {
 		return proaddress;
+	}
+
+	public String getPhone() {
+		return phone;
 	}
 
 }

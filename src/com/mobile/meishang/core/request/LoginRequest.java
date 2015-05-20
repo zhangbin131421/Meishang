@@ -9,9 +9,9 @@ import com.mobile.meishang.MApplication;
 import com.mobile.meishang.MFragment;
 import com.mobile.meishang.core.loader.LoginLoader;
 import com.mobile.meishang.core.network.DefaultNetworkRequest;
-import com.mobile.meishang.model.bean.User;
+import com.mobile.meishang.model.bean.Login;
 
-public class LoginRequest implements LoaderManager.LoaderCallbacks<User> {
+public class LoginRequest implements LoaderManager.LoaderCallbacks<Login> {
 
 	private MActivity mActivity;
 	private MFragment mFragment;
@@ -26,7 +26,7 @@ public class LoginRequest implements LoaderManager.LoaderCallbacks<User> {
 	}
 
 	@Override
-	public Loader<User> onCreateLoader(int arg0, Bundle bundle) {
+	public Loader<Login> onCreateLoader(int arg0, Bundle bundle) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
 		urlString.append("user/login.htm");
@@ -45,7 +45,7 @@ public class LoginRequest implements LoaderManager.LoaderCallbacks<User> {
 	}
 
 	@Override
-	public void onLoadFinished(Loader<User> arg0, User arg1) {
+	public void onLoadFinished(Loader<Login> arg0, Login arg1) {
 		if (arg1 != null) {
 			if (mFragment == null) {
 				mActivity.updateUI(arg0.getId(), arg1);
@@ -56,7 +56,7 @@ public class LoginRequest implements LoaderManager.LoaderCallbacks<User> {
 	}
 
 	@Override
-	public void onLoaderReset(Loader<User> arg0) {
+	public void onLoaderReset(Loader<Login> arg0) {
 	}
 
 }

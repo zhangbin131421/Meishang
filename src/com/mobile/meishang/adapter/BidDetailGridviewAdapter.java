@@ -1,58 +1,49 @@
 package com.mobile.meishang.adapter;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.bean.Goods;
+import com.mobile.meishang.model.bean.User;
 
-public class BidDetailGridviewAdapter extends BaseListAdapter<Goods> {
-
-	private Context mContext;
+public class BidDetailGridviewAdapter extends BaseCacheListAdapter<User> {
 
 	public BidDetailGridviewAdapter(Context context) {
-		mContext = context;
+		super(context);
 	}
 
 	@Override
-	public int getCount() {
-		return 6;
-	}
-
-	@Override
-	public View getView(final int position, View convertView, ViewGroup parent) {
+	public View getView(int position, View convertView, ViewGroup parent) {
 		Holder holder;
 		if (null == convertView) {
 			holder = new Holder();
-			convertView = LayoutInflater.from(mContext).inflate(
-					R.layout.item_gridview_home, null);
+			convertView = mInflater.inflate(R.layout.item_gridview_bid_detail, null);
+			holder.item_image = (ImageView) convertView
+					.findViewById(R.id.item_image);
 			holder.item_name = (TextView) convertView
 					.findViewById(R.id.item_name);
-			// holder.item_name.setOnClickListener(new OnClickListener() {
-			//
-			// @Override
-			// public void onClick(View v) {
-			// Toast.makeText(mContext, "item_tv_title" + position,
-			// Toast.LENGTH_SHORT).show();
-			// }
-			// });
 			convertView.setTag(holder);
 		} else {
 			holder = (Holder) convertView.getTag();
 		}
-		holder.item_name.setText("首页");
-		holder.item_name
-				.setCompoundDrawablesWithIntrinsicBounds(null, mContext
-						.getResources().getDrawable(R.drawable.ic_launcher),
-						null, null);
+		holder.item_name.setText(getItem(position).getNickname());
+		setCacheImage(holder.item_image, getItem(position).getHeaderpath(),
+				R.drawable.loading_bg_img_shop);
 		return convertView;
 	}
 
 	static class Holder {
+		ImageView item_image;
 		TextView item_name;
+	}
+
+	@Override
+	public void refreshImageView(AbsListView view) {
+
 	}
 
 }

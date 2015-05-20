@@ -31,7 +31,7 @@ import com.mobile.meishang.model.DiscoverDetail;
 import com.mobile.meishang.model.Picture;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.Head;
-import com.mobile.meishang.model.bean.User;
+import com.mobile.meishang.model.bean.Login;
 import com.mobile.meishang.ui.login.LoginActivity;
 import com.mobile.meishang.utils.view.AdGallery;
 import com.mobile.meishang.utils.view.LoadingView;
@@ -195,11 +195,11 @@ public class SignDetailActivity extends MActivity implements ExceptionHandler,
 			showToast(head.getMessage());
 			break;
 		case RequestDistribute.SIGN_GET_INTEGRAL:
-			User user = (User) data;
-			if (user.isSuccess()) {
-				MApplication.getInstance().setLogin(user);
+			Login login = (Login) data;
+			if (login.isSuccess()) {
+				MApplication.getInstance().setLogin(login.getUser());
 			}
-			showToast(user.getMessage());
+			showToast(login.getMessage());
 			break;
 		default:
 			break;

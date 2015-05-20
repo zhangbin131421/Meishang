@@ -41,7 +41,7 @@ public class HistoryBidListActivity extends MActivity implements
 		title.setVisibility(View.VISIBLE);
 		mLoadingView = (LoadingView) findViewById(R.id.loading);
 		mLoadingView.setLoadEvent(this);
-		mLoadingView.setVisibility(View.GONE);
+		
 		mNoDataRLayout = (RelativeLayout) findViewById(R.id.no_data);
 		tvNoData = (TextView) findViewById(R.id.face_tv);
 		tvNoData.setText("很抱歉，没有发现商品");

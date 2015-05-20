@@ -22,7 +22,7 @@ import com.mobile.meishang.core.request.SignGetIntegralRequest;
 import com.mobile.meishang.core.request.SignInFragmentRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.SignInFragmentData;
-import com.mobile.meishang.model.bean.User;
+import com.mobile.meishang.model.bean.Login;
 import com.mobile.meishang.ui.home.SignDetailActivity;
 import com.mobile.meishang.ui.home.SignRuleActivity;
 import com.mobile.meishang.ui.lehuigou.LehuigoHomeActvity;
@@ -150,16 +150,16 @@ public class SignInFragment extends MFragment implements OnClickListener,
 					+ "积分");
 			break;
 		case RequestDistribute.SIGN_GET_INTEGRAL:
-			User user = (User) data;
-			if (user.isSuccess()) {
-				MApplication.getInstance().setLogin(user);
+			Login login = (Login) data;
+			if (login.isSuccess()) {
+				MApplication.getInstance().setLogin(login.getUser());
 				int position = signProgressBar.getmPosition() + 1;
 				MApplication.getInstance().getmConfig()
 						.putPreferencesVal("signProgressBar", position);
 				signProgressBar.setmPosition(position);
 				signProgressBar.invalidate();
 			}
-			showToast(user.getMessage());
+			showToast(login.getMessage());
 			break;
 
 		default:
