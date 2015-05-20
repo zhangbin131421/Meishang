@@ -26,6 +26,8 @@ public class SignProgressBar extends View {
 
 	private int textsize = 50;
 
+	private int mPosition;
+
 	public SignProgressBar(Context context) {
 		super(context);
 		init();
@@ -70,8 +72,19 @@ public class SignProgressBar extends View {
 		try {
 			super.onDraw(canvas);
 			float mTextWidth = mPaint.measureText("3") / 2;
-			float xImg = (3 * (getWidth() / 8)) - (getBitmapWidth() / 2)
-					+ mTextWidth;
+			float xImg;
+			if (mPosition > 0) {
+				if (mPosition > 7) {
+					xImg = (7 * (getWidth() / 8)) - (getBitmapWidth() / 2)
+							+ mTextWidth;
+				} else {
+					xImg = (mPosition * (getWidth() / 8))
+							- (getBitmapWidth() / 2) + mTextWidth;
+				}
+			} else {
+				xImg = 0;
+			}
+
 			float yImg = 0;
 			// float xText = 10;
 			// float yText = 30;
@@ -81,12 +94,25 @@ public class SignProgressBar extends View {
 			canvas.drawLine(10, getBitmapHeigh(), getWidth(), getBitmapHeigh(),
 					mPaint);
 			mPaint.setColor(res.getColor(R.color.orange1));
-			canvas.drawLine(10, getBitmapHeigh(), 3 * (getWidth() / 8)
-					+ mTextWidth, getBitmapHeigh(), mPaint);
+			if (mPosition < 7) {
+
+				canvas.drawLine(10, getBitmapHeigh(), mPosition
+						* (getWidth() / 8) + mTextWidth, getBitmapHeigh(),
+						mPaint);
+			} else {
+				canvas.drawLine(10, getBitmapHeigh(), 7 * (getWidth() / 8)
+						+ mTextWidth, getBitmapHeigh(), mPaint);
+			}
 			for (int i = 0; i < 8; i++) {
 				if (i != 0) {
-					canvas.drawText(i + "", i * (getWidth() / 8),
-							getBitmapHeigh() * 2+5, mPaint);
+					if (mPosition > 7) {
+						canvas.drawText((i + mPosition - 7) + "", i
+								* (getWidth() / 8), getBitmapHeigh() * 2 + 5,
+								mPaint);
+					} else {
+						canvas.drawText(i + "", i * (getWidth() / 8),
+								getBitmapHeigh() * 2 + 5, mPaint);
+					}
 				}
 			}
 		} catch (Exception e) {
@@ -100,6 +126,14 @@ public class SignProgressBar extends View {
 
 	private int getBitmapHeigh() {
 		return (int) Math.ceil(mImgHei);
+	}
+
+	public void setmPosition(int mPosition) {
+		this.mPosition = mPosition;
+	}
+
+	public int getmPosition() {
+		return mPosition;
 	}
 
 }

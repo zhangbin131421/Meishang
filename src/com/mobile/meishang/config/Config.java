@@ -37,7 +37,7 @@ public class Config {
 		editor.commit();
 	}
 
-	public long getPreferencesVal(String key, int defaultVal) {
+	public int getPreferencesVal(String key, int defaultVal) {
 		return mPrefs.getInt(key, defaultVal);
 	}
 

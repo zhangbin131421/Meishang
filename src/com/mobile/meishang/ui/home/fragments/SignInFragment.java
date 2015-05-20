@@ -22,10 +22,11 @@ import com.mobile.meishang.core.request.SignGetIntegralRequest;
 import com.mobile.meishang.core.request.SignInFragmentRequest;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.SignInFragmentData;
-import com.mobile.meishang.model.bean.Head;
+import com.mobile.meishang.model.bean.User;
 import com.mobile.meishang.ui.home.SignDetailActivity;
 import com.mobile.meishang.ui.home.SignRuleActivity;
 import com.mobile.meishang.ui.lehuigou.LehuigoHomeActvity;
+import com.mobile.meishang.ui.widget.SignProgressBar;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
@@ -40,6 +41,7 @@ public class SignInFragment extends MFragment implements OnClickListener,
 	private SignInListviewAdapter adapter;
 	private Bundle mBundle;
 	private LinearLayout llayout;
+	private SignProgressBar signProgressBar;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -69,9 +71,17 @@ public class SignInFragment extends MFragment implements OnClickListener,
 		headView.findViewById(R.id.tv_go_shopping).setOnClickListener(this);
 		btn_sign = (Button) headView.findViewById(R.id.btn_sign);
 		btn_sign.setOnClickListener(this);
+		signProgressBar = (SignProgressBar) headView
+				.findViewById(R.id.signProgressBar);
+		signProgressBar.setmPosition(MApplication.getInstance().getmConfig()
+				.getPreferencesVal("signProgressBar", 0));
 		headView.findViewById(R.id.tv_rule).setOnClickListener(this);
 		headView.findViewById(R.id.img_delete).setOnClickListener(this);
 		llayout = (LinearLayout) headView.findViewById(R.id.llayout);
+		if (MApplication.getInstance().getmConfig()
+				.getPreferencesVal("llayoutGone", false)) {
+			llayout.setVisibility(View.GONE);
+		}
 		listview.addHeaderView(headView);
 		adapter = new SignInListviewAdapter(mContext);
 		listview.setAdapter(adapter);
@@ -98,13 +108,14 @@ public class SignInFragment extends MFragment implements OnClickListener,
 		// mBundle.putString("range", "");
 		getLoaderManager().restartLoader(RequestDistribute.SIGNIN_FRAGMENT,
 				mBundle, new SignInFragmentRequest(this));
-		tv_integral.setText(MApplication.getInstance().getLogin().getIntegral()
-				+ "积分");
+
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
+		tv_integral.setText(MApplication.getInstance().getLogin().getIntegral()
+				+ "积分");
 		MobclickAgent.onResume(mContext);
 	}
 
@@ -139,8 +150,16 @@ public class SignInFragment extends MFragment implements OnClickListener,
 					+ "积分");
 			break;
 		case RequestDistribute.SIGN_GET_INTEGRAL:
-			Head head = (Head) data;
-			showToast(head.getMessage());
+			User user = (User) data;
+			if (user.isSuccess()) {
+				MApplication.getInstance().setLogin(user);
+				int position = signProgressBar.getmPosition() + 1;
+				MApplication.getInstance().getmConfig()
+						.putPreferencesVal("signProgressBar", position);
+				signProgressBar.setmPosition(position);
+				signProgressBar.invalidate();
+			}
+			showToast(user.getMessage());
 			break;
 
 		default:
@@ -169,6 +188,8 @@ public class SignInFragment extends MFragment implements OnClickListener,
 			break;
 		case R.id.img_delete:
 			llayout.setVisibility(View.GONE);
+			MApplication.getInstance().getmConfig()
+					.putPreferencesVal("llayoutGone", true);
 			break;
 
 		default:

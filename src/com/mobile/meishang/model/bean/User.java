@@ -5,27 +5,24 @@ import org.json.JSONObject;
 
 public class User extends Head {
 	// {
-	// "message": "",
-	// "RESULT": "0",
+	// "message": "登录成功",
+	// "result": 1,
 	// "user": {
-	// "header": "http://121.43.224.225:8888/data",
-	// "userName": "",
-	// "userId": 0,
+	// "userid": 11,
+	// "password": "e10adc3949ba59abbe56e057f20f883e",
 	// "telephone": "13776636043",
-	// "userPass": "",
-	// "createtime": "",
-	// "updatetime": "",
-	// "nickname": "",
-	// "integral": "0"
+	// "status": 0,
+	// "integral": 60,
+	// "headerpath": "image/header.jpg"
 	// }
 	// }
 
-	private String header;
-	private String userName;
 	private String userId;
 	private String telephone;
-	private String nickname;
 	private String integral;
+	private String headerpath;
+	private String userName;
+	private String nickname;
 
 	public User() {
 	}
@@ -33,7 +30,7 @@ public class User extends Head {
 	public User(JSONObject json) throws JSONException {
 		super(json);
 		JSONObject userJsonObject = getJsonObject(json, "user");
-		header = getJsonStrValue(userJsonObject, "header");
+		headerpath = getJsonStrValue(userJsonObject, "headerpath");
 		userName = getJsonStrValue(userJsonObject, "userName");
 		userId = getJsonStrValue(userJsonObject, "userid");
 		telephone = getJsonStrValue(userJsonObject, "telephone");
@@ -42,8 +39,8 @@ public class User extends Head {
 
 	}
 
-	public String getHeader() {
-		return header;
+	public String getHeaderpath() {
+		return headerpath;
 	}
 
 	public String getUserName() {
