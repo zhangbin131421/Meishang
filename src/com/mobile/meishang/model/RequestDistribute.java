@@ -93,4 +93,5 @@ public class RequestDistribute {
 	public static final int MY_BID_PUBLISH_LIST = 6025;//
 	public static final int EVALUATE_LIST = 6026;//
 	public static final int BID_DETAIL = 6027;//
+	public static final int LEHUIGOU_SEARCH = 6028;//
 }

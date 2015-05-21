@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +51,14 @@ public class LehuigoHomeActvity extends MActivity implements
 					KeyEvent event) {
 				if (actionId == EditorInfo.IME_ACTION_SEARCH
 						|| (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
-					goActivity(GoodsSearchActivity.class, null);
+					String title = v.getText().toString();
+					if (TextUtils.isEmpty(title)) {
+						showToast("搜索内容不能为空");
+					} else {
+						Bundle bundle = new Bundle();
+						bundle.putString("title", v.getText().toString());
+						goActivity(GoodsSearchActivity.class, bundle);
+					}
 					// InputMethodManager imm =
 					// (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 					// 隐藏软键盘

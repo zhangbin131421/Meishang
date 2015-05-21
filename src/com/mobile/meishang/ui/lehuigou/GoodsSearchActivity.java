@@ -14,11 +14,12 @@ import android.widget.TextView;
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.FilterListAdapter;
-import com.mobile.meishang.adapter.GoodsListviewAdapter;
+import com.mobile.meishang.adapter.GoodsSearchListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
+import com.mobile.meishang.core.request.LehuigoSearchRequest;
+import com.mobile.meishang.model.LehuigoHomeData;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.CategoryFilter;
-import com.mobile.meishang.model.bean.Goods;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.umeng.analytics.MobclickAgent;
 
@@ -34,8 +35,7 @@ public class GoodsSearchActivity extends MActivity implements ExceptionHandler,
 	private LinearLayout llayout_listview;
 	private ListView listview_left;
 	private ListView listview_right;
-	private GoodsListviewAdapter mListviewAdapter;
-	private List<Goods> mGoodsListing;
+	private GoodsSearchListviewAdapter mListviewAdapter;
 	private Bundle mBundle;
 	private FilterListAdapter filterLeftAdapter;
 	private FilterListAdapter filterRightAdapter;
@@ -47,16 +47,11 @@ public class GoodsSearchActivity extends MActivity implements ExceptionHandler,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_goods_list);
 		mBundle = getIntent().getBundleExtra("bundle");
-		// mContext = this;
 		findViewById(R.id.top_layout_back).setVisibility(View.VISIBLE);
-		// findViewById(R.id.top_arrow_down).setVisibility(View.VISIBLE);
-		// findViewById(R.id.top_map).setVisibility(View.VISIBLE);
-		LinearLayout layout = (LinearLayout) findViewById(R.id.title_choice_llayout);
-		layout.setVisibility(View.VISIBLE);
-		tv_category_left = (TextView) findViewById(R.id.category_a_tv);
-		if (mBundle != null && mBundle.containsKey("name")) {
-			tv_category_left.setText(mBundle.getString("name"));
-		}
+		// LinearLayout layout = (LinearLayout)
+		// findViewById(R.id.title_choice_llayout);
+		// layout.setVisibility(View.VISIBLE);
+		tv_category_left = (TextView) findViewById(R.id.tv_category_left);
 		tv_category_right = (TextView) findViewById(R.id.tv_category_right);
 		// mLoadingView = (LoadingView) findViewById(R.id.loading);
 		// mLoadingView.setLoadEvent(this);
@@ -71,27 +66,51 @@ public class GoodsSearchActivity extends MActivity implements ExceptionHandler,
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
+				tv_category_left.setText(filterLeft.get(position).getName());
 				llayout_listview.setVisibility(View.GONE);
-				// Bundle bundle = new Bundle();
-				// bundle.putString("id",
-				// mGoodsListing.get(--position).getId());
-				// goActivity(GoodsDetailActivity.class, bundle);
+				switch (position) {
+				case 0:
+					mBundle.putString("integral1", "0");
+					mBundle.putString("integral2", "999");
+					break;
+				case 1:
+					mBundle.putString("integral1", "1000");
+					mBundle.putString("integral2", "1999");
+					break;
+				case 2:
+					mBundle.putString("integral1", "2000");
+					mBundle.putString("integral2", "2999");
+					break;
+				case 3:
+					mBundle.putString("integral1", "3000");
+					mBundle.putString("integral2", "3999");
+					break;
+				case 4:
+					mBundle.putString("integral1", "4000");
+					mBundle.putString("integral2", "4999");
+					break;
+
+				default:
+					break;
+				}
+				net();
 			}
 		});
+		// Title:标题 integral1：积分1 integral2：积分2 moduleid：大模块编号 smoduleid：小
 		listview_right = (ListView) findViewById(R.id.listview_right);
 		listview_right.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
+				tv_category_right.setText(filterRight.get(position).getName());
 				llayout_listview.setVisibility(View.GONE);
-				// Bundle bundle = new Bundle();
-				// bundle.putString("id",
-				// mGoodsListing.get(--position).getId());
-				// goActivity(GoodsDetailActivity.class, bundle);
+				mBundle.putString("moduleid", filterRight.get(position).getId());
+				mBundle.putString("smoduleid", "");
+				net();
 			}
 		});
-		mListviewAdapter = new GoodsListviewAdapter(this);
+		mListviewAdapter = new GoodsSearchListviewAdapter(this);
 		listview.setAdapter(mListviewAdapter);
 		listview.setOnItemClickListener(new OnItemClickListener() {
 
@@ -105,8 +124,17 @@ public class GoodsSearchActivity extends MActivity implements ExceptionHandler,
 				goActivity(IntegralGoodsDetailActivity.class, null);
 			}
 		});
-		// getSupportLoaderManager().restartLoader(RequestDistribute.GOODS_LIST,
-		// mBundle, new GoodsListRequest(this));
+		// mBundle.putString("integral1", "0");
+		// mBundle.putString("integral2", "999");
+		// mBundle.putString("moduleid", "3");
+		// mBundle.putString("smoduleid", "");
+		net();
+	}
+
+	private void net() {
+		getSupportLoaderManager().restartLoader(
+				RequestDistribute.LEHUIGOU_SEARCH, mBundle,
+				new LehuigoSearchRequest(this));
 	}
 
 	@Override
@@ -126,15 +154,11 @@ public class GoodsSearchActivity extends MActivity implements ExceptionHandler,
 		// super.updateUI(identity, data);
 		// mLoadingView.setVisibility(View.GONE);
 		switch (identity) {
-		case RequestDistribute.GOODS_LIST:
-			// mGoodsListing = (List<GoodsItem>) data;
-			// if (mGoodsListing.size() > 0) {
-			// mListviewAdapter.clear();
-			// mListviewAdapter.addAll(mGoodsListing);
-			// mListviewAdapter.notifyDataSetChanged();
-			// } else {
-			// mNoDataRLayout.setVisibility(View.VISIBLE);
-			// }
+		case RequestDistribute.LEHUIGOU_SEARCH:
+			LehuigoHomeData lehuigoHomeData = (LehuigoHomeData) data;
+			mListviewAdapter.clear();
+			mListviewAdapter.addAll(lehuigoHomeData.getmList());
+			mListviewAdapter.notifyDataSetChanged();
 			break;
 
 		default:
@@ -177,7 +201,7 @@ public class GoodsSearchActivity extends MActivity implements ExceptionHandler,
 		this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				if (identity == RequestDistribute.GOODS_LIST) {
+				if (identity == RequestDistribute.LEHUIGOU_SEARCH) {
 					// mLoadingView.showRetryBtn(true);
 					showToast(e.getMessage());
 				}
@@ -187,7 +211,7 @@ public class GoodsSearchActivity extends MActivity implements ExceptionHandler,
 
 	@Override
 	public void retryAgain(View v) {
-		// mNoDataRLayout.setVisibility(View.GONE);
+		net();
 	}
 
 	private List<CategoryFilter> getFiterDataLeft() {
@@ -206,12 +230,11 @@ public class GoodsSearchActivity extends MActivity implements ExceptionHandler,
 	private List<CategoryFilter> getFiterDataRight() {
 		if (filterRight == null) {
 			filterRight = new ArrayList<CategoryFilter>();
-			filterRight.add(new CategoryFilter("类型1", ""));
-			filterRight.add(new CategoryFilter("类型2", ""));
-			filterRight.add(new CategoryFilter("类型3", ""));
-			filterRight.add(new CategoryFilter("类型4", ""));
-			filterRight.add(new CategoryFilter("类型5", ""));
-			filterRight.add(new CategoryFilter("类型6", ""));
+			filterRight.add(new CategoryFilter("美容", "3"));
+			filterRight.add(new CategoryFilter("内页", "4"));
+			filterRight.add(new CategoryFilter("车饰", "5"));
+			filterRight.add(new CategoryFilter("灯饰", "6"));
+			filterRight.add(new CategoryFilter("日化", "7"));
 
 		}
 		return filterRight;

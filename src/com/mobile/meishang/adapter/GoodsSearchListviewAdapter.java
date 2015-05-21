@@ -8,18 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.bean.GoodsItem;
+import com.mobile.meishang.model.LehuigoHomeDataItem;
 
-public class GoodsListviewAdapter extends BaseCacheListAdapter<GoodsItem> {
+public class GoodsSearchListviewAdapter extends
+		BaseCacheListAdapter<LehuigoHomeDataItem> {
 
-	public GoodsListviewAdapter(Context context) {
+	public GoodsSearchListviewAdapter(Context context) {
 		super(context);
-	}
-
-	@Override
-	public int getCount() {
-		// return super.getCount();
-		return 10;
 	}
 
 	@Override
@@ -40,6 +35,10 @@ public class GoodsListviewAdapter extends BaseCacheListAdapter<GoodsItem> {
 			holder = (Holder) convertView.getTag();
 		}
 
+		setCacheImage(holder.imageView, getItem(position).getPicpath(),
+				R.drawable.loading_bg_img_item);
+		holder.title.setText(getItem(position).getTitle());
+		holder.describe.setText(getItem(position).getIntegral());
 		return convertView;
 	}
 

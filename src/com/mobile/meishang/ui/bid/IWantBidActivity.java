@@ -127,10 +127,10 @@ public class IWantBidActivity extends MActivity {
 				moduleList = modules.getModuleList();
 				break;
 			case RequestDistribute.PUBLISHED:
-				Head head=(Head) data;
+				Head head = (Head) data;
 				if (head.isSuccess()) {
 					showToast("恭喜您，发布成功");
-				}else {
+				} else {
 					showToast(head.getMessage());
 				}
 				break;
@@ -156,18 +156,20 @@ public class IWantBidActivity extends MActivity {
 			goActivity(HistoryBidListActivity.class, null);
 			break;
 		case R.id.tv_choose_category:
-			llayout.setVisibility(View.VISIBLE);
-			if (filterLeftAdapter == null) {
-				filterLeftAdapter = new CategoryLeftListAdapter(this);
-				listview_left.setAdapter(filterLeftAdapter);
-				filterLeftAdapter.addAll(moduleList);
-				filterLeftAdapter.notifyDataSetChanged();
-			}
-			if (filterRightAdapter == null) {
-				filterRightAdapter = new CategoryRightListAdapter(this);
-				listview_right.setAdapter(filterRightAdapter);
-				filterRightAdapter.addAll(moduleList.get(0).getList());
-				filterRightAdapter.notifyDataSetChanged();
+			if (moduleList != null) {
+				llayout.setVisibility(View.VISIBLE);
+				if (filterLeftAdapter == null) {
+					filterLeftAdapter = new CategoryLeftListAdapter(this);
+					listview_left.setAdapter(filterLeftAdapter);
+					filterLeftAdapter.addAll(moduleList);
+					filterLeftAdapter.notifyDataSetChanged();
+				}
+				if (filterRightAdapter == null) {
+					filterRightAdapter = new CategoryRightListAdapter(this);
+					listview_right.setAdapter(filterRightAdapter);
+					filterRightAdapter.addAll(moduleList.get(0).getList());
+					filterRightAdapter.notifyDataSetChanged();
+				}
 			}
 			break;
 		case R.id.llayout:
