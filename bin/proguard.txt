@@ -43,7 +43,6 @@
 -keep class android.support.v7.internal.widget.LinearLayoutICS { <init>(...); }
 
 # view v11\res/layout-v11/abc_action_bar_decor.xml #generated:17
-# view v11\res/layout-v11/abc_simple_decor.xml #generated:17
 -keep class android.support.v7.internal.widget.NativeActionModeAwareLayout { <init>(...); }
 
 # view res/layout/abc_action_bar_tab.xml #generated:17
@@ -330,8 +329,8 @@
 # onClick res/layout/activity_login.xml #generated:89
 # onClick res/layout/activity_my_wallet.xml #generated:145
 # onClick res/layout/activity_online_options.xml #generated:220
-# onClick res/layout/activity_register.xml #generated:114
-# onClick res/layout/activity_register.xml #generated:50
+# onClick res/layout/activity_register.xml #generated:120
+# onClick res/layout/activity_register.xml #generated:51
 # onClick res/layout/activity_select_cinema.xml #generated:25
 # onClick res/layout/activity_select_cinema.xml #generated:40
 # onClick res/layout/activity_select_cinema.xml #generated:58

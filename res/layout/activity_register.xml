@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ad_flayout"
     android:layout_width="match_parent"
@@ -32,14 +33,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="账户　　"
-                        android:textColor="@color/black2" />
+                        android:textColor="@color/font_black" />
 
                     <EditText
                         android:id="@+id/etext_telephone"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@color/white"
+                        android:background="@color/transparent"
                         android:hint="请输入手机号"
                         android:inputType="phone"
                         android:maxLength="11"
@@ -56,6 +57,10 @@
                         android:text="获取验证码"
                         android:textColor="@color/black2" />
                 </LinearLayout>
+
+                <View
+                    style="@style/line_horizontal_style"
+                    android:layout_marginLeft="10dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -74,7 +79,7 @@
                         android:id="@+id/etext_verification_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
+                        android:background="@color/transparent"
                         android:hint="请输入验证码"
                         android:singleLine="true"
                         android:textColor="@color/black1"
@@ -82,9 +87,8 @@
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/bg" />
+                    style="@style/line_horizontal_style"
+                    android:layout_marginLeft="10dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -103,13 +107,15 @@
                         android:id="@+id/etext_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
+                        android:background="@color/transparent"
                         android:hint="请输入密码"
                         android:inputType="textPassword"
                         android:singleLine="true"
                         android:textColor="@color/black1"
                         android:textColorHint="@color/black3" />
                 </LinearLayout>
+
+                <View style="@style/line_horizontal_style" />
 
                 <Button
                     android:id="@+id/btn_finish"
