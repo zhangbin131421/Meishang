@@ -2,14 +2,15 @@
     android:id="@+id/ad_flayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <include layout="@layout/layout_top_back" />
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp" >
 
         <ScrollView
             android:layout_width="match_parent"
@@ -19,18 +20,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="10dp" >
+                android:orientation="vertical" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_fillet_white"
+                    android:background="@color/bg_gray_register"
                     android:orientation="vertical" >
+
+                    <View style="@style/line_horizontal_style" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp" >
@@ -39,29 +42,31 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="账户"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/font_black"
+                            android:textSize="@dimen/text_size_h4" />
 
                         <EditText
                             android:id="@+id/etext_username"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:background="@color/white"
+                            android:background="@color/transparent"
                             android:hint="手机号"
                             android:maxLength="11"
                             android:singleLine="true"
-                            android:textColor="@color/black1"
-                            android:textColorHint="@color/black3" />
+                            android:textColor="@color/font_black"
+                            android:textColorHint="@color/font_gray2"
+                            android:textSize="@dimen/text_size_h4" />
                     </LinearLayout>
 
                     <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/bg" />
+                        style="@style/line_horizontal_style"
+                        android:layout_marginLeft="20dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp" >
@@ -70,36 +75,45 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="密码"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_h4" />
 
                         <EditText
                             android:id="@+id/etext_password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:background="@color/white"
+                            android:background="@color/transparent"
                             android:hint="请输入密码"
                             android:inputType="textPassword"
                             android:singleLine="true"
-                            android:textColor="@color/black1"
-                            android:textColorHint="@color/black3" />
+                            android:textColor="@color/font_black"
+                            android:textColorHint="@color/font_gray2"
+                            android:textSize="@dimen/text_size_h4" />
                     </LinearLayout>
+
+                    <View style="@style/line_horizontal_style" />
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/btn_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/btn_red"
                     android:onClick="onclick"
                     android:text="登录"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_h3" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dp"
                     android:orientation="horizontal" >
 
                     <TextView
@@ -110,7 +124,8 @@
                         android:clickable="true"
                         android:onClick="onclick"
                         android:text="快速注册"
-                        android:textColor="@color/black2" />
+                        android:textColor="@color/black2"
+                        android:textSize="@dimen/text_size_h5" />
 
                     <TextView
                         android:id="@+id/tv_forget_pd"
@@ -121,7 +136,8 @@
                         android:gravity="right"
                         android:onClick="onclick"
                         android:text="找回密码"
-                        android:textColor="@color/black2" />
+                        android:textColor="@color/black2"
+                        android:textSize="@dimen/text_size_h5" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

@@ -926,12 +926,13 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f0a0002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f070055;
+        public static final int abc_search_url_text_holo=0x7f070056;
         public static final int abc_search_url_text_normal=0x7f07000d;
         public static final int abc_search_url_text_pressed=0x7f07000f;
         public static final int abc_search_url_text_selected=0x7f07000e;
         public static final int bg=0x7f07003f;
         public static final int bg_gray=0x7f070054;
+        public static final int bg_gray_register=0x7f070055;
         public static final int bg_line=0x7f070040;
         public static final int bg_login=0x7f070052;
         public static final int bg_oneday_item=0x7f07004a;
@@ -1127,7 +1128,6 @@ containing a value of this type.
  商品详情 
  商品详情 
  商品详情 
- 商品详情 
          */
         public static final int btn_pay_size=0x7f09002c;
         /**  tab 
@@ -1149,7 +1149,6 @@ containing a value of this type.
  列表 
  samsung gt-n7108,nubia-nx403A :1280*720 ,320 
  samsung sch-1879:800*480,xiaomi 1s :854*480,240 
- 列表 
  列表 
  列表 
  列表 
@@ -1198,8 +1197,6 @@ containing a value of this type.
  标题 
  xiaomi 1s :854*480,240 
  标题 
- 标题 
- samsung gt-n7108,nubia-nx403A :1280*720 ,320 
  标题 
          */
         public static final int top_name_size=0x7f090027;

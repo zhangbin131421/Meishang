@@ -3,14 +3,15 @@
     android:id="@+id/ad_flayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <include layout="@layout/layout_top_back" />
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp" >
 
         <ScrollView
             android:layout_width="match_parent"
@@ -22,97 +23,116 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="10dp" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="账户　　"
-                        android:textColor="@color/font_black" />
-
-                    <EditText
-                        android:id="@+id/etext_telephone"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@color/transparent"
-                        android:hint="请输入手机号"
-                        android:inputType="phone"
-                        android:maxLength="11"
-                        android:singleLine="true"
-                        android:textColor="@color/black1"
-                        android:textColorHint="@color/black3" />
-
-                    <TextView
-                        android:id="@+id/tv_get_verification_code"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:onClick="onclick"
-                        android:text="获取验证码"
-                        android:textColor="@color/black2" />
-                </LinearLayout>
-
-                <View
-                    style="@style/line_horizontal_style"
-                    android:layout_marginLeft="10dp" />
+                <View style="@style/line_horizontal_style" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="10dp" >
+                    android:background="@color/bg_gray_register"
+                    android:orientation="vertical" >
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="验证码　"
-                        android:textColor="@color/black2" />
-
-                    <EditText
-                        android:id="@+id/etext_verification_code"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/transparent"
-                        android:hint="请输入验证码"
-                        android:singleLine="true"
-                        android:textColor="@color/black1"
-                        android:textColorHint="@color/black3" />
-                </LinearLayout>
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="10dp" >
 
-                <View
-                    style="@style/line_horizontal_style"
-                    android:layout_marginLeft="10dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="账户　　"
+                            android:textColor="@color/font_black"
+                            android:textSize="@dimen/text_size_h4" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="10dp" >
+                        <EditText
+                            android:id="@+id/etext_telephone"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/transparent"
+                            android:hint="请输入手机号"
+                            android:inputType="phone"
+                            android:maxLength="11"
+                            android:singleLine="true"
+                            android:textColor="@color/black1"
+                            android:textColorHint="@color/black3"
+                            android:textSize="@dimen/text_size_h4" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="密码　　"
-                        android:textColor="@color/black2" />
+                        <TextView
+                            android:id="@+id/tv_get_verification_code"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:onClick="onclick"
+                            android:text="获取验证码"
+                            android:textColor="@color/black2"
+                            android:textSize="@dimen/text_size_h4" />
+                    </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/etext_password"
+                    <View
+                        style="@style/line_horizontal_style"
+                        android:layout_marginLeft="20dp" />
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/transparent"
-                        android:hint="请输入密码"
-                        android:inputType="textPassword"
-                        android:singleLine="true"
-                        android:textColor="@color/black1"
-                        android:textColorHint="@color/black3" />
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="10dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="验证码　"
+                            android:textColor="@color/font_black"
+                            android:textSize="@dimen/text_size_h4" />
+
+                        <EditText
+                            android:id="@+id/etext_verification_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:hint="请输入验证码"
+                            android:singleLine="true"
+                            android:textColor="@color/black1"
+                            android:textColorHint="@color/black3"
+                            android:textSize="@dimen/text_size_h4" />
+                    </LinearLayout>
+
+                    <View
+                        style="@style/line_horizontal_style"
+                        android:layout_marginLeft="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="10dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="密码　　"
+                            android:textColor="@color/font_black"
+                            android:textSize="@dimen/text_size_h4" />
+
+                        <EditText
+                            android:id="@+id/etext_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:hint="请输入密码"
+                            android:inputType="textPassword"
+                            android:singleLine="true"
+                            android:textColor="@color/black1"
+                            android:textColorHint="@color/black3"
+                            android:textSize="@dimen/text_size_h4" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <View style="@style/line_horizontal_style" />
@@ -121,12 +141,13 @@
                     android:id="@+id/btn_finish"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_margin="20dp"
                     android:background="@drawable/btn_green"
                     android:onClick="onclick"
                     android:padding="10dp"
                     android:text="注册"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_h3" />
             </LinearLayout>
         </ScrollView>
 

@@ -81,5 +81,6 @@
     <color name="bg_login">#E4DAD3</color>
     <color name="red_title">#E7433A</color>
     <color name="bg_gray">#808080</color>
+    <color name="bg_gray_register">#FAFAFA</color>
 
 </resources>
