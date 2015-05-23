@@ -13,7 +13,6 @@ import com.mobile.meishang.MActivity;
 import com.mobile.meishang.MApplication;
 import com.mobile.meishang.R;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.ui.baidu.BaiduLocation;
 import com.mobile.meishang.ui.home.fragments.DiscoverFragment;
 import com.mobile.meishang.ui.home.fragments.HomeFragment;
 import com.mobile.meishang.ui.home.fragments.MeFragment;
