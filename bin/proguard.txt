@@ -241,7 +241,7 @@
 # view res/layout/activity_city_list.xml #generated:22
 -keep class com.mobile.meishang.utils.view.MyLetterListView { <init>(...); }
 
-# view res/layout/activity_lehuigou_home.xml #generated:14
+# view res/layout/activity_lehuigou_home.xml #generated:15
 # view res/layout/activity_refresh_expandable_listview.xml #generated:1
 -keep class com.mobile.meishang.utils.view.pulltorefresh.MExpandableListView { <init>(...); }
 

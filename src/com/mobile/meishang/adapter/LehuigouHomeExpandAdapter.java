@@ -147,9 +147,10 @@ public class LehuigouHomeExpandAdapter extends BaseExpandableListAdapter {
 			viewHoder = new ViewHoder();
 			convertView = mInflater.inflate(
 					R.layout.item_expand_shoppoing_home_group, null);
-			viewHoder.arraowImageButton = (ImageView) convertView
-					.findViewById(R.id.arrow_imag_btn);
-			viewHoder.name = (TextView) convertView.findViewById(R.id.name);
+			// viewHoder.arraowImageButton = (ImageView) convertView
+			// .findViewById(R.id.arrow_imag_btn);
+			viewHoder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
+			viewHoder.tv_describel = (TextView) convertView.findViewById(R.id.tv_describel);
 			convertView.setTag(viewHoder);
 		} else {
 			viewHoder = (ViewHoder) convertView.getTag();
@@ -169,7 +170,8 @@ public class LehuigouHomeExpandAdapter extends BaseExpandableListAdapter {
 		// R.color.black_black));
 		//
 		// }
-		viewHoder.name.setText(mGroups.get(groupPosition).getText());
+		viewHoder.tv_name.setText(mGroups.get(groupPosition).getText());
+		viewHoder.tv_describel.setText(mGroups.get(groupPosition).getText2());
 		return convertView;
 	}
 
@@ -218,7 +220,8 @@ public class LehuigouHomeExpandAdapter extends BaseExpandableListAdapter {
 
 	private static class ViewHoder {
 		ImageView arraowImageButton;
-		TextView name;
+		TextView tv_name;
+		TextView tv_describel;
 	}
 
 	private static class HolderChild {

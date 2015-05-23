@@ -2,6 +2,7 @@ package com.mobile.meishang.ui.lehuigou;
 
 import java.util.List;
 
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -138,8 +139,9 @@ public class LehuigoHomeActvity extends MActivity implements
 	protected void onResume() {
 		User login = MApplication.getInstance().getLogin();
 		if (login == null) {
-			tv_name.setText("hi");
+			tv_name.setText("HI");
 			tv_integral.setText("0积分");
+			tv_integral.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		} else {
 			tv_name.setText("hi" + login.getNickname());
 			tv_integral.setText(login.getIntegral() + "积分");

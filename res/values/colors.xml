@@ -82,5 +82,7 @@
     <color name="red_title">#E7433A</color>
     <color name="bg_gray">#808080</color>
     <color name="bg_gray_register">#FAFAFA</color>
+    <color name="bg_red_title">#fD2700</color>
+    <color name="bg_red">#E63D36</color>
 
 </resources>
