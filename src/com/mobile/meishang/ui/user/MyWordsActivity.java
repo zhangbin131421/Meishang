@@ -36,7 +36,7 @@ public class MyWordsActivity extends MActivity implements ExceptionHandler,
 		listview = (ListView) findViewById(R.id.listview);
 		adapter = new MyWordsListviewAdapter(this);
 		listview.setAdapter(adapter);
-		net();
+		// net();
 
 	}
 

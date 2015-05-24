@@ -3,12 +3,12 @@
 
     <!--
          Base application theme, dependent on API level. This theme is replaced 
-		by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+		by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
         <!--
              Theme customizations available in newer API levels can go in res/values-vXX/styles.xml, 
-			while customizations related to backward-compatibility can go here.
+			while customizations related to backward-compatibility can go here.
         -->
     </style>
     <!-- Application theme. -->
@@ -16,7 +16,7 @@
 
         <!--
              All customizations that are NOT specific to a particular API-level 
-			can go here.
+			can go here.
         -->
         <item name="android:windowNoTitle">true</item>
     </style>
@@ -85,21 +85,21 @@
 		name="android:windowFrame">@null</item> <item name="android:windowNoTitle">true</item> 
 		<item name="android:windowBackground">@drawable/bg_fillet_white</item> <item 
 		name="android:windowIsFloating">true</item> <item name="android:windowContentOverlay">@null</item> 
-		</style>
+		</style>
     -->
     <!--
          <style name="mAppTheme" parent="@android:style/Theme"> <item name="android:dialogTheme">@style/mDialogTheme</item> 
 		<item name="android:alertDialogTheme">@style/mAlertDialogTheme</item> <item 
-		name="android:alertDialogStyle">@style/AlertDialog</item> </style>
+		name="android:alertDialogStyle">@style/AlertDialog</item> </style>
     -->
     <!--
          <style name="mDialogTheme" parent="@android:style/Theme.Dialog"> <item 
-		name="android:windowBackground">@android:color/white</item> </style>
+		name="android:windowBackground">@android:color/white</item> </style>
     -->
     <!-- <style name="mAlertDialogTheme" parent="@android:style/Theme.Dialog"></style> -->
     <!--
          <style name="mAlertDialogStyle" parent="@android:style/Theme.Dialog"> 
-		<item name="android:fullDark">@android:color/white</item> </style>
+		<item name="android:fullDark">@android:color/white</item> </style>
     -->
     <!--
          <style name="AlertDialog"> <item name="android:fullDark">@android:color/white</item> 
@@ -107,12 +107,12 @@
 		<item name="android:bottomDark">@android:color/white</item> <item name="android:fullBright">@android:color/white</item> 
 		<item name="android:topBright">@android:color/white</item> <item name="android:centerBright">@android:color/white</item> 
 		<item name="android:bottomBright">@android:color/white</item> <item name="android:bottomMedium">@android:color/white</item> 
-		<item name="android:centerMedium">@android:color/white</item> </style>
+		<item name="android:centerMedium">@android:color/white</item> </style>
     -->
     <!--
          <style name="ActivityDialogTheme" parent="@android:style/Theme.Dialog"> 
 		<item name="android:windowNoTitle">true</item> <item name="android:windowCloseOnTouchOutside">false</item> 
-		</style>
+		</style>
     -->
     <style name="text_style">
         <item name="android:layout_height">wrap_content</item>
@@ -163,8 +163,8 @@
     </style>
 
     <style name="item_image_small">
-        <item name="android:layout_height">50dp</item>
-        <item name="android:layout_width">70dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">30dp</item>
         <item name="android:adjustViewBounds">true</item>
         <item name="android:src">@drawable/loading_bg_img_item</item>
     </style>

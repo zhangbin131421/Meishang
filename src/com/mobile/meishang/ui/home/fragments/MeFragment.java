@@ -162,11 +162,11 @@ public class MeFragment extends MFragment implements OnClickListener {
 		case R.id.llayout_msg:
 			if (MApplication.getInstance().checkLogin()) {
 				// goActivity(MyVoucherActivity.class, null);
+				goActivity(MyWordsActivity.class, null);
 			} else {
 				goActivityForResult(LoginActivity.class, null,
 						RequestDistribute.LOGIN);
 			}
-			goActivity(MyWordsActivity.class, null);
 			break;
 		case R.id.llayout_publish:
 			if (MApplication.getInstance().checkLogin()) {
