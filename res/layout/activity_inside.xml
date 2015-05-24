@@ -1,10 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical" >
 
-    <include layout="@layout/layout_top_back" />
+    <include layout="@layout/layout_top_back_red" />
 
     <include
         android:id="@+id/loading"
@@ -13,12 +13,12 @@
         layout="@layout/loadingview" />
 
     <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
         <com.mobile.meishang.utils.view.pulltorefresh.XListView
             android:id="@+id/mlistview"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:cacheColorHint="@color/transparent"
             android:divider="@null"
@@ -26,8 +26,8 @@
 
         <include
             android:id="@+id/no_data"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             layout="@layout/face"
             android:visibility="gone" />
     </FrameLayout>

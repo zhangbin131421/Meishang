@@ -1,16 +1,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@color/white"
     android:orientation="vertical" >
 
-    <include layout="@layout/layout_top_back" />
+    <include layout="@layout/layout_top_back_red" />
 
     <include
         android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        layout="@layout/loadingview" />
+        layout="@layout/loadingview"
+        android:visibility="gone" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,33 +22,44 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:padding="8dp" >
 
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text="收评：XXXXXXXXXXXXXXXXXXXXXXXXXXXXxx" />
+                android:text="收评：XXXXXXXXXXXXXXXXXXXXXXXXXXXXxx"
+                android:textColor="@color/font_black"
+                android:textSize="@dimen/text_size_h4" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp" >
 
                 <TextView
                     android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2013-02-01 03:56" />
+                    android:layout_centerVertical="true"
+                    android:text="2013-02-01 03:56"
+                    android:textColor="@color/font_gray2"
+                    android:textSize="@dimen/text_size_h5" />
 
                 <TextView
                     android:id="@+id/tv_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:drawableLeft="@drawable/ic_shop_open_time"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@drawable/ic_people_numbers"
                     android:gravity="center"
-                    android:text="1.2万" />
+                    android:text="1.2万"
+                    android:textColor="@color/font_gray2"
+                    android:textSize="@dimen/text_size_h6" />
             </RelativeLayout>
 
             <ImageView
@@ -61,13 +73,18 @@
                 android:id="@+id/tv_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+                android:textColor="@color/font_gray"
+                android:textSize="@dimen/text_size_h5" />
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/tab_bg"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="10dp" >
@@ -87,6 +104,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:padding="8dp"
+            android:textSize="@dimen/text_size_h5"
+            android:textColorHint="@color/font_gray2"
+            android:background="@drawable/bg_fillet_white"
             android:hint="发表评论" />
 
         <FrameLayout

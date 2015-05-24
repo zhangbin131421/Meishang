@@ -9,8 +9,7 @@
 
     <ImageView
         android:id="@+id/item_image"
-        style="@style/item_image"
-        android:src="@drawable/loading_bg_img_item" />
+        style="@style/item_image" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -15,10 +15,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bg"
+        android:background="@color/tab_bg"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="8dp" >
+        android:padding="15dp" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,7 +28,7 @@
             android:gravity="center_vertical"
             android:text="热门品牌项目推荐"
             android:textColor="@color/font_black"
-            android:textSize="@dimen/tv_name_size" />
+            android:textSize="@dimen/text_size_h4" />
     </LinearLayout>
 
 </LinearLayout>

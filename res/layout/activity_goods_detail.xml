@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,94 +28,100 @@
 
                 <include layout="@layout/layout_ad_gallery" />
 
-                <TextView
-                    android:id="@+id/tv_old_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:text="原价¥188"
-                    android:textColor="@color/font_gray2"
-                    android:textSize="@dimen/tv_name_size" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="积分兑换"
-                        android:textColor="@color/font_gray2"
-                        android:textSize="@dimen/tv_name_size" />
-
-                    <TextView
-                        android:id="@+id/tv_integral"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="5000兑换+¥18"
-                        android:textColor="@color/red1"
-                        android:textSize="@dimen/tv_name_size" />
-                </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:orientation="horizontal" >
+                    android:orientation="vertical"
+                    android:padding="10dp" >
 
                     <TextView
-                        android:id="@+id/tv_title"
-                        android:layout_width="0dp"
+                        android:id="@+id/tv_old_price"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="JNBY江南布衣经典复古休闲系列女系带收腰外套"
-                        android:textColor="@color/font_black"
-                        android:textSize="@dimen/tv_name_size" />
-
-                    <View
-                        style="@style/line_vertical_style"
-                        android:layout_marginLeft="10dp" />
+                        android:text="原价¥188"
+                        android:textColor="@color/font_gray2"
+                        android:textSize="@dimen/text_size_h5" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
                         android:orientation="horizontal" >
 
                         <TextView
-                            android:id="@+id/tv_share"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:clickable="true"
-                            android:drawablePadding="3dp"
-                            android:drawableTop="@drawable/ic_shared"
-                            android:onClick="onclick"
-                            android:text="分享"
-                            android:textSize="@dimen/tv_name_size" />
+                            android:text="积分兑换"
+                            android:textColor="@color/font_gray2"
+                            android:textSize="@dimen/text_size_h5" />
 
                         <TextView
-                            android:id="@+id/tv_favorites"
-                            android:onClick="onclick"
-                            android:clickable="true"
+                            android:id="@+id/tv_integral"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawablePadding="3dp"
-                            android:drawableTop="@drawable/ic_my_favorite"
-                            android:text="收藏"
-                            android:textSize="@dimen/tv_name_size" />
+                            android:text="5000兑换+¥18"
+                            android:textColor="@color/red1"
+                            android:textSize="@dimen/text_size_h4" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/tv_title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="JNBY江南布衣经典复古休闲系列女系带收腰外套"
+                            android:textColor="@color/font_black"
+                            android:textSize="@dimen/text_size_h4" />
+
+                        <View style="@style/line_vertical_style" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/tv_share"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:clickable="true"
+                                android:drawablePadding="3dp"
+                                android:drawableTop="@drawable/ic_shared"
+                                android:onClick="onclick"
+                                android:text="分享"
+                                android:textColor="@color/font_gray2"
+                                android:textSize="@dimen/text_size_h5" />
+
+                            <TextView
+                                android:id="@+id/tv_favorites"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="true"
+                                android:drawablePadding="3dp"
+                                android:drawableTop="@drawable/ic_my_favorite"
+                                android:onClick="onclick"
+                                android:text="收藏"
+                                android:textColor="@color/font_gray2"
+                                android:textSize="@dimen/text_size_h5" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/bg"
+                    android:background="@color/tab_bg"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="8dp" >
+                    android:padding="10dp" >
 
                     <TextView
                         android:layout_width="0dp"
@@ -124,7 +131,8 @@
                         android:drawablePadding="3dp"
                         android:gravity="center_vertical"
                         android:text="产品参数"
-                        android:textSize="@dimen/tv_name_size" />
+                        android:textColor="@color/font_black"
+                        android:textSize="@dimen/text_size_h4" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -136,9 +144,10 @@
                     android:id="@+id/tv_param"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:text="主要来源：xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                     android:textColor="@color/font_gray2"
-                    android:textSize="@dimen/tv_name_size" />
+                    android:textSize="@dimen/text_size_h5" />
             </LinearLayout>
         </ScrollView>
 
@@ -158,10 +167,11 @@
                 android:paddingRight="15dp" >
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_back_white" />
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_back_red" />
             </FrameLayout>
 
             <TextView
@@ -173,24 +183,24 @@
                 android:clickable="true"
                 android:onClick="onclick"
                 android:text="购物车"
-                android:visibility="gone"
                 android:textColor="@color/font_orange"
-                android:textSize="@dimen/text_size_h4" />
+                android:textSize="@dimen/text_size_h4"
+                android:visibility="gone" />
         </RelativeLayout>
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal" >
 
         <FrameLayout
             android:id="@+id/flayout_immediately_change"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="@color/yellow"
+            android:background="@drawable/btn_change"
             android:onClick="onclick"
             android:padding="10dp" >
 
@@ -203,7 +213,8 @@
                 android:gravity="center_vertical"
                 android:text="立刻兑换"
                 android:textColor="@color/white"
-                android:textSize="@dimen/tv_name_size" />
+                android:textSize="@dimen/tv_name_size"
+                android:visibility="gone" />
         </FrameLayout>
 
         <FrameLayout
@@ -212,10 +223,10 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:visibility="gone"
             android:background="@color/red"
             android:onClick="onclick"
-            android:padding="10dp" >
+            android:padding="10dp"
+            android:visibility="gone" >
 
             <TextView
                 android:layout_width="wrap_content"

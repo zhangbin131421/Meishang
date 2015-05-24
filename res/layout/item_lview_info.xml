@@ -6,26 +6,23 @@
 
     <ImageView
         android:id="@+id/image_item"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/loading_bg_img_item" />
+        style="@style/item_image" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="10dp" >
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/tv_item_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:singleLine="true"
             android:text=""
-            android:textColor="@color/black1"
-            android:textSize="@dimen/item_name_size" />
+            android:textColor="@color/font_black"
+            android:textSize="@dimen/text_size_h4" />
 
         <TextView
             android:id="@+id/tv_item_describe"
@@ -33,7 +30,8 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="2"
-            android:textColor="@color/font_gray" />
+            android:textColor="@color/font_gray2"
+            android:textSize="@dimen/text_size_h5" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -46,7 +44,8 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text=""
-                android:textColor="@color/red1" />
+                android:textColor="@color/font_gray2"
+                android:textSize="@dimen/text_size_h6" />
 
             <TextView
                 android:id="@+id/tv_item_time"
@@ -58,8 +57,8 @@
                 android:gravity="center"
                 android:singleLine="true"
                 android:text="15:33"
-                android:textColor="@color/black3"
-                android:textSize="12sp" />
+                android:textColor="@color/font_gray2"
+                android:textSize="@dimen/text_size_h6" />
         </RelativeLayout>
     </LinearLayout>
 
