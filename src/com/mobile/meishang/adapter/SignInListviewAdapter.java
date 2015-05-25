@@ -29,8 +29,8 @@ public class SignInListviewAdapter extends BaseCacheListAdapter<Discover> {
 					.findViewById(R.id.item_tv_name);
 			holder.item_tv_describe = (TextView) convertView
 					.findViewById(R.id.item_tv_describe);
-			holder.item_tv_price = (TextView) convertView
-					.findViewById(R.id.item_tv_price);
+			holder.item_tv_middlen = (TextView) convertView
+					.findViewById(R.id.item_tv_middlen);
 			holder.item_tv_award = (TextView) convertView
 					.findViewById(R.id.item_tv_award);
 			convertView.setTag(holder);
@@ -39,8 +39,9 @@ public class SignInListviewAdapter extends BaseCacheListAdapter<Discover> {
 		}
 		holder.item_tv_name.setText(getItem(position).getTitle());
 		holder.item_tv_describe.setText(getItem(position).getIntroduction());
-		holder.item_tv_price.setText(getItem(position).getMiddlen());
-		holder.item_tv_award.setText("奖励"+getItem(position).getIntegral()+"积分");
+		holder.item_tv_middlen.setText(getItem(position).getMiddlen());
+		holder.item_tv_award.setText("奖励" + getItem(position).getIntegral()
+				+ "积分");
 		setCacheImage(holder.item_image, getItem(position).getPicpath(),
 				R.drawable.loading_bg_img_item);
 
@@ -56,7 +57,7 @@ public class SignInListviewAdapter extends BaseCacheListAdapter<Discover> {
 		ImageView item_image;
 		TextView item_tv_name;
 		TextView item_tv_describe;
-		TextView item_tv_price;
+		TextView item_tv_middlen;
 		TextView item_tv_award;
 	}
 
