@@ -1,7 +1,5 @@
 package com.mobile.meishang.ui.bid;
 
-import java.util.List;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +14,6 @@ import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.MyBidPublishListRequest;
 import com.mobile.meishang.model.BidMyPublishList;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.Goods;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.mobile.meishang.utils.view.pulltorefresh.XListView;
@@ -57,8 +54,9 @@ public class MyBidPublishListActivity extends MActivity implements
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
 				Bundle bundle = new Bundle();
-				// bundle.putString("id", mGoodsListing.get(--position)
-				// .getGoodsid());
+				bundle.putString("biddingid",
+						mListviewAdapter.getItem(--position).getBidding()
+								.getBiddingid());
 				goActivity(BidDetailActivity.class, bundle);
 			}
 		});

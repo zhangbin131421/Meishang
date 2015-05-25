@@ -12,6 +12,7 @@
         android:padding="12dp"
         android:singleLine="true"
         android:text=""
+        android:textSize="@dimen/text_size_h4"
         android:textColor="@color/font_black" />
 
 </LinearLayout>
