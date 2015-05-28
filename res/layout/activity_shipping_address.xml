@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#E9E9E9"
+    android:background="@color/tab_bg"
     android:orientation="vertical" >
 
     <include layout="@layout/layout_top_back" />

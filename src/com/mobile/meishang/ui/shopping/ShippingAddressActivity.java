@@ -126,6 +126,7 @@ public class ShippingAddressActivity extends MActivity implements
 		mViewDistrict.setCurrentItem(0);
 		
 		mCurrentZipCode = mZipcodeDatasMap.get(areas[0]);
+		mCurrentDistrictName = mDistrictDatasMap.get(mCurrentCityName)[0];
 		
 	}
 
