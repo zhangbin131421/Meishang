@@ -19,13 +19,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hi,亲~欢迎来到签到！" />
+                android:text="Hi,亲~欢迎来到签到！"
+                android:textColor="@color/font_black"
+                android:textSize="@dimen/text_size_h5" />
 
             <TextView
                 android:id="@+id/tv_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="已有123456签到" />
+                android:text="已有123456签到"
+                android:textColor="@color/font_black"
+                android:textSize="@dimen/text_size_h5" />
         </LinearLayout>
 
         <LinearLayout
@@ -42,14 +46,16 @@
                 android:drawableLeft="@drawable/ic_jewel"
                 android:drawablePadding="10dp"
                 android:text="0积分"
-                android:textColor="@color/red1" />
+                android:textColor="@color/red1"
+                android:textSize="@dimen/text_size_h5" />
 
             <TextView
                 android:id="@+id/tv_go_shopping"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="进入积分商城>"
-                android:textColor="@color/red1" />
+                android:textColor="@color/red1"
+                android:textSize="@dimen/text_size_h5" />
         </LinearLayout>
     </LinearLayout>
 
@@ -73,12 +79,16 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_alarm_clock"
                 android:drawablePadding="3dp"
-                android:text="新用户首次签到立送100-1000积分！" />
+                android:text="新用户首次签到立送100-1000积分！"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_h5" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="快使用积分兑换商品吧。" />
+                android:text="快使用积分兑换商品吧。"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_h5" />
         </LinearLayout>
 
         <ImageView
@@ -122,13 +132,17 @@
             android:drawableLeft="@drawable/ic_label_red"
             android:drawablePadding="3dp"
             android:gravity="center_vertical"
-            android:text="签到得积分" />
+            android:text="签到得积分"
+            android:textColor="@color/font_black"
+            android:textSize="@dimen/text_size_h5" />
 
         <TextView
             android:id="@+id/tv_rule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="活动规则>" />
+            android:text="活动规则>"
+            android:textColor="@color/font_black"
+            android:textSize="@dimen/text_size_h5" />
     </LinearLayout>
 
     <LinearLayout
@@ -144,12 +158,16 @@
             android:layout_weight="1"
             android:drawableLeft="@drawable/ic_more_point"
             android:drawablePadding="3dp"
-            android:text="更多积分" />
+            android:text="更多积分"
+            android:textColor="@color/font_black"
+            android:textSize="@dimen/text_size_h5" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="每日限领一次" />
+            android:text="每日限领一次"
+            android:textColor="@color/font_black"
+            android:textSize="@dimen/text_size_h5" />
     </LinearLayout>
 
 </LinearLayout>
