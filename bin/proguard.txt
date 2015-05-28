@@ -214,7 +214,7 @@
 # view res/layout/layout_inside_hview.xml #generated:9
 -keep class com.mobile.meishang.ui.widget.NoScrollGridView { <init>(...); }
 
-# view res/layout/layout_sign_in_head.xml #generated:106
+# view res/layout/layout_sign_in_head.xml #generated:116
 -keep class com.mobile.meishang.ui.widget.SignProgressBar { <init>(...); }
 
 # view res/layout/activity_shipping_address.xml #generated:61
@@ -341,9 +341,9 @@
 # onClick res/layout/activity_shops.xml #generated:37
 # onClick res/layout/activity_shops.xml #generated:55
 # onClick res/layout/activity_shops.xml #generated:85
-# onClick res/layout/activity_sign_detail.xml #generated:161
-# onClick res/layout/activity_sign_detail.xml #generated:174
-# onClick res/layout/activity_sign_detail.xml #generated:237
+# onClick res/layout/activity_sign_detail.xml #generated:163
+# onClick res/layout/activity_sign_detail.xml #generated:177
+# onClick res/layout/activity_sign_detail.xml #generated:247
 # onClick res/layout/activity_sign_detail.xml #generated:37
 # onClick res/layout/activity_sign_detail.xml #generated:59
 # onClick res/layout/activity_sign_detail.xml #generated:81
