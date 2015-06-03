@@ -38,7 +38,7 @@ public class TabActivity extends MActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tab);
 		if (savedInstanceState == null) {
-//			new BaiduLocation(this);
+			// new BaiduLocation(this);
 			// new VersionUpdate(this);
 			// new LocationNetwork(this);
 		}
@@ -53,8 +53,8 @@ public class TabActivity extends MActivity {
 		// mTitleTextView.setText("首页");
 		mTabLayoutA.setSelected(true);
 		homeFragment = new HomeFragment();
-		addFragment(homeFragment);
-		showFragment(homeFragment);
+		mAddFragment(homeFragment);
+		mShowFragment(homeFragment);
 		// mTitleTextView.setText("生活");
 		// mTabLayoutC.setSelected(true);
 		// mLifeFragment = new LifeFragment();
@@ -65,7 +65,7 @@ public class TabActivity extends MActivity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		System.out.println(requestCode+"==="+resultCode);
+		System.out.println(requestCode + "===" + resultCode);
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == Activity.RESULT_OK) {
 			switch (requestCode) {
@@ -76,9 +76,9 @@ public class TabActivity extends MActivity {
 				mTabLayoutD.setSelected(false);
 				if (signInFragment == null) {
 					signInFragment = new SignInFragment();
-					addFragment(signInFragment);
+					mAddFragment(signInFragment);
 				}
-				showFragment(signInFragment);
+				mShowFragment(signInFragment);
 				break;
 			case RequestDistribute.LOGIN:
 				// mHomeLayout.setSelected(false);
@@ -98,12 +98,12 @@ public class TabActivity extends MActivity {
 		}
 	}
 
-	public void addFragment(Fragment fragment) {
+	public void mAddFragment(Fragment fragment) {
 		mFragmentManager.beginTransaction()
 				.add(R.id.flayout_fragment, fragment).commit();
 	}
 
-	public void showFragment(Fragment fragment) {
+	public void mShowFragment(Fragment fragment) {
 		hideAllFragment();
 		mFragmentManager.beginTransaction().show(fragment).commit();
 	}
@@ -149,7 +149,7 @@ public class TabActivity extends MActivity {
 			mTabLayoutB.setSelected(false);
 			mTabLayoutC.setSelected(false);
 			mTabLayoutD.setSelected(false);
-			showFragment(homeFragment);
+			mShowFragment(homeFragment);
 
 			break;
 		case R.id.flayout_tab_b:
@@ -161,9 +161,9 @@ public class TabActivity extends MActivity {
 			mTabLayoutD.setSelected(false);
 			if (discoverFragment == null) {
 				discoverFragment = new DiscoverFragment();
-				addFragment(discoverFragment);
+				mAddFragment(discoverFragment);
 			}
-			showFragment(discoverFragment);
+			mShowFragment(discoverFragment);
 			break;
 		case R.id.flayout_tab_c:
 			if (MApplication.getInstance().checkLogin()) {
@@ -173,9 +173,9 @@ public class TabActivity extends MActivity {
 				mTabLayoutD.setSelected(false);
 				if (signInFragment == null) {
 					signInFragment = new SignInFragment();
-					addFragment(signInFragment);
+					mAddFragment(signInFragment);
 				}
-				showFragment(signInFragment);
+				mShowFragment(signInFragment);
 			} else {
 				goActivityForResult(LoginActivity.class, null,
 						RequestDistribute.SIGNIN_FRAGMENT);
@@ -191,9 +191,9 @@ public class TabActivity extends MActivity {
 			mTabLayoutD.setSelected(true);
 			if (meFragment == null) {
 				meFragment = new MeFragment();
-				addFragment(meFragment);
+				mAddFragment(meFragment);
 			}
-			showFragment(meFragment);
+			mShowFragment(meFragment);
 			// } else {
 			// goActivityForResult(LoginActivity.class, null,
 			// RequestDistribute.LOGIN);
