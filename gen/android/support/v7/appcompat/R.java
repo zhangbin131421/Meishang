@@ -535,10 +535,10 @@ public final class R {
 		public static final int abc_search_view = 0x7f030016;
 		public static final int abc_select_dialog_material = 0x7f030017;
 		public static final int abc_simple_dropdown_hint = 0x7f030018;
-		public static final int select_dialog_item_material = 0x7f0300ba;
-		public static final int select_dialog_multichoice_material = 0x7f0300bb;
-		public static final int select_dialog_singlechoice_material = 0x7f0300bc;
-		public static final int support_simple_spinner_dropdown_item = 0x7f0300bf;
+		public static final int select_dialog_item_material = 0x7f0300bc;
+		public static final int select_dialog_multichoice_material = 0x7f0300bd;
+		public static final int select_dialog_singlechoice_material = 0x7f0300be;
+		public static final int support_simple_spinner_dropdown_item = 0x7f0300c1;
 	}
 	public static final class string {
 		public static final int abc_action_bar_home_description = 0x7f0b0001;
