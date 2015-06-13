@@ -34,14 +34,6 @@ public class BusinessCardListviewAdapter extends
 					R.layout.item_listview_business_card, null);
 			holder.item_image = (ImageView) convertView
 					.findViewById(R.id.item_image);
-			holder.flayout = (FrameLayout) convertView
-					.findViewById(R.id.flayout);
-			holder.item_tv_name = (TextView) convertView
-					.findViewById(R.id.item_tv_name);
-			holder.item_tv_add = (TextView) convertView
-					.findViewById(R.id.item_tv_add);
-			holder.item_image_add = (ImageView) convertView
-					.findViewById(R.id.item_image_add);
 			convertView.setTag(holder);
 		} else {
 			holder = (Holder) convertView.getTag();
