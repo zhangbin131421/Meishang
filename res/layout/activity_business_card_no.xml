@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include layout="@layout/layout_top_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="人脉圈"
+            android:textColor="@color/font_gray"
+            android:textSize="@dimen/text_size_h4" />
+
+        <View style="@style/line_horizontal_style" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="您要先拥有自己的个人名片，才能进行下一步操作"
+            android:textColor="@color/font_black"
+            android:textSize="@dimen/text_size_h4" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="创建名片"
+            android:textSize="@dimen/text_size_h4" />
+    </LinearLayout>
+
+</LinearLayout>

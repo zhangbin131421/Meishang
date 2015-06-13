@@ -9,10 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.meishang.R;
-import com.mobile.meishang.model.bean.HomeFragmentTemplateDataItem;
+import com.mobile.meishang.model.bean.BusinessCardItem;
 
 public class BusinessCardListviewAdapter extends
-		BaseCacheListAdapter<HomeFragmentTemplateDataItem> {
+		BaseCacheListAdapter<BusinessCardItem> {
 
 	public BusinessCardListviewAdapter(Context context) {
 		super(context);
@@ -20,7 +20,9 @@ public class BusinessCardListviewAdapter extends
 
 	@Override
 	public int getCount() {
-		return super.getCount() - 1;
+		// return super.getCount() - 1;
+
+		return 10;
 	}
 
 	@Override
@@ -28,8 +30,8 @@ public class BusinessCardListviewAdapter extends
 		Holder holder;
 		if (null == convertView) {
 			holder = new Holder();
-			convertView = mInflater.inflate(R.layout.item_listview_business_card,
-					null);
+			convertView = mInflater.inflate(
+					R.layout.item_listview_business_card, null);
 			holder.item_image = (ImageView) convertView
 					.findViewById(R.id.item_image);
 			holder.flayout = (FrameLayout) convertView
@@ -44,16 +46,16 @@ public class BusinessCardListviewAdapter extends
 		} else {
 			holder = (Holder) convertView.getTag();
 		}
-		holder.item_tv_name.setText(getItem(position).getModulename());
-		holder.item_image.setImageResource(getItem(position).getImage());
-		if (getItem(position).getFlag() == 0) {
-			holder.item_tv_add.setVisibility(View.VISIBLE);
-			holder.item_image_add.setVisibility(View.GONE);
-		} else {
-			holder.item_tv_add.setVisibility(View.GONE);
-			holder.item_image_add.setVisibility(View.VISIBLE);
-
-		}
+		// holder.item_tv_name.setText(getItem(position).getModulename());
+		// holder.item_image.setImageResource(getItem(position).getImage());
+		// if (getItem(position).getFlag() == 0) {
+		// holder.item_tv_add.setVisibility(View.VISIBLE);
+		// holder.item_image_add.setVisibility(View.GONE);
+		// } else {
+		// holder.item_tv_add.setVisibility(View.GONE);
+		// holder.item_image_add.setVisibility(View.VISIBLE);
+		//
+		// }
 		return convertView;
 	}
 
@@ -65,9 +67,7 @@ public class BusinessCardListviewAdapter extends
 	static class Holder {
 		ImageView item_image;
 		TextView item_tv_name;
-		TextView item_tv_add;
-		ImageView item_image_add;
-		FrameLayout flayout;
+		TextView tv_look;
 	}
 
 }
