@@ -1,5 +1,8 @@
 package com.mobile.meishang.adapter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +16,18 @@ import com.mobile.meishang.model.bean.HomeFragmentTemplateDataItem;
 
 public class HomeMoreListviewAdapter extends
 		BaseCacheListAdapter<HomeFragmentTemplateDataItem> {
+	private Map<Integer, Integer> map;
 
 	public HomeMoreListviewAdapter(Context context) {
 		super(context);
+		map = new HashMap<Integer, Integer>();
+		int[] image = { R.drawable.ic_home_a, R.drawable.ic_home_b,
+				R.drawable.ic_home_c, R.drawable.ic_home_d,
+				R.drawable.ic_home_e, R.drawable.ic_home_f,
+				R.drawable.ic_home_g, R.drawable.ic_home_h, R.drawable.ic_add };
+		for (int i = 0; i < image.length; i++) {
+			map.put(i, image[i]);
+		}
 	}
 
 	@Override
@@ -45,7 +57,8 @@ public class HomeMoreListviewAdapter extends
 			holder = (Holder) convertView.getTag();
 		}
 		holder.item_tv_name.setText(getItem(position).getModulename());
-		holder.item_image.setImageResource(getItem(position).getImage());
+		holder.item_image.setImageResource(map
+				.get(getItem(position).getImage()));
 		if (getItem(position).getFlag() == 0) {
 			holder.item_tv_add.setVisibility(View.VISIBLE);
 			holder.item_image_add.setVisibility(View.GONE);
