@@ -37,7 +37,8 @@
                 android:layout_height="wrap_content"
                 android:text="刚刚"
                 android:textColor="@color/font_gray"
-                android:textSize="@dimen/text_size_h5" />
+                android:textSize="@dimen/text_size_h5"
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,8 +59,8 @@
                 android:id="@+id/tv_look"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="交换名片"
                 android:gravity="center_vertical"
+                android:text="交换名片"
                 android:textColor="@color/font_gray"
                 android:textSize="@dimen/text_size_h5" />
         </LinearLayout>

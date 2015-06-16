@@ -1,24 +1,20 @@
 package com.mobile.meishang.ui.home;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.BusinessCardListviewAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
+import com.mobile.meishang.core.request.BusinessCardExchangeRequest;
 import com.mobile.meishang.core.request.BusinessCardRequest;
-import com.mobile.meishang.model.DiscoverList;
+import com.mobile.meishang.model.BusinessCardList;
 import com.mobile.meishang.model.RequestDistribute;
-import com.mobile.meishang.model.bean.BusinessCardItem;
-import com.mobile.meishang.model.bean.BusinessCardListing;
+import com.mobile.meishang.model.bean.Head;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
 import com.mobile.meishang.utils.view.pulltorefresh.XListView;
@@ -28,7 +24,6 @@ public class BusinessCardListActivity extends MActivity implements
 	private LoadingView mLoadingView;
 	private XListView listview;;
 	private BusinessCardListviewAdapter mAdapter;
-	private List<BusinessCardItem> mDataItems;
 	private Bundle mBundle;
 	private int currentPage = 1;
 	private int totalPage = 1;
@@ -56,10 +51,6 @@ public class BusinessCardListActivity extends MActivity implements
 		});
 		mAdapter = new BusinessCardListviewAdapter(this);
 		listview.setAdapter(mAdapter);
-		mDataItems = new ArrayList<BusinessCardItem>();
-		mAdapter.clear();
-		mAdapter.addAll(mDataItems);
-		mAdapter.notifyDataSetChanged();
 		mBundle = new Bundle();
 		mBundle.putInt("pageNumber", currentPage);
 		net();
@@ -86,14 +77,33 @@ public class BusinessCardListActivity extends MActivity implements
 	@Override
 	public void updateUI(int identity, Object data) {
 		mLoadingView.setVisibility(View.GONE);
+		listview.stopRefresh();
+		listview.stopLoadMore();
 		switch (identity) {
 		case RequestDistribute.BUSINESS_CARD_LIST:
-			mAdapter.clear();
-			BusinessCardListing discoverList = (BusinessCardListing) data;
-			mAdapter.addAll(discoverList.getList());
+			BusinessCardList businessCardList = (BusinessCardList) data;
+			totalPage = businessCardList.getTotal();
+			if (currentPage < totalPage) {
+				listview.setPullLoadEnable(true);
+			} else {
+				// mListView.setPullRefreshEnable(false);
+				listview.setPullLoadEnable(false);
+			}
+			if (isPullRequest) {
+				mAdapter.clear();
+			}
+			mAdapter.addAll(businessCardList.getmList());
 			mAdapter.notifyDataSetChanged();
 			break;
 		case RequestDistribute.CATEGORY:
+			break;
+		case RequestDistribute.BUSINESS_CARD_EXCHANGE:
+			Head h = (Head) data;
+			if (h.isSuccess()) {
+				goCardInfo();
+			} else {
+				showToast(h.getMessage());
+			}
 			break;
 
 		default:
@@ -127,5 +137,20 @@ public class BusinessCardListActivity extends MActivity implements
 		}
 		net();
 
+	}
+
+	public void goCardInfo() {
+		goActivity(BusinessCardInfoActivity.class, null);
+	}
+
+	public void goExChangeCard(String businesscardId) {
+		mBundle.putString("businesscardId", businesscardId);
+		getSupportLoaderManager().restartLoader(
+				RequestDistribute.BUSINESS_CARD_EXCHANGE, mBundle,
+				new BusinessCardExchangeRequest(this));
+	}
+
+	public void goCardAdd() {
+		goActivity(BusinessCardNoActivity.class, null);
 	}
 }

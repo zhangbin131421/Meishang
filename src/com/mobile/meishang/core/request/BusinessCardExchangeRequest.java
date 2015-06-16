@@ -7,41 +7,36 @@ import android.support.v4.content.Loader;
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.MApplication;
 import com.mobile.meishang.MFragment;
-import com.mobile.meishang.core.content.BusinessCardListLoader;
+import com.mobile.meishang.core.loader.HeadLoader;
 import com.mobile.meishang.core.network.DefaultNetworkRequest;
-import com.mobile.meishang.model.BusinessCardList;
+import com.mobile.meishang.model.bean.Head;
 
-public class BusinessCardRequest implements
-		LoaderManager.LoaderCallbacks<BusinessCardList> {
+public class BusinessCardExchangeRequest implements
+		LoaderManager.LoaderCallbacks<Head> {
 
 	private MActivity mActivity;
 	private MFragment mFragment;
 
-	public BusinessCardRequest(MActivity activity) {
+	public BusinessCardExchangeRequest(MActivity activity) {
 		this.mActivity = activity;
 	}
 
-	public BusinessCardRequest(MFragment fragment) {
+	public BusinessCardExchangeRequest(MFragment fragment) {
 		this.mFragment = fragment;
 		mActivity = (MActivity) fragment.getActivity();
 	}
 
 	@Override
-	public Loader<BusinessCardList> onCreateLoader(int arg0, Bundle bundle) {
+	public Loader<Head> onCreateLoader(int arg0, Bundle bundle) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
-		urlString.append("businesscar/page.htm");
+		urlString.append("businesscar/exchange.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
-		mHttpRequest.addPostParameter("pageNumber", bundle.getInt("pageNumber")
-				+ "");
-		// mHttpRequest.addPostParameter("pageSize",
-		// bundle.getString("pageSize"));
-		mHttpRequest.addPostParameter("pageSize", "10");
 		mHttpRequest.addPostParameter("userId", "10");
-		mHttpRequest.addPostParameter("provinceId", "3");
-		mHttpRequest.addPostParameter("moduleId", "3");
-		BusinessCardListLoader loader = new BusinessCardListLoader(mActivity,
+		mHttpRequest.addPostParameter("businesscardId",
+				bundle.getString("businesscardId"));
+		HeadLoader loader = new HeadLoader(mActivity,
 				mHttpRequest);
 		if (mFragment == null) {
 
@@ -55,7 +50,8 @@ public class BusinessCardRequest implements
 	}
 
 	@Override
-	public void onLoadFinished(Loader<BusinessCardList> arg0, BusinessCardList arg1) {
+	public void onLoadFinished(Loader<Head> arg0,
+			Head arg1) {
 		if (arg1 != null) {
 			if (mFragment == null) {
 				mActivity.updateUI(arg0.getId(), arg1);
@@ -66,7 +62,7 @@ public class BusinessCardRequest implements
 	}
 
 	@Override
-	public void onLoaderReset(Loader<BusinessCardList> arg0) {
+	public void onLoaderReset(Loader<Head> arg0) {
 	}
 
 }
