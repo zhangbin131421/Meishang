@@ -25,6 +25,7 @@
                 android:textSize="@dimen/text_size_h4" />
 
             <TextView
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -47,6 +48,7 @@
                 android:textSize="@dimen/text_size_h4" />
 
             <TextView
+                android:id="@+id/tv_tel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -69,6 +71,7 @@
                 android:textSize="@dimen/text_size_h4" />
 
             <TextView
+                android:id="@+id/tv_company"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -91,6 +94,7 @@
                 android:textSize="@dimen/text_size_h4" />
 
             <TextView
+                android:id="@+id/tv_position"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -113,6 +117,7 @@
                 android:textSize="@dimen/text_size_h4" />
 
             <TextView
+                android:id="@+id/tv_province"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -135,6 +140,7 @@
                 android:textSize="@dimen/text_size_h4" />
 
             <TextView
+                android:id="@+id/tv_module_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

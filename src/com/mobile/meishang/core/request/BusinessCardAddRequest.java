@@ -11,17 +11,16 @@ import com.mobile.meishang.core.loader.HeadLoader;
 import com.mobile.meishang.core.network.DefaultNetworkRequest;
 import com.mobile.meishang.model.bean.Head;
 
-public class BusinessCardExchangeRequest implements
-		LoaderManager.LoaderCallbacks<Head> {
+public class BusinessCardAddRequest implements LoaderManager.LoaderCallbacks<Head> {
 
 	private MActivity mActivity;
 	private MFragment mFragment;
 
-	public BusinessCardExchangeRequest(MActivity activity) {
+	public BusinessCardAddRequest(MActivity activity) {
 		this.mActivity = activity;
 	}
 
-	public BusinessCardExchangeRequest(MFragment fragment) {
+	public BusinessCardAddRequest(MFragment fragment) {
 		this.mFragment = fragment;
 		mActivity = (MActivity) fragment.getActivity();
 	}
@@ -30,13 +29,18 @@ public class BusinessCardExchangeRequest implements
 	public Loader<Head> onCreateLoader(int arg0, Bundle bundle) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
-		urlString.append("businesscard/exchange.htm");
+		urlString.append("businesscard/save.htm");
+		// name：收货人姓名phone：收货人手机号码post：邮编address：地址addresss：详细地址userid：用户编号
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
+		mHttpRequest.addPostParameter("name", bundle.getString("name"));
+		mHttpRequest.addPostParameter("tel", bundle.getString("tel"));
+		mHttpRequest.addPostParameter("companyName", bundle.getString("companyName"));
+		mHttpRequest.addPostParameter("position", bundle.getString("position"));
+		mHttpRequest.addPostParameter("provinceId", bundle.getString("provinceId"));
+		mHttpRequest.addPostParameter("moduleId", bundle.getString("moduleId"));
 		mHttpRequest.addPostParameter("userId", MApplication.getInstance()
 				.getLogin().getUserId());
-		mHttpRequest.addPostParameter("businesscardId",
-				bundle.getString("businesscardId"));
 		HeadLoader loader = new HeadLoader(mActivity, mHttpRequest);
 		if (mFragment == null) {
 

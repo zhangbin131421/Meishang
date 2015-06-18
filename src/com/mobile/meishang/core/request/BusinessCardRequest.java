@@ -30,7 +30,7 @@ public class BusinessCardRequest implements
 	public Loader<BusinessCardList> onCreateLoader(int arg0, Bundle bundle) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
-		urlString.append("businesscar/page.htm");
+		urlString.append("businesscard/page.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
 		mHttpRequest.addPostParameter("pageNumber", bundle.getInt("pageNumber")
@@ -38,7 +38,8 @@ public class BusinessCardRequest implements
 		// mHttpRequest.addPostParameter("pageSize",
 		// bundle.getString("pageSize"));
 		mHttpRequest.addPostParameter("pageSize", "10");
-		mHttpRequest.addPostParameter("userId", "10");
+		mHttpRequest.addPostParameter("userId", MApplication.getInstance()
+				.getLogin().getUserId());
 		mHttpRequest.addPostParameter("provinceId", "3");
 		mHttpRequest.addPostParameter("moduleId", "3");
 		BusinessCardListLoader loader = new BusinessCardListLoader(mActivity,
@@ -55,7 +56,8 @@ public class BusinessCardRequest implements
 	}
 
 	@Override
-	public void onLoadFinished(Loader<BusinessCardList> arg0, BusinessCardList arg1) {
+	public void onLoadFinished(Loader<BusinessCardList> arg0,
+			BusinessCardList arg1) {
 		if (arg1 != null) {
 			if (mFragment == null) {
 				mActivity.updateUI(arg0.getId(), arg1);

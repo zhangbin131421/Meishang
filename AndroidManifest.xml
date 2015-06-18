@@ -93,8 +93,17 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name=".ui.home.BusinessCardNoActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".ui.home.BusinessCardInfoAddActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name=".ui.home.BusinessCardInfoActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+        </activity>
         <!-- 乐惠 -->
         <activity
             android:name=".ui.lehuigou.LehuigoHomeActvity"

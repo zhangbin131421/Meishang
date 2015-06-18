@@ -17,6 +17,7 @@ public class BusinessCardListviewAdapter extends
 
 	public BusinessCardListviewAdapter(BusinessCardListActivity context) {
 		super(context);
+		businessCardListActivity = context;
 	}
 
 	@Override
@@ -42,8 +43,7 @@ public class BusinessCardListviewAdapter extends
 						businessCardListActivity.goCardAdd();
 						break;
 					case 2:// 2、我有名片未交换名片
-						businessCardListActivity.goExChangeCard(getItem(
-								position).getId());
+						businessCardListActivity.goExChangeCard(position);
 						break;
 					case 3:// 3、交换名片成功 并保存到人脉圈中去、已经是人脉圈中的如果有可以直接查看对方名片
 						businessCardListActivity.goCardInfo();

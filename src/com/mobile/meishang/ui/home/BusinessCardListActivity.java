@@ -1,18 +1,28 @@
 package com.mobile.meishang.ui.home;
 
+import java.util.List;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.BusinessCardListviewAdapter;
+import com.mobile.meishang.adapter.CategoryLeftListAdapter;
+import com.mobile.meishang.adapter.CategoryRightListAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.BusinessCardExchangeRequest;
 import com.mobile.meishang.core.request.BusinessCardRequest;
+import com.mobile.meishang.core.request.CategoryRequest;
+import com.mobile.meishang.model.BusinessCard;
 import com.mobile.meishang.model.BusinessCardList;
+import com.mobile.meishang.model.Module;
+import com.mobile.meishang.model.ModuleList;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.model.bean.Head;
 import com.mobile.meishang.utils.view.LoadingView;
@@ -28,6 +38,17 @@ public class BusinessCardListActivity extends MActivity implements
 	private int currentPage = 1;
 	private int totalPage = 1;
 	private boolean isPullRequest = false;
+	private TextView tv_category_left;
+	private ListView listview_left;
+	private ListView listview_right;
+	private CategoryLeftListAdapter filterLeftAdapter;
+	private CategoryRightListAdapter filterRightAdapter;
+	private List<Module> moduleList;
+	private String moduleid;
+	private String smoduleid;
+	private LinearLayout llayout;
+	List<BusinessCard> mList;
+	int mPositon;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +58,7 @@ public class BusinessCardListActivity extends MActivity implements
 		title.setText("美商云讯");
 		mLoadingView = (LoadingView) findViewById(R.id.loading);
 		mLoadingView.setLoadEvent(this);
+		tv_category_left = (TextView) findViewById(R.id.tv_category_left);
 		listview = (XListView) findViewById(R.id.listview);
 		listview.setPullRefreshEnable(true);
 		listview.setPullLoadEnable(false);
@@ -51,6 +73,37 @@ public class BusinessCardListActivity extends MActivity implements
 		});
 		mAdapter = new BusinessCardListviewAdapter(this);
 		listview.setAdapter(mAdapter);
+		llayout = (LinearLayout) findViewById(R.id.llayout);
+		listview_left = (ListView) findViewById(R.id.listview_left);
+		listview_left.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				moduleid = filterLeftAdapter.getItem(arg2).getModuleid();
+				filterLeftAdapter.setmPosition(arg2);
+				filterLeftAdapter.notifyDataSetChanged();
+				filterRightAdapter.clear();
+				filterRightAdapter.addAll(moduleList.get(arg2).getList());
+				filterRightAdapter.notifyDataSetChanged();
+			}
+		});
+		listview_right = (ListView) findViewById(R.id.listview_right);
+		listview_right.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				smoduleid = filterRightAdapter.getItem(position).getSmoduleid();
+				tv_category_left.setText(filterRightAdapter.getItem(position)
+						.getName());
+				filterRightAdapter.setmPosition(position);
+				llayout.setVisibility(View.GONE);
+
+			}
+		});
+		getSupportLoaderManager().initLoader(RequestDistribute.CATEGORY, null,
+				new CategoryRequest(this));
 		mBundle = new Bundle();
 		mBundle.putInt("pageNumber", currentPage);
 		net();
@@ -68,6 +121,23 @@ public class BusinessCardListActivity extends MActivity implements
 		switch (v.getId()) {
 		case R.id.top_layout_back:
 			finish();
+			break;
+		case R.id.flayout_category_left:
+			if (moduleList != null) {
+				llayout.setVisibility(View.VISIBLE);
+				if (filterLeftAdapter == null) {
+					filterLeftAdapter = new CategoryLeftListAdapter(this);
+					listview_left.setAdapter(filterLeftAdapter);
+					filterLeftAdapter.addAll(moduleList);
+					filterLeftAdapter.notifyDataSetChanged();
+				}
+				if (filterRightAdapter == null) {
+					filterRightAdapter = new CategoryRightListAdapter(this);
+					listview_right.setAdapter(filterRightAdapter);
+					filterRightAdapter.addAll(moduleList.get(0).getList());
+					filterRightAdapter.notifyDataSetChanged();
+				}
+			}
 			break;
 		default:
 			break;
@@ -92,10 +162,13 @@ public class BusinessCardListActivity extends MActivity implements
 			if (isPullRequest) {
 				mAdapter.clear();
 			}
-			mAdapter.addAll(businessCardList.getmList());
+			mList = businessCardList.getmList();
+			mAdapter.addAll(mList);
 			mAdapter.notifyDataSetChanged();
 			break;
 		case RequestDistribute.CATEGORY:
+			ModuleList modules = (ModuleList) data;
+			moduleList = modules.getModuleList();
 			break;
 		case RequestDistribute.BUSINESS_CARD_EXCHANGE:
 			Head h = (Head) data;
@@ -140,10 +213,14 @@ public class BusinessCardListActivity extends MActivity implements
 	}
 
 	public void goCardInfo() {
-		goActivity(BusinessCardInfoActivity.class, null);
+		Bundle bundle = new Bundle();
+		bundle.putParcelable("BusinessCard", mList.get(mPositon));
+		goActivity(BusinessCardInfoActivity.class, bundle);
 	}
 
-	public void goExChangeCard(String businesscardId) {
+	public void goExChangeCard(int position) {
+		mPositon = position;
+		String businesscardId = mList.get(position).getId();
 		mBundle.putString("businesscardId", businesscardId);
 		getSupportLoaderManager().restartLoader(
 				RequestDistribute.BUSINESS_CARD_EXCHANGE, mBundle,

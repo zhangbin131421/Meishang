@@ -1,9 +1,7 @@
 package com.mobile.meishang.ui.home.fragments;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -45,6 +43,7 @@ import com.mobile.meishang.ui.home.HomeMoreActivity;
 import com.mobile.meishang.ui.home.InsideActivity;
 import com.mobile.meishang.ui.infomation.InfoListActivity;
 import com.mobile.meishang.ui.lehuigou.LehuigoHomeActvity;
+import com.mobile.meishang.ui.login.LoginActivity;
 import com.mobile.meishang.ui.widget.GridViewWithHeaderAndFooter;
 import com.mobile.meishang.utils.view.AdGallery;
 import com.umeng.analytics.MobclickAgent;
@@ -238,7 +237,13 @@ public class HomeFragment extends MFragment implements OnClickListener {
 					goActivity(InsideActivity.class, bundle);
 					break;
 				case 6:
-					goActivity(BusinessCardListActivity.class, null);
+					if (MApplication.getInstance().checkLogin()) {
+						goActivity(BusinessCardListActivity.class, null);
+					} else {
+						goActivityForResult(LoginActivity.class, null,
+								RequestDistribute.SIGNIN_FRAGMENT);
+
+					}
 					break;
 				case 7:
 					goActivity(InfoListActivity.class, null);
@@ -483,6 +488,9 @@ public class HomeFragment extends MFragment implements OnClickListener {
 				mGridviewAdapter.clear();
 				mGridviewAdapter.addAll(mDataItems);
 				mGridviewAdapter.notifyDataSetChanged();
+				break;
+			case RequestDistribute.SIGNIN_FRAGMENT:
+				goActivity(BusinessCardListActivity.class, null);
 				break;
 
 			default:
