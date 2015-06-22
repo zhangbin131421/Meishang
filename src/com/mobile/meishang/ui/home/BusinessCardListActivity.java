@@ -105,6 +105,8 @@ public class BusinessCardListActivity extends MActivity implements
 		getSupportLoaderManager().initLoader(RequestDistribute.CATEGORY, null,
 				new CategoryRequest(this));
 		mBundle = new Bundle();
+		mBundle.putString("provinceId", "3");
+		mBundle.putString("moduleId", "3");
 		mBundle.putInt("pageNumber", currentPage);
 		net();
 
@@ -215,6 +217,7 @@ public class BusinessCardListActivity extends MActivity implements
 	public void goCardInfo() {
 		Bundle bundle = new Bundle();
 		bundle.putParcelable("BusinessCard", mList.get(mPositon));
+		bundle.putString("userId", mList.get(mPositon).getUserId());
 		goActivity(BusinessCardInfoActivity.class, bundle);
 	}
 

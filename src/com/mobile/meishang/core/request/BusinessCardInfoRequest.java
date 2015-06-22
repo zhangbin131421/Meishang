@@ -11,17 +11,17 @@ import com.mobile.meishang.core.content.BusinessCardListLoader;
 import com.mobile.meishang.core.network.DefaultNetworkRequest;
 import com.mobile.meishang.model.BusinessCardList;
 
-public class BusinessCardRequest implements
+public class BusinessCardInfoRequest implements
 		LoaderManager.LoaderCallbacks<BusinessCardList> {
 
 	private MActivity mActivity;
 	private MFragment mFragment;
 
-	public BusinessCardRequest(MActivity activity) {
+	public BusinessCardInfoRequest(MActivity activity) {
 		this.mActivity = activity;
 	}
 
-	public BusinessCardRequest(MFragment fragment) {
+	public BusinessCardInfoRequest(MFragment fragment) {
 		this.mFragment = fragment;
 		mActivity = (MActivity) fragment.getActivity();
 	}
@@ -30,19 +30,10 @@ public class BusinessCardRequest implements
 	public Loader<BusinessCardList> onCreateLoader(int arg0, Bundle bundle) {
 		StringBuffer urlString = new StringBuffer(MApplication.getInstance()
 				.getmConfig().urlRootApi);
-		urlString.append("businesscard/page.htm");
+		urlString.append("businesscard/get.htm");
 		DefaultNetworkRequest mHttpRequest = new DefaultNetworkRequest(
 				urlString.toString());
-		mHttpRequest.addPostParameter("pageNumber", bundle.getInt("pageNumber")
-				+ "");
-		// mHttpRequest.addPostParameter("pageSize",
-		// bundle.getString("pageSize"));
-		mHttpRequest.addPostParameter("pageSize", "10");
-		mHttpRequest.addPostParameter("userId", MApplication.getInstance()
-				.getLogin().getUserId());
-		mHttpRequest.addPostParameter("provinceId",
-				bundle.getString("provinceId"));
-		mHttpRequest.addPostParameter("moduleId", bundle.getString("moduleId"));
+		mHttpRequest.addPostParameter("userId", bundle.getString("userId"));
 		BusinessCardListLoader loader = new BusinessCardListLoader(mActivity,
 				mHttpRequest);
 		if (mFragment == null) {

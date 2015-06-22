@@ -25,6 +25,7 @@ public class BusinessCard extends Head implements Parcelable {
 	private String id;
 	private String userId;
 	private String name;
+	private String tel;
 	private String companyName;
 	private String position;
 	private String provinceId;
@@ -42,6 +43,7 @@ public class BusinessCard extends Head implements Parcelable {
 		id = in.readString();
 		userId = in.readString();
 		name = in.readString();
+		tel = in.readString();
 		companyName = in.readString();
 		position = in.readString();
 		provinceId = in.readString();
@@ -56,6 +58,7 @@ public class BusinessCard extends Head implements Parcelable {
 		id = getJsonStrValue(json, "id");
 		userId = getJsonStrValue(json, "userId");
 		name = getJsonStrValue(json, "name");
+		tel = getJsonStrValue(json, "tel");
 		companyName = getJsonStrValue(json, "companyName");
 		position = getJsonStrValue(json, "position");
 		provinceId = getJsonStrValue(json, "provinceId");
@@ -77,6 +80,10 @@ public class BusinessCard extends Head implements Parcelable {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getTel() {
+		return tel;
 	}
 
 	public String getCompanyName() {
@@ -121,6 +128,7 @@ public class BusinessCard extends Head implements Parcelable {
 		dest.writeString(id);
 		dest.writeString(userId);
 		dest.writeString(name);
+		dest.writeString(tel);
 		dest.writeString(companyName);
 		dest.writeString(position);
 		dest.writeString(provinceId);

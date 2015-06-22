@@ -6,9 +6,12 @@ import android.widget.TextView;
 
 import com.mobile.meishang.MActivity;
 import com.mobile.meishang.R;
+import com.mobile.meishang.core.request.BusinessCardInfoRequest;
 import com.mobile.meishang.model.BusinessCard;
+import com.mobile.meishang.model.RequestDistribute;
 
 public class BusinessCardInfoActivity extends MActivity {
+	Bundle bundle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +25,31 @@ public class BusinessCardInfoActivity extends MActivity {
 		TextView tv_position = (TextView) findViewById(R.id.tv_position);
 		TextView tv_province = (TextView) findViewById(R.id.tv_province);
 		TextView tv_module_name = (TextView) findViewById(R.id.tv_module_name);
-		Bundle bundle = getIntent().getBundleExtra("bundle");
+		bundle = getIntent().getBundleExtra("bundle");
 		BusinessCard businessCard = bundle.getParcelable("BusinessCard");
+		tv_name.setText(businessCard.getName());
+		tv_tel.setText(businessCard.getTel());
+		tv_company.setText(businessCard.getCompanyName());
+		tv_position.setText(businessCard.getPosition());
+		tv_province.setText(businessCard.getProvinceName());
+		tv_module_name.setText(businessCard.getModuleName());
+		// net();
+	}
 
+	private void net() {
+		getSupportLoaderManager().initLoader(RequestDistribute.BUSINESS_INFO,
+				bundle, new BusinessCardInfoRequest(this));
+	}
+
+	@Override
+	public void updateUI(int identity, Object data) {
+		switch (identity) {
+		case RequestDistribute.BUSINESS_INFO:
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	@Override
