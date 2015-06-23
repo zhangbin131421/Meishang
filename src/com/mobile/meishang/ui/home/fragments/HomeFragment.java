@@ -38,10 +38,12 @@ import com.mobile.meishang.model.bean.AdvertisingGalleryItem;
 import com.mobile.meishang.model.bean.HomeFragmentData;
 import com.mobile.meishang.model.bean.HomeFragmentTemplateDataItem;
 import com.mobile.meishang.ui.bid.IWantBidActivity;
+import com.mobile.meishang.ui.home.BusinessCardListActivity;
 import com.mobile.meishang.ui.home.HomeMoreActivity;
 import com.mobile.meishang.ui.home.InsideActivity;
 import com.mobile.meishang.ui.infomation.InfoListActivity;
 import com.mobile.meishang.ui.lehuigou.LehuigoHomeActvity;
+import com.mobile.meishang.ui.login.LoginActivity;
 import com.mobile.meishang.ui.widget.GridViewWithHeaderAndFooter;
 import com.mobile.meishang.utils.view.AdGallery;
 import com.umeng.analytics.MobclickAgent;
@@ -97,17 +99,12 @@ public class HomeFragment extends MFragment implements OnClickListener {
 			// String[] names = { "乐汇购", "竞标", "美容", "内衣", "车饰", "灯饰", "日化",
 			// "会议",
 			// "资讯", "更多" };
-			String[] names = { "乐汇购", "竞标", "美容", "内衣", "车饰", "灯饰", "日化", "资讯",
+			String[] names = { "乐汇购", "竞标", "美容", "内衣", "车饰", "灯饰", "名片", "资讯",
 					"更多" };
-			int[] image = { R.drawable.ic_home_a, R.drawable.ic_home_b,
-					R.drawable.ic_home_c, R.drawable.ic_home_d,
-					R.drawable.ic_home_e, R.drawable.ic_home_f,
-					R.drawable.ic_home_g, R.drawable.ic_home_h,
-					R.drawable.ic_add };
 			mDataItems = new ArrayList<HomeFragmentTemplateDataItem>();
 			for (int i = 0; i < names.length; i++) {
-				mDataItems.add(new HomeFragmentTemplateDataItem(i, names[i],
-						image[i], 0));
+				mDataItems.add(new HomeFragmentTemplateDataItem(i, names[i], i,
+						0));
 			}
 			addDataBase();
 		}
@@ -240,9 +237,13 @@ public class HomeFragment extends MFragment implements OnClickListener {
 					goActivity(InsideActivity.class, bundle);
 					break;
 				case 6:
-					bundle.putString("url",
-							"http://121.40.126.98:80/data/purchased/list/day/list.htm");
-					goActivity(InsideActivity.class, bundle);
+					if (MApplication.getInstance().checkLogin()) {
+						goActivity(BusinessCardListActivity.class, null);
+					} else {
+						goActivityForResult(LoginActivity.class, null,
+								RequestDistribute.SIGNIN_FRAGMENT);
+
+					}
 					break;
 				case 7:
 					goActivity(InfoListActivity.class, null);
@@ -487,6 +488,9 @@ public class HomeFragment extends MFragment implements OnClickListener {
 				mGridviewAdapter.clear();
 				mGridviewAdapter.addAll(mDataItems);
 				mGridviewAdapter.notifyDataSetChanged();
+				break;
+			case RequestDistribute.SIGNIN_FRAGMENT:
+				goActivity(BusinessCardListActivity.class, null);
 				break;
 
 			default:

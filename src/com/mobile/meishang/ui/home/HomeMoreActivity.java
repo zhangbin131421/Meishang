@@ -2,6 +2,7 @@ package com.mobile.meishang.ui.home;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -79,7 +80,7 @@ public class HomeMoreActivity extends MActivity {
 	}
 
 	private void update(String temp, int flag) {
-		String[] whereArgs = { DBConstants.Home_model.HOME_MODEL_POSITION+"" };
+		String[] whereArgs = { DBConstants.Home_model.HOME_MODEL_POSITION + "" };
 		String[] whereArgsValues = { temp };
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(DBConstants.Home_model.HOME_MODEL_FLAG, flag);

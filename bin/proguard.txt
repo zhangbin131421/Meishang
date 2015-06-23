@@ -1,14 +1,14 @@
 # view res/layout/activity_guide.xml #generated:7
 -keep class android.support.v4.view.ViewPager { <init>(...); }
 
-# view res/layout/abc_alert_dialog_material.xml #generated:130
--keep class android.support.v4.widget.Space { <init>(...); }
-
 # view res/layout/activity_movie_list.xml #generated:10
 -keep class android.support.v4.widget.SwipeRefreshLayout { <init>(...); }
 
 # view res/layout/abc_action_menu_item_layout.xml #generated:17
 -keep class android.support.v7.internal.view.menu.ActionMenuItemView { <init>(...); }
+
+# view res/layout/abc_action_menu_layout.xml #generated:17
+-keep class android.support.v7.internal.view.menu.ActionMenuView { <init>(...); }
 
 # view res/layout/abc_expanded_menu_layout.xml #generated:17
 -keep class android.support.v7.internal.view.menu.ExpandedMenuView { <init>(...); }
@@ -17,58 +17,40 @@
 # view res/layout/abc_popup_menu_item_layout.xml #generated:17
 -keep class android.support.v7.internal.view.menu.ListMenuItemView { <init>(...); }
 
-# view res/layout/abc_screen_toolbar.xml #generated:27
+# view res/layout/abc_action_bar_decor_include.xml #generated:19
+# view res/layout/abc_action_bar_decor_include.xml #generated:47
+# view res/layout/abc_action_bar_decor_overlay.xml #generated:29
+# view res/layout/abc_action_bar_decor_overlay.xml #generated:52
 -keep class android.support.v7.internal.widget.ActionBarContainer { <init>(...); }
 
+# view res/layout/abc_action_bar_decor_include.xml #generated:31
+# view res/layout/abc_action_bar_decor_overlay.xml #generated:40
 # view res/layout/abc_action_mode_bar.xml #generated:19
-# view res/layout/abc_screen_toolbar.xml #generated:43
 -keep class android.support.v7.internal.widget.ActionBarContextView { <init>(...); }
 
-# view res/layout/abc_screen_toolbar.xml #generated:17
+# view res/layout/abc_action_bar_decor_overlay.xml #generated:17
 -keep class android.support.v7.internal.widget.ActionBarOverlayLayout { <init>(...); }
 
+# view res/layout/abc_action_bar_decor_include.xml #generated:25
+# view res/layout/abc_action_bar_decor_overlay.xml #generated:35
+-keep class android.support.v7.internal.widget.ActionBarView { <init>(...); }
+
+# view res/layout/abc_action_bar_home.xml #generated:17
+-keep class android.support.v7.internal.widget.ActionBarView$HomeView { <init>(...); }
+
+# view res/layout/abc_action_bar_tabbar.xml #generated:17
 # view res/layout/abc_activity_chooser_view.xml #generated:19
--keep class android.support.v7.internal.widget.ActivityChooserView$InnerLayout { <init>(...); }
+-keep class android.support.v7.internal.widget.LinearLayoutICS { <init>(...); }
 
-# view res/layout/abc_screen_content_include.xml #generated:19
--keep class android.support.v7.internal.widget.ContentFrameLayout { <init>(...); }
-
-# view res/layout/abc_alert_dialog_material.xml #generated:48
--keep class android.support.v7.internal.widget.DialogTitle { <init>(...); }
-
-# view res/layout/abc_screen_simple_overlay_action_mode.xml #generated:23
--keep class android.support.v7.internal.widget.FitWindowsFrameLayout { <init>(...); }
-
-# view res/layout/abc_dialog_title_material.xml #generated:22
-# view res/layout/abc_screen_simple.xml #generated:17
--keep class android.support.v7.internal.widget.FitWindowsLinearLayout { <init>(...); }
-
-# view v11\res/layout-v11/abc_screen_content_include.xml #generated:19
+# view v11\res/layout-v11/abc_action_bar_decor.xml #generated:17
+# view v11\res/layout-v11/abc_simple_decor.xml #generated:17
 -keep class android.support.v7.internal.widget.NativeActionModeAwareLayout { <init>(...); }
 
-# view res/layout/abc_action_mode_close_item_material.xml #generated:17
-# view res/layout/abc_search_dropdown_item_icons_2line.xml #generated:27
-# view res/layout/abc_search_dropdown_item_icons_2line.xml #generated:37
-# view res/layout/abc_search_dropdown_item_icons_2line.xml #generated:48
-# view res/layout/abc_search_view.xml #generated:116
-# view res/layout/abc_search_view.xml #generated:128
-# view res/layout/abc_search_view.xml #generated:38
-# view res/layout/abc_search_view.xml #generated:60
-# view res/layout/abc_search_view.xml #generated:97
--keep class android.support.v7.internal.widget.TintImageView { <init>(...); }
+# view res/layout/abc_action_bar_tab.xml #generated:17
+-keep class android.support.v7.internal.widget.ScrollingTabContainerView$TabView { <init>(...); }
 
-# view res/layout/abc_screen_simple.xml #generated:25
-# view res/layout/abc_screen_simple_overlay_action_mode.xml #generated:32
--keep class android.support.v7.internal.widget.ViewStubCompat { <init>(...); }
-
-# view res/layout/abc_action_menu_layout.xml #generated:17
--keep class android.support.v7.widget.ActionMenuView { <init>(...); }
-
-# view res/layout/abc_search_view.xml #generated:78
+# view res/layout/abc_search_view.xml #generated:85
 -keep class android.support.v7.widget.SearchView$SearchAutoComplete { <init>(...); }
-
-# view res/layout/abc_screen_toolbar.xml #generated:36
--keep class android.support.v7.widget.Toolbar { <init>(...); }
 
 # view res/layout/notification_custom_builder.xml #generated:52
 -keep class android.widget.DateTimeView { <init>(...); }
@@ -85,53 +67,65 @@
 # view AndroidManifest.xml #generated:48
 -keep class com.mobile.meishang.ui.WelcomeScreenActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:151
+# view AndroidManifest.xml #generated:168
 -keep class com.mobile.meishang.ui.ad.AdvertisingDetailActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:148
+# view AndroidManifest.xml #generated:165
 -keep class com.mobile.meishang.ui.ad.AdvertisingExpandbleActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:145
+# view AndroidManifest.xml #generated:162
 -keep class com.mobile.meishang.ui.ad.AdvertisingListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:155
+# view AndroidManifest.xml #generated:172
 -keep class com.mobile.meishang.ui.ad.AlipayActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:105
+# view AndroidManifest.xml #generated:122
 -keep class com.mobile.meishang.ui.bid.BidDetailActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:102
+# view AndroidManifest.xml #generated:119
 -keep class com.mobile.meishang.ui.bid.BidNoticeListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:112
+# view AndroidManifest.xml #generated:129
 -keep class com.mobile.meishang.ui.bid.HistoryBidListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:108
+# view AndroidManifest.xml #generated:125
 -keep class com.mobile.meishang.ui.bid.IWantBidActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:116
+# view AndroidManifest.xml #generated:133
 -keep class com.mobile.meishang.ui.bid.MyBidPublishListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:169
+# view AndroidManifest.xml #generated:186
 -keep class com.mobile.meishang.ui.category.CategoryActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:184
+# view AndroidManifest.xml #generated:201
 -keep class com.mobile.meishang.ui.choujiang.ChoujiangActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:187
+# view AndroidManifest.xml #generated:204
 -keep class com.mobile.meishang.ui.choujiang.RuleActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:159
+# view AndroidManifest.xml #generated:176
 -keep class com.mobile.meishang.ui.city.AreaChoiceActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:163
+# view AndroidManifest.xml #generated:180
 -keep class com.mobile.meishang.ui.city.CityChoiceActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:166
+# view AndroidManifest.xml #generated:183
 -keep class com.mobile.meishang.ui.city.CityListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:131
+# view AndroidManifest.xml #generated:148
 -keep class com.mobile.meishang.ui.favorites.FavoritesActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:103
+-keep class com.mobile.meishang.ui.home.BusinessCardInfoActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:99
+-keep class com.mobile.meishang.ui.home.BusinessCardInfoAddActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:91
+-keep class com.mobile.meishang.ui.home.BusinessCardListActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:95
+-keep class com.mobile.meishang.ui.home.BusinessCardNoActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:86
 -keep class com.mobile.meishang.ui.home.HomeMoreActivity { <init>(...); }
@@ -154,34 +148,34 @@
 # view AndroidManifest.xml #generated:82
 -keep class com.mobile.meishang.ui.home.TypeActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:127
+# view AndroidManifest.xml #generated:144
 -keep class com.mobile.meishang.ui.infomation.EvaluateListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:124
+# view AndroidManifest.xml #generated:141
 -keep class com.mobile.meishang.ui.infomation.InfoDetailActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:121
+# view AndroidManifest.xml #generated:138
 -keep class com.mobile.meishang.ui.infomation.InfoListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:95
+# view AndroidManifest.xml #generated:112
 -keep class com.mobile.meishang.ui.lehuigou.GoodsSearchActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:98
+# view AndroidManifest.xml #generated:115
 -keep class com.mobile.meishang.ui.lehuigou.IntegralGoodsDetailActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:91
+# view AndroidManifest.xml #generated:108
 -keep class com.mobile.meishang.ui.lehuigou.LehuigoHomeActvity { <init>(...); }
 
-# view AndroidManifest.xml #generated:207
+# view AndroidManifest.xml #generated:224
 -keep class com.mobile.meishang.ui.login.ForgotPdActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:201
+# view AndroidManifest.xml #generated:218
 -keep class com.mobile.meishang.ui.login.LoginActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:204
+# view AndroidManifest.xml #generated:221
 -keep class com.mobile.meishang.ui.login.RegisterActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:210
+# view AndroidManifest.xml #generated:227
 -keep class com.mobile.meishang.ui.login.RetrievedResetPasswordActivity { <init>(...); }
 
 # view res/layout/activity_online_options_b.xml #generated:23
@@ -193,31 +187,31 @@
 # view res/layout/activity_online_options_b.xml #generated:13
 -keep class com.mobile.meishang.ui.movie.view.ThumbNailView { <init>(...); }
 
-# view AndroidManifest.xml #generated:174
+# view AndroidManifest.xml #generated:191
 -keep class com.mobile.meishang.ui.search.SearchActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:177
+# view AndroidManifest.xml #generated:194
 -keep class com.mobile.meishang.ui.search.SearchResultListingActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:180
+# view AndroidManifest.xml #generated:197
 -keep class com.mobile.meishang.ui.share.SharedActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:141
+# view AndroidManifest.xml #generated:158
 -keep class com.mobile.meishang.ui.shopping.ShippingAddressActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:135
+# view AndroidManifest.xml #generated:152
 -keep class com.mobile.meishang.ui.shopping.ShoppingCarListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:138
+# view AndroidManifest.xml #generated:155
 -keep class com.mobile.meishang.ui.shopping.ShoppingOrderActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:197
+# view AndroidManifest.xml #generated:214
 -keep class com.mobile.meishang.ui.user.MyPushActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:191
+# view AndroidManifest.xml #generated:208
 -keep class com.mobile.meishang.ui.user.MySharedActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:194
+# view AndroidManifest.xml #generated:211
 -keep class com.mobile.meishang.ui.user.MyWordsActivity { <init>(...); }
 
 # view res/layout/fragment_home.xml #generated:9
@@ -266,6 +260,7 @@
 
 # view res/layout/activity_advertising_list.xml #generated:15
 # view res/layout/activity_bid_notice_list.xml #generated:26
+# view res/layout/activity_business_card_list.xml #generated:86
 # view res/layout/activity_home_listview_refresh.xml #generated:93
 # view res/layout/activity_info_list.xml #generated:80
 # view res/layout/activity_inside.xml #generated:19
@@ -284,13 +279,13 @@
 # view res/layout/activity_refresh_scrollview.xml #generated:1
 -keep class com.mobile.meishang.utils.view.pulltorefresh.XScrollView { <init>(...); }
 
-# view AndroidManifest.xml #generated:251
+# view AndroidManifest.xml #generated:273
 -keep class com.tencent.connect.common.AssistActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:238
+# view AndroidManifest.xml #generated:260
 -keep class com.tencent.tauth.AuthActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:228
+# view AndroidManifest.xml #generated:250
 -keep class com.umeng.socialize.view.ShareActivity { <init>(...); }
 
 # view res/layout/umeng_socialize_ucenter_platform_item.xml #generated:31
@@ -317,6 +312,14 @@
 # view res/layout/dialog_selectdate.xml #generated:85
 -keep class kankan.wheel.widget.WheelView { <init>(...); }
 
+# onClick res/layout/activity_business_card_info_add.xml #generated:188
+# onClick res/layout/activity_business_card_info_add.xml #generated:200
+# onClick res/layout/activity_business_card_info_add.xml #generated:218
+# onClick res/layout/activity_business_card_list.xml #generated:15
+# onClick res/layout/activity_business_card_list.xml #generated:39
+# onClick res/layout/activity_business_card_list.xml #generated:61
+# onClick res/layout/activity_business_card_list.xml #generated:93
+# onClick res/layout/activity_business_card_no.xml #generated:32
 # onClick res/layout/activity_category.xml #generated:1
 # onClick res/layout/activity_choujiang.xml #generated:31
 # onClick res/layout/activity_discover_detail.xml #generated:34

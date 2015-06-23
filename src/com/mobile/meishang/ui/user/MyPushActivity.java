@@ -36,7 +36,7 @@ public class MyPushActivity extends MActivity implements ExceptionHandler,
 		listview = (ListView) findViewById(R.id.listview);
 		adapter = new MyPushListviewAdapter(this);
 		listview.setAdapter(adapter);
-		net();
+		// net();
 	}
 
 	private void net() {
