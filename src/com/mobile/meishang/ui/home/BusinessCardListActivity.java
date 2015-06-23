@@ -19,6 +19,7 @@ import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.BusinessCardExchangeRequest;
 import com.mobile.meishang.core.request.BusinessCardRequest;
 import com.mobile.meishang.core.request.CategoryRequest;
+import com.mobile.meishang.core.request.ProvinceRequest;
 import com.mobile.meishang.model.BusinessCard;
 import com.mobile.meishang.model.BusinessCardList;
 import com.mobile.meishang.model.Module;
@@ -104,6 +105,8 @@ public class BusinessCardListActivity extends MActivity implements
 		});
 		getSupportLoaderManager().initLoader(RequestDistribute.CATEGORY, null,
 				new CategoryRequest(this));
+		getSupportLoaderManager().initLoader(RequestDistribute.PROVINCE, null,
+				new ProvinceRequest(this));
 		mBundle = new Bundle();
 		mBundle.putString("provinceId", "3");
 		mBundle.putString("moduleId", "3");
@@ -140,6 +143,7 @@ public class BusinessCardListActivity extends MActivity implements
 					filterRightAdapter.notifyDataSetChanged();
 				}
 			}
+		case R.id.flayout_category_right:
 			break;
 		default:
 			break;

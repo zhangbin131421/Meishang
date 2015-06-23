@@ -98,4 +98,5 @@ public class RequestDistribute {
 	public static final int BUSINESS_CARD_EXCHANGE = 6030;//
 	public static final int BUSINESS_CARD_Add = 6031;//
 	public static final int BUSINESS_INFO = 6032;//
+	public static final int PROVINCE = 6033;//
 }
