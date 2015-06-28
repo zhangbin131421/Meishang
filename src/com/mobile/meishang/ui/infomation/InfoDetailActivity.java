@@ -9,6 +9,7 @@ import com.mobile.meishang.MActivity;
 import com.mobile.meishang.MApplication;
 import com.mobile.meishang.R;
 import com.mobile.meishang.core.error.ExceptionHandler;
+import com.mobile.meishang.core.request.CommentAddRequest;
 import com.mobile.meishang.core.request.FavoritesAddRequest;
 import com.mobile.meishang.core.request.InfoDetailRequest;
 import com.mobile.meishang.imagecache.ImageFetcher;
@@ -133,8 +134,14 @@ public class InfoDetailActivity extends MActivity implements ExceptionHandler,
 			}
 			break;
 		case R.id.flayout_evaluate:
+			bundle.putString("objectid", infomation.getInfoid());
+			bundle.putString("moduleid", infomation.getModuleid());
+			bundle.putString("smoduleid", infomation.getSmoduleid());
 			bundle.putString("infoid", infomation.getInfoid());
 			goActivity(EvaluateListActivity.class, bundle);
+			// getSupportLoaderManager().restartLoader(
+			// RequestDistribute.FAVORITES_ADD, bundle,
+			// new CommentAddRequest(this));
 			break;
 
 		default:

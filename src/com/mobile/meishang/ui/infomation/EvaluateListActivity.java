@@ -11,6 +11,7 @@ import com.mobile.meishang.R;
 import com.mobile.meishang.adapter.EvaluateListAdapter;
 import com.mobile.meishang.core.error.ExceptionHandler;
 import com.mobile.meishang.core.request.EvaluateListRequest;
+import com.mobile.meishang.model.InfomationList;
 import com.mobile.meishang.model.RequestDistribute;
 import com.mobile.meishang.utils.view.LoadingView;
 import com.mobile.meishang.utils.view.LoadingView.LoadEvent;
@@ -47,26 +48,19 @@ public class EvaluateListActivity extends MActivity implements
 		mListView = (ListView) findViewById(R.id.listview);
 		listAdapter = new EvaluateListAdapter(this);
 		mListView.setAdapter(listAdapter);
-		// list = new ArrayList<TravelNotesEvaluate>();
-		// for (int i = 0; i < 5; i++) {
-		// list.add(new TravelNotesEvaluate("" + i));
-		// }
-		// listAdapter.addAll(list);
-		// mListView.setOnItemClickListener(new OnItemClickListener() {
-		//
-		// @Override
-		// public void onItemClick(AdapterView<?> parent, View view,
-		// int position, long id) {
-		// // goActivity(EvaluateDetailActivity.class, null);
-		//
-		// }
-		// });
-		// listAdapter.notifyDataSetChanged();
 		mBundle = getIntent().getBundleExtra("bundle");
 		getSupportLoaderManager().restartLoader(
 				RequestDistribute.EVALUATE_LIST, mBundle,
 				new EvaluateListRequest(this));
 
+	}
+	@Override
+	public void updateUI(int identity, Object data) {
+//		super.updateUI(identity, data);
+		InfomationList infomationList=(InfomationList) data;
+		listAdapter.clear();
+//		listAdapter.addAll(list);
+		listAdapter.notifyDataSetChanged();
 	}
 
 	public void onclick(View v) {
